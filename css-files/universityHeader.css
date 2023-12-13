@@ -72,11 +72,11 @@
     margin-left: 150px;
     margin-top: 15px;
     margin-right: 40px;
-    position: relative;
+    position: relative;  
 }
 .header-button {
-    color: white;
     background-color: #152039;
+    color: white;
     border: none;
     font-family: "Nunito";
     font-weight: 600;
@@ -126,7 +126,7 @@
 }
 @media screen and (max-width: 850px) {
     .drop-down-uni {
-        margin-left: -18px;
+        margin-left: -20px;
         margin-top: 8px;
     }
 }
@@ -238,7 +238,7 @@
 .logout-button:hover {
     cursor: pointer;
     background-color: white;
-    border-color: white;
+    border-width: 2.5px;
     color: black;
 }
 
