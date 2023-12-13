@@ -1,0 +1,297 @@
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.centre {
+    width: 100%;
+    margin-top: 80px;
+}
+
+.page-heading {
+    background-color: #152039;
+    margin-top: 20px;
+    width: 100%;
+    height: 240px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+@media screen and (min-width: 400px) and (max-width: 700px) {
+    .page-heading {
+        height: 160px;
+    }
+}
+.university-title {
+    margin-left: 100px;
+    width: 600px;
+    display: flex;
+}
+.title-main-text {
+    color: #FFE34F;
+    font-family: "Paytone One";
+    font-size: 50px;
+    margin-top: 30px;
+}
+@media screen and (max-width: 850px) {
+    .title-main-text {
+        font-size: 40px;
+        margin-left: -70px;
+    }
+}
+@media screen and (min-width: 400px) and (max-width: 700px) {
+    .title-subtext {
+        margin-left: -20px;
+    }
+}
+.title-subtext {
+    color: #FFE34F;
+    font-family: "Paytone One";
+    font-size: 22px;
+    margin-top: 110px;
+    margin-left: -290px;
+    min-width: 150px;
+}
+@media screen and (max-width: 850px) {
+    .title-subtext {
+        font-size: 18px;
+        margin-left: -235px;
+    }
+}
+@media screen and (min-width: 400px) and (max-width: 700px) {
+    .title-subtext {
+        display: none;
+    }
+}
+.title-image {
+    display: flex;
+    margin-top: 30px;
+}
+.university-image {
+    max-width: 100%;
+    height: 200px;
+    margin-right: 70px;
+}
+@media screen and (max-width: 850px) {
+    .university-image {
+        height: 160px; 
+    }
+}
+@media screen and (min-width: 400px) and (max-width: 700px) {
+    .university-image {
+        height: 110px; 
+        width: 1000px;
+    }
+}
+
+.text-field-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .text-field-container {
+        margin-left: 30px;
+    }
+}
+.location-choice {
+    margin-right: 100px;
+}
+.question {
+    font-family: "Nunito";
+    font-size: 20px;
+    font-weight: 600;
+}
+@media screen and (max-width: 850px) {
+    .question {
+        font-size: 18px;
+    }
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .question {
+        font-size: 15px;
+    }
+}
+.text-field1 {
+    height: 28px;
+    width: 280px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+}
+@media screen and (max-width: 850px) {
+    .text-field1 {
+        width: 200px;
+    }
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .text-field1 {
+        width: 130px;
+    }
+}
+.fee-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-right: 230px;
+    margin-top: 50px;
+}
+@media screen and (max-width: 850px) {
+    .fee-button-container {
+        margin-left: 30px;
+    }
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .fee-button-container {
+        margin-left: 80px;
+    }
+}
+.fees {
+    margin-right: 100px;
+}
+.text-field2 {
+    height: 28px;
+    width: 100px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    padding-left: 7px;
+}
+.text-field2::placeholder {
+    font-family: "Nunito";
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .text-field2::placeholder {
+        font-size: 11px;
+    }
+}
+@media screen and (max-width: 850px) {
+    .text-field2 {
+        width: 80px;
+    }
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .text-field2 {
+        width: 50px;
+    }
+}
+.arrow {
+    display: inline-block;
+}
+.search-button-container {
+    margin-top: 50px;
+    margin-left: 0px;
+}
+.search {
+    height: 45px;
+    width: 160px;
+    background-color: black;
+    color: white;
+    font-family: "Nunito";
+    font-size: 16px;
+    font-weight: 700;
+    border-color: black;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 20px;
+
+    transition: background-color, color 0.25s;
+}
+.search:hover {
+    background-color: white;
+    color: black;
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .search {
+        width: 100px;
+    }
+}
+
+.university-list {
+    padding-bottom: 50px;
+}
+.uni-container {
+    border: 3px solid;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.uni-description-container {
+    display: flex;
+    margin-left: 30px;
+}
+.uni-image {
+    height: 50px;
+    margin-top: 20px;
+}
+.uni-desc {
+    margin-top: -10px;
+    margin-left: 17px;
+}
+.uni-name {
+    font-family: "Nunito";
+    font-size: 26px;
+    font-weight: 700;
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .uni-name {
+        font-size: 20px;
+    }
+}
+.uni-location {
+    font-family: "Nunito";
+    margin-top: -20px;
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .uni-location {
+        display: none;
+    }
+}
+.major {
+    font-family: "Nunito";
+    font-size: 20px;
+    font-weight: 600;
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .major {
+        font-size: 14px;
+    }
+}
+.uni-costs {
+    margin-right: 30px;
+    margin-top: 20px;
+}
+.annual-fee {
+    font-family: "Nunito";
+    font-size: 20px;
+    font-weight: 600;
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .annual-fee {
+        /* font-size: 14px;
+        margin-top: 70px;
+        margin-left: -150px; */
+        display: none;
+    }
+}
+.years {
+    font-family: "Nunito";
+    font-size: 18px;
+    font-weight: 500;
+}
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .years {
+        display: none;
+    }
+}
+
+
+
+
