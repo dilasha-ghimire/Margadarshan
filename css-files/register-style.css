@@ -110,5 +110,18 @@ img{
   width: 600px;
   padding-left: 60px;
   height: 500px;
+}
 
+#uppercase, #number1, #min-char {
+    margin-top: 10px;
+    color: red;
+    font-family: "Nunito";
+    font-size: 14px;
+}
+.valid {
+    color: green;
+}
+.password-categories {
+    margin-left: 7px;
+    margin-top: 15px;
 }
