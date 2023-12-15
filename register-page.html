@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css-files\register-style.css">
+    <script src="js-files\registration.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;507;647&family=Paytone+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;507;647&family=Paytone+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -43,20 +44,26 @@
                 <input type="email"id="email"placeholder="Email address"> 
             </div>
                 <div class="column">
-                    <div class="in"><input type="password" placeholder="Enter your password"></div>
+                    <div class="in"><input type="password" id="password" placeholder="Enter your password" oninput="checkPasswordStrength(this.value)"></div>
 
                     <div class="in">
                     
                     <input type="password" placeholder="Re-Enter your password">
                 </div>
-            </div>  
+            </div> 
+            <div class="password-categories">
+                <div id="uppercase"><span id="strength-letter">&#10060</span> Uppercase letter </div>
+                <div id="number1"><span id="strength-number">&#10060</span> Number </div>
+                <div id="min-char"><span id="strength-char">&#10060</span> Minimum 8 characters</div>
+            </div>
+            
             <br><br><br><br>
             <div class="input-box">
-                <button>Create Account</button>
+                <button id="submit-button" disabled onclick="submitForm()">Create Account</button>
             </div>
             <br>
             <div id="qst">Already have an account? <a href="login">login</a></div>
-            
+
             </form>
             </div>
 
