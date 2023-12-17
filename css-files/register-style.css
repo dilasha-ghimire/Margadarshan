@@ -6,23 +6,15 @@
 }
 .container{
 display: flex;
-/* border: 3px solid black; */
 height: 100vh;
-/* margin: 4px; */
 flex-direction: row;
 background-color:#152039;
-/* justify-content: end; */
-/* justify-content: center; */
 
 }
 .container1{
-    /* background-color: #000; */
     background-color: #152039;
     width:50% ;
-    /* display: flex; */
-    /* flex-direction: column; */
-  /* justify-content:space-evenly; */
-    /* height:100px; */
+    height:100px; 
 }
 .container2{
     background-color:white;
@@ -33,8 +25,6 @@ background-color:#152039;
 header{
     font-weight: 700;
     font-size:40px;
-    /* margin:; */
-    /* align-items: center; */
 }
 #h{
     font-size: 20px;
@@ -45,16 +35,21 @@ header{
 }
 .entry input{
     width: 80%;
-    border: 2px solid black;
     height: 35px;
     margin: 10px;
     border-radius:4px;
+    border: none;
+    outline: none;
+    border-bottom:1px solid black;
+
+}
+::placeholder{
+    color: #000000;
+    font-size:15px;
 }
 
 .column{
     display:flex;
-    /* column-gap: 7ch;    */
-
     width: 80%;
     margin: 10px;
     justify-content: space-between
@@ -62,11 +57,12 @@ header{
 .column input{
     height: 35px;
     border-radius:4px;
-    border: 2px solid black;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
 
 }
 button {
-    /* padding: 10px; */
     background-color: #000000;
     color: #fff;
     border: none;
@@ -95,7 +91,6 @@ button {
     float: right;
 }
 .info{
-    /* background-color:aqua; */
     background-color:#152039;
 
     width:700px;
@@ -106,22 +101,7 @@ button {
 img{
     border-radius: 4px;
     padding-top:80px;
-  /* padding: 10px; */
-  width: 600px;
-  padding-left: 60px;
-  height: 500px;
-}
-
-#uppercase, #number1, #min-char {
-    margin-top: 10px;
-    color: red;
-    font-family: "Nunito";
-    font-size: 14px;
-}
-.valid {
-    color: green;
-}
-.password-categories {
-    margin-left: 7px;
-    margin-top: 15px;
+    width: 600px;
+    padding-left: 60px;
+    height: 500px;
 }
