@@ -1,9 +1,9 @@
 //values from the user input
-var nameValue = document.getElementById("name");
-var addressValue = document.getElementById("address");
-var mobileNoValue = document.getElementById("number");
-var emailValue = document.getElementById("email");
-var passwordValue = document.getElementById("password");
+var nameValue = document.getElementById("name").value;
+var addressValue = document.getElementById("address").value;
+var mobileNoValue = document.getElementById("number").value;
+var emailValue = document.getElementById("email").value;
+var passwordValue = document.getElementById("password").value;
 
 var jsonData = {
     name: nameValue,
@@ -63,6 +63,21 @@ function checkPasswordStrength(password) {
 }
 
 function submitForm() {
+    fetch("http://localhost:8080/api/students", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(jsonData)
+    })
+    .then(responser => responser.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error =>  {
+        console.error("Registration error: " + error);
+    })
+    
     // Clear password field and reset strength indicators
     document.getElementById('password').value = '';
     document.getElementById('uppercase').style.color = 'red';
@@ -77,18 +92,3 @@ function submitForm() {
 
     window.location.href = 'login-page.html';
 }
-
-fetch("/api/students", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(jsonData)
-})
-.then(responser => responser.json())
-.then(data => {
-    console.log(data);
-})
-.catch(error =>  {
-    console.error("Registration error: " + error);
-})
