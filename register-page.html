@@ -34,7 +34,7 @@
             <br>
             <div id="h">Please fill in your details:</div>
             <br>
-            <form action="/action_page.php" class="form">  
+            <form action=" " class="form">  
                 <div class="entry">
                 <input type="text"id="name" placeholder="Full Name" autofocus>
                 <input type="text"id="address"placeholder="Full Address">
@@ -42,14 +42,16 @@
                 <input type="email"id="email"placeholder="Email address"> 
             </div>
                 <div class="column">
-                    <div class="in"><input type="password" id="password" placeholder="Enter your password" oninput="checkPasswordStrength(this.value)"></div>
+                    <div class="in"><input type="password" id="password" placeholder="Enter your password" 
+                        onclick="showCriteria()" 
+                        oninput="checkPasswordStrength(this.value)"></div>
 
                     <div class="in">
                     
                     <input type="password" placeholder="Re-Enter your password">
                 </div>
             </div> 
-            <div class="password-categories">
+            <div id="password-criteria">
                 <div id="uppercase"><span id="strength-letter">&#10060</span> Uppercase letter </div>
                 <div id="number1"><span id="strength-number">&#10060</span> Number </div>
                 <div id="min-char"><span id="strength-char">&#10060</span> Minimum 8 characters</div>

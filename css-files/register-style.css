@@ -105,3 +105,15 @@ img{
     padding-left: 60px;
     height: 500px;
 }
+
+#password-criteria {
+    display: none;
+    margin-left: 7px;
+}
+#uppercase, #number1, #min-char {
+    margin-top: 10px;
+    color: red;
+}
+.valid {
+    color: green;
+}
