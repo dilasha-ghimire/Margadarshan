@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css-files\login-style.css">
+    <script src="js-files\login.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;507;647&family=Paytone+One&display=swap" rel="stylesheet">
@@ -36,8 +38,10 @@
             <br>
             <form action="action.php" class="form">
                 <div class="entry">
-                <input type="email" name="email" id="email" placeholder="  Enter your email address">
-                <input type="password" name="password" id="password" placeholder="  Enter your password">
+                <input type="email" name="email" id="email" placeholder="  Enter your email address" oninput="clearErrors()">
+                <div id="emailError" class="error"></div>
+                <input type="password" name="password" id="password" placeholder="  Enter your password" oninput="clearErrors()">
+                <div id="passwordError" class="error"></div>
             </div>
             <br>
                 <!-- <input type="checkbox"> -->
@@ -47,7 +51,7 @@
                  <a href="Forgot Password" >Forgot Password</a>
                 </div>
                 <button class="button1">Sign up</button>
-                <button class="button2">Login</button>
+                <button class="button2" onclick="validateLogin()">Login</button>
             </form>
         </div>
        

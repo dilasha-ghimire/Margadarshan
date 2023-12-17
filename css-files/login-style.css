@@ -118,3 +118,13 @@ button{
         background-color: #000;
         color: white;
       }
+
+.error {
+        color: #E70000;
+        margin-top: 5px;
+        font-family: "Nunito";
+    }
+    
+    input.error {
+        border: 1px solid #E70000;
+}
