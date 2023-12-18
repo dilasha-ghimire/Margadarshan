@@ -1,18 +1,3 @@
-//values from the user input
-var nameValue = document.getElementById("name").value;
-var addressValue = document.getElementById("address").value;
-var mobileNoValue = document.getElementById("number").value;
-var emailValue = document.getElementById("email").value;
-var passwordValue = document.getElementById("password").value;
-
-var jsonData = {
-    name: nameValue,
-    address: addressValue,
-    number: mobileNoValue,
-    email: emailValue,
-    password: passwordValue
-}
-
 function showCriteria() {
     // Show the password strength criteria when the user clicks on the text field
     document.getElementById('password-criteria').style.display = 'block';
@@ -63,7 +48,22 @@ function checkPasswordStrength(password) {
 }
 
 function submitForm() {
-    fetch("http://localhost:8080/api/students", {
+    //values from the user input
+    var nameValue = document.getElementById("name").value;
+    var addressValue = document.getElementById("address").value;
+    var mobileNoValue = document.getElementById("number").value;
+    var emailValue = document.getElementById("email").value;
+    var passwordValue = document.getElementById("password").value;
+
+    var jsonData = {
+        name: nameValue,
+        address: addressValue,
+        number: mobileNoValue,
+        email: emailValue,
+        password: passwordValue
+    }
+
+    fetch( {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
