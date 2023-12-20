@@ -121,6 +121,7 @@ body, html {
     }
 }
 .text-field {
+    background-color: white;
     height: 28px;
     width: 280px;
     border-width: 2px;
@@ -175,6 +176,7 @@ body, html {
     padding-bottom: 50px;
 }
 .sch-container {
+    border-color: black;
     border: 3px solid;
     border-radius: 10px;
     display: flex;

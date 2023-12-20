@@ -1,0 +1,164 @@
+.main-section {
+    display: flex;
+    background-color: #152039;
+}
+.left-section {
+    background-color: #152039;
+    display: flex;
+    flex-direction: column;
+    width: 130vw;
+    height: 100vh;
+}
+.website-title {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    position: fixed;
+    left: 130px;
+    top: 70px;
+}
+.margadarshan, .gyansarathi {
+    font-family: "Paytone One";
+    color: #FFE34F;
+}
+.margadarshan {
+    font-size: 60px;
+}
+.gyansarathi {
+    font-size: 26px;
+    margin-top: -50px;
+}
+.website-img-container {
+    display: flex;
+    position: fixed;
+    top: 350px;
+    left: 100px;   
+}
+.website-img {
+    width: 500px;
+}
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    padding-left: 35px;
+    background-color: white;
+    width: 100%;
+}
+.page-title {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.main-title, .subtitle {
+    font-family: "Nunito";
+    color: black;
+    margin-left: 60px;
+    margin-top: 70px;
+}
+.main-title {
+    font-weight: bold;
+    font-size: 36px;
+}
+.subtitle {
+    font-size: 20px;
+    margin-top: -20px;
+}
+.user-input {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 60px;
+    margin-top: 30px;
+}
+input {
+    background-color: white;
+    border-color: black;
+    border-radius: 5px;
+    height: 40px;
+    width: 220px;
+    padding-left: 15px;
+}
+.text-field-name, .text-field-address, .text-field-number, .text-field-email, .text-field-password, .text-field-rePassword {
+    color: black;
+}
+.text-field-address, .text-field-number, .text-field-email, .text-field-password {
+    margin-top: 25px;
+}
+.text-field-rePassword {
+    margin-left: 40px;
+}
+.password-text-fields {
+    display: flex;
+    align-items: baseline;
+}
+.button-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 120px;
+    align-items: center;
+}
+.register-button {
+    width: 300px;
+    height: 50px;
+    border-radius: 30px;
+}
+.login-container {
+    display: flex;
+}
+.already-account, .login {
+    color: black;
+}
+.login {
+    margin-left: 10px;
+}
+.login:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media screen and (max-width : 1250px) {
+    .website-title {
+        margin-top: -90px;
+    }
+    .website-img {
+        display: none;
+    }
+    .right-section {
+        height: 70vh;
+        margin-top: 200px;
+        margin-left: -20px;
+        border-radius: 20px;
+    }
+    .page-title {
+        margin-top: -40px;
+    }
+    .main-title {
+        font-size: 24px;
+    }
+    .subtitle {
+        font-size: 16px;
+    }
+    .user-input {
+        margin-top: 0px;
+    }
+    .text-field-name, .text-field-address, .text-field-number, .text-field-email, .text-field-password, .text-field-rePassword {
+        width: 140px;
+    }
+    .text-field-name::placeholder, .text-field-address::placeholder, .text-field-number::placeholder, .text-field-email::placeholder, .text-field-password::placeholder, .text-field-rePassword::placeholder {
+        font-size: 11px;   
+    }
+    .button-container {
+        margin-top: 30px;
+    } 
+}
+
+@media screen and (min-width : 400px) and (max-width : 750px) {
+    .website-title {
+        margin-left: -70px;
+        margin-top: -70px;
+    }
+    .margadarshan {
+        font-size: 50px;
+    }
+}
