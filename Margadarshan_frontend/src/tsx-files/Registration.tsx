@@ -1,6 +1,26 @@
 import '../css-files/register.css'
+import {useForm} from 'react-hook-form';
+import {useMutation} from 'react-query';
+import axios from "axios";
 
 function Registration() {
+
+    const saveData=useMutation({
+        mutationKey:"SAVE DATA",
+        mutationFn:(requestData:any)=>{
+            console.log(requestData)
+            return axios.post("http://localhost:8080/api/students",requestData)
+        }
+    });
+
+    const {register,
+    handleSubmit, 
+    formState} = useForm();
+    
+    const onSubmit = (value:any) :void => {
+        saveData.mutate(value);
+    }
+
     return (
         <>
         <div className='main-section'>
@@ -19,20 +39,20 @@ function Registration() {
                     <p className='main-title'>REGISTER</p>
                     <p className='subtitle'>Please fill in your details.</p>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='user-input'>
-                        <input className='text-field-name' type='text' placeholder='Full Name'></input>
-                        <input className='text-field-address' type='text' placeholder='Full Address'></input>
-                        <input className='text-field-number' type='text' placeholder='Mobile Number'></input>
-                        <input className='text-field-email' type='text' placeholder='Email Address'></input>
+                        <input className='text-field-name' type='text' placeholder='Full Name' {...register("full_name")}></input>
+                        <input className='text-field-address' type='text' placeholder='Full Address' {...register("address")}></input>
+                        <input className='text-field-number' type='text' placeholder='Mobile Number' {...register("mobile")}></input>
+                        <input className='text-field-email' type='text' placeholder='Email Address' {...register("email")}></input>
                         <div className='password-text-fields'>
-                            <input className='text-field-password' type='password' placeholder='Password'></input>
+                            <input className='text-field-password' type='password' placeholder='Password' {...register("password")}></input>
                             <input className='text-field-rePassword' type='password' placeholder='Re-enter your password'></input>
                         </div>
                     </div>
+                    <button className='register-button'>Create Account</button>
                 </form>
                 <div className='button-container'>
-                    <button className='register-button'>Create Account</button>
                     <div className='login-container'>
                         <p className='already-account'>Already have an account?</p>
                         <p className='login'>Login</p>
