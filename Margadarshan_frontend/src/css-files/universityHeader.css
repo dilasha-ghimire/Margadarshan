@@ -12,41 +12,27 @@
 }
 .website-title {
     display: flex;
-    flex-direction: row;
     align-items: end;
-}
-.logo-button {
-    width: 55px;
-    height: 60px;
-    margin-left: 15px;
-}
-.logo-button:hover {
-    cursor: pointer;
-}
-.logo-container {
-    display: flex;
 }
 .logo {
     width: 55px;
     height: 60px; 
-    margin-left: -44px;
-    margin-top: -33.75px;
 }
-.website-title-button {
+/* .margadarshan {
     border: none;
     color: #FFE34F;
     background-color: #152039;
     font-family: "Paytone One";
     font-size: 22px;
-}
-.website-title-button:hover {
+} */
+/* .margadarshan {
     cursor: pointer;
 }
 @media screen and (max-width: 767px) {
     .website-title-button {
         font-size: 14px;
     }
-}
+} */
 .header-button-container {
     display: flex;
     flex: 1;

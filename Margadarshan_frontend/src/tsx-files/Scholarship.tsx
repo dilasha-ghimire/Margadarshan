@@ -1,4 +1,3 @@
-import {Link} from "react-router-dom"
 import "../css-files/universityHeader.css";
 import "../css-files/scholarshipCentre.css";
 
@@ -27,8 +26,8 @@ function Scholarship() {
                 <button className="header-button">Universities</button>
 
                 <div className="drop-down-uni">
-                    <Link to = "/university"><button className="drop-down-button">Universities</button></Link>
-                    <Link to="/scholarship"><button className="drop-down-button">Scholarship</button></Link>
+                    <button className="drop-down-button">Universities</button>
+                    <button className="drop-down-button">Scholarship</button>
                     <button className="drop-down-button">Exams</button>
                 </div>
             </div>
