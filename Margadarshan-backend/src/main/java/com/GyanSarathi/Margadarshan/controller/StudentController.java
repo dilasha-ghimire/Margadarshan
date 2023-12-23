@@ -1,4 +1,4 @@
-package com.GyanSarathi.Margadarshan.rest;
+package com.GyanSarathi.Margadarshan.controller;
 
 import com.GyanSarathi.Margadarshan.entity.Student;
 import com.GyanSarathi.Margadarshan.service.StudentService;
@@ -10,11 +10,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("/api")
-public class StudentRestController {
+public class StudentController {
     private StudentService studentService;
 
     @Autowired
-    public StudentRestController(StudentService studentService){
+    public StudentController(StudentService studentService){
         this.studentService = studentService;
     }
 
@@ -23,7 +23,7 @@ public class StudentRestController {
     public List<Student> findAll(){
         return studentService.findAll();
     }
-
+    
     // add mapping for GET /students/{studentId}
     @GetMapping("/students/{studentId}")
     public Student getEmployee(@PathVariable int studentId){
@@ -40,13 +40,12 @@ public class StudentRestController {
     public Student addStudent(@RequestBody Student theStudent){
         //aso just in case they pass an id in JSON ... set id to 0
         //this is to force a save of new item ... instead of update
-        theStudent.setId(0);
         Student dbStudent = studentService.save(theStudent);
         return dbStudent;
     }
 
     //add mapping for PUT/employees - update existing employee
-    //@RequestBody because data is gonna come as a json
+    //@RequestBody   because data is gonna come as a json
     @PutMapping("/students")
     public Student updateStudent(@RequestBody Student theStudent){
         Student dbStudent = studentService.save(theStudent);
