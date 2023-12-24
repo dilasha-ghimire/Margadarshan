@@ -10,42 +10,23 @@
     height: 80px;
     z-index: 100;
 }
-.website-title {
+.website-title-uni {
     display: flex;
-    flex-direction: row;
     align-items: end;
-}
-.logo-button {
-    width: 55px;
-    height: 60px;
-    margin-left: 15px;
-}
-.logo-button:hover {
-    cursor: pointer;
-}
-.logo-container {
-    display: flex;
 }
 .logo {
     width: 55px;
     height: 60px; 
-    margin-left: -44px;
-    margin-top: -33.75px;
 }
-.website-title-button {
+.margadarshan-uni {
     border: none;
     color: #FFE34F;
     background-color: #152039;
     font-family: "Paytone One";
     font-size: 22px;
 }
-.website-title-button:hover {
+.margadarshan-uni:hover {
     cursor: pointer;
-}
-@media screen and (max-width: 767px) {
-    .website-title-button {
-        font-size: 14px;
-    }
 }
 .header-button-container {
     display: flex;
@@ -80,15 +61,14 @@
 .header-button-uni {
     position: relative;
 }
-.drop-down-uni {
+.drop-down-uni-container1 {
     position: absolute;
     display: flex;
     flex-direction: column;
-    margin-top: -2px;
-    margin-left: 5px;
+    left: 7px;
     opacity: 0;
 }
-.drop-down-button {
+.drop-down-button-uni {
     font-family: "Nunito";
     font-size: 14px;
     background-color: black;
@@ -99,24 +79,24 @@
     height: 50px;
     transition: background-color, color, 0.25s;
 }
-.drop-down-button:hover {
+.drop-down-button-uni:hover {
     text-decoration: underline;
     color: black;
     background-color: white;
     font-weight: 700;
     cursor: pointer;
 }
-.header-button-uni:hover .drop-down-uni {
+.header-button-uni:hover .drop-down-uni-container1 {
     opacity: 1;
 }
 @media screen and (max-width: 850px) {
-    .drop-down-uni {
+    .drop-down-uni-container1 {
         margin-left: -20px;
         margin-top: 8px;
     }
 }
 @media screen and (max-width: 850px) {
-    .drop-down-button {
+    .drop-down-button-uni {
         font-size: 10px;
         width: 80px;
         height: 30px;
@@ -136,20 +116,18 @@
         margin-left: -10px;
     }
 }
-.drop-down-portfolio {
+.drop-down-portfolio-container1 {
     position: absolute;
     display: flex;
     flex-direction: column;
-    margin-top: -2px;
-    margin-left: -5px;
+    right: -5px;
     opacity: 0;
 }
-.header-button-portfolio:hover .drop-down-portfolio {
+.header-button-portfolio:hover .drop-down-portfolio-container1 {
     opacity: 1;
-    visibility: visible;
 }
 @media screen and (max-width: 850px) {
-    .drop-down-portfolio {
+    .drop-down-portfolio-container2 {
         margin-left: -25px;
         margin-top: 9.5px;
     }
@@ -179,19 +157,19 @@
     cursor: pointer;
     border-color: white;
 }
-.profile {
+.profile-uni {
     height: 35px;
     width: 35px;
     margin-top: -3px;
     margin-left: -12px;
 }
 @media screen and (max-width: 850px) {
-    .profile {
+    .profile-uni {
         height: 25px;
         width: 25px;
     }
 }
-.logout-button {
+.logout-btn-uni {
     position: absolute;
     color: white;
     font-family: 'Nunito';
@@ -205,13 +183,13 @@
 
     padding-top: 6px;
     padding-left: 18px;
-    margin-top: 55px;
-    margin-left: -70px;
+    top: 60px;
+    left: 20px;
 
     transition: background-color, color 0.25s;
 }
 @media screen and (max-width: 850px) {
-    .logout-button {
+    .logout-btn-uni {
         width: 55px;
         font-size: 12px;
         margin-top: 47px;
@@ -220,10 +198,10 @@
         padding-right: 7px;
     }
 }
-.profile-container:hover .logout-button {
+.profile-container:hover .logout-btn-uni {
     opacity: 1;
 }
-.logout-button:hover {
+.logout-btn-uni:hover {
     cursor: pointer;
     background-color: white;
     border-width: 2.5px;
