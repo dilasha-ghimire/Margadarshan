@@ -1,25 +1,26 @@
-import { useMutation } from 'react-query';
 import '../css-files/register.css'
-import {useForm} from "react-hook-form";
-import axios from 'axios';
+import {useForm} from 'react-hook-form';
+import {useMutation} from 'react-query';
+import axios from "axios";
 
 function Registration() {
-    const saveData = useMutation({
-        mutationKey:"SAVEDATA",
-        mutationFn: (requestData:any) => {
+
+    const saveData=useMutation({
+        mutationKey:"SAVE DATA",
+        mutationFn:(requestData:any)=>{
             console.log(requestData)
-            return axios.post("http://localhost:8080/api/students", requestData)
+            return axios.post("http://localhost:8080/api/students",requestData)
         }
     });
 
-    const {register, 
-        handleSubmit,
+    const {register,
+    handleSubmit, 
     formState} = useForm();
 
-    const {errors} = formState;
-
-    const onSubmit=(values:any) :void => {
-        saveData.mutate(values);
+    const {errors}=formState;
+    
+    const onSubmit = (value:any) :void => {
+        saveData.mutate(value);
     }
 
     return (
@@ -64,12 +65,9 @@ function Registration() {
                     </div>
                     <button type="submit" className='register-button'>Create Account</button>
                 </form>
-
-                <div className='button-container'>
-                    <div className='login-container'>
-                        <p className='already-account'>Already have an account?</p>
-                        <p className='login'>Login</p>
-                    </div>
+                <div className='login-container'>
+                    <p className='already-account'>Already have an account?</p>
+                    <p className='login'>Login</p>
                 </div>
             </div>
         </div>
