@@ -2,8 +2,17 @@ import "../css-files/universityHeader.css";
 import "../css-files/universityCentre.css";
 import React, { useState } from 'react';
 import { Link } from "react-router-dom"
+import {useQuery} from "react-query";
+import axios from "axios";
 
 function University() {
+    const {data} = useQuery({
+        queryKey: "GET_DATA",
+        queryFn() {
+            return axios.get("http://localhost:8080/universities/universities")
+        }
+    })
+
     const [selectedOption, setSelectedOption] = useState(null);
     const options = ["<$30,000", "$30,000 - $40,000", "$40,000 - $50,000", "$50,000 - $60,000", "$60,000>"];
 
@@ -137,6 +146,19 @@ function University() {
                         <p className="years">4 years</p>
                     </div>
                 </div>
+            </div>
+
+            <div>
+                {data?.data?.map(i=>{
+                    return  (<>
+                        <p>University Name: {i.universityName}</p>
+                        <p>University State: {i.universityState}</p>
+                        <p>University City: {i.universityCity}</p>
+                        <p>University Major: {i.universityMajor}</p>
+                        <p>Annual Tuition Fee: {i.universityFees}</p>
+                        <p>Length of Study: {i.universityLength}</p>
+                    </>)
+                })}
             </div>
         </>
     )
