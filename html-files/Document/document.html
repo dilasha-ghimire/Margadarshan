@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio: Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Paytone+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Nunito:wght@300;400;500;600;700&family=Paytone+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="documentheaderstyle.css">
+    <link rel="stylesheet" href="documentstyle.css">
+    <script src ="document.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="website-title">
+            <button class="logo-button" id="logo-button">
+                <div class="logo-container">
+                    <a href="homepage1.html"><img class="logo" src="Images\Margadarshan logo.png"></a>
+                </div>
+            </button>
+            <a href="homepage1.html"><button class="website-title-button" id="website-title-button" onclick="navigateToHome()">
+                MARGADARSHAN
+            </button></a>
+        </div>
+
+        <div class="header-button-container">
+            <a href = "about.html"><button class="header-button">About</button></a>
+
+            <div class="header-button-uni">
+                <button class="header-button">Universities</button>
+
+                <div class="drop-down-uni">
+                    <a href = "university.html"><button class="drop-down-button">Universities</button></a>
+                    <button class="drop-down-button">Scholarship</button>
+                    <button class="drop-down-button">Exams</button>
+                </div>
+            </div>
+
+            <div class="header-button-portfolio">
+                <button class="header-button">Portfolio</button>
+                <div class="drop-down-portfolio">
+                    <button class="drop-down-button">Education</button>
+                    <button class="drop-down-button">Documents</button>
+                    <button class="drop-down-button">SOP and Essays</button>
+                </div>
+            </div>
+
+            <button class="header-button">Roadmap</button>
+        </div>
+
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&rightarrow;</a>
+            <a href="about.html">About</a>
+            <a href="university.html">Universities</a>
+            <a href="scholarship.html">Scholarships</a>
+            <a href="exams.html">Exams</a>
+            <a href="exams.html">Education</a>
+            <a href="document.html">Documents</a>
+            <a href="sopandessay.html">SOP and Essays</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="roadmap.html">Roadmap</a>
+        </div>
+
+        <div class="profile-container">
+            <button class="profile-button">
+                <img class="profile" src="Images\profile.png">
+            </button>   
+            <button class="logout-button">Logout</button>
+        </div>
+        
+        <div class="click" onclick="openNav()">
+            <button class = "click-button">☰</button>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="clickbtn" onclick="openSideNav()">
+            <button class="click-btn">→</button>
+        </div>
+    
+        <div id="navigation" class="sidenavbar">
+            <a href="javascript:void(0)" class="close-btn" onclick="closeSideNav()">&leftarrow;</a>
+                <div id="mySidenav" class="sidenav-content">
+                    <p>Portfolio</p>
+                    <h1></h1>
+                    <a href="education.html">
+                        <span>Education</span>
+                    </a>
+                    <h1></h1>
+                    <a href="document.html">
+                        <span>Documents</span>
+                    </a>
+                    <h1></h1>
+                    <a href="sopandessay.html">
+                        <span>SoP and Essays</span>
+                    </a>
+                </div>
+        </div>
+
+        <div class="document-upload">
+            <h1>Documents</h1>
+
+            <p> 
+                Upload your documents here to be reviewed by our team. Please ensure that you have the necessary permissions to upload these files.
+            </p>
+
+            <div class="add-button-container">
+                <button >
+                    <img class="add" src="Images/Add button.png" alt="add">
+                    <p>Resume</p>
+                </button>
+                <button>
+                    <img class="add" src="Images/Add button.png" alt="add">
+                    <p>University Certificate</p>
+                </button>
+                <button>
+                    <img class="add" src="Images/Add button.png" alt="add">
+                    <p>University Transcript</p>
+                </button>
+                <button>
+                    <img class="add" src="Images/Add button.png" alt="add">
+                    <p>Statement of Purpose</p>
+                </button>
+                <button>
+                    <img class="add" src="Images/Add button.png" alt="add">
+                    <p>IELTS/TOEFL</p>
+                </button>
+                <button>
+                    <img class="add" src="Images/Add button.png" alt="add">
+                    <p>SAT/GRE/GMAT</p>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
