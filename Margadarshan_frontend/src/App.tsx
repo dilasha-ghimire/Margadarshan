@@ -3,7 +3,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import University from "./tsx-files/University.tsx";
 import Scholarship from './tsx-files/Scholarship.tsx';
 import Registration from './tsx-files/Registration.tsx';
-import About from './tsx-files/About.tsx';
+import Login from './tsx-files/Login.tsx'
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const router = createBrowserRouter(
@@ -19,6 +19,10 @@ const router = createBrowserRouter(
       {
             path: "/register",
             element: <Registration/>
+      },
+      {
+            path: "/login",
+            element: <Login/>
       }
   ]
 )

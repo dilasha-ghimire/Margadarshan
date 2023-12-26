@@ -1,6 +1,7 @@
 import '../css-files/register.css'
+import { Link } from 'react-router-dom';
 import {useForm} from 'react-hook-form';
-import {useMutation} from 'react-query';
+import {useMutation} from "react-query";
 import axios from "axios";
 
 function Registration() {
@@ -67,7 +68,7 @@ function Registration() {
                 </form>
                 <div className='login-container'>
                     <p className='already-account'>Already have an account?</p>
-                    <p className='login'>Login</p>
+                    <Link to="/login"><p className='login'>Login</p></Link>
                 </div>
             </div>
         </div>

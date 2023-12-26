@@ -87,11 +87,12 @@ input {
     margin-top: 25px;
 }
 .text-field-rePassword {
-    margin-left: 40px;
+    margin-right: 20px;
 }
 .password-text-fields {
     display: flex;
     align-items: baseline;
+    gap: 20px;
 }
 .register-button {
     width: 300px;
@@ -107,7 +108,7 @@ input {
 }
 .login-container {
     display: flex;
-    margin-left: 200px;
+    margin-left: 250px;
 }
 .already-account, .login {
     color: black;
@@ -120,7 +121,7 @@ input {
     cursor: pointer;
 }
 
-@media screen and (max-width : 1250px) {
+@media screen and (max-width : 1400px) {
     .website-title {
         margin-top: -90px;
     }
