@@ -14,9 +14,9 @@ public interface UniversityService {
 
     List<University> getAll();
 
-    Optional<University> getById(Integer universityId);
+    Optional<University> getById(int universityId);
 
-    void deleteById(Integer universityId);
+    void deleteById(int universityId);
 
 
 }
