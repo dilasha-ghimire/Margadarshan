@@ -81,7 +81,7 @@
 }
 
 @media screen and (max-width: 850px) {
-    .user-input {
+    .user-input-uni {
         margin-left: 70px;
     }
 }

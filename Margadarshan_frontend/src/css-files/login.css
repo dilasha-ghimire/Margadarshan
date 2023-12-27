@@ -1,0 +1,163 @@
+.login-page {
+    background-color: #152039;
+    display: flex;
+    height: 100vh;
+}
+.left-sec-login {
+    margin-left: 130px;
+}
+.website-title-login {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-top: 70px;
+}
+.margadarshan-login, .gyansarathi-login {
+    font-family: "Paytone One";
+    color: #FFE34F;
+}
+.margadarshan-login {
+    font-size: 60px;
+}
+.gyansarathi-login {
+    font-size: 26px;
+    margin-top: -50px;
+}
+.login-img {
+    width: 500px;
+    margin-top: 55px;
+    margin-left: -75px;
+}
+
+.right-sec-login {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 600px;
+    width: 500px;
+    border-radius: 15px;
+    margin-top: 110px;
+    margin-left: 300px;
+
+    transition: margin-left 0.3s ease;
+}
+.page-heading-login {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 60px;
+    margin-top: 30px;
+}
+.login-title, .login-welcome, .login-to-account {
+    color: black;
+    font-family: "Nunito";
+}
+.login-title {
+    font-weight: bold;
+    font-size: 36px;
+}
+.login-welcome, .login-to-account {
+    font-size: 20px;
+    margin-top: -15px;
+}
+.user-input-login {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 20px;
+    margin-left: 60px;
+}
+input {
+    width: 300px;
+    border-style: solid;
+}
+
+.remember-forgot-login-container {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-left: 55px;
+    margin-top: 20px;
+}
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 30px;
+    width: 30px;
+    border: 2px solid black; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+input[type="checkbox"]::after {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    font-size: 20px;
+    color: black; 
+    margin-left: -13px;
+    display: none;
+}
+input[type="checkbox"]:checked:after {
+    display: block;
+}
+.remember-login, .forgot-password-login {
+    color: black;
+    font-family: "Nunito";
+    font-size: 14px;
+}
+.forgot-password-login {
+    margin-left: 100px;
+}
+.forgot-password-login:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.login-btn-container {
+    display: flex;
+    gap: 100px;
+    margin-left: 60px;
+    margin-top: 20px;
+}
+.signup-login, .login-btn-login {
+    width: 140px;
+    height: 40px;
+    padding-top: 7px;
+    border-radius: 5px;
+}
+.signup-login:hover, .login-btn-login:hover {
+    cursor: pointer;
+    background-color: white;
+    border: solid 3px black;
+    color: black;
+}
+
+@media screen and (max-width:1400px) {
+    .left-sec-login {
+        margin-top: -90px;
+    }
+    .login-img {
+        display: none;
+    }
+    .right-sec-login {
+        margin-top: 200px;
+        margin-left: -500px;
+        height: 550px;
+    }
+}
+
+@media screen and (min-width:400px) and (max-width:750px) {
+    .left-sec-login {
+        margin-left: 30px;
+        margin-top: -70px;
+    }
+    .margadarshan-login {
+        font-size: 50px;
+    }
+    .right-sec-login {
+        margin-left: -430px;
+        width: 450px;
+    }
+}

@@ -39,11 +39,11 @@ public class UniversityServiceImpl implements UniversityService{
         return universityRepository.findAll();
     }
     @Override
-    public Optional<University> getById(Integer universityId) {
+    public Optional<University> getById(int universityId) {
         return universityRepository.findById(universityId);
     }
     @Override
-    public void deleteById(Integer universityId) {
+    public void deleteById(int universityId) {
         universityRepository.deleteById(universityId);
     }
 }

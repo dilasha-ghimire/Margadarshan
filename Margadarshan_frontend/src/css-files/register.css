@@ -83,28 +83,32 @@ input {
     color: black;
 }
 .text-field-address, .text-field-number, .text-field-email, .text-field-password {
+    margin-top: 20px;
     margin-top: 25px;
 }
 .text-field-rePassword {
-    margin-left: 40px;
+    margin-right: 20px;
 }
 .password-text-fields {
     display: flex;
     align-items: baseline;
-}
-.button-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 120px;
-    align-items: center;
+    gap: 20px;
 }
 .register-button {
     width: 300px;
     height: 50px;
     border-radius: 30px;
+    margin-top: 40px;
+}
+.register-button:hover {
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-width: 3px;
 }
 .login-container {
     display: flex;
+    margin-left: 250px;
 }
 .already-account, .login {
     color: black;
@@ -117,7 +121,7 @@ input {
     cursor: pointer;
 }
 
-@media screen and (max-width : 1250px) {
+@media screen and (max-width : 1400px) {
     .website-title {
         margin-top: -90px;
     }
@@ -127,11 +131,13 @@ input {
     .right-section {
         height: 70vh;
         margin-top: 200px;
+        margin-right: 150px;
         margin-left: -20px;
         border-radius: 20px;
     }
     .page-title {
         margin-top: -40px;
+        margin-left: -40px;
     }
     .main-title {
         font-size: 24px;
@@ -145,12 +151,23 @@ input {
     .text-field-name, .text-field-address, .text-field-number, .text-field-email, .text-field-password, .text-field-rePassword {
         width: 140px;
     }
+    .text-field-name, .text-field-address, .text-field-email, .text-field-number {
+        margin-left: -40px;
+        margin-top: 5px;
+    }
+    .password-text-fields {
+        margin-right: 40px;
+        margin-top: -20px;
+    }
+    .text-field-password {
+        margin-left: -40px;
+    }
     .text-field-name::placeholder, .text-field-address::placeholder, .text-field-number::placeholder, .text-field-email::placeholder, .text-field-password::placeholder, .text-field-rePassword::placeholder {
         font-size: 11px;   
     }
-    .button-container {
-        margin-top: 30px;
-    } 
+    .login-container {
+        margin-left: 100px;
+    }
 }
 
 @media screen and (min-width : 400px) and (max-width : 750px) {
@@ -160,5 +177,8 @@ input {
     }
     .margadarshan {
         font-size: 50px;
+    }
+    .right-section {
+        margin-left: 25px;
     }
 }

@@ -86,10 +86,9 @@ body, html {
     }
 }
 
-.user-input {
+.user-input-sch {
     display: flex;
-    justify-content: space-evenly;
-    align-items: end;
+    flex-direction: column;
 }
 .text-field-container {
     display: flex;
@@ -146,6 +145,10 @@ body, html {
        margin-left: 35px; 
     }
 }
+.search-button-container-sch {
+    margin-right: 110px;
+    margin-top: 20px;
+}
 .search {
     height: 45px;
     width: 160px;
@@ -176,8 +179,8 @@ body, html {
     padding-bottom: 50px;
 }
 .sch-container {
-    border-color: black;
     border: 3px solid;
+    border-color: black;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
@@ -185,10 +188,10 @@ body, html {
     margin-left: 100px;
     margin-right: 100px;
     margin-top: 50px;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .sch-description {
     display: flex;
@@ -212,7 +215,13 @@ body, html {
     }
 }
 .sch-desc-container {
-    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 30px;
+}
+.sch-name, .sch-institute, .sch-type, .grant, .deadline, .date {
+    color: black;
 }
 .sch-name {
     font-family: "Nunito";
