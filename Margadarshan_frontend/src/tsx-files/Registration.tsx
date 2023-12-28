@@ -10,7 +10,7 @@ function Registration() {
         mutationKey:"SAVE DATA",
         mutationFn:(requestData:any)=>{
             console.log(requestData)
-            return axios.post("http://localhost:8080/api/students",requestData)
+            return axios.post("http://localhost:8080/api/save-student",requestData)
         }
     });
 
@@ -45,20 +45,20 @@ function Registration() {
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='user-input'>
-                        <input className='text-field-name' type='text' placeholder='Full Name' {...register("full_name", {required: "*Full name is required"})}></input>
+                        <input className='text-field-name' type='text' placeholder='Full Name' {...register("studentFullName", {required: "*Full name is required"})}></input>
                         <p style={{ color: 'red', fontSize: 11, marginBottom: -10}}>{errors?.full_name?.message}</p>
 
-                        <input className='text-field-address' type='text' placeholder='Full Address' {...register("address", {required: "*Full address is required"})}></input>
+                        <input className='text-field-address' type='text' placeholder='Full Address' {...register("studentAddress", {required: "*Full address is required"})}></input>
                         <p style={{ color: 'red', fontSize: 11, marginBottom: -10}}>{errors?.address?.message}</p>
 
-                        <input className='text-field-number' type='text' placeholder='Mobile Number' {...register("number", {required: "*Mobile number is required"})}></input>
+                        <input className='text-field-number' type='text' placeholder='Mobile Number' {...register("studentNumber", {required: "*Mobile number is required"})}></input>
                         <p style={{ color: 'red', fontSize: 11, marginBottom: -10}}>{errors?.number?.message}</p>
 
-                        <input className='text-field-email' type='text' placeholder='Email Address' {...register("email", {required: "*Email address is required"})}></input>
+                        <input className='text-field-email' type='text' placeholder='Email Address' {...register("studentEmail", {required: "*Email address is required"})}></input>
                         <p style={{ color: 'red', fontSize: 11, marginBottom: -10}}>{errors?.email?.message}</p>
 
                         <div className='password-text-fields'>
-                            <input className='text-field-password' type='password' placeholder='Password' {...register("password", {required: "*Password is required"})}></input>
+                            <input className='text-field-password' type='password' placeholder='Password' {...register("studentPassword", {required: "*Password is required"})}></input>
                             <input className='text-field-rePassword' type='password' placeholder='Re-enter your password'></input>
                         </div>
                         <p style={{ color: 'red', fontSize: 11, marginBottom: -10, display: 'block'}}>{errors?.password?.message}</p>

@@ -9,7 +9,7 @@ function University() {
     const {data} = useQuery({
         queryKey: "GET_DATA",
         queryFn() {
-            return axios.get("http://localhost:8080/universities/universities")
+            return axios.get("http://localhost:8080/api/universities")
         }
     })
 

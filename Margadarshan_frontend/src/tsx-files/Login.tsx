@@ -20,21 +20,23 @@ function Login() {
                         <p className='login-to-account'>Please login to your account</p>
                     </div>
 
-                    <div className='user-input-login'>
-                        <input className='email-txtfld-login' placeholder='Enter your email address'></input>
-                        <input className='password-txtfld-login' placeholder='Enter your password'></input>
-                    </div>
+                    <form>
+                        <div className='user-input-login'>
+                            <input className='email-txtfld-login' placeholder='Enter your email address'></input>
+                            <input className='password-txtfld-login' type='password' placeholder='Enter your password'></input>
+                        </div>
 
-                    <div className='remember-forgot-login-container'>
-                        <input type='checkbox'></input>
-                        <label className='remember-login'>Remember me</label>
-                        <p className='forgot-password-login'>Forgot password</p>
-                    </div>
+                        <div className='remember-forgot-login-container'>
+                            <input type='checkbox'></input>
+                            <label className='remember-login'>Remember me</label>
+                            <p className='forgot-password-login'>Forgot password</p>
+                        </div>
 
-                    <div className='login-btn-container'>
-                        <Link to="/register"><button className='signup-login'>Sign up</button></Link>
-                        <button className='login-btn-login'>Login</button>
-                    </div>
+                        <div className='login-btn-container'>
+                            <Link to="/register"><button className='signup-login'>Sign up</button></Link>
+                            <button className='login-btn-login'>Login</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </>
