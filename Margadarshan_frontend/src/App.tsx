@@ -7,10 +7,16 @@ import SOP from './tsx-files/SOP.tsx';
 import SOPDialogBox from './tsx-files/SOPDialogBox.tsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import University1 from './tsx-files/University1.tsx';
+import About from "./tsx-files/About.tsx";
+import Document from "./tsx-files/Document.tsx";
 
 
 const router = createBrowserRouter(
   [
+      {
+          path: "/about-us",
+          element: <About/>
+      },
       {
           path: "/university",
           element: <University/>
@@ -22,6 +28,10 @@ const router = createBrowserRouter(
       {
             path: "/register",
             element: <Registration/>
+      },
+      {
+          path: "/document",
+          element: <Document/>
       },
       {
         path:"/sop",

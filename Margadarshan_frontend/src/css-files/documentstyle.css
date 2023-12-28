@@ -1,7 +1,7 @@
 body {
     height: 100%;
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .content {
@@ -9,8 +9,8 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    position: fixed;
-    top: 90px;
+    position: relative;
+    top: 10vh;
     left: 0;
     z-index: 2;
     transition: margin-left 0.5s;
@@ -21,7 +21,7 @@ body {
     width: 0;
     position: fixed;
     z-index: 1;
-    top: 90px; 
+    top: 10vh;; 
     left: 0px;
     background-color: #152039;
     overflow-x: hidden;
@@ -64,6 +64,11 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+#navigation a[href="document.html"] {
+    background-color: #FFE34F;
+    color: #152039;
+}
+
 .sidenav-content a:hover {
     background-color: #FFE34F;
     color: #152039;
@@ -100,10 +105,6 @@ body {
     margin-bottom: 20px;
 }
 
-@media screen and (min-width: 1041px) {
-
-    
-}
 .add {
     width: 200px;
     height: 200px; 
