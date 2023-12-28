@@ -70,6 +70,7 @@
 input {
     width: 300px;
     border-style: solid;
+    color: black;
 }
 
 .remember-forgot-login-container {
