@@ -1,4 +1,4 @@
-import './SOPUpload.css'
+import '../css-files/SOPUpload.css'
 
 function SOP() {
    

@@ -203,7 +203,7 @@
 }
 
 .sidenav {
-    height: 700px;
+    height: 100vh;
     width: 0;
     position: absolute;
     z-index: 1;
@@ -230,7 +230,7 @@
 
 .sidenav .closebtn {
     position: absolute;
-    top: -38px;
+    top: -44.5px;
     left: -70px;
     font-size: 36px;
     margin-left: 50px;
