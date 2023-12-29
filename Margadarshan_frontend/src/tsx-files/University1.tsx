@@ -1,11 +1,9 @@
-import '../css-files/SOPUpload.css'
-
-function SOP() {
-   
+// import "../css-files/Exam.css";
+import "../css-files/Exam.css"
+function University1(){
     return(
     <>
-        <div className="rasmi">
-        <div className="header">
+    <div className="header">
         <div className="website-title">
             <button className="logo-button" id="logo-button">
                 <div className="logo-container">
@@ -51,19 +49,22 @@ function SOP() {
                 <button className="logout-button">Logout</button>
             </div>
         </div>
-          {/* ... rest of your code ... */}
+    </div>
+    <div className="tarara">
+        <div className="left_div">
+            <div className="exam_text">Exam</div>
+            <div><img src="src\assets\Exam\section-calendar.png" alt="image" /></div>
         </div>
-        <div className="t">
-          <h1 className="sn" id="clu">
-            SOP and essays
-          </h1>
-          <h3 className="sn">Upload your SOP and essays for review</h3>
-          <button id="sopUploadButton" className="other-button">
-            <b>Click me</b>
-          </button>
+        <div className="right_div">
+            <div className="exam_types">SATS</div>
+            <div className="exam_types">IELTS</div>
+            <div className="exam_types">GRE</div>
+            <div className="exam_types">TOFEL</div>
         </div>
-      </div>
+    </div>
+
+    
     </>
     )
 }
-export default SOP;
+export default University1;

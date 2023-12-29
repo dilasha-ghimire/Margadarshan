@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SopDialogBox.css'; // Make sure to import your CSS file
+import '../css-files/SopDialogBox.css'; // Make sure to import your CSS file
 
 const SOPDialogBox= () => {
     const [documentTitle, setDocumentTitle] = useState('');
