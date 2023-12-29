@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import University1 from './tsx-files/University1.tsx';
 import About from "./tsx-files/About.tsx";
 import Document from "./tsx-files/Document.tsx";
+import Login from './tsx-files/Login.tsx';
 
 
 const router = createBrowserRouter(
@@ -44,6 +45,10 @@ const router = createBrowserRouter(
       {
             path: "exam",
             element: <University1/>
+      },
+      {
+          path: "/login",
+          element: <Login/>
       }
   ]
 )

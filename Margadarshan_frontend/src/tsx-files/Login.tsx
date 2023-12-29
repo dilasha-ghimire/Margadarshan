@@ -1,7 +1,30 @@
 import '../css-files/login.css'
 import { Link } from "react-router-dom"
+import { useState } from 'react'
+import axios from 'axios'
 
 function Login() {
+    const[email, setEmail] = useState("");
+    const[password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const[rememberMe, setRememberMe] = useState(false);
+
+    const handleLogin = async(e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("http://localhost:8080/api/login", {
+                email, password
+            });
+
+            // const token = response.data.token;
+
+            console.log("Login successful!");
+        }
+        catch(err) {
+            setError("Invalid email or password");
+        }
+    }
+
     return (
         <>
             <div className="login-page">
@@ -20,14 +43,14 @@ function Login() {
                         <p className='login-to-account'>Please login to your account</p>
                     </div>
 
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <div className='user-input-login'>
-                            <input className='email-txtfld-login' placeholder='Enter your email address'></input>
-                            <input className='password-txtfld-login' type='password' placeholder='Enter your password'></input>
+                            <input className='email-txtfld-login' placeholder='Enter your email address' value={email} onChange={(e) => setEmail(e.target.value)}required></input>
+                            <input className='password-txtfld-login' type='password' placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} required></input>
                         </div>
 
                         <div className='remember-forgot-login-container'>
-                            <input type='checkbox'></input>
+                            <input type='checkbox' checked={rememberMe} onChange={() => setRememberMe(!rememberMe)}></input>
                             <label className='remember-login'>Remember me</label>
                             <p className='forgot-password-login'>Forgot password</p>
                         </div>

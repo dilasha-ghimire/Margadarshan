@@ -10,12 +10,13 @@ import lombok.*;
 @Builder
 
 @Entity
-@Table(name = "Students")
-public class Student{
+
+@Table(name = "students")
+public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     @Column(name = "student_id", nullable = false)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "full_name", nullable = false)
