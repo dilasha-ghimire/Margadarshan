@@ -6,6 +6,7 @@ import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.UniversityService;
 import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UniversityServiceImpl implements UniversityService{
-    private UniversityRepository universityRepository;
+
+    private final UniversityRepository universityRepository;
 
     @Override
     public String save(UniversityDto universityDto) {
