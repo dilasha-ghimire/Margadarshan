@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom"
 import "../css-files/scholarshipHeader.css";
 import "../css-files/scholarshipCentre.css";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 function Scholarship() {
+    const {data} = useQuery({
+        queryKey: "GET_DATA",
+        queryFn() {
+            return axios.get("http://localhost:8080/api/scholarships")
+        }
+    })
     return (
         <>
             <div className="header">
@@ -113,6 +121,17 @@ function Scholarship() {
                         </div>
                     </div>
                 </div>
+
+                <div className="scholarship-choice">
+                    {data?.data?.map(sch=>{
+                    return  (<>
+                        <p className="sch-choice">{sch.scholarshipName}</p>
+                        <p className="sch-choice">{sch.scholarshipOrganization}</p>
+                        <p className="sch-choice">{sch.scholarshipType}</p>
+                        <p className="sch-choice">{sch.grant}</p>
+                        <p className="sch-choice">{sch.scholarshipDeadline}</p>
+                    </>)
+                })}</div>
             </div>
         </>
     )
