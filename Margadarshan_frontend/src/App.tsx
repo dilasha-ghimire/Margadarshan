@@ -7,10 +7,19 @@ import SOP from './tsx-files/SOP.tsx';
 import SOPDialogBox from './tsx-files/SOPDialogBox.tsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import University1 from './tsx-files/University1.tsx';
+<<<<<<< Updated upstream
+=======
+import Document from "./tsx-files/Document.tsx";
+import Login from './tsx-files/Login.tsx';
+>>>>>>> Stashed changes
 
 
 const router = createBrowserRouter(
   [
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
       {
           path: "/university",
           element: <University/>

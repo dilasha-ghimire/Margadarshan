@@ -52,8 +52,8 @@ function University1(){
     </div>
     <div className="tarara">
         <div className="left_div">
-            <div className="exam_text">Exam</div>
-            <div><img src="src\assets\Exam\section-calendar.png" alt="image" /></div>
+            <div id="exam_text" className="left_content">Exams</div>
+            <div className="left_content"><img src="src\assets\Exam\section-calendar.png" alt="image" /></div>
         </div>
         <div className="right_div">
             <div className="exam_types">SATS</div>
@@ -62,7 +62,75 @@ function University1(){
             <div className="exam_types">TOFEL</div>
         </div>
     </div>
+    {/* <table border={2}>
+    <thead> 
+                    <tr> 
+                        <th>Data Structures</th> 
+                        <th>Access</th> 
+                        <th>Insertion</th> 
+                        <th>Deletion</th> 
+                        <th>Search</th> 
+                    </tr> 
+                </thead> 
+                <tbody> 
+                    <tr> 
 
+                        <td>Array</td> 
+                        <td>O(1)</td> 
+                        <td>O(n)</td> 
+                        <td>O(n)</td> 
+                        <td>O(n)</td> 
+                    </tr> 
+                    <tr> 
+                        <td>LinkedList</td> 
+                        <td>O(n)</td> 
+                        <td>O(1)</td> 
+                        <td>O(1)</td> 
+                        <td>O(n)</td> 
+                    </tr> 
+                    <tr> 
+                        <td>HashMap</td> 
+                        <td>N/A</td> 
+                        <td>O(1)</td> 
+                        <td>O(1)</td> 
+                        <td>O(1)</td> 
+                    </tr> 
+                </tbody>    
+
+    </table> */}
+    <h1>Fall 2023 Test Dates</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>SAT Test Dates</th>
+                <th>Registration Deadline</th>
+                <th>Late Registration Deadline</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>November 4, 2023</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>y</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+        </tbody>
+    </table>
     
     </>
     )

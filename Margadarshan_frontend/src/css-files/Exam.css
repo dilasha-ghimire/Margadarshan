@@ -1,9 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .header {
     background-color: #152039;
     display: flex;
@@ -238,8 +232,12 @@
     padding-top: 4.5px;
     padding-left: 15px;
 }
+
+
+
+
 /* ......................................................... */
-.tarara{
+/* .tarara{
     background-color: purple;
     height: 200px;
     width: 100vw;
@@ -288,6 +286,89 @@ img{
 .exam_types:hover{
     color: black;
     background-color: #FFE34F;
+} */
+.tarara{
+    background-color: purple;
+    height: 200px;
+    width: 100vw;
+    display: flex;
+    margin-top: 160px;
+
 }
+/* #exam{
+    font-size: xx-large;
+    font-weight: bolder;
+} */
+.left_div{
+    margin-left: 40px;
+    display: flex;
+    height:200px;
+    width: 100px;
+    flex-grow: 1;
+    background-color: aqua;
+    align-content: space-around;
+}
+#exam_text{
+    color: #FFE34F;
+    font-weight:900;
+    font-size:60px;
+    line-height: 200px;
+}
+.left_content{
+    /* width: 100px; */
+    height: 200px;
+}
+.right_div{
+    display: flex;
+    height:200px;
+    width: 100px;
+    background-color:antiquewhite;
+    flex-grow:2;
+    align-content:space-evenly;
 
-
+}
+img{
+    height: 170px;
+    width: 150px;
+}
+.exam_types{
+    height:200px;
+    font-weight:900;
+    font-size:40px;
+    color: #FFE34F;
+    line-height:200px;
+    width:300px;
+    background-color:blue;
+    text-align: center;
+}
+.exam_types:hover{
+    color: black;
+    background-color: #FFE34F;
+}
+table,th,td{
+    border:2px solid black;
+}
+table{
+    border-collapse: collapse;
+    width: 60%;
+    margin-left: 15%;
+    /* height: 100px; */
+    /* table-layout: auto;  */
+}
+th{
+    font-size: 23px;
+    width: 20%;
+    height: 80px;
+    background-color: black;
+    color: #FFFFFF;
+}
+td{
+    font-weight:800;
+    font-size: large;
+    height:50px;
+}
+h1{
+    text-align:start;
+    margin:2%;
+    margin-left: 7%;
+}
