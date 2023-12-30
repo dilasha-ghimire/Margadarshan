@@ -72,6 +72,9 @@ input {
     border-style: solid;
     color: black;
 }
+.error-message {
+    color: red;
+}
 
 .remember-forgot-login-container {
     display: flex;

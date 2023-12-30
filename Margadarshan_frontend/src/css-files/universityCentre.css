@@ -308,7 +308,9 @@ select {
         display: none;
     }
 }
-
+.uni-choice {
+    color: black;
+}
 
 
 

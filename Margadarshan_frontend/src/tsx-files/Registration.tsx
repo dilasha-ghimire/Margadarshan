@@ -3,14 +3,20 @@ import { Link } from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import {useMutation} from "react-query";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom'
 
 function Registration() {
+    const navigate = useNavigate();
 
     const saveData=useMutation({
         mutationKey:"SAVE DATA",
         mutationFn:(requestData:any)=>{
             console.log(requestData)
-            return axios.post("http://localhost:8080/api/save-student",requestData)
+            return axios.post("http://localhost:8080/api/save-student",requestData);
+        },
+
+        onSuccess: () => {
+            navigate("/login");
         }
     });
 

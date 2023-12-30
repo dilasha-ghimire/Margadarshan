@@ -13,7 +13,7 @@ function University() {
         }
     })
 
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOption, setSelectedOption] = useState("");
     const options = ["<$30,000", "$30,000 - $40,000", "$40,000 - $50,000", "$50,000 - $60,000", "$60,000>"];
 
     const handleOptionSelect = (option) => {
@@ -148,18 +148,22 @@ function University() {
                 </div>
             </div>
 
-            <div>
-                {data?.data?.map(i=>{
-                    return  (<>
-                        <p>University Name: {i.universityName}</p>
-                        <p>University State: {i.universityState}</p>
-                        <p>University City: {i.universityCity}</p>
-                        <p>University Major: {i.universityMajor}</p>
-                        <p>Annual Tuition Fee: {i.universityFees}</p>
-                        <p>Length of Study: {i.universityLength}</p>
-                    </>)
-                })}
-            </div>
+            <div className="uni-choice-container">
+                {data?.data?.length > 0 ? (
+                    data.data.map((i, index) => (
+                    <React.Fragment key={index}>
+                        <p className="uni-choice">University Name: {i.universityName}</p>
+                        <p className="uni-choice">University State: {i.universityState}</p>
+                        <p className="uni-choice">University City: {i.universityCity}</p>
+                        <p className="uni-choice">University Major: {i.universityMajor}</p>
+                        <p className="uni-choice">Annual Tuition Fee: {i.universityFees}</p>
+                        <p className="uni-choice">Length of Study: {i.universityLength}</p>
+                    </React.Fragment>
+                    ))
+                ) : (
+                    <p>No university data available</p>
+                )}
+        </div>
         </>
     )
 }
