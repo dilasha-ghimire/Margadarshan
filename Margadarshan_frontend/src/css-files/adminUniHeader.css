@@ -1,0 +1,39 @@
+.header-adminUni {
+    background-color: #152039;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    z-index: 100;
+}
+.header-left-adminUni {
+    display: flex;
+    align-items: start;
+    margin-left: 24px;
+    margin-top: 21px;
+}
+.logo-adminUni {
+    width: 55px;
+    height: 60px; 
+}
+.margadarshan-adminUni {
+    border: none;
+    color: #FFE34F;
+    background-color: #152039;
+    font-family: "Paytone One";
+    font-size: 22px;
+    margin-left: 25px;
+}
+.header-right-adminUni {
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+}
+.logout-btn-adminUni:hover {
+    background-color: white;
+    color: black;
+}
