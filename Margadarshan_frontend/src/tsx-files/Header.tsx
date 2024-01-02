@@ -54,7 +54,7 @@ const Header: React.FC = () => {
                     <div className="header-button-portfolio">
                         <button className="header-button">Portfolio</button>
                         <div className="drop-down-portfolio">
-                            <Link to="/ "><button className="drop-down-button">Education</button></Link>
+                            <Link to="/education "><button className="drop-down-button">Education</button></Link>
                             <Link to="/document"><button className="drop-down-button">Documents</button></Link>
                             <Link to="/sop"><button className="drop-down-button">SOP and Essays</button></Link>
                         </div>

@@ -8,7 +8,6 @@ import Registration from './tsx-files/Registration.tsx';
 import SOP from './tsx-files/SOP.tsx';
 import SOPDialogBox from './tsx-files/SOPDialogBox.tsx';
 import University1 from './tsx-files/University1.tsx';
-import About from "./tsx-files/About.tsx";
 import Document from "./tsx-files/Document.tsx";
 import Header from "./tsx-files/Header.tsx";
 import Education from "./tsx-files/Education.tsx";
