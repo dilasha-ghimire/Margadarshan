@@ -7,16 +7,19 @@ import SOP from './tsx-files/SOP.tsx';
 import SOPDialogBox from './tsx-files/SOPDialogBox.tsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import University1 from './tsx-files/University1.tsx';
+<<<<<<< Updated upstream
 import About from "./tsx-files/About.tsx";
 import Document from "./tsx-files/Document.tsx";
+=======
+import Document from "./tsx-files/Document.tsx";
+import Login from './tsx-files/Login.tsx';
+import Header from "./tsx-files/Header.tsx";
+import Education from "./tsx-files/Education.tsx";
+>>>>>>> Stashed changes
 
 
 const router = createBrowserRouter(
   [
-      {
-          path: "/about-us",
-          element: <About/>
-      },
       {
           path: "/university",
           element: <University/>
@@ -26,24 +29,32 @@ const router = createBrowserRouter(
           element: <Scholarship/>
       },
       {
-            path: "/register",
-            element: <Registration/>
+          path: "/register",
+          element: <Registration/>
       },
       {
           path: "/document",
           element: <Document/>
       },
       {
-        path:"/sop",
-        element:<SOP/>
+          path:"/sop",
+          element:<SOP/>
       },
       {
-        path:"/dialogbox",
-        element:<SOPDialogBox/>
+          path:"/dialogbox",
+          element:<SOPDialogBox/>
       },
       {
-            path: "exam",
-            element: <University1/>
+          path: "/exam",
+          element: <University1/>
+      },
+      {
+          path: "/header",
+          element: <Header/>
+      },
+      {
+          path: "/education",
+          element: <Education/>
       }
   ]
 )
@@ -53,13 +64,10 @@ const queryClient = new QueryClient();
 function App() {
 
   return (
-
-
       <>   
             <QueryClientProvider client={queryClient}>
                 <RouterProvider router={router}/>
             </QueryClientProvider>
-
       </>
   )
 }
