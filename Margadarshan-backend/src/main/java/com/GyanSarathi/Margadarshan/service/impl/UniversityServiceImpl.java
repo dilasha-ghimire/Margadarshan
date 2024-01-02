@@ -48,4 +48,9 @@ public class UniversityServiceImpl implements UniversityService{
     public void deleteById(int universityId) {
         universityRepository.deleteById(universityId);
     }
+
+    @Override
+    public List<University> findByMajorOrStateOrFees(UniversityDto universityDto) {
+        return universityRepository.findByMajorOrFeesOrState(universityDto.getUniversityMajor(),universityDto.getUniversityState(),universityDto.getUniversityFees());
+    }
 }
