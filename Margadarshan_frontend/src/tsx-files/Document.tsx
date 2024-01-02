@@ -17,21 +17,21 @@ const Document: React.FC = () => {
         <div>
             <Header/>
 
-            <div className="content">
-                <div className="clickbtn" onClick={openSideNav}>
-                    <button className="click-btn">→</button>
+            <div className="doc-content">
+                <div className="doc-clickbtn" onClick={openSideNav}>
+                    <button className="doc-click-btn">→</button>
                 </div>
 
-                <div id="navigation" className="sidenavbar" style={{ width: sideNavWidth }}>
-                    <a href="javascript:void(0)" className="close-btn" onClick={closeSideNav}>&leftarrow;</a>
-                    <div id="mySidenav" className="sidenav-content">
+                <div id="doc-navigation" className="doc-sidenavbar" style={{ width: sideNavWidth }}>
+                    <a href="javascript:void(0)" className="doc-close-btn" onClick={closeSideNav}>←</a>
+                    <div id="mySidenav" className="doc-sidenav-content">
                         <p>Portfolio</p>
                         <h1></h1>
-                        <Link to="/ ">
+                        <Link to="/education ">
                             <span>Education</span>
                         </Link>
                         <h1></h1>
-                        <Link to="/document ">
+                        <Link to="/document " className="doc-link">
                             <span>Documents</span>
                         </Link>
                         <h1></h1>
@@ -48,29 +48,29 @@ const Document: React.FC = () => {
                         Upload your documents here to be reviewed by our team. Please ensure that you have the necessary permissions to upload these files.
                     </p>
 
-                    <div className="add-button-container">
-                        <button document-type="resume">
-                            <img className="add" src="src\assets\Document\Add button.png" alt="add" />
+                    <div className="doc-add-button-container">
+                        <button className="resume">
+                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
                             <p>Resume</p>
                         </button>
-                        <button document-type="university-certificate">
-                            <img className="add" src="src\assets\Document\Add button.png" alt="add" />
+                        <button className="university-certificate">
+                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
                             <p>University Certificate</p>
                         </button>
-                        <button document-type="university-transcript">
-                            <img className="add" src="src\assets\Document\Add button.png" alt="add" />
+                        <button className="university-transcript">
+                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
                             <p>University Transcript</p>
                         </button>
-                        <button document-type="sop">
-                            <img className="add" src="src\assets\Document\Add button.png" alt="add" />
+                        <button className="sop">
+                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
                             <p>Statement of Purpose</p>
                         </button>
-                        <button document-type="english-proficiency">
-                            <img className="add" src="src\assets\Document\Add button.png" alt="add" />
+                        <button className="english-proficiency">
+                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
                             <p>IELTS/TOEFL</p>
                         </button>
-                        <button document-type="sat-gre-gmat">
-                            <img className="add" src="src\assets\Document\Add button.png" alt="add" />
+                        <button className="sat-gre-gmat">
+                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
                             <p>SAT/GRE/GMAT</p>
                         </button>
                     </div>
