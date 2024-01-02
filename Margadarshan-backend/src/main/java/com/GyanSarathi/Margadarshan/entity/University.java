@@ -12,11 +12,13 @@ import lombok.*;
 
 @Table(name = "Universities")
 public class University{
+
+    @Column(name = "university_id", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
-    @Column(name = "univeristy_name", nullable = false)
+    @Column(name = "university_name", nullable = false)
     private String name;
 
     @Column(name = "university_state", nullable = false)

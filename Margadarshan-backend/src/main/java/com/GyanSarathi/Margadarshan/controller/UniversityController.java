@@ -5,6 +5,7 @@ import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,4 +38,11 @@ public class UniversityController {
     public void deleteUniversity(@PathVariable("universityId") int universityId){
         universityService.deleteById(universityId);
     }
+
+    @PostMapping("/universities-filtered")
+    public ResponseEntity<List<University>> filteredUniversity(@RequestBody UniversityDto universityDto){
+        List<University> universities = universityService.findByMajorOrStateOrFees(universityDto);
+        return ResponseEntity.ok(universities);
+    }
+
 }

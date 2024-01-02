@@ -7,13 +7,13 @@ import axios from "axios";
 
 function University() {
     const {data} = useQuery({
-        queryKey: "GET_DATA",
+        queryKey: "GETDATA",
         queryFn() {
             return axios.get("http://localhost:8080/api/universities")
         }
     })
 
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOption, setSelectedOption] = useState("");
     const options = ["<$30,000", "$30,000 - $40,000", "$40,000 - $50,000", "$50,000 - $60,000", "$60,000>"];
 
     const handleOptionSelect = (option) => {
@@ -76,57 +76,57 @@ function University() {
                         <img className="university-image" src="src\assets\University\university.png" />
                     </div>
                 </div>
-            </div>
 
-            <div className="user-input-uni">
-                <form>
-                    <div className="text-field-container">
-                        <div className="major-choice">
-                            <p className="question">What do you want to study?</p>
-                            <input className="text-field1" type="text" />
+                <div className="user-input-uni">
+                    <form>
+                        <div className="text-field-container">
+                            <div className="major-choice">
+                                <p className="question">What do you want to study?</p>
+                                <input className="text-field1" type="text" />
+                            </div>
+                            <div className="location-choice">
+                                <p className="question">Which state do you want to study in?</p>
+                                <input className="text-field1" type="text" />
+                            </div>
                         </div>
-                        <div className="location-choice">
-                            <p className="question">Which state do you want to study in?</p>
-                            <input className="text-field1" type="text" />
-                        </div>
-                    </div>
 
-                    <div className="fee-button-container">
-                        <div className="fees">
-                            <p className="question">Tuition fees (USD)</p>
-                            <select className="drop-down-fees"
-                                value={selectedOption}
-                                onChange={(e) => handleOptionSelect(e.target.value)}>
-                                <option value="" disabled>Select an option</option>
-                                {options.map((option, index) => (
-                                    <option key={index} value={option}>
-                                        {option}
-                                    </option>
-                                ))}
-                            </select>
+                        <div className="fee-button-container">
+                            <div className="fees">
+                                <p className="question">Tuition fees (USD)</p>
+                                <select className="drop-down-fees"
+                                    value={selectedOption}
+                                    onChange={(e) => handleOptionSelect(e.target.value)}>
+                                    <option value="" disabled>Select an option</option>
+                                    {options.map((option, index) => (
+                                        <option key={index} value={option}>
+                                            {option}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="search-button-container">
+                                <button className="search">Search</button>
+                            </div>
                         </div>
-                        <div className="search-button-container">
-                            <button className="search">Search</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
 
-            <div className="university-list">
-                <div className="uni-container">
-                    <div className="uni-description-container">
-                        <div className="uni-image-container">
-                            <img className="uni-image" src="src\assets\University\Michigan_Technological_University_seal.svg.png" />
+                <div className="university-list">
+                    <div className="uni-container">
+                        <div className="uni-description-container">
+                            <div className="uni-image-container">
+                                <img className="uni-image" src="src\assets\University\Michigan_Technological_University_seal.svg.png" />
+                            </div>
+                            <div className="uni-desc">
+                                <p className="uni-name">Michigan Technological University</p>
+                                <p className="uni-location">Houghton, Michigan</p>
+                                <p className="major">BS in Biochemistry and Molecular Biology</p>
+                            </div>
                         </div>
-                        <div className="uni-desc">
-                            <p className="uni-name">Michigan Technological University</p>
-                            <p className="uni-location">Houghton, Michigan</p>
-                            <p className="major">BS in Biochemistry and Molecular Biology</p>
+                        <div className="uni-costs">
+                            <p className="annual-fee">$41,022/year</p>
+                            <p className="years">4 years</p>
                         </div>
-                    </div>
-                    <div className="uni-costs">
-                        <p className="annual-fee">$41,022/year</p>
-                        <p className="years">4 years</p>
                     </div>
                 </div>
 
@@ -146,20 +146,22 @@ function University() {
                         <p className="years">4 years</p>
                     </div>
                 </div>
+
+                <div className="uni-choice-container">
+                    {data?.data?.map((uni, index) => (
+                        <React.Fragment key={index}>
+                        <p className="uni-choice">University Name: {uni.universityName}</p>
+                        <p className="uni-choice">University State: {uni.universityState}</p>
+                        <p className="uni-choice">University City: {uni.universityCity}</p>
+                        <p className="uni-choice">University Major: {uni.universityMajor}</p>
+                        <p className="uni-choice">Annual Tuition Fee: {uni.universityFees}</p>
+                        <p className="uni-choice">Length of Study: {uni.universityLength}</p>
+                        </React.Fragment>
+                    ))}
+                </div>
             </div>
 
-            <div>
-                {data?.data?.map(i=>{
-                    return  (<>
-                        <p>University Name: {i.universityName}</p>
-                        <p>University State: {i.universityState}</p>
-                        <p>University City: {i.universityCity}</p>
-                        <p>University Major: {i.universityMajor}</p>
-                        <p>Annual Tuition Fee: {i.universityFees}</p>
-                        <p>Length of Study: {i.universityLength}</p>
-                    </>)
-                })}
-            </div>
+            
         </>
     )
 }
