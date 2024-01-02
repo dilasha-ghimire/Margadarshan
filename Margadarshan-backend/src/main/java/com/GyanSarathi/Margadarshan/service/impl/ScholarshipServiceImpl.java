@@ -5,6 +5,7 @@ import com.GyanSarathi.Margadarshan.dto.ScholarshipDto;
 import com.GyanSarathi.Margadarshan.entity.Scholarship;
 import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.ScholarshipService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class ScholarshipServiceImpl implements ScholarshipService {
     private final ScholarshipRepository scholarshipRepository;
 
+    @Autowired
     public ScholarshipServiceImpl(ScholarshipRepository scholarshipRepository) {
         this.scholarshipRepository = scholarshipRepository;
     }

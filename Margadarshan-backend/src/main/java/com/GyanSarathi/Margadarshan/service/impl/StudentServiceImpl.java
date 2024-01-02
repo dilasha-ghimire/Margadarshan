@@ -16,11 +16,14 @@ import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
-    @Autowired
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder) {
+        this.studentRepository = studentRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public List<Student> findAll() {
