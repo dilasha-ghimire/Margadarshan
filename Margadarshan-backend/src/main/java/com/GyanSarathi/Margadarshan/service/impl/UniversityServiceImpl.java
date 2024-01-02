@@ -31,7 +31,7 @@ public class UniversityServiceImpl implements UniversityService{
         university.setMajor(universityDto.getUniversityMajor());
         university.setFees(universityDto.getUniversityFees());
         university.setName(universityDto.getUniversityName());
-
+        university.setLength(universityDto.getUniversityLength());
         universityRepository.save(university);
         return "Data saved";
     }
