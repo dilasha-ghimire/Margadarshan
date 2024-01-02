@@ -18,5 +18,6 @@ public interface UniversityService {
 
     void deleteById(int universityId);
 
+    List<University> findByMajorOrStateOrFees(UniversityDto universityDto);
 
 }
