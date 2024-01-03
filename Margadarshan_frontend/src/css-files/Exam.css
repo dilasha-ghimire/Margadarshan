@@ -286,17 +286,24 @@ img{
     margin-left: 50px;
 }
 .exam_types{
-    height:200px;
-    font-weight:900;
-    font-size:40px;
-    color: #FFE34F;
     line-height:200px;
     width:300px;
     background-color:blue;
     text-align: center;
 }
-.exam_types:hover{
+.exam_types button{
+    font-weight:900;
+    font-size:40px;
+    color: #FFE34F;
+    border: none;
+    background-color:blue;
+
+}
+.exam_types button:hover{
     color: black;
+    background-color: #FFE34F;
+}
+.exam_types:hover{
     background-color: #FFE34F;
 }
 table,th,td{
@@ -306,8 +313,6 @@ table{
     border-collapse: collapse;
     width: 60%;
     margin-left: 15%;
-    /* height: 100px; */
-    /* table-layout: auto;  */
 }
 th{
     font-size: 23px;
