@@ -12,6 +12,7 @@ import Document from "./tsx-files/Document.tsx";
 import Header from "./tsx-files/Header.tsx";
 import Education from "./tsx-files/Education.tsx";
 import Login from './tsx-files/Login.tsx';
+import AdminUniversity from './tsx-files/AdminUniversity.tsx';
 
 
 const router = createBrowserRouter(
@@ -55,7 +56,12 @@ const router = createBrowserRouter(
       {
           path: "/education",
           element: <Education/>
+      },
+      {
+            path: "/adminUniversity",
+            element: <AdminUniversity/>
       }
+      
   ]
 )
 
