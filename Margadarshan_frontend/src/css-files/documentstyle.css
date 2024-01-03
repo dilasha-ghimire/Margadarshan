@@ -4,7 +4,8 @@ body {
     overflow-y: auto;
 }
 
-.content {
+.doc-content {
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -16,7 +17,7 @@ body {
     transition: margin-left 0.5s;
 }
 
-.sidenavbar {
+.doc-sidenavbar {
     height: 100%;    
     width: 0;
     position: fixed;
@@ -29,90 +30,89 @@ body {
     transition: 0.5s;
 }
 
-.click-btn {
+.doc-click-btn {
     border: none;
     background-color: #152039;
     color: white;
     position: fixed;
+    padding: 5px 15px 10px;
     top: 92px;
-    left: 0;
-    font-size: 20px;
+    left: -10px;
+    font-size: 30px;
     vertical-align: middle;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
 }
 
-.sidenav-content p{
+.doc-sidenav-content p{
     color: #FFE34F;
     background-color: #152039;
     font-family: "Paytone One";
     font-size: 40px;
-    margin-left: 20px;
-    margin-right: 40px;
-    margin-bottom: 2px;
+    margin: 40px 40px 2px 20px;
 }
 
-.sidenav-content a {
+.doc-sidenav-content a {
     width: 100%;
     display: flex;
     align-items: center;
     color: white;
     text-decoration: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 12px; /* Adjust padding as needed */
-    font-size: 22px;
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 23px;
     transition: background-color 0.3s, color 0.3s;
 }
 
-#navigation a[href="document.html"] {
+.doc-sidenav-content .doc-link {
     background-color: #FFE34F;
     color: #152039;
 }
 
-.sidenav-content a:hover {
+.doc-sidenav-content a:hover {
     background-color: #FFE34F;
     color: #152039;
 }
 
-.sidenavbar .close-btn {
+.doc-sidenavbar .doc-close-btn {
     text-decoration: none;
     color: #FFE34F;
     background-color: #152039;
     font-family: "Paytone One";
     font-size: 200px;
     position: absolute;
-    top: -8px;
+    top: 2px;
     right: 10px;
     font-size: 38px;
     margin-left: 50px;
 }
 
 .document-upload h1 {
+    color: #1a1a1a;
     font-weight: bold;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 45px;
-    margin-left: 10px;
+    left: 5px;
     margin-top: 40px;
     margin-bottom: 2px;
 }
 
 .document-upload p {
+    color: #1a1a1a;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: larger;
-    margin-left: 12px;
-    margin-right: 30px;
-    margin-top: 2px;
-    margin-bottom: 20px;
+    margin: 2px 30px 20px 12px;
 }
 
-.add {
+.doc-add {
     width: 200px;
     height: 200px; 
     margin-left: -8px;
     margin-top: -3px;
 }
 
-.add-button-container {
+.doc-add-button-container {
     margin-top: 50px;
     margin-left: 20px;
     margin-right: 20px;
@@ -121,20 +121,28 @@ body {
     gap: 50px; 
 }
 
-.add-button-container button {
+.doc-add-button-container button {
     width: 200px; 
     height: 200px; 
 }
 
+.doc-add-button-container p {
+    color: #1a1a1a;
+}
+
+.document-upload {
+    height: 100%;
+}
+
 @media (max-width: 600px) {
-    .add {
+    .doc-add {
         width: 200px;
         height: 200px; 
         margin-left: -8px;
         margin-top: -3px;
     }
 
-    .add-button-container button {
+    .doc-add-button-container button {
         width: 100%; 
         max-width: 200px; 
         box-sizing: border-box; 

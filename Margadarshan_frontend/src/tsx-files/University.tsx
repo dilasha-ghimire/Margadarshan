@@ -2,16 +2,28 @@ import "../css-files/universityHeader.css";
 import "../css-files/universityCentre.css";
 import React, { useState } from 'react';
 import { Link } from "react-router-dom"
-import {useQuery} from "react-query";
+import { useQuery } from "react-query";
 import axios from "axios";
 
 function University() {
-    const {data} = useQuery({
-        queryKey: "GETDATA",
-        queryFn() {
-            return axios.get("http://localhost:8080/api/universities")
+    const [universityMajor, setMajor] = useState("");
+    const { data } = useQuery(
+        ["GETDATA", universityMajor],
+        async() => {
+            if(universityMajor.trim() != "") {
+                const response = await axios.get("http://localhost:8080/api/universities-filtered");
+                return response.data;
+            }
+            return null;
+        },
+        {
+            enabled: universityMajor.trim() != "",
         }
-    })
+    )
+
+    const handleInputChange = (e) => {
+        setMajor(e.target.value);
+    }
 
     const [selectedOption, setSelectedOption] = useState("");
     const options = ["<$30,000", "$30,000 - $40,000", "$40,000 - $50,000", "$50,000 - $60,000", "$60,000>"];
@@ -82,7 +94,7 @@ function University() {
                         <div className="text-field-container">
                             <div className="major-choice">
                                 <p className="question">What do you want to study?</p>
-                                <input className="text-field1" type="text" />
+                                <input className="text-field1" type="text" value={universityMajor} onChange={handleInputChange} />
                             </div>
                             <div className="location-choice">
                                 <p className="question">Which state do you want to study in?</p>
@@ -105,7 +117,7 @@ function University() {
                                 </select>
                             </div>
                             <div className="search-button-container">
-                                <button className="search">Search</button>
+                                <button className="search" disabled={!universityMajor.trim()} onClick={() => setMajor("")}>Search</button>
                             </div>
                         </div>
                     </form>
@@ -128,40 +140,40 @@ function University() {
                             <p className="years">4 years</p>
                         </div>
                     </div>
-                </div>
 
-                <div className="uni-container">
-                    <div className="uni-description-container">
-                        <div className="uni-image-container">
-                            <img className="uni-image" src="src\assets\University\U-M_Logo-Hex.png" />
+                    <div className="uni-container">
+                        <div className="uni-description-container">
+                            <div className="uni-image-container">
+                                <img className="uni-image" src="src\assets\University\U-M_Logo-Hex.png" />
+                            </div>
+                            <div className="uni-desc">
+                                <p className="uni-name">University of Michigan</p>
+                                <p className="uni-location">Ann Arbor, Michigan</p>
+                                <p className="major">BS in Biochemistry</p>
+                            </div>
                         </div>
-                        <div className="uni-desc">
-                            <p className="uni-name">University of Michigan</p>
-                            <p className="uni-location">Ann Arbor, Michigan</p>
-                            <p className="major">BS in Biochemistry</p>
+                        <div className="uni-costs">
+                            <p className="annual-fee">$49,530/year</p>
+                            <p className="years">4 years</p>
                         </div>
                     </div>
-                    <div className="uni-costs">
-                        <p className="annual-fee">$49,530/year</p>
-                        <p className="years">4 years</p>
-                    </div>
-                </div>
 
-                <div className="uni-choice-container">
-                    {data?.data?.map((uni, index) => (
-                        <React.Fragment key={index}>
-                        <p className="uni-choice">University Name: {uni.universityName}</p>
-                        <p className="uni-choice">University State: {uni.universityState}</p>
-                        <p className="uni-choice">University City: {uni.universityCity}</p>
-                        <p className="uni-choice">University Major: {uni.universityMajor}</p>
-                        <p className="uni-choice">Annual Tuition Fee: {uni.universityFees}</p>
-                        <p className="uni-choice">Length of Study: {uni.universityLength}</p>
-                        </React.Fragment>
-                    ))}
+                    <div className="uni-filtration">
+                        {data && (
+                            <div className="uni-choice-container">
+                                <p className="uni-choice">University Name: {data.universityName}</p>
+                                <p className="uni-choice">University Name: {data.universityState}</p>
+                                <p className="uni-choice">University Name: {data.universityCity}</p>
+                                <p className="uni-choice">University Name: {data.universityMajor}</p>
+                                <p className="uni-choice">University Name: {data.universityFees}</p>
+                                <p className="uni-choice">University Name: {data.universityLength}</p>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
 
-            
+
         </>
     )
 }
