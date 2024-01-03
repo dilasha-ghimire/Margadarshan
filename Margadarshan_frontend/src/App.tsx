@@ -7,12 +7,7 @@ import Scholarship from './tsx-files/Scholarship.tsx';
 import Registration from './tsx-files/Registration.tsx';
 import SOP from './tsx-files/SOP.tsx';
 import SOPDialogBox from './tsx-files/SOPDialogBox.tsx';
-import University1 from './tsx-files/University1.tsx';
-<<<<<<< Updated upstream
-=======
-// import About from "./tsx-files/About.tsx";
-
->>>>>>> Stashed changes
+import Exam from './tsx-files/Exam.tsx';
 import Document from "./tsx-files/Document.tsx";
 import Header from "./tsx-files/Header.tsx";
 import Education from "./tsx-files/Education.tsx";
@@ -21,13 +16,6 @@ import Login from './tsx-files/Login.tsx';
 
 const router = createBrowserRouter(
   [
-<<<<<<< Updated upstream
-=======
-      // {
-      //     path: "/about-us",
-      //     element: <About/>
-      // },
->>>>>>> Stashed changes
       {
           path: "/university",
           element: <University/>
@@ -57,9 +45,8 @@ const router = createBrowserRouter(
           element:<SOPDialogBox/>
       },
       {
-<<<<<<< Updated upstream
           path: "/exam",
-          element: <University1/>
+          element: <Exam/>
       },
       {
           path: "/header",
@@ -68,10 +55,6 @@ const router = createBrowserRouter(
       {
           path: "/education",
           element: <Education/>
-=======
-            path: "/exam",
-            element: <University1/>
->>>>>>> Stashed changes
       }
   ]
 )
