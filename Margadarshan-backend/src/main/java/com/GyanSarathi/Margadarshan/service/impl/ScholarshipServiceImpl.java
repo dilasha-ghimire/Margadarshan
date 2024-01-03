@@ -32,6 +32,8 @@ public class ScholarshipServiceImpl implements ScholarshipService {
         scholarship.setScholarshipType(scholarshipDto.getScholarshipType());
         scholarship.setGrant(scholarshipDto.getGrant());
         scholarship.setScholarshipDeadline(scholarshipDto.getScholarshipDeadline());
+        scholarship.setScholarshipGpa(scholarshipDto.getScholarshipGpa());
+        scholarship.setScholarshipImage(scholarshipDto.getScholarshipImage());
 
         scholarshipRepository.save(scholarship);
         return "Data saved";
@@ -48,5 +50,10 @@ public class ScholarshipServiceImpl implements ScholarshipService {
     @Override
     public void deleteById(int scholarshipId) {
         scholarshipRepository.deleteById(scholarshipId);
+    }
+
+    @Override
+    public List<Scholarship> findByGrantOrTypeOrGpa(ScholarshipDto scholarshipDto) {
+        return scholarshipRepository.findByGrantOrTypeOrGpa(scholarshipDto.getGrant(),scholarshipDto.getScholarshipType(),scholarshipDto.getScholarshipGpa());
     }
 }

@@ -1,7 +1,9 @@
 package com.GyanSarathi.Margadarshan.service;
 
 import com.GyanSarathi.Margadarshan.dto.ScholarshipDto;
+import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.Scholarship;
+import com.GyanSarathi.Margadarshan.entity.University;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +15,9 @@ public interface ScholarshipService {
 
     List<Scholarship> getAll();
 
-    Optional<Scholarship> getById(int scholorshipId);
+    Optional<Scholarship> getById(int scholarshipId);
 
-    void deleteById(int scholorshipId);
+    void deleteById(int scholarshipId);
+
+    List<Scholarship> findByGrantOrTypeOrGpa(ScholarshipDto scholarshipDto);
 }

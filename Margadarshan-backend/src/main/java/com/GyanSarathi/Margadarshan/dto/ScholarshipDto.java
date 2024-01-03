@@ -27,4 +27,10 @@ public class ScholarshipDto {
 
     @NotNull
     private String scholarshipDeadline;
+
+    @NotNull
+    private int scholarshipGpa;
+
+    @NotNull
+    private byte[] scholarshipImage;
 }
