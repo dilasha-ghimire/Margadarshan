@@ -1,5 +1,6 @@
 package com.GyanSarathi.Margadarshan.dto;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -31,5 +32,8 @@ public class UniversityDto {
 
     @NotNull
     private int universityLength;
+
+    @NotNull
+    private byte[] universityImage;
 
 }
