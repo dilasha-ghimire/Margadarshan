@@ -30,4 +30,11 @@ public class Scholarship {
 
     @Column(name = "scholarship_deadline", nullable = false)
     private String scholarshipDeadline;
+
+    @Column(name = "scholarship_gpa", nullable = false)
+    private int scholarshipGpa;
+
+    @Column(name = "scholarship_image", nullable = false)
+    private byte[] scholarshipImage;
+
 }

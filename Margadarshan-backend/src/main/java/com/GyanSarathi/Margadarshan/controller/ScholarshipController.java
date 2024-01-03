@@ -2,10 +2,13 @@ package com.GyanSarathi.Margadarshan.controller;
 
 import com.GyanSarathi.Margadarshan.dto.ScholarshipDto;
 import com.GyanSarathi.Margadarshan.dto.StudentDto;
+import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.Scholarship;
 import com.GyanSarathi.Margadarshan.entity.Student;
+import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.ScholarshipService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,6 +48,12 @@ public class ScholarshipController{
     @DeleteMapping("/delete-scholarship/{scholarshipId}")
     public void deleteScholarship(@PathVariable("scholarshipId") int scholarshipId){
         scholarshipService.deleteById(scholarshipId);
+    }
+
+    @PostMapping("/scholarship-filtered")
+    public ResponseEntity<List<Scholarship>> filteredScholarship(@RequestBody ScholarshipDto scholarshipDto){
+        List<Scholarship> scholarships = scholarshipService.findByGrantOrTypeOrGpa(scholarshipDto);
+        return ResponseEntity.ok(scholarships);
     }
 
 }

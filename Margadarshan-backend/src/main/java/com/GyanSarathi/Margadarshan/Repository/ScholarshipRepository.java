@@ -12,4 +12,8 @@ import java.util.List;
 @Repository
 public interface ScholarshipRepository extends JpaRepository<Scholarship,Integer> {
 
+    @Query("SELECT s FROM Scholarship s WHERE s.grant = :scholarship_grant OR s.scholarshipType = :scholarship_type OR s.scholarshipGpa >= :scholarship_gpa")
+    List<Scholarship> findByGrantOrTypeOrGpa(@Param("scholarship_grant") long scholarshipGrant,
+                                              @Param("scholarship_type") String scholarshipType,
+                                              @Param("scholarship_gpa") int scholarshipGpa);
 }
