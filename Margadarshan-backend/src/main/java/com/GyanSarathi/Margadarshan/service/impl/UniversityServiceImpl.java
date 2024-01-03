@@ -32,10 +32,7 @@ public class UniversityServiceImpl implements UniversityService{
         university.setFees(universityDto.getUniversityFees());
         university.setName(universityDto.getUniversityName());
         university.setLength(universityDto.getUniversityLength());
-<<<<<<< HEAD
         university.setImage(universityDto.getUniversityImage());
-=======
->>>>>>> df41402d44421d4cccf374a582dbf3c0a6248ab3
         universityRepository.save(university);
         return "Data saved";
     }
