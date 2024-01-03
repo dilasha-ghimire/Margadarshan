@@ -1,0 +1,55 @@
+.edu-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    top: 10vh;
+    left: 0;
+    z-index: 2;
+    transition: margin-left 0.5s;
+}
+
+.edu-sidenavbar {
+    height: 100%;
+    width: 350px;
+    position: fixed;
+    z-index: 1;
+    top: 10vh;;
+    left: 0px;
+    background-color: #152039;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.edu-sidenav-content p{
+    color: #FFE34F;
+    background-color: #152039;
+    font-family: "Paytone One";
+    font-size: 60px;
+    margin-left: -30px;
+}
+
+.edu-sidenav-content a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 30px;
+    padding: 12px;
+    font-size: 30px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.edu-sidenav-content .doc-link {
+    background-color: #FFE34F;
+    color: #152039;
+}
+
+.edu-sidenav-content a:hover {
+    background-color: #FFE34F;
+    color: #152039;
+}
