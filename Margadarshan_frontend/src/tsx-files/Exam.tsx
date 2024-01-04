@@ -56,10 +56,18 @@ function Exam(){
             <div className="left_content"><img src="src\assets\Exam\section-calendar.png" alt="image" /></div>
         </div>
         <div className="right_div">
-            <div className="exam_types">SATS</div>
-            <div className="exam_types">IELTS</div>
-            <div className="exam_types">GRE</div>
-            <div className="exam_types">TOEFL</div>
+            <div className="exam_types">
+                <a href="/SAT"><button>SAT</button></a>
+                </div>
+                <div className="exam_types">
+                <a href="/GRE"><button>GRE</button></a>
+                </div>
+                <div className="exam_types">
+                <a href="/IELTS"><button>IELTS</button></a>
+                </div>
+                <div className="exam_types">
+                <a href="/TOEFL"><button>TOEFL</button></a>
+                </div>
         </div>
     </div>
     <h1>Fall 2023 Test Dates</h1>
