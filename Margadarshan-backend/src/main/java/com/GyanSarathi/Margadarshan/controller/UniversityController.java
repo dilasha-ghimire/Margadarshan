@@ -38,18 +38,10 @@ public class UniversityController {
     public void deleteUniversity(@PathVariable("universityId") int universityId){
         universityService.deleteById(universityId);
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> df41402d44421d4cccf374a582dbf3c0a6248ab3
     @PostMapping("/universities-filtered")
     public ResponseEntity<List<University>> filteredUniversity(@RequestBody UniversityDto universityDto){
         List<University> universities = universityService.findByMajorOrStateOrFees(universityDto);
         return ResponseEntity.ok(universities);
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> df41402d44421d4cccf374a582dbf3c0a6248ab3
 }
