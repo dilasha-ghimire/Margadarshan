@@ -14,6 +14,8 @@ import Login from './tsx-files/Login.tsx';
 import Exam from './tsx-files/Exam.tsx';
 import SAT from './tsx-files/SAT.tsx';
 import ExamSection from './tsx-files/ExamSection.tsx';
+import AdminUniversity from './tsx-files/AdminUniversity.tsx';
+
 const router = createBrowserRouter(
   [
       {
@@ -64,8 +66,11 @@ const router = createBrowserRouter(
       {
           path: "/examsection",
           element: <ExamSection/>
+      },
+      {
+          path: "/adminUniversity",
+          element: <AdminUniversity/>
       }
-      
   ]
 )
 
