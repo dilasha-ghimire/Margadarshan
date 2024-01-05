@@ -73,7 +73,6 @@ const Header: React.FC = () => {
                     <Link to="/document ">Documents</Link>
                     <Link to="/sop ">SOP and Essays</Link>
                     <Link to="/ ">Roadmap</Link>
-                    <p> </p>
                 </div>
 
                 <div className="profile-container">
