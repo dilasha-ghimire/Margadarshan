@@ -332,9 +332,3 @@ h1{
     margin-left: 7%;
     color: #000;
 }
-@media screen and (max-width:455px) {
-    body{
-        background-color: brown;
-    }
-    
-}
