@@ -45,6 +45,15 @@
 .adminUni-list {
     padding-bottom: 50px;
 }
+.edit-uni-btn {
+    color: black;
+    margin-left: 1200px;
+    margin-bottom: -40px;
+}
+.edit-uni-btn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 .adminUni-container {
     border: 3px solid;
     border-color: black;

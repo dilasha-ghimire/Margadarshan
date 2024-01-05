@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom"
-import "../css-files/scholarshipHeader.css";
 import "../css-files/scholarshipCentre.css";
 import { useQuery } from "react-query";
 import axios from "axios";
+import Header from './Header';
 
 function Scholarship() {
     const {data} = useQuery({
@@ -13,47 +12,7 @@ function Scholarship() {
     })
     return (
         <>
-            <div className="header">
-                <div className="website-title-sch">
-                    <img className="logo" src="src\assets\AboutPage\Margadarshan logo.png"></img>
-                    <p className="margadarshan-sch">MARGADARSHAN</p>
-                </div>
-
-                <div className="header-button-container">
-                    <div className="about-univerisity-portfolio-roadmap">
-
-                    </div>
-                    <a href="about.html"><button className="header-button">About</button></a>
-
-                    <div className="header-button-uni">
-                        <button className="header-button">Universities</button>
-
-                        <div className="drop-down-uni-container2">
-                            <Link to="/university"><button className="drop-down-button-sch">Universities</button></Link>
-                            <Link to="/scholarship"><button className="drop-down-button-sch">Scholarship</button></Link>
-                            <button className="drop-down-button-sch">Exams</button>
-                        </div>
-                    </div>
-
-                    <div className="header-button-portfolio">
-                        <button className="header-button">Portfolio</button>
-                        <div className="drop-down-portfolio-container2">
-                            <button className="drop-down-button-sch">Education</button>
-                            <button className="drop-down-button-sch">Documents</button>
-                            <button className="drop-down-button-sch">SOP and Essays</button>
-                        </div>
-                    </div>
-
-                    <button className="header-button">Roadmap</button>
-
-                    <div className="profile-container">
-                        <button className="profile-button">
-                            <img className="profile-sch" src="src\assets\AboutPage\profile.png" />
-                        </button>
-                        <button className="logout-btn-sch">Logout</button>
-                    </div>
-                </div>
-            </div>
+            <Header/>
 
             <div className="centre">
                 <div className="page-heading">
