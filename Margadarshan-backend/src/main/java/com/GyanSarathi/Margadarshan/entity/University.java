@@ -36,4 +36,10 @@ public class University{
     @Column(name = "university_length", nullable = false)
     private int length;
 
+    @Column(name = "university_image", nullable = false)
+    private byte[] image;
+
+
+
+
 }

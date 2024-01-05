@@ -39,7 +39,7 @@ const Header: React.FC = () => {
                 </div>
 
                 <div className="header-button-container">
-                    <Link to="/ "><button className="header-button">About</button></Link>
+                    <Link to="/about-us "><button className="header-button">About</button></Link>
 
                     <div className="header-button-uni">
                         <button className="header-button">Universities</button>
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
 
                 <div id="mySidenav" className="sidenav" style={{ width: sidenavWidth }}>
                     <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>→</a>
-                    <Link to="/ ">About</Link>
+                    <Link to="/about-us ">About</Link>
                     <Link to="/university ">Universities</Link>
                     <Link to="/scholarship ">Scholarships</Link>
                     <Link to="/ ">Exams</Link>
@@ -73,6 +73,7 @@ const Header: React.FC = () => {
                     <Link to="/document ">Documents</Link>
                     <Link to="/sop ">SOP and Essays</Link>
                     <Link to="/ ">Roadmap</Link>
+                    <p> </p>
                 </div>
 
                 <div className="profile-container">

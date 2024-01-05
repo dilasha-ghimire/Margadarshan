@@ -38,7 +38,6 @@ public class UniversityController {
     public void deleteUniversity(@PathVariable("universityId") int universityId){
         universityService.deleteById(universityId);
     }
-
     @PostMapping("/universities-filtered")
     public ResponseEntity<List<University>> filteredUniversity(@RequestBody UniversityDto universityDto){
         List<University> universities = universityService.findByMajorOrStateOrFees(universityDto);

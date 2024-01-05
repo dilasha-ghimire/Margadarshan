@@ -1,17 +1,43 @@
 import "../css-files/universityHeader.css";
 import "../css-files/universityCentre.css";
-import React, { useState } from 'react';
 import { Link } from "react-router-dom"
-import {useQuery} from "react-query";
+import { useState } from "react";
+import { useForm } from 'react-hook-form';
+import { useMutation } from "react-query";
+import { useQuery } from "react-query";
 import axios from "axios";
 
 function University() {
-    const {data} = useQuery({
+    const { data } = useQuery({
         queryKey: "GETDATA",
         queryFn() {
             return axios.get("http://localhost:8080/api/universities")
         }
     })
+
+    const saveData = useMutation({
+        mutationKey: "SAVE DATA",
+        mutationFn: (requestData: any) => {
+            console.log(requestData)
+            return axios.post("http://localhost:8080/api/universities-filtered", requestData);
+        },
+        onSuccess: (response) => {
+            setFilteredUni(response.data);
+        }
+    });
+
+    const { register, handleSubmit } = useForm();
+    const [filteredUni, setFilteredUni] = useState([]);
+
+    const onSubmit = async (value: any) => {
+        try {
+            await saveData.mutateAsync(value);
+        }
+        catch (error) {
+            console.error("Error filtering universities", error);
+            setFilteredUni([]);
+        }
+    }
 
     const [selectedOption, setSelectedOption] = useState("");
     const options = ["<$30,000", "$30,000 - $40,000", "$40,000 - $50,000", "$50,000 - $60,000", "$60,000>"];
@@ -19,6 +45,9 @@ function University() {
     const handleOptionSelect = (option) => {
         setSelectedOption(option);
     }
+
+    const universities = data?.data || [];
+    const displayUniversities = filteredUni.length > 0 ? filteredUni : universities;
 
     return (
         <>
@@ -78,15 +107,15 @@ function University() {
                 </div>
 
                 <div className="user-input-uni">
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="text-field-container">
                             <div className="major-choice">
                                 <p className="question">What do you want to study?</p>
-                                <input className="text-field1" type="text" />
+                                <input className="text-field1" type="text" {...register("universityMajor")} />
                             </div>
                             <div className="location-choice">
                                 <p className="question">Which state do you want to study in?</p>
-                                <input className="text-field1" type="text" />
+                                <input className="text-field1" type="text" {...register("universityState")} />
                             </div>
                         </div>
 
@@ -105,63 +134,52 @@ function University() {
                                 </select>
                             </div>
                             <div className="search-button-container">
-                                <button className="search">Search</button>
+                                <button className="search" type="submit">Search</button>
                             </div>
                         </div>
                     </form>
                 </div>
 
-                <div className="university-list">
-                    <div className="uni-container">
-                        <div className="uni-description-container">
-                            <div className="uni-image-container">
-                                <img className="uni-image" src="src\assets\University\Michigan_Technological_University_seal.svg.png" />
-                            </div>
-                            <div className="uni-desc">
-                                <p className="uni-name">Michigan Technological University</p>
-                                <p className="uni-location">Houghton, Michigan</p>
-                                <p className="major">BS in Biochemistry and Molecular Biology</p>
-                            </div>
-                        </div>
-                        <div className="uni-costs">
-                            <p className="annual-fee">$41,022/year</p>
-                            <p className="years">4 years</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="uni-container">
-                    <div className="uni-description-container">
-                        <div className="uni-image-container">
-                            <img className="uni-image" src="src\assets\University\U-M_Logo-Hex.png" />
-                        </div>
-                        <div className="uni-desc">
-                            <p className="uni-name">University of Michigan</p>
-                            <p className="uni-location">Ann Arbor, Michigan</p>
-                            <p className="major">BS in Biochemistry</p>
-                        </div>
-                    </div>
-                    <div className="uni-costs">
-                        <p className="annual-fee">$49,530/year</p>
-                        <p className="years">4 years</p>
-                    </div>
-                </div>
-
-                <div className="uni-choice-container">
+                {/* <div className="university-list">
                     {data?.data?.map((uni, index) => (
-                        <React.Fragment key={index}>
-                        <p className="uni-choice">University Name: {uni.universityName}</p>
-                        <p className="uni-choice">University State: {uni.universityState}</p>
-                        <p className="uni-choice">University City: {uni.universityCity}</p>
-                        <p className="uni-choice">University Major: {uni.universityMajor}</p>
-                        <p className="uni-choice">Annual Tuition Fee: {uni.universityFees}</p>
-                        <p className="uni-choice">Length of Study: {uni.universityLength}</p>
-                        </React.Fragment>
+                        <div className="uni-container" key={index}>
+                            <div className="uni-description-container">
+                                <img className="uni-image" src="src\assets\University\Michigan_Technological_University_seal.svg.png" />
+                                <div className="uni-desc">
+                                    <p className="uni-name">{uni.name}</p>
+                                    <p className="uni-location">{uni.city}, {uni.state}</p>
+                                    <p className="major">{uni.major}</p>
+                                </div>
+                            </div>
+                            <div className="uni-costs">
+                                <p className="annual-fee">${uni.fees}/year</p>
+                                <p className="years">{uni.length} years</p>
+                            </div>
+                        </div>
+                    ))}
+                </div> */}
+
+                <div className="university-list">
+                    {displayUniversities.map((uni, index) => (
+                        <div className="uni-container" key={index}>
+                            <div className="uni-description-container">
+                                <img className="uni-image" src="src\assets\University\Michigan_Technological_University_seal.svg.png" />
+                                <div className="uni-desc">
+                                    <p className="uni-name">{uni.name}</p>
+                                    <p className="uni-location">{uni.city}, {uni.state}</p>
+                                    <p className="major">{uni.major}</p>
+                                </div>
+                            </div>
+                            <div className="uni-costs">
+                                <p className="annual-fee">${uni.fees}/year</p>
+                                <p className="years">{uni.length} years</p>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>
 
-            
+
         </>
     )
 }
