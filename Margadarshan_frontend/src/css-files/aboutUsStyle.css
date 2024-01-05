@@ -1,0 +1,164 @@
+.about-us-content{
+    position: absolute;
+    width: 100%;
+    top: 90px;
+}
+
+.abt-image-container {
+    background-size: cover;
+    min-height: 75vh;
+    position: relative;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+    justify-content: center;
+}
+
+#abt-main-header{
+    color: #FFE34F;
+    font-size: 5rem;
+    margin: 10px 10px 10px 10px;
+}
+
+.color-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.4);
+}
+
+.abt-scroll-divider{
+    height: 95px;
+    background-color: white;
+}
+
+.abt-scroll-animation {
+    height: 5vh;
+    position: absolute;
+    top: 80vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.abt-scroll-animation span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-bottom: 3px solid #152039;
+    border-right: 3px solid #152039;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: abt-scroll-animate 2s infinite;
+}
+
+.abt-scroll-animation span:nth-child(2){
+    animation-delay: -0.2s;
+}
+
+.abt-scroll-animation span:nth-child(3){
+    animation-delay: -0.4s;
+}
+
+@keyframes abt-scroll-animate {
+    0%{
+        opacity: 0;
+        transform: rotate(45deg) translate(-15px, -15px);
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0%;
+        transform: rotate(45deg) translate(15px, 15px);
+
+    }
+}
+
+.abt-margadarshan-animation {
+    top: 81vh;
+    padding-top: 2vh;
+    height: 16vh;
+    background-color: white;
+}
+
+#abt-animate{
+    display: inline-block;
+    position: relative;
+    font-size: 7vw;
+    padding-top: 10px;
+    color: white;
+    -webkit-text-stroke: 0.3vw #383d52;
+    text-transform: uppercase;
+}
+
+#abt-animate::before{
+    display: inline-block;
+    content: attr(abt-data-text);
+    position: absolute;
+    left: 0vw;
+    width: 0;
+    height: 100%;
+    color: #152039;
+    -webkit-text-stroke: 0vw #383d52;
+    border-right: 3px solid #152039;
+    overflow: hidden;
+    animation: abt-name-animate 6s linear infinite;
+}
+
+@keyframes abt-name-animate {
+    0%,10%,100%{
+        width: 0;
+    }
+    70%,90%{
+        width: 100%;
+    }
+}
+
+.abt-introduction {
+    background-color: white;
+    height: 36vh;
+}
+
+#intro-para{
+    padding-left: 40px;
+    padding-right: 40px;
+    font-family: Georgia;
+    font-size: large;
+}
+
+@media (max-width: 1119px){
+    .abt-image-container{
+        min-height: 40vh;
+    }
+    #abt-main-header{
+        font-size: calc(1.525rem + 3.3vh);
+    }
+    .abt-scroll-animation {
+        position: absolute;
+        top: 45vh;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .abt-margadarshan-animation{
+        height: 12vh;
+    }
+    .abt-introduction {
+        padding-top: 40px;
+    }
+    #intro-para{
+        padding-left: 30px;
+        padding-right: 30px;
+        font-family: Georgia;
+        font-size: medium;
+    }
+}
+
+@media screen and (min-width: 1120px) and (max-width: 1500px) {
+    .abt-introduction {
+        padding-top: 40px;
+    }
+    #intro-para {
+        padding-left: 50px;
+        padding-right: 50px;
+        font-family: Georgia;
+        font-size: x-large;
+    }
+}

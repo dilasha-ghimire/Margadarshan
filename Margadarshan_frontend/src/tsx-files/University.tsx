@@ -1,11 +1,10 @@
-import "../css-files/universityHeader.css";
 import "../css-files/universityCentre.css";
-import { Link } from "react-router-dom"
 import { useState } from "react";
 import { useForm } from 'react-hook-form';
 import { useMutation } from "react-query";
 import { useQuery } from "react-query";
 import axios from "axios";
+import Header from './Header';
 
 function University() {
     const { data } = useQuery({
@@ -31,6 +30,10 @@ function University() {
 
     const onSubmit = async (value: any) => {
         try {
+            const [min, max] = selectedOption.split('-');
+            value.minUniversityFees = parseInt(min);
+            value.maxUniversityFees = parseInt(max);
+            
             await saveData.mutateAsync(value);
         }
         catch (error) {
@@ -40,7 +43,18 @@ function University() {
     }
 
     const [selectedOption, setSelectedOption] = useState("");
-    const options = ["<$30,000", "$30,000 - $40,000", "$40,000 - $50,000", "$50,000 - $60,000", "$60,000>"];
+
+    const generateFeeOptions = () => {
+        const lowerBounds = [0, 30000, 40000, 50000, 60000];
+        const upperBounds = [30000, 40000, 50000, 60000, Infinity];
+        return lowerBounds.map((lower, index) => {
+            const upper = upperBounds[index];
+            const label = upper === Infinity ? `>${lower}` : `$${lower} - $${upper}`;
+            return { label, value: `${lower}-${upper}` };
+        });
+    }
+
+    const options = generateFeeOptions();
 
     const handleOptionSelect = (option) => {
         setSelectedOption(option);
@@ -51,47 +65,7 @@ function University() {
 
     return (
         <>
-            <div className="header">
-                <div className="website-title-uni">
-                    <img className="logo" src="src\assets\AboutPage\Margadarshan logo.png"></img>
-                    <p className="margadarshan-uni">MARGADARSHAN</p>
-                </div>
-
-                <div className="header-button-container">
-                    <div className="about-univerisity-portfolio-roadmap">
-
-                    </div>
-                    <a href="about.html"><button className="header-button">About</button></a>
-
-                    <div className="header-button-uni">
-                        <button className="header-button">Universities</button>
-
-                        <div className="drop-down-uni-container1">
-                            <Link to="/university"><button className="drop-down-button-uni">Universities</button></Link>
-                            <Link to="/scholarship"><button className="drop-down-button-uni">Scholarship</button></Link>
-                            <button className="drop-down-button-uni">Exams</button>
-                        </div>
-                    </div>
-
-                    <div className="header-button-portfolio">
-                        <button className="header-button">Portfolio</button>
-                        <div className="drop-down-portfolio-container1">
-                            <button className="drop-down-button-uni">Education</button>
-                            <button className="drop-down-button-uni">Documents</button>
-                            <button className="drop-down-button-uni">SOP and Essays</button>
-                        </div>
-                    </div>
-
-                    <button className="header-button">Roadmap</button>
-
-                    <div className="profile-container">
-                        <button className="profile-button">
-                            <img className="profile-uni" src="src\assets\AboutPage\profile.png" />
-                        </button>
-                        <button className="logout-btn-uni">Logout</button>
-                    </div>
-                </div>
-            </div>
+            <Header/>
 
             <div className="centre">
                 <div className="page-heading">
@@ -124,11 +98,12 @@ function University() {
                                 <p className="question">Tuition fees (USD)</p>
                                 <select className="drop-down-fees"
                                     value={selectedOption}
+                                    defaultValue={""}
                                     onChange={(e) => handleOptionSelect(e.target.value)}>
                                     <option value="" disabled>Select an option</option>
                                     {options.map((option, index) => (
-                                        <option key={index} value={option}>
-                                            {option}
+                                        <option key={index} value={option.value}>
+                                            {option.label}
                                         </option>
                                     ))}
                                 </select>
@@ -139,25 +114,6 @@ function University() {
                         </div>
                     </form>
                 </div>
-
-                {/* <div className="university-list">
-                    {data?.data?.map((uni, index) => (
-                        <div className="uni-container" key={index}>
-                            <div className="uni-description-container">
-                                <img className="uni-image" src="src\assets\University\Michigan_Technological_University_seal.svg.png" />
-                                <div className="uni-desc">
-                                    <p className="uni-name">{uni.name}</p>
-                                    <p className="uni-location">{uni.city}, {uni.state}</p>
-                                    <p className="major">{uni.major}</p>
-                                </div>
-                            </div>
-                            <div className="uni-costs">
-                                <p className="annual-fee">${uni.fees}/year</p>
-                                <p className="years">{uni.length} years</p>
-                            </div>
-                        </div>
-                    ))}
-                </div> */}
 
                 <div className="university-list">
                     {displayUniversities.map((uni, index) => (

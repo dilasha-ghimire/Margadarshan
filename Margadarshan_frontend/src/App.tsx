@@ -1,19 +1,17 @@
 import './App.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import { QueryClient, QueryClientProvider } from 'react-query';
-
 import University from "./tsx-files/University.tsx";
 import Scholarship from './tsx-files/Scholarship.tsx';
 import Registration from './tsx-files/Registration.tsx';
 import SOP from './tsx-files/SOP.tsx';
-import SOPDialogBox from './tsx-files/SOPDialogBox.tsx';
-import Exam from './tsx-files/Exam.tsx';
+import AboutUs from "./tsx-files/AboutUs.tsx";
 import Document from "./tsx-files/Document.tsx";
 import Header from "./tsx-files/Header.tsx";
 import Education from "./tsx-files/Education.tsx";
 import Login from './tsx-files/Login.tsx';
 import AdminUniversity from './tsx-files/AdminUniversity.tsx';
-
+import Exam from './tsx-files/Exam.tsx';
 
 const router = createBrowserRouter(
   [
@@ -41,14 +39,10 @@ const router = createBrowserRouter(
           path:"/sop",
           element:<SOP/>
       },
-      {
-          path:"/dialogbox",
-          element:<SOPDialogBox/>
-      },
-      {
-          path: "/exam",
-          element: <Exam/>
-      },
+    //   {
+    //       path: "/exam",
+    //       element: <Exam/>
+    //   },
       {
           path: "/header",
           element: <Header/>
@@ -69,13 +63,13 @@ const queryClient = new QueryClient();
 
 function App() {
 
-  return (
-      <>   
+    return (
+        <>
             <QueryClientProvider client={queryClient}>
                 <RouterProvider router={router}/>
             </QueryClientProvider>
-      </>
-  )
+        </>
+    )
 }
 
 export default App
