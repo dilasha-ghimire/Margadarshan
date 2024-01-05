@@ -1,18 +1,10 @@
 
-/* ......................... */
-
 .t{
     position: absolute;
     position: fixed;
     top: 200px;
-  /* right: 0; */
-  /* left: 40px; */
   width: 800px;
   height: 500px;
-  /* border: 3px solid #73AD21; */
-    /* margin-top:rem; */
-    /* height:100px ; */
-    /* width: 50%; */
      color:black;
     align-content: center;
     align-items: center; 
@@ -25,13 +17,10 @@
 .rasmi{
     display: flex;
     flex-direction:column;
-    /* justify-content:flex-start; */
-    /* column-gap: 300px; */
     border: 3px solid #FFE34F;
     position: relative;
 }
 .sir{
-    /* width:800px; */
     align-content:center;
     border: 3px solid blueviolet;
 
@@ -42,12 +31,12 @@
     font-size:50px;
 }
 .other-button{
-    width: 90px;
+    width: 200px;
     height: 50px;
     margin-left: 200px;
     margin-top: 60px;
     background-color: darkgrey;
-    /* border:4px solid black; */
+    border:1px solid black;
 }
 .other-button:hover{
     cursor: pointer;
@@ -56,4 +45,3 @@
     color:blue;
 
  } 
- 

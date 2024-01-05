@@ -68,6 +68,10 @@ const router = createBrowserRouter(
         {
             path: "/adminUniversity",
             element: <AdminUniversity/>
+        },
+        {
+            path: "exam",
+            element: <Exam/>
         }
     ]
 )
