@@ -1,4 +1,5 @@
 package com.GyanSarathi.Margadarshan.dto;
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.*;
@@ -33,7 +34,6 @@ public class UniversityDto {
     @NotNull
     private int universityLength;
 
-    @NotNull
-    private byte[] universityImage;
+   
 
 }
