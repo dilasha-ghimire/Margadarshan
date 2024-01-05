@@ -6,7 +6,6 @@ import Scholarship from './tsx-files/Scholarship.tsx';
 import Registration from './tsx-files/Registration.tsx';
 import SOP from './tsx-files/SOP.tsx';
 import AboutUs from "./tsx-files/AboutUs.tsx";
-import SOPDialogBox from './tsx-files/SOPDialogBox.tsx';
 import Document from "./tsx-files/Document.tsx";
 import Header from "./tsx-files/Header.tsx";
 import Education from "./tsx-files/Education.tsx";
@@ -42,10 +41,6 @@ const router = createBrowserRouter(
             element:<SOP/>
         },
         {
-            path:"/dialogbox",
-            element:<SOPDialogBox/>
-        },
-        {
             path: "/about-us",
             element: <AboutUs/>
         },
@@ -69,7 +64,7 @@ const router = createBrowserRouter(
             path: "/adminUniversity",
             element: <AdminUniversity/>
         }
-    ]
+  ]
 )
 
 const queryClient = new QueryClient();
