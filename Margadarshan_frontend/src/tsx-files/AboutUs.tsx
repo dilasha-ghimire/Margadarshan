@@ -1,6 +1,14 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpenReader } from '@fortawesome/free-solid-svg-icons';
+import { faHandshake } from '@fortawesome/free-regular-svg-icons';
+import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import Header from './Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from "./Footer.tsx";
 import '../css-files/aboutUsStyle.css';
 
 const AboutUs: React.FC = () => {
@@ -9,7 +17,7 @@ const AboutUs: React.FC = () => {
             <Header/>
 
             <div className="about-us-content">
-                <div className = "abt-image-container" style={{ backgroundImage: `url('src/assets/AboutPage/graduation.png')` }}>
+                <div className="abt-image-container" style={{ backgroundImage: `url('src/assets/AboutPage/graduation.png')` }}>
                     <div className="introduction color-overlay d-flex justify-content-center align-items-center">
                         <h1 id= "abt-main-header" >Navigating Our Narrative</h1>
                     </div>
@@ -37,13 +45,85 @@ const AboutUs: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="features-title">
-
+                <div className="abt-vision-value">
+                    <div className="abt-vnv-section">
+                        <h2>Our Vision and Value</h2>
+                        <div className="abt-vnv-cards">
+                            <div className="abt-vnv-card">
+                                <FontAwesomeIcon icon={faGlobe} />
+                                <div className="abt-vnv-content">
+                                    <h3>Empowering Global Education</h3>
+                                    <p>Striving to empower students worldwide
+                                        by facilitating accessible and affordable
+                                        education opportunities, fostering a
+                                        connected and knowledgeable global community.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="abt-vnv-card">
+                                <FontAwesomeIcon icon={faUserGroup} />
+                                <div className="abt-vnv-content">
+                                    <h3>Inclusivity and Diversity</h3>
+                                    <p>Embracing the richness of diverse backgrounds,
+                                        cultures, and perspectives, we are committed
+                                        to creating an inclusive educational environment
+                                        where every student feels valued and supported.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="abt-vnv-card">
+                                <FontAwesomeIcon icon={faBookOpenReader} />
+                                <div className="abt-vnv-content">
+                                    <h3>Transformative Learning Experiences</h3>
+                                    <p>Envisioning education as a transformative journey,
+                                        our goal is to provide enriching learning
+                                        experiences that go beyond traditional boundaries,
+                                        nurturing holistic development and lifelong skills.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="abt-vnv-card">
+                                <FontAwesomeIcon icon={faHandshake} />
+                                <div className="abt-vnv-content">
+                                    <h3>Integrity and Ethics</h3>
+                                    <p>Upholding the highest standards of integrity
+                                        and ethics, we are dedicated to ensuring
+                                        transparent and honest practices in all
+                                        aspects of our educational services, building
+                                        trust with our students and partners.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="abt-vnv-card">
+                                <FontAwesomeIcon icon={faLightbulb} />
+                                <div className="abt-vnv-content">
+                                    <h3>Innovation in Education</h3>
+                                    <p>Pioneering innovation in education, we aim
+                                        to continuously explore and implement
+                                        cutting-edge technologies and methodologies,
+                                        adapting to the evolving needs of students
+                                        and the education landscape.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="abt-vnv-card">
+                                <FontAwesomeIcon icon={faGraduationCap} />
+                                <div className="abt-vnv-content">
+                                    <h3>Student-Centric Approach</h3>
+                                    <p>Placing students at the center of our focus,
+                                        we are committed to providing personalized
+                                        and student-centric support, tailoring our
+                                        services to meet the unique needs and
+                                        aspirations of each individual learner.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-
-
+            <Footer/>
         </div>
     );
 };

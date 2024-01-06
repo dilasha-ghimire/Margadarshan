@@ -1,3 +1,7 @@
+body{
+    background-color: white;
+}
+
 .about-us-content{
     position: absolute;
     width: 100%;
@@ -155,10 +159,115 @@
     .abt-introduction {
         padding-top: 40px;
     }
+
     #intro-para {
         padding-left: 50px;
         padding-right: 50px;
         font-family: Georgia;
         font-size: x-large;
+    }
+}
+
+.abt-vision-value {
+    padding-top: 10px;
+    background-color: white;
+}
+
+.abt-vnv-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.abt-vnv-section h2 {
+    text-shadow: 2px 2px 4px rgba(161, 116, 32, 0.5);
+    color: #152039;
+    font-size: 6rem;
+    padding-bottom: 30px;
+}
+
+.abt-vnv-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    z-index: 9;
+    margin: 20px;
+    padding: 30px;
+}
+
+.abt-vnv-cards .abt-vnv-card {
+    height: 300px;
+    width: 400px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 0 8%;
+    background: #434c60;
+    color: #f1f1f1;
+    position: relative;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.abt-vnv-cards .abt-vnv-card::before {
+    position: absolute;
+    content: " ";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+    background: #152039;
+    transform: rotate(0deg);
+    z-index: -1;
+    transition: transform 0.3s ease;
+}
+
+.abt-vnv-cards .abt-vnv-card:hover.abt-vnv-card::before {
+    transform: rotate(10deg);
+}
+
+.abt-vnv-cards .svg-inline--fa {
+    font-size: 2.5rem;
+    color: #b8bcc3;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.abt-vnv-cards .abt-vnv-card h3 {
+    font-size: 1.5rem;
+    color: #f1f1f1;
+    margin-bottom: 10px;
+}
+
+.abt-vnv-cards .abt-vnv-card .abt-vnv-content p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+    padding-top: 10px;
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1350px){
+    .abt-vnv-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1001px) {
+    .abt-vnv-section h2 {
+        font-size: 3rem;
+        margin-top: 30px;
+    }
+
+    .abt-vnv-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .abt-vnv-cards .abt-vnv-card {
+        margin: 20px 0;
     }
 }
