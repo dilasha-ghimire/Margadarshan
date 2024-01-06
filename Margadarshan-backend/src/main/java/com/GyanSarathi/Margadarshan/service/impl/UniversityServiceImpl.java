@@ -53,4 +53,9 @@ public class UniversityServiceImpl implements UniversityService{
     public List<University> findByMajorOrStateOrFees(UniversityDto universityDto) {
         return universityRepository.findByMajorOrFeesOrState(universityDto.getUniversityMajor(),universityDto.getUniversityState(),universityDto.getUniversityFees());
     }
+
+    @Override
+    public Optional<University> findByUniversityName(String universityName) {
+        return universityRepository.findUniversitiesByName(universityName);
+    }
 }
