@@ -41,7 +41,7 @@ const Header: React.FC = () => {
                 <div className="header-header-button-container">
                     <Link to="/about-us "><button className="header-header-button">About</button></Link>
 
-                    <div className="header-button-uni">
+                    <div className="header-header-button-uni">
                         <button className="header-header-button">Universities</button>
 
                         <div className="header-drop-down-uni">
@@ -76,10 +76,10 @@ const Header: React.FC = () => {
                 </div>
 
                 <div className="header-profile-container">
+                    <button className="header-logout-button">Logout</button>
                     <button className="header-profile-button">
                         <img className="header-profile" src="src\assets\Document\profile.png" alt="header-profile" />
                     </button>
-                    <button className="header-logout-button">Logout</button>
                 </div>
 
                 <div className="header-click" onClick={openNav}>
