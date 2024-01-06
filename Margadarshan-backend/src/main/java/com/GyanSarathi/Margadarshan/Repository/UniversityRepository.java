@@ -15,6 +15,8 @@ public interface UniversityRepository extends JpaRepository<University,Integer> 
     List<University> findByMajorOrFeesOrState(@Param("university_major") String universityMajor,
                                               @Param("university_state") String universityState,
                                               @Param("university_fees") long universityFees);
+
+    Optional<University> findUniversitiesByName(String universityName);
 }
 
 
