@@ -11,13 +11,13 @@
     z-index: 100;
 }
 
-.website-title {
+.header-website-title {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 }
 
-.logo-button {
+.header-logo-button {
     border: none;
     background-color: #152039;
     width: 55px;
@@ -27,33 +27,27 @@
 }
 
 @media screen and (max-width: 1400px) {
-    .website-title {
+    .header-website-title {
         margin-top: 2px;
     }
 }
 
-@media screen and (max-width: 750px) {
-    .website-title{
-
-    }
-}
-
-.logo-button:hover {
+.header-logo-button:hover {
     cursor: pointer;
 }
 
-.logo-container {
+.header-logo-container {
     display: flex;
 }
 
-.logo {
+.header-logo {
     width: 100px;
     height: 100px;
     margin-left: -10px;
     margin-top: -5px;
 }
 
-.website-title-button {
+.header-website-title-button {
     position: relative;
     border: none;
     color: #FFE34F;
@@ -64,11 +58,11 @@
     margin-top: -35px;
 }
 
-.website-title-button:hover {
+.header-website-title-button:hover {
     cursor: pointer;
 }
 
-.header-button-container {
+.header-header-button-container {
     display: flex;
     flex: 3;
     flex-direction: row;
@@ -80,7 +74,7 @@
     position: relative;
 }
 
-.header-button {
+.header-header-button {
     background-color: #152039;
     color: white;
     border: none;
@@ -89,16 +83,16 @@
     font-size: 1.2vw;
 }
 
-.header-button:hover {
+.header-header-button:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.header-button-uni {
+.header-header-button-uni {
     position: relative;
 }
 
-.drop-down-uni {
+.header-drop-down-uni {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -107,7 +101,7 @@
     opacity: 0;
 }
 
-.drop-down-button {
+.header-drop-down-button {
     font-family: "Nunito";
     background-color: black;
     color: white;
@@ -118,7 +112,7 @@
     transition: background-color, color, 0.25s;
 }
 
-.drop-down-button:hover {
+.header-drop-down-button:hover {
     text-decoration: underline;
     color: black;
     background-color: white;
@@ -126,27 +120,27 @@
     cursor: pointer;
 }
 
-.header-button-uni:hover .drop-down-uni {
+.header-header-button-uni:hover .header-drop-down-uni {
     opacity: 1;
 }
 
 @media only screen and (max-width: 1100px) {
-    .drop-down-uni {
+    .header-drop-down-uni {
         right: 10px;
         width: 100%;
     }
 }
 
-.header-button-portfolio {
+.header-header-button-portfolio {
     position: relative;
 }
 
-.header-button-portfolio:hover {
+.header-header-button-portfolio:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.drop-down-portfolio {
+.header-drop-down-portfolio {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -155,12 +149,12 @@
     opacity: 0;
 }
 
-.header-button-portfolio:hover .drop-down-portfolio {
+.header-button-portfolio:hover .header-drop-down-portfolio {
     opacity: 1;
     visibility: visible;
 }
 
-.profile-container {
+.header-profile-container {
     display: flex;
     flex: 1;
     flex-direction: row;
@@ -171,7 +165,7 @@
     position: relative;
 }
 
-.profile-button {
+.header-profile-button {
     height: 55px;
     width: 55px;
     border-radius: 35px;
@@ -183,17 +177,17 @@
     margin-top: -4px;
 }
 
-.profile-button:hover {
+.header-profile-button:hover {
     cursor: pointer;
 }
 
-.profile {
+.header-profile {
     height: 35px;
     width: 35px;
     margin-top: -1px;
 }
 
-.logout-button {
+.header-logout-button {
     position: absolute;
     color: white;
     font-family: 'Nunito';
@@ -212,11 +206,11 @@
     transition: background-color, color 0.35s;
 }
 
-.profile-container:hover .logout-button {
+.header-profile-container:hover .header-logout-button {
     opacity: 1;
 }
 
-.logout-button:hover {
+.header-logout-button:hover {
     cursor: pointer;
     background-color: white;
     border-color: #1a1a1a;
@@ -226,7 +220,7 @@
     padding-left: 7px;
 }
 
-.sidenav {
+.header-sidenav {
     height: 100vh;
     width: 0;
     position: absolute;
@@ -239,7 +233,7 @@
     transition: 0.5s;
 }
 
-.sidenav a {
+.header-sidenav a {
     padding: 40px 30px 0px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -248,11 +242,11 @@
     transition: 0.3s;
 }
 
-.sidenav a:hover {
+.header-sidenav a:hover {
     color: #FFE34F;
 }
 
-.sidenav .closebtn {
+.header-sidenav .header-closebtn {
     position: absolute;
     top: -44.5px;
     left: -70px;
@@ -261,11 +255,11 @@
 }
 
 @media screen and (max-width: 1040px) {
-    .header-button-container {
+    .header-header-button-container {
         display: none;
     }
 
-    .profile-container {
+    .header-profile-container {
         display: flex;
         flex: 1;
         flex-direction: row;
@@ -277,20 +271,20 @@
         position: relative;
     }
 
-    .profile-button {
+    .header-profile-button {
         height: 45px;
         width: 45px;
         margin-right: -20px;
     }
 
-    .profile {
+    .header-profile {
         height: 30px;
         width: 30px;
         margin-top: -9px;
         margin-left: -15px;
     }
 
-    .logout-button {
+    .header-logout-button {
         position: absolute;
         color: white;
         font-family: 'Nunito';
@@ -311,18 +305,18 @@
         transition: background-color, color 0.35s;
     }
 
-    .profile-container:hover .logout-button {
+    .header-profile-container:hover .header-logout-button {
         opacity: 1;
     }
 
-    .logout-button:hover {
+    .header-logout-button:hover {
         cursor: pointer;
         background-color: white;
         border-width: 2.5px;
         color: black;
     }
 
-    .click-button {
+    .header-click-button {
         border: none;
         color: white;
         background-color: #152039;
@@ -334,11 +328,11 @@
 }
 
 @media screen and (min-width: 1041px) {
-    .sidenav {
+    .header-sidenav {
         display: none;
     }
 
-    .click {
+    .header-click {
         display: none;
     }
 }
