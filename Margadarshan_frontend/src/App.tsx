@@ -14,6 +14,7 @@ import SAT from './tsx-files/SAT.tsx';
 import ExamSection from './tsx-files/ExamSection.tsx';
 import AdminUniversity from './tsx-files/AdminUniversity.tsx';
 import Exam from './tsx-files/Exam.tsx';
+import Footer from "./tsx-files/Footer.tsx";
 
 const router = createBrowserRouter(
     [
@@ -52,6 +53,10 @@ const router = createBrowserRouter(
         {
             path: "/header",
             element: <Header/>
+        },
+        {
+            path: "/footer",
+            element: <Footer/>
         },
         {
             path: "/education",
