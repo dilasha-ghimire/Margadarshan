@@ -1,80 +1,71 @@
-import "../css-files/universityHeader.css";
 import "../css-files/universityCentre.css";
-import React, { useState } from 'react';
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import { useForm } from 'react-hook-form';
+import { useMutation } from "react-query";
 import { useQuery } from "react-query";
 import axios from "axios";
+import Header from './Header';
 
 function University() {
-    const [universityMajor, setMajor] = useState("");
-    const { data } = useQuery(
-        ["GETDATA", universityMajor],
-        async() => {
-            if(universityMajor.trim() != "") {
-                const response = await axios.get("http://localhost:8080/api/universities-filtered");
-                return response.data;
-            }
-            return null;
-        },
-        {
-            enabled: universityMajor.trim() != "",
+    const { data } = useQuery({
+        queryKey: "GETDATA",
+        queryFn() {
+            return axios.get("http://localhost:8080/api/universities")
         }
-    )
+    })
 
-    const handleInputChange = (e) => {
-        setMajor(e.target.value);
+    const saveData = useMutation({
+        mutationKey: "SAVE DATA",
+        mutationFn: (requestData: any) => {
+            console.log(requestData)
+            return axios.post("http://localhost:8080/api/universities-filtered", requestData);
+        },
+        onSuccess: (response) => {
+            setFilteredUni(response.data);
+        }
+    });
+
+    const { register, handleSubmit } = useForm();
+    const [filteredUni, setFilteredUni] = useState([]);
+
+    const onSubmit = async (value: any) => {
+        try {
+            const [min, max] = selectedOption.split('-');
+            value.minUniversityFees = parseInt(min);
+            value.maxUniversityFees = parseInt(max);
+            
+            await saveData.mutateAsync(value);
+        }
+        catch (error) {
+            console.error("Error filtering universities", error);
+            setFilteredUni([]);
+        }
     }
 
     const [selectedOption, setSelectedOption] = useState("");
-    const options = ["<$30,000", "$30,000 - $40,000", "$40,000 - $50,000", "$50,000 - $60,000", "$60,000>"];
+
+    const generateFeeOptions = () => {
+        const lowerBounds = [0, 30000, 40000, 50000, 60000];
+        const upperBounds = [30000, 40000, 50000, 60000, Infinity];
+        return lowerBounds.map((lower, index) => {
+            const upper = upperBounds[index];
+            const label = upper === Infinity ? `>${lower}` : `$${lower} - $${upper}`;
+            return { label, value: `${lower}-${upper}` };
+        });
+    }
+
+    const options = generateFeeOptions();
 
     const handleOptionSelect = (option) => {
         setSelectedOption(option);
     }
 
+    const universities = data?.data || [];
+    const displayUniversities = filteredUni.length > 0 ? filteredUni : universities;
+
     return (
         <>
-            <div className="header">
-                <div className="website-title-uni">
-                    <img className="logo" src="src\assets\AboutPage\Margadarshan logo.png"></img>
-                    <p className="margadarshan-uni">MARGADARSHAN</p>
-                </div>
-
-                <div className="header-button-container">
-                    <div className="about-univerisity-portfolio-roadmap">
-
-                    </div>
-                    <a href="about.html"><button className="header-button">About</button></a>
-
-                    <div className="header-button-uni">
-                        <button className="header-button">Universities</button>
-
-                        <div className="drop-down-uni-container1">
-                            <Link to="/university"><button className="drop-down-button-uni">Universities</button></Link>
-                            <Link to="/scholarship"><button className="drop-down-button-uni">Scholarship</button></Link>
-                            <button className="drop-down-button-uni">Exams</button>
-                        </div>
-                    </div>
-
-                    <div className="header-button-portfolio">
-                        <button className="header-button">Portfolio</button>
-                        <div className="drop-down-portfolio-container1">
-                            <button className="drop-down-button-uni">Education</button>
-                            <button className="drop-down-button-uni">Documents</button>
-                            <button className="drop-down-button-uni">SOP and Essays</button>
-                        </div>
-                    </div>
-
-                    <button className="header-button">Roadmap</button>
-
-                    <div className="profile-container">
-                        <button className="profile-button">
-                            <img className="profile-uni" src="src\assets\AboutPage\profile.png" />
-                        </button>
-                        <button className="logout-btn-uni">Logout</button>
-                    </div>
-                </div>
-            </div>
+            <Header/>
 
             <div className="centre">
                 <div className="page-heading">
@@ -90,15 +81,15 @@ function University() {
                 </div>
 
                 <div className="user-input-uni">
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="text-field-container">
                             <div className="major-choice">
                                 <p className="question">What do you want to study?</p>
-                                <input className="text-field1" type="text" value={universityMajor} onChange={handleInputChange} />
+                                <input className="text-field1" type="text" {...register("universityMajor")} />
                             </div>
                             <div className="location-choice">
                                 <p className="question">Which state do you want to study in?</p>
-                                <input className="text-field1" type="text" />
+                                <input className="text-field1" type="text" {...register("universityState")} />
                             </div>
                         </div>
 
@@ -107,69 +98,40 @@ function University() {
                                 <p className="question">Tuition fees (USD)</p>
                                 <select className="drop-down-fees"
                                     value={selectedOption}
+                                    defaultValue={""}
                                     onChange={(e) => handleOptionSelect(e.target.value)}>
                                     <option value="" disabled>Select an option</option>
                                     {options.map((option, index) => (
-                                        <option key={index} value={option}>
-                                            {option}
+                                        <option key={index} value={option.value}>
+                                            {option.label}
                                         </option>
                                     ))}
                                 </select>
                             </div>
                             <div className="search-button-container">
-                                <button className="search" disabled={!universityMajor.trim()} onClick={() => setMajor("")}>Search</button>
+                                <button className="search" type="submit">Search</button>
                             </div>
                         </div>
                     </form>
                 </div>
 
                 <div className="university-list">
-                    <div className="uni-container">
-                        <div className="uni-description-container">
-                            <div className="uni-image-container">
+                    {displayUniversities.map((uni, index) => (
+                        <div className="uni-container" key={index}>
+                            <div className="uni-description-container">
                                 <img className="uni-image" src="src\assets\University\Michigan_Technological_University_seal.svg.png" />
+                                <div className="uni-desc">
+                                    <p className="uni-name">{uni.name}</p>
+                                    <p className="uni-location">{uni.city}, {uni.state}</p>
+                                    <p className="major">{uni.major}</p>
+                                </div>
                             </div>
-                            <div className="uni-desc">
-                                <p className="uni-name">Michigan Technological University</p>
-                                <p className="uni-location">Houghton, Michigan</p>
-                                <p className="major">BS in Biochemistry and Molecular Biology</p>
-                            </div>
-                        </div>
-                        <div className="uni-costs">
-                            <p className="annual-fee">$41,022/year</p>
-                            <p className="years">4 years</p>
-                        </div>
-                    </div>
-
-                    <div className="uni-container">
-                        <div className="uni-description-container">
-                            <div className="uni-image-container">
-                                <img className="uni-image" src="src\assets\University\U-M_Logo-Hex.png" />
-                            </div>
-                            <div className="uni-desc">
-                                <p className="uni-name">University of Michigan</p>
-                                <p className="uni-location">Ann Arbor, Michigan</p>
-                                <p className="major">BS in Biochemistry</p>
+                            <div className="uni-costs">
+                                <p className="annual-fee">${uni.fees}/year</p>
+                                <p className="years">{uni.length} years</p>
                             </div>
                         </div>
-                        <div className="uni-costs">
-                            <p className="annual-fee">$49,530/year</p>
-                            <p className="years">4 years</p>
-                        </div>
-                    </div>
-
-                    <div className="uni-filtration">
-                        {data && (
-                            <div className="uni-choice-container">
-                                <p className="uni-choice">University Name: {data.universityName}</p>
-                                <p className="uni-choice">University Name: {data.universityState}</p>
-                                <p className="uni-choice">University Name: {data.universityCity}</p>
-                                <p className="uni-choice">University Name: {data.universityMajor}</p>
-                                <p className="uni-choice">University Name: {data.universityFees}</p>
-                                <p className="uni-choice">University Name: {data.universityLength}</p>
-                            </div>
-                        )}
-                    </div>
+                    ))}
                 </div>
             </div>
 
