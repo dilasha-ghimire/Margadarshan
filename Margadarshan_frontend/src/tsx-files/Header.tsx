@@ -42,7 +42,7 @@ const Header: React.FC = () => {
                     <Link to="/about-us "><button className="header-header-button">About</button></Link>
 
                     <div className="header-header-button-uni">
-                        <button className="header-header-button">Universities</button>
+                        <button className="header-header-button">Academia</button>
 
                         <div className="header-drop-down-uni">
                             <Link to="/university"><button className="header-drop-down-button">Universities</button></Link>

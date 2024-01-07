@@ -8,7 +8,6 @@ import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import Header from './Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from "./Footer.tsx";
 import '../css-files/aboutUsStyle.css';
 
 const AboutUs: React.FC = () => {
@@ -53,7 +52,7 @@ const AboutUs: React.FC = () => {
                                 <FontAwesomeIcon icon={faGlobe} />
                                 <div className="abt-vnv-content">
                                     <h3>Empowering Global Education</h3>
-                                    <p>Striving to empower students worldwide
+                                    <p>Striving to empower students
                                         by facilitating accessible and affordable
                                         education opportunities, fostering a
                                         connected and knowledgeable global community.
@@ -66,7 +65,7 @@ const AboutUs: React.FC = () => {
                                     <h3>Inclusivity and Diversity</h3>
                                     <p>Embracing the richness of diverse backgrounds,
                                         cultures, and perspectives, we are committed
-                                        to creating an inclusive educational environment
+                                        to creating an inclusive environment
                                         where every student feels valued and supported.
                                     </p>
                                 </div>
@@ -74,9 +73,9 @@ const AboutUs: React.FC = () => {
                             <div className="abt-vnv-card">
                                 <FontAwesomeIcon icon={faBookOpenReader} />
                                 <div className="abt-vnv-content">
-                                    <h3>Transformative Learning Experiences</h3>
+                                    <h3>Transformative Education</h3>
                                     <p>Envisioning education as a transformative journey,
-                                        our goal is to provide enriching learning
+                                        our goal is to provide enriching
                                         experiences that go beyond traditional boundaries,
                                         nurturing holistic development and lifelong skills.
                                     </p>
@@ -121,9 +120,11 @@ const AboutUs: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <Footer/>
+                <div className="abt-footer">
+                    <p>Copyright &copy; 2023 GyanSarathi</p>
+                </div>
+            </div>
         </div>
     );
 };
