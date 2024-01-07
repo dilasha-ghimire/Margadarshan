@@ -32,7 +32,6 @@ public class UniversityServiceImpl implements UniversityService{
         university.setFees(universityDto.getUniversityFees());
         university.setName(universityDto.getUniversityName());
         university.setLength(universityDto.getUniversityLength());
-        university.setImage(universityDto.getUniversityImage());
         universityRepository.save(university);
         return "Data saved";
     }
@@ -53,5 +52,10 @@ public class UniversityServiceImpl implements UniversityService{
     @Override
     public List<University> findByMajorOrStateOrFees(UniversityDto universityDto) {
         return universityRepository.findByMajorOrFeesOrState(universityDto.getUniversityMajor(),universityDto.getUniversityState(),universityDto.getUniversityFees());
+    }
+
+    @Override
+    public Optional<University> findByUniversityName(String universityName) {
+        return universityRepository.findUniversitiesByName(universityName);
     }
 }

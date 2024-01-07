@@ -27,50 +27,58 @@ function SOP() {
             reader.readAsDataURL(input.files[0]);
         }
     };
+    const[isAddUniVisible,setAddUniVisible]=useState(false);
+    const [bodyOpacity, setBodyOpacity] = useState(1);
+    const handleButtonClick = () => {
+        setAddUniVisible(!isAddUniVisible);
+        setBodyOpacity(isAddUniVisible ? 1 : 0.3);
+    };
    
     return(
     <>
     <Header/>
-        <div className="rasmi">
+        <div className="rasmi" style={{ opacity: bodyOpacity }}>
         
         <div className="t">
           <h1 className="sn" id="clu">
             SOP and essays
           </h1>
           <h3 className="sn">Upload your SOP and essays for review</h3>
-          <button id="sopUploadButton" className="other-button">
+          <button id="sopUploadButton" className="other-button" onClick={handleButtonClick}>
             <b>Click me</b>
           </button>
         </div>
       </div>
-      <div className="first-div">
-            <div className="title">
-                <label htmlFor="input-doc" id="document-name">
-                    Title of document
-                </label>
-                <br />
-                <input
-                    type="text"
-                    id="input-doc"
-                    value={documentTitle}
-                    onChange={(e) => setDocumentTitle(e.target.value)}
-                />
-            </div>
-            <form action="" className="form">
-                <div id="image-preview">
-                    {imagePreview && <img src={imagePreview} alt="Preview" />}
-                </div>
-                <div className="select">
-                    <input
-                        type="file"
-                        id="photo-input"
-                        accept="image/*"
-                        onChange={previewImage}
-                    />
-                    <input type="submit" value="Upload" />
-                </div>
-            </form>
+      {isAddUniVisible &&(
+        <div className="sop_first-div">
+        <div className="title">
+            <label htmlFor="input-doc" id="document-name">
+                Title of document
+            </label>
+            <br />
+            <input
+                type="title"
+                value={documentTitle}
+                onChange={(e) => setDocumentTitle(e.target.value)}
+            />
         </div>
+        <form action="" className="form">
+            <div id="image-preview">
+                {imagePreview && <img src={imagePreview} alt="Preview" />}
+            </div>
+            <div className="select">
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={previewImage}
+                />
+                <input type="submit" value="Upload" />
+            </div>
+        </form>
+    </div>
+
+      )}
+      
 
     </>
     )

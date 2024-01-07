@@ -9,96 +9,85 @@
     right: 0;
     height: 90px;
     z-index: 100;
+    gap: 7vw;
 }
 
-.website-title {
+.header-website-title {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
+    margin-right: 15px;
 }
 
-.logo-button {
+.header-logo-button {
     border: none;
     background-color: #152039;
     width: 55px;
     height: 60px;
-    margin-left: -90px;
-    margin-top: -80px;
+    margin-left: 30px;
+    margin-top: -15px;
 }
 
-@media screen and (max-width: 1400px) {
-    .website-title {
-        margin-top: 2px;
-    }
-}
-
-@media screen and (max-width: 750px) {
-    .website-title{
-
-    }
-}
-
-.logo-button:hover {
+.header-logo-button:hover {
     cursor: pointer;
 }
 
-.logo-container {
+.header-logo-container {
     display: flex;
 }
 
-.logo {
-    width: 100px;
-    height: 100px;
-    margin-left: -10px;
-    margin-top: -5px;
+.header-logo {
+    width: 60px;
+    height: 60px;
+    margin-left: -20px;
+    margin-top: -2px;
 }
 
-.website-title-button {
+.header-website-title-button {
     position: relative;
     border: none;
     color: #FFE34F;
     background-color: transparent;
-    font-family: "Paytone One";
-    font-size: 26px;
-    margin-left: 50px;
-    margin-top: -35px;
+    font-family: "Paytone One", serif;
+    font-size: 28px;
+    margin-left: 12px;
+    padding-top: 10px;
 }
 
-.website-title-button:hover {
+.header-website-title-button:hover {
     cursor: pointer;
 }
 
-.header-button-container {
+.header-header-button-container {
     display: flex;
     flex: 3;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-left: 500px;
     margin-top: 15px;
-    margin-right: 40px;
+    margin-right: 15px;
     position: relative;
 }
 
-.header-button {
+.header-header-button {
     background-color: #152039;
     color: white;
     border: none;
-    font-family: "Nunito";
+    font-family: "Nunito", serif;
     font-weight: 600;
     font-size: 1.2vw;
 }
 
-.header-button:hover {
+.header-header-button:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.header-button-uni {
+.header-header-button-uni {
     position: relative;
 }
 
-.drop-down-uni {
+.header-drop-down-uni {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -107,18 +96,18 @@
     opacity: 0;
 }
 
-.drop-down-button {
-    font-family: "Nunito";
+.header-drop-down-button {
+    font-family: "Nunito", serif;
     background-color: black;
     color: white;
     border: none;
-    border-radius: 0px;
-    width: 145px;
+    border-radius: 0;
+    width: 160px;
     height: 40px;
     transition: background-color, color, 0.25s;
 }
 
-.drop-down-button:hover {
+.header-drop-down-button:hover {
     text-decoration: underline;
     color: black;
     background-color: white;
@@ -126,27 +115,20 @@
     cursor: pointer;
 }
 
-.header-button-uni:hover .drop-down-uni {
+.header-header-button-uni:hover .header-drop-down-uni {
     opacity: 1;
 }
 
-@media only screen and (max-width: 1100px) {
-    .drop-down-uni {
-        right: 10px;
-        width: 100%;
-    }
-}
-
-.header-button-portfolio {
+.header-header-button-portfolio {
     position: relative;
 }
 
-.header-button-portfolio:hover {
+.header-header-button-portfolio:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.drop-down-portfolio {
+.header-drop-down-portfolio {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -155,48 +137,49 @@
     opacity: 0;
 }
 
-.header-button-portfolio:hover .drop-down-portfolio {
+.header-header-button-portfolio:hover .header-drop-down-portfolio {
     opacity: 1;
     visibility: visible;
 }
 
-.profile-container {
+.header-profile-container {
     display: flex;
     flex: 1;
     flex-direction: row;
-    justify-content: end ;
     align-items: center;
     margin-right: 10px;
     margin-top: 3px;
     position: relative;
 }
 
-.profile-button {
+.header-profile-button {
     height: 55px;
     width: 55px;
     border-radius: 35px;
-    border-width: 3.5px;
+    border-width: 4px;
     border-color: white;
     border-style: solid;
-    margin-left: 40px;
     background-color: white;
     margin-top: -4px;
+    text-align: center;
 }
 
-.profile-button:hover {
+.header-profile-button:hover {
     cursor: pointer;
 }
 
-.profile {
+.header-profile {
     height: 35px;
     width: 35px;
-    margin-top: -1px;
+    margin-top: -3px;
+    margin-right: 5px;
+    margin-left: -13px;
+    vertical-align: middle;
 }
 
-.logout-button {
-    position: absolute;
+.header-logout-button {
     color: white;
-    font-family: 'Nunito';
+    font-family: 'Nunito', serif;
     font-weight: 800;
     background-color: black;
     border-radius: 10px;
@@ -204,43 +187,41 @@
     width: 70px;
     border-style: solid;
     opacity: 0;
-    margin-top: 120px;
-    margin-right: 20px;
     padding-left: 8px;
     padding-top: 2px;
+    margin-right: 15px;
     position: relative;
     transition: background-color, color 0.35s;
 }
 
-.profile-container:hover .logout-button {
+.header-profile-container:hover .header-logout-button {
     opacity: 1;
 }
 
-.logout-button:hover {
+.header-logout-button:hover {
     cursor: pointer;
     background-color: white;
     border-color: #1a1a1a;
-    border-width: 2.5px;
+    border-width: 3px;
     color: black;
-    padding-block-start: 3px;
     padding-left: 7px;
 }
 
-.sidenav {
+.header-sidenav {
     height: 100vh;
     width: 0;
     position: absolute;
     z-index: 1;
     top: 90px;
-    right: 0px;
+    right: 0;
     background-color: #152039;
     overflow-x: hidden;
     padding-top: 20px;
     transition: 0.5s;
 }
 
-.sidenav a {
-    padding: 40px 30px 0px 32px;
+.header-sidenav a {
+    padding: 40px 30px 0 32px;
     text-decoration: none;
     font-size: 25px;
     color: rgb(185, 186, 180);
@@ -248,11 +229,11 @@
     transition: 0.3s;
 }
 
-.sidenav a:hover {
+.header-sidenav a:hover {
     color: #FFE34F;
 }
 
-.sidenav .closebtn {
+.header-sidenav .header-closebtn {
     position: absolute;
     top: -44.5px;
     left: -70px;
@@ -261,11 +242,19 @@
 }
 
 @media screen and (max-width: 1040px) {
-    .header-button-container {
+    .header-content{
+        gap: 0;
+    }
+
+    .header-header-button-container {
         display: none;
     }
 
-    .profile-container {
+    .header-website-title{
+        margin-right: 10vw;
+    }
+
+    .header-profile-container {
         display: flex;
         flex: 1;
         flex-direction: row;
@@ -273,27 +262,26 @@
         align-items: center;
         margin-top: 15px;
         margin-right: 30px;
-        margin-left: 300px;
         position: relative;
     }
 
-    .profile-button {
+    .header-profile-button {
         height: 45px;
         width: 45px;
         margin-right: -20px;
     }
 
-    .profile {
+    .header-profile {
         height: 30px;
         width: 30px;
-        margin-top: -9px;
         margin-left: -15px;
+        margin-top: -10px;
     }
 
-    .logout-button {
+    .header-logout-button {
         position: absolute;
         color: white;
-        font-family: 'Nunito';
+        font-family: 'Nunito', serif;
         font-weight: 800;
         background-color: black;
         border-radius: 10px;
@@ -303,7 +291,7 @@
         opacity: 0;
 
         font-size: 12px;
-        margin-top: 0px;
+        margin-top: 0;
         margin-right: 40px;
         padding-left: 6px;
         padding-right: 7px;
@@ -311,22 +299,22 @@
         transition: background-color, color 0.35s;
     }
 
-    .profile-container:hover .logout-button {
+    .header-profile-container:hover .header-logout-button {
         opacity: 1;
     }
 
-    .logout-button:hover {
+    .header-logout-button:hover {
         cursor: pointer;
         background-color: white;
-        border-width: 2.5px;
+        border-width: 3px;
         color: black;
     }
 
-    .click-button {
+    .header-click-button {
         border: none;
         color: white;
         background-color: #152039;
-        font-family: "Paytone One";
+        font-family: "Paytone One", serif;
         font-size: 30px;
         margin-right: 10px;
         margin-top: 5px;
@@ -334,12 +322,93 @@
 }
 
 @media screen and (min-width: 1041px) {
-    .sidenav {
+    .header-sidenav {
         display: none;
     }
 
-    .click {
+    .header-click {
         display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .header-content{
+        gap: 0;
+    }
+
+    .header-header-button-container {
+        display: none;
+    }
+
+    .header-website-title{
+        margin-right: 10vw;
+    }
+
+    .header-profile-container {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: end ;
+        align-items: center;
+        margin-top: 15px;
+        margin-right: 30px;
+        position: relative;
+    }
+
+    .header-profile-button {
+        height: 45px;
+        width: 45px;
+        margin-right: -20px;
+    }
+
+    .header-profile {
+        height: 30px;
+        width: 30px;
+        margin-left: -15px;
+        margin-top: -10px;
+    }
+
+    .header-logout-button {
+        position: absolute;
+        color: white;
+        font-family: 'Nunito', serif;
+        font-weight: 800;
+        background-color: black;
+        border-radius: 10px;
+        height: 30px;
+        width: 70px;
+        border-style: solid;
+        opacity: 0;
+
+        font-size: 12px;
+        margin-top: 0;
+        margin-right: 40px;
+        padding-left: 6px;
+        padding-right: 7px;
+
+        transition: background-color, color 0.35s;
+    }
+
+    .header-profile-container:hover .header-logout-button {
+        opacity: 1;
+    }
+
+    .header-logout-button:hover {
+        cursor: pointer;
+        background-color: white;
+        border-width: 3px;
+        color: black;
+    }
+
+    .header-click-button {
+        border: none;
+        color: white;
+        background-color: #152039;
+        font-family: "Paytone One", serif;
+        font-size: 30px;
+        margin-right: 10px;
+        margin-top: 5px;
+        padding-left: 15px;
     }
 }
 

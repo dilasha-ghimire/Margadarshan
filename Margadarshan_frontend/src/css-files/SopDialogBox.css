@@ -1,0 +1,57 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.sop_first-div{
+    position: relative;
+    background-color:#152039;
+    height: 500px;
+    width: 820px;
+    align-self: center;
+    margin:200px;
+    margin-left: 660px;
+}
+.select{
+    position: absolute;
+    top: 400px;
+    left: 90px;
+    display: flex;
+    row-gap:25px;
+}
+.select input{
+    width:300px;
+    height:40px ;
+    border-radius:20px;
+    font-weight: 700;
+}
+input[type="submit"]{
+    margin-left:30px;
+}
+.title{
+    position: absolute;
+    top: 100px;
+    right:20px;
+    width: 400px;
+}
+#document-name{
+    color: yellow;
+    font-family:'Paytone One';
+    font-size:xx-large;
+    font-size: 45px;
+}
+input[type="title"]{
+    width:400px;
+    height:35px
+}
+#image-preview{
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    height: 250px;
+    width: 260px;
+    border: dotted white 4px;
+}
+#image-preview img {
+    height:100%;
+    width:100%;
+} 
