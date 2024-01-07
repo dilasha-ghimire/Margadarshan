@@ -27,11 +27,11 @@ function AdminUniversity() {
             console.log(requestData)
             return axios.post("http://localhost:8080/api/save-university", requestData);
 
-        mutationFn: (formData) => {
-            console.log(formData)
-            return axios.post("http://localhost:8080/api/save-university", formData);
-        },
-    });
+        // mutationFn: (formData) => {
+        //     console.log(formData)
+        //     return axios.post("http://localhost:8080/api/save-university", formData);
+        // },
+    }});
 
     const { register,
         handleSubmit,
@@ -57,31 +57,6 @@ function AdminUniversity() {
     //         console.error("Error uploading image", error);
     //     }
     // }
-
-    const onSubmit = (value:any) :void => {
-        saveUniversity.mutate(value);
-        setAddUniVisible(false);
-        alert("The university has been added!");
-      
-    const onSubmit = async (formData) => {
-        const imageFormData = new FormData();
-        imageFormData.append("file", formData.universityImage[0]);
-
-        try {
-            const imageResponse = await axios.post("http://localhost:8080/api/save-university", imageFormData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-
-            setValue("universityImage", imageResponse.data.imageUrl);
-
-            saveUniversity.mutate(formData);
-        }
-        catch(error) {
-            console.error("Error uploading image", error);
-        }
-    }
 
     return (
         <>
