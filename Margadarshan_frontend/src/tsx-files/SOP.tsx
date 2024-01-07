@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import '../css-files/SOPUpload.css'
-import '../css-files/SopDialogBox.css'; 
 import Header from './Header';
 
 function SOP() {
