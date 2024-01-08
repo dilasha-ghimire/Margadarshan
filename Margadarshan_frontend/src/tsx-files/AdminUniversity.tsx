@@ -31,6 +31,7 @@ function AdminUniversity() {
         mutationFn: (requestData: any) => {
             console.log(requestData)
             return axios.post("http://localhost:8080/api/save-university", requestData);
+
         },
         onSuccess: () => {
             setAddUniVisible(false);
@@ -38,6 +39,14 @@ function AdminUniversity() {
             refetch();
         },
     });
+
+
+        // mutationFn: (formData) => {
+        //     console.log(formData)
+        //     return axios.post("http://localhost:8080/api/save-university", formData);
+        // },
+    }});
+
 
     const saveUniName = useMutation({
         mutationKey: "SAVE DATA",
@@ -49,6 +58,7 @@ function AdminUniversity() {
             setFilteredUni(response.data);
         }
     });
+
 
     const onSubmitAddUni = (value: any): void => {
         saveUniversity.mutate(value);
@@ -93,7 +103,6 @@ function AdminUniversity() {
             alert("The university has been removed");
         },
     });
-
 
     return (
         <>
