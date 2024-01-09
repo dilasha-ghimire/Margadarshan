@@ -46,8 +46,8 @@ public class UniversityController{
     }
 
     @PostMapping("/university-by-name")
-    public ResponseEntity<Optional<University>> findUniversityByName(@RequestBody UniversityDto universityDto){
-        Optional<University> universities = universityService.findByUniversityName(universityDto.getUniversityName());
+    public ResponseEntity<List<University>> findUniversityByName(@RequestBody UniversityDto universityDto){
+        List<University> universities = universityService.findByUniversityName(universityDto.getUniversityName());
         return ResponseEntity.ok(universities);
     }
 
