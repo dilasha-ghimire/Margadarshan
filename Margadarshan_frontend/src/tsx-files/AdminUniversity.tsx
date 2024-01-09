@@ -14,10 +14,26 @@ function AdminUniversity() {
     const [isEditUniVisible, setEditUniVisible] = useState(false);
     const [filteredUni, setFilteredUni] = useState([]);
     const [universityDetails, setUniversityDetails] = useState({});
-    const { register, handleSubmit, setValue } = useForm({
-        defaultValues: universityDetails,
-        values: universityDetails
-    });
+    const { register, handleSubmit, setValue } = useForm();
+
+    useEffect(()=>{
+        if(isEditUniVisible && universityDetails){
+            setValue("universityName",universityDetails?.name),
+            setValue("universityCity",universityDetails?.city),
+            setValue("universityState",universityDetails?.state),
+            setValue("universityMajor",universityDetails?.major),
+            setValue("universityFees",universityDetails?.fees),
+            setValue("universityLength",universityDetails?.length)
+        }
+        else {
+            setValue("universityName", "");
+            setValue("universityCity", "");
+            setValue("universityState", "");
+            setValue("universityMajor", "");
+            setValue("universityFees", "");
+            setValue("universityLength", "");
+        }
+    },[isEditUniVisible, universityDetails, setValue]);
 
     const { data, refetch } = useQuery({
         queryKey: "GETDATA",
@@ -31,7 +47,6 @@ function AdminUniversity() {
         mutationFn: (requestData: any) => {
             console.log(requestData)
             return axios.post("http://localhost:8080/api/save-university", requestData);
-
         },
         onSuccess: () => {
             setAddUniVisible(false);
@@ -39,14 +54,6 @@ function AdminUniversity() {
             refetch();
         },
     });
-
-
-        // mutationFn: (formData) => {
-        //     console.log(formData)
-        //     return axios.post("http://localhost:8080/api/save-university", formData);
-        // },
-    }});
-
 
     const saveUniName = useMutation({
         mutationKey: "SAVE DATA",
@@ -57,6 +64,19 @@ function AdminUniversity() {
         onSuccess: (response) => {
             setFilteredUni(response.data);
         }
+    });
+
+    const editUniversity = useMutation({
+        mutationKey: "SAVEDATA",
+        mutationFn: (requestData: any) => {
+            console.log(requestData)
+            return axios.post("http://localhost:8080/api/save-university", requestData);
+        },
+        onSuccess: () => {
+            setEditUniVisible(false);
+            alert("Updated!");
+            refetch();
+        },
     });
 
 
@@ -103,6 +123,11 @@ function AdminUniversity() {
             alert("The university has been removed");
         },
     });
+
+    const onSubmitEditUni = (value: any): void => {
+        value.universityId = universityDetails.id;
+        editUniversity.mutate(value);
+    }
 
     return (
         <>
@@ -185,7 +210,7 @@ function AdminUniversity() {
 
                 {isEditUniVisible && (
                     <div className="edit-uni-container-adminUni">
-                        <form>
+                        <form onSubmit={handleSubmit(onSubmitEditUni)}>
                             <div className="edit-uni-form-container-adminUni">
                                 <div className="edit-uni-left-section">
                                     <label className="file-upload-label-editUni" htmlFor="universityImageId">
@@ -225,9 +250,9 @@ function AdminUniversity() {
                                     <div className="edit-uni-buttons">
                                         <button className="editUni-delete-btn" onClick={() => {
                                             deleteUniversity.mutate(universityDetails.id);
-                                            console.log(universityDetails.id);
                                         }}>Delete</button>
-                                        <button className="editUni-update-btn">Update</button>
+
+                                        <button className="editUni-update-btn" type="submit">Update</button>
                                     </div>
                                 </div>
                             </div>
