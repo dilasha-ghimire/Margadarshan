@@ -2,6 +2,7 @@ package com.GyanSarathi.Margadarshan.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -32,5 +33,5 @@ public class ScholarshipDto {
     private int scholarshipGpa;
 
     @NotNull
-    private byte[] scholarshipImage;
+    private MultipartFile scholarshipImage;
 }

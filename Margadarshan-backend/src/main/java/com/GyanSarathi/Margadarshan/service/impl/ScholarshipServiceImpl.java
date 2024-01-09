@@ -6,14 +6,24 @@ import com.GyanSarathi.Margadarshan.entity.Scholarship;
 import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.ScholarshipService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ScholarshipServiceImpl implements ScholarshipService {
     private final ScholarshipRepository scholarshipRepository;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @Autowired
     public ScholarshipServiceImpl(ScholarshipRepository scholarshipRepository) {
@@ -33,7 +43,14 @@ public class ScholarshipServiceImpl implements ScholarshipService {
         scholarship.setGrant(scholarshipDto.getGrant());
         scholarship.setScholarshipDeadline(scholarshipDto.getScholarshipDeadline());
         scholarship.setScholarshipGpa(scholarshipDto.getScholarshipGpa());
-        scholarship.setScholarshipImage(scholarshipDto.getScholarshipImage());
+        String fileName = UUID.randomUUID().toString()+"_"+ scholarshipDto.getScholarshipImage().getOriginalFilename();
+        Path filePath = Paths.get(uploadPath,fileName);
+        try {
+            Files.copy(scholarshipDto.getScholarshipImage().getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        scholarship.setScholarshipImage(fileName);
 
         scholarshipRepository.save(scholarship);
         return "Data saved";
