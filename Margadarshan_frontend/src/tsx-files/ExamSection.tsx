@@ -7,7 +7,7 @@ function ExamSection(){
         <div className="tarara">
         <div className="left_div">
             <div id="exam_text" className="left_content">Exams</div>
-            <div className="left_content"><img src="src\assets\Exam\section-calendar.png" alt="image" /></div>
+            <div className="left_content"><img className="exam-picture" src="src\assets\Exam\section-calendar.png" alt="image" /></div>
         </div>
         <div className="right_div">
             <div className="exam_types">
