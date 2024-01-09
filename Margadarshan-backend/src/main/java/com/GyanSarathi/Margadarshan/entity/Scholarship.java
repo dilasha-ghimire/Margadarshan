@@ -35,6 +35,6 @@ public class Scholarship {
     private int scholarshipGpa;
 
     @Column(name = "scholarship_image", nullable = false)
-    private byte[] scholarshipImage;
+    private String scholarshipImage;
 
 }

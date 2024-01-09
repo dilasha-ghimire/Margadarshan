@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Getter
@@ -32,7 +33,16 @@ public class UniversityDto {
     private long universityFees;
 
     @NotNull
+    private long universityFeesUpperBound;
+
+    @NotNull
+    private long universityFeesLowerBound;
+
+    @NotNull
     private int universityLength;
+
+    @NotNull
+    private MultipartFile universityImage;
 
    
 
