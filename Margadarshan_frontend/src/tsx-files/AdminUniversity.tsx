@@ -79,6 +79,7 @@ function AdminUniversity() {
         },
     });
 
+
     const onSubmitAddUni = (value: any): void => {
         saveUniversity.mutate(value);
     }
