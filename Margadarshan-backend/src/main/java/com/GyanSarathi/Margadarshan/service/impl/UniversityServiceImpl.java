@@ -44,10 +44,7 @@ public class UniversityServiceImpl implements UniversityService{
         university.setFees(universityDto.getUniversityFees());
         university.setName(universityDto.getUniversityName());
         university.setLength(universityDto.getUniversityLength());
-<<<<<<< HEAD
-=======
 
->>>>>>> 1695823525236a85aa7b89e0b36ad0de01d8f1dd
         String fileName = UUID.randomUUID().toString()+"_"+ universityDto.getUniversityImage().getOriginalFilename();
         Path filePath = Paths.get(uploadPath,fileName);
         try {
