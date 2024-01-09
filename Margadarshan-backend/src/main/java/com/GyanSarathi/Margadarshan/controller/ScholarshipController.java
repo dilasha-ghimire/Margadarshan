@@ -40,7 +40,7 @@ public class ScholarshipController{
         return scholarship;
     }
     @PostMapping("/save-scholarship")
-    public void addScholarship(@RequestBody ScholarshipDto scholarshipDto){
+    public void addScholarship(@ModelAttribute ScholarshipDto scholarshipDto){
         scholarshipService.save(scholarshipDto);
     }
 
