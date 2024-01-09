@@ -44,7 +44,14 @@ public class UniversityServiceImpl implements UniversityService{
         university.setFees(universityDto.getUniversityFees());
         university.setName(universityDto.getUniversityName());
         university.setLength(universityDto.getUniversityLength());
-
+        String fileName = UUID.randomUUID().toString()+"_"+ universityDto.getUniversityImage().getOriginalFilename();
+        Path filePath = Paths.get(uploadPath,fileName);
+        try {
+            Files.copy(universityDto.getUniversityImage().getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        university.setUniversityImage(fileName);
         universityRepository.save(university);
         return "Data saved";
     }

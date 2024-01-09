@@ -51,7 +51,6 @@ public class ScholarshipServiceImpl implements ScholarshipService {
             throw new RuntimeException(e);
         }
         scholarship.setScholarshipImage(fileName);
-
         scholarshipRepository.save(scholarship);
         return "Data saved";
     }
