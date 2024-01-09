@@ -17,11 +17,12 @@ public interface UniversityRepository extends JpaRepository<University,Integer> 
                                               @Param("university_state") String universityState
                                               );
 
-    Optional<University> findUniversitiesByName(String universityName);
+    List<University> findUniversitiesByName(String universityName);
 
     @Query(value = "select * from Universities where university_fees <= ?1 and university_fees >=?2", nativeQuery = true)
     List<University> findByFees(long universityFeesUpperBound,
                                 long universityFeesLowerBound);
+
 
 }
 

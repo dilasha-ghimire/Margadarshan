@@ -76,7 +76,7 @@ public class UniversityServiceImpl implements UniversityService{
     }
 
     @Override
-    public Optional<University> findByUniversityName(String universityName) {
+    public List<University> findByUniversityName(String universityName) {
         return universityRepository.findUniversitiesByName(universityName);
     }
 

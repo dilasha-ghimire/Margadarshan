@@ -21,8 +21,9 @@ public interface UniversityService {
 
     List<University> findByMajorOrStateOrFees(UniversityDto universityDto);
 
-    Optional<University> findByUniversityName(String universityName);
+    List<University> findByUniversityName(String universityName);
 
     List<University> findByFees(UniversityDto universityDto);
+
 
 }
