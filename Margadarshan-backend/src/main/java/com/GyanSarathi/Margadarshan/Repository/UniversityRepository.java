@@ -16,7 +16,6 @@ public interface UniversityRepository extends JpaRepository<University,Integer> 
     List<University> findByMajorOrFeesOrState(@Param("university_major") String universityMajor,
                                               @Param("university_state") String universityState
                                               );
-<<<<<<< HEAD
 
     List<University> findUniversitiesByName(String universityName);
 
@@ -24,15 +23,7 @@ public interface UniversityRepository extends JpaRepository<University,Integer> 
     List<University> findByFees(long universityFeesUpperBound,
                                 long universityFeesLowerBound);
 
-=======
 
-    Optional<University> findUniversitiesByName(String universityName);
-
-    @Query(value = "select * from Universities where university_fees <= ?1 and university_fees >=?2", nativeQuery = true)
-    List<University> findByFees(long universityFeesUpperBound,
-                                long universityFeesLowerBound);
-
->>>>>>> 1695823525236a85aa7b89e0b36ad0de01d8f1dd
 }
 
 
