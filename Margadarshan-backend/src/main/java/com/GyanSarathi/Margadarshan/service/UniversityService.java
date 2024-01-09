@@ -25,4 +25,6 @@ public interface UniversityService {
 
     List<University> findByFees(UniversityDto universityDto);
 
+    List<University> findByFees(UniversityDto universityDto);
+
 }

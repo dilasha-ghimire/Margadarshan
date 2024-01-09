@@ -57,4 +57,10 @@ public class UniversityController{
         return ResponseEntity.ok(universities);
     }
 
+    @PostMapping("/universities-filtered-fees")
+    public ResponseEntity<List<University>> filteredUniversityFees(@RequestBody UniversityDto universityDto){
+        List<University> universities = universityService.findByFees(universityDto);
+        return ResponseEntity.ok(universities);
+    }
+
 }
