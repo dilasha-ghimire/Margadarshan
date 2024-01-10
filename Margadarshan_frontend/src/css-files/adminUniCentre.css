@@ -54,6 +54,10 @@
     text-decoration: underline;
     cursor: pointer;
 }
+.adminUni-main-container {
+    display: flex;
+    flex-direction: column;
+}
 .adminUni-container {
     border: 3px solid;
     border-color: black;
@@ -110,6 +114,7 @@
     font-weight: 500;
 }
 
+
 @media screen and (max-width: 850px) {
     .top-section-adminUni {
         gap: 100px;
@@ -119,6 +124,9 @@
     }
     .student-searchbar-adminUni {
         width: 200px;
+    }
+    .edit-uni-btn {
+        margin-left: 450px;
     }
 }
 
@@ -146,5 +154,8 @@
     }
     .adminUni-length {
         display: none;
+    }
+    .edit-uni-btn {
+        margin-left: 200px;
     }
 }

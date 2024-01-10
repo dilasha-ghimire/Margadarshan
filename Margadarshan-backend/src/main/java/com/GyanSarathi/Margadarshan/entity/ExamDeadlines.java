@@ -10,7 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-
 @Entity
 @Table(name = "exam_dates")
 public class ExamDeadlines {
