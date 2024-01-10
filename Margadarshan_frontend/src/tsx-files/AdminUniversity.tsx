@@ -1,4 +1,4 @@
-import "../css-files/adminUniHeader.css";
+import AdminHeader from "./AdminHeader";
 import "../css-files/adminUniCentre.css";
 import "../css-files/addUniversity.css";
 import "../css-files/editUniversityAdmin.css";
@@ -131,12 +131,7 @@ function AdminUniversity() {
 
     return (
         <>
-            <div className="header-adminUni">
-                <div className="header-left-adminUni">
-                    <img className="logo-adminUni" src="src\assets\AboutPage\Margadarshan logo.png"></img>
-                    <p className="margadarshan-adminUni">MARGADARSHAN</p>
-                </div>
-            </div>
+            <AdminHeader/>  
 
             <div className="centre-adminUni">
                 <div className="top-section-adminUni">
@@ -162,19 +157,19 @@ function AdminUniversity() {
                 </div>
 
                 {isAddUniVisible && (
-                    <div className="add-uni-mainContainer-adminUni">
+                    <div className="add-uni-mainContainer-addUni">
                         <form onSubmit={handleSubmit(onSubmitAddUni)}>
-                            <div className="add-uni-sub1-adminUni">
+                            <div className="add-uni-sub1-addUni">
                                 <div className="add-uni-left-sec">
 
-                                    <label className="file-upload-label" htmlFor="universityImageId">
-                                        <div className="file-img-container">
-                                            <img className="file-img-adminUni" src="src\assets\AdminUniversity\file upload1.png"></img>
+                                    <label className="file-upload-label-addUni" htmlFor="universityImageId">
+                                        <div className="file-img-container-addUni">
+                                            <img className="file-img-addUni" src="src\assets\AdminUniversity\file upload1.png"></img>
                                         </div>
-                                        <button className="browse-button" type="submit">Browse files</button>
+                                        <button className="browse-button-addUni" type="submit">Browse files</button>
                                     </label>
 
-                                    <input id="universityImageId" type="file" className="file-input" {...register("universityImage")}></input>
+                                    <input id="universityImageId" type="file" className="file-input-addUni" {...register("universityImage")}></input>
                                 </div>
 
                                 <div className="add-uni-right-sec">

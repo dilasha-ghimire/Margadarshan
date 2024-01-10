@@ -1,0 +1,67 @@
+.top-section-adminSch {
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    gap: 300px;
+}
+.search-container-adminSch {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+.search-sch-adminSch {
+    color: black;
+}
+.searchbar-container-adminSch {
+    display: flex;
+    align-items: center;
+}
+.searchbar-adminSch {
+    height: 30px;
+    border-color: grey;
+}
+.searchbtn-adminSch {
+    height: 27px;
+    width: 25px;
+    background-color: white;
+    margin-left: -45px;
+    margin-top: 8px;
+}
+.searchbtn-adminSch:hover {
+    border: none;
+}
+.search-img-adminSch {
+    height: 25px;
+    margin-left: -14px;
+    margin-top: -23px;
+}
+.add-sch-btn-adminSch:hover {
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-width: 3px;
+}
+
+@media screen and (max-width: 850px) {
+    .top-section-adminSch {
+        gap: 100px;
+    }
+    .search-container-adminSch {
+        margin-left: 100px;
+    }
+    .searchbar-adminSch {
+        width: 200px;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 750px) {
+    .top-section-adminSch {
+        gap: 20px;
+    }
+    .search-container-adminSch {
+        margin-left: 10px;
+    }
+    .searchbar-adminSch {
+        width: 100px;
+    }
+}
