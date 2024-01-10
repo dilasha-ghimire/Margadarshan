@@ -20,4 +20,6 @@ public interface ScholarshipService {
     void deleteById(int scholarshipId);
 
     List<Scholarship> findByGrantOrTypeOrGpa(ScholarshipDto scholarshipDto);
+
+    List<Scholarship> filterByName(String scholarshipName);
 }
