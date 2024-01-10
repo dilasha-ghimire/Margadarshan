@@ -42,6 +42,81 @@
     border-width: 3px;
 }
 
+.adminSch-list {
+    padding-bottom: 50px;
+}
+.edit-sch-btn {
+    color: black;
+    margin-left: 1200px;
+    margin-bottom: -40px;
+}
+.edit-sch-btn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.adminSch-main-container {
+    display: flex;
+    flex-direction: column;
+}
+.adminSch-container {
+    border: 3px solid;
+    border-color: black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.adminSch-description-container {
+    display: flex;
+    margin-left: 30px;
+}
+.adminSch-description-container {
+    display: flex;
+    margin-left: 30px;
+}
+.adminSch-image {
+    height: 50px;
+    margin-top: 20px;
+}
+.adminSch-desc {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin-top: -10px;
+    margin-left: 17px;
+}
+.adminSch-name, .adminSch-org, .adminSch-type, .adminSch-grant, .adminSch-deadline {
+    font-family: "Nunito";
+}
+.adminSch-name {
+    font-size: 26px;
+    font-weight: 700;
+}
+.adminSch-org, .adminSch-type {
+    font-size: 18px;
+}
+.adminSch-grant {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 0px;
+}
+.adminSch-deadline-container {
+    margin-right: 30px;
+}
+.adminSch-deadline-text {
+    font-size: 20px;
+    font-weight: 600;
+}
+.adminSch-deadline {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 @media screen and (max-width: 850px) {
     .top-section-adminSch {
         gap: 100px;
