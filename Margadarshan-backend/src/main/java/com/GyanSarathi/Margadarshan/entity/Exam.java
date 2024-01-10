@@ -25,8 +25,7 @@ public class Exam{
     @Column(name = "exam_name")
     private String examName;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "exam",cascade = CascadeType.ALL)
-    private List<ExamDeadlines> examDeadlines = new ArrayList<>();
+
 
 
 

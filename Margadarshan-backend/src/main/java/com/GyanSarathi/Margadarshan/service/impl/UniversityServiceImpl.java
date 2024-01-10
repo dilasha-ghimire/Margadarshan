@@ -5,6 +5,8 @@ import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.UniversityService;
 import jakarta.validation.constraints.Null;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
