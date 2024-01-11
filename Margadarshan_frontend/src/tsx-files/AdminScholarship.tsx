@@ -173,7 +173,7 @@ function AdminScholarship() {
             }
         }
         catch (error) {
-            console.error("Error filtering universities", error);
+            console.error("Error filtering scholarship", error);
             setFilteredSch([]);
         }
     }
