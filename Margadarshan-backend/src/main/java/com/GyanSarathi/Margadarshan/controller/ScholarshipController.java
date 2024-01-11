@@ -56,7 +56,11 @@ public class ScholarshipController{
         return ResponseEntity.ok(scholarships);
     }
 
+<<<<<<< HEAD
     @GetMapping("/scholarships-by-name")
+=======
+    @PostMapping("/scholarships-by-name")
+>>>>>>> 468098f24b5d642851946e08abaac15399033d3a
     public List<Scholarship> filteredByName(@RequestBody ScholarshipDto scholarshipDto){
         List<Scholarship> scholarships = scholarshipService.filterByName(scholarshipDto.getScholarshipName());
         return scholarships;

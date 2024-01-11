@@ -44,6 +44,7 @@
 
 .adminSch-list {
     padding-bottom: 50px;
+    padding-top: 20px;
 }
 .edit-sch-btn {
     color: black;
@@ -127,6 +128,9 @@
     .searchbar-adminSch {
         width: 200px;
     }
+    .edit-sch-btn {
+        margin-left: 450px;
+    }
 }
 
 @media screen and (min-width: 400px) and (max-width: 750px) {
@@ -138,5 +142,23 @@
     }
     .searchbar-adminSch {
         width: 100px;
+    }
+    .edit-sch-btn {
+        margin-left: 200px;
+    }
+    .adminSch-name {
+        font-size: 16px;
+    }
+    .adminSch-grant {
+        font-size: 15px;
+    }
+    .adminSch-org {
+        display: none;
+    }
+    .adminSch-type {
+        font-size: 15px;
+    }
+    .adminSch-deadline-container {
+        display: none;
     }
 }
