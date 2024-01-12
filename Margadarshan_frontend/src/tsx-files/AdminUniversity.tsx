@@ -132,8 +132,9 @@ function AdminUniversity() {
     });
 
 
-    const onSubmitAddUni = (value: any): void => {
-        saveUniversity.mutate(value);
+    const onSubmitAddUni = (formData: any): void => {
+        saveUniversity.mutate(formData);
+        clearAddUniForm();
     }
 
     const onSubmitSearch = async (value: any) => {
