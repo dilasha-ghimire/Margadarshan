@@ -85,14 +85,10 @@ public class UniversityServiceImpl implements UniversityService{
         return universityRepository.listAllMajors();
     }
 
-
-
     /*@Override
     public List<University> findByFees(UniversityDto universityDto) {
         return universityRepository.findByFees(universityDto.getUniversityFeesUpperBound(),universityDto.getUniversityFeesLowerBound());
     }*/
-
-
 
 
 }
