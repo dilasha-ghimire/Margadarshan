@@ -40,6 +40,7 @@ public class ExamDeadlinesServiceImpl implements ExamDeadlineService {
         examDeadlines.setRegistrationDeadline(examDto.getRegistrationDeadline());
         examDeadlines.setLateRegistrationDeadline(examDto.getLateRegistrationDeadline());
         examDeadlines.setExam(exam);
+        examDeadlinesRepository.save(examDeadlines);
         return "data saved";
     }
 }
