@@ -23,6 +23,8 @@ public interface UniversityRepository extends JpaRepository<University,Integer> 
     List<University> findByMajorOrFeesOrState(long universityFeesUpperBound,
                                 long universityFeesLowerBound, String universityMajor, String universityState);
 
+    @Query(value = "select university_major from Universities",nativeQuery = true)
+    List<?> listAllMajors();
 
 }
 

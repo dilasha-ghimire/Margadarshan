@@ -56,5 +56,12 @@ public class UniversityController{
         List<University> universities = universityService.findByFees(universityDto);
         return ResponseEntity.ok(universities);
     }*/
+  
+    @GetMapping("/universities-major")
+    public List<?> listAllMajors(){
+        List<?> majors = universityService.listAllMajors();
+        return majors;
+    }
+
 
 }

@@ -4,14 +4,10 @@ import com.GyanSarathi.Margadarshan.Repository.UniversityRepository;
 import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.UniversityService;
-import jakarta.validation.constraints.Null;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -84,9 +80,15 @@ public class UniversityServiceImpl implements UniversityService{
         return universityRepository.findUniversitiesByName(universityName);
     }
 
+    @Override
+    public List<?> listAllMajors() {
+        return universityRepository.listAllMajors();
+    }
+
     /*@Override
     public List<University> findByFees(UniversityDto universityDto) {
         return universityRepository.findByFees(universityDto.getUniversityFeesUpperBound(),universityDto.getUniversityFeesLowerBound());
     }*/
+
 
 }
