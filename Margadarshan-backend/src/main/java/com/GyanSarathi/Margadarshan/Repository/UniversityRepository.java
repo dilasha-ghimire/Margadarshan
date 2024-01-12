@@ -11,17 +11,17 @@ import java.util.Optional;
 
 @Repository
 public interface UniversityRepository extends JpaRepository<University,Integer> {
-    @Query("SELECT u FROM University u WHERE u.major = :university_major OR " +
+   /* @Query("SELECT u FROM University u WHERE u.major = :university_major OR " +
             "u.state = :university_state")
     List<University> findByMajorOrFeesOrState(@Param("university_major") String universityMajor,
                                               @Param("university_state") String universityState
-                                              );
+                                              );*/
 
     List<University> findUniversitiesByName(String universityName);
 
-    @Query(value = "select * from Universities where university_fees <= ?1 and university_fees >=?2", nativeQuery = true)
-    List<University> findByFees(long universityFeesUpperBound,
-                                long universityFeesLowerBound);
+    @Query(value = "select * from Universities where (university_fees <= ?1 and university_fees >=?2) OR university_major=?3 OR university_state=?4" , nativeQuery = true)
+    List<University> findByMajorOrFeesOrState(long universityFeesUpperBound,
+                                long universityFeesLowerBound, String universityMajor, String universityState);
 
 
 }

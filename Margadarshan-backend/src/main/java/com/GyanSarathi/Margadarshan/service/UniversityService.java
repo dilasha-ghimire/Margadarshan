@@ -23,7 +23,7 @@ public interface UniversityService {
 
     List<University> findByUniversityName(String universityName);
 
-    List<University> findByFees(UniversityDto universityDto);
+//    List<University> findByFees(UniversityDto universityDto);
 
 
 }

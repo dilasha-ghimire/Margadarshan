@@ -74,7 +74,9 @@ public class UniversityServiceImpl implements UniversityService{
 
     @Override
     public List<University> findByMajorOrStateOrFees(UniversityDto universityDto) {
-        return universityRepository.findByMajorOrFeesOrState(universityDto.getUniversityMajor(),universityDto.getUniversityState());
+        return universityRepository.findByMajorOrFeesOrState
+                (universityDto.getUniversityFeesUpperBound(),universityDto.getUniversityFeesLowerBound(),
+                        universityDto.getUniversityMajor(),universityDto.getUniversityState());
     }
 
     @Override
@@ -82,9 +84,9 @@ public class UniversityServiceImpl implements UniversityService{
         return universityRepository.findUniversitiesByName(universityName);
     }
 
-    @Override
+    /*@Override
     public List<University> findByFees(UniversityDto universityDto) {
         return universityRepository.findByFees(universityDto.getUniversityFeesUpperBound(),universityDto.getUniversityFeesLowerBound());
-    }
+    }*/
 
 }
