@@ -25,5 +25,6 @@ public interface UniversityService {
 
 //    List<University> findByFees(UniversityDto universityDto);
 
+    List<?> listAllMajors();
 
 }
