@@ -11,6 +11,4 @@ import java.util.List;
 @Repository
 public interface ExamRepository extends JpaRepository<Exam,Integer> {
 
-    @Query(value = "SELECT * FROM exams", nativeQuery = true)
-    List<Exam> findAll();
 }

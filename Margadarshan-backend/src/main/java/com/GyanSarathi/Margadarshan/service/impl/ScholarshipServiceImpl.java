@@ -72,4 +72,9 @@ public class ScholarshipServiceImpl implements ScholarshipService {
     public List<Scholarship> findByGrantOrTypeOrGpa(ScholarshipDto scholarshipDto) {
         return scholarshipRepository.findByGrantOrTypeOrGpa(scholarshipDto.getGrant(),scholarshipDto.getScholarshipType(),scholarshipDto.getScholarshipGpa());
     }
+
+    @Override
+    public List<Scholarship> filterByName(String scholarshipName) {
+        return scholarshipRepository.findByName(scholarshipName);
+    }
 }

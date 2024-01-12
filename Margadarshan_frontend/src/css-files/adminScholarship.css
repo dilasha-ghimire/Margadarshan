@@ -1,65 +1,65 @@
-.top-section-adminUni {
+.top-section-adminSch {
     display: flex;
     margin-top: 100px;
     justify-content: center;
     gap: 300px;
 }
-.search-container-adminUni {
+.search-container-adminSch {
     display: flex;
     align-items: center;
     gap: 50px;
 }
-.search-uni-adminUni {
+.search-sch-adminSch {
     color: black;
 }
-.student-searchbar-container-adminUni {
+.searchbar-container-adminSch {
     display: flex;
     align-items: center;
 }
-.student-searchbar-adminUni {
+.searchbar-adminSch {
     height: 30px;
     border-color: grey;
 }
-.student-searchbtn-adminUni {
+.searchbtn-adminSch {
     height: 27px;
     width: 25px;
     background-color: white;
     margin-left: -45px;
     margin-top: 8px;
 }
-.student-searchbtn-adminUni:hover {
+.searchbtn-adminSch:hover {
     border: none;
 }
-.student-search-img-adminUni {
+.search-img-adminSch {
     height: 25px;
     margin-left: -14px;
     margin-top: -23px;
 }
-.add-uni-btn-adminUni:hover {
+.add-sch-btn-adminSch:hover {
     background-color: white;
     color: black;
     border-color: black;
     border-width: 3px;
 }
 
-.adminUni-list {
+.adminSch-list {
     padding-bottom: 50px;
     padding-top: 20px;
 }
-.edit-uni-btn {
+.edit-sch-btn {
     color: black;
     margin-left: 1200px;
     margin-bottom: -40px;
 }
-.edit-uni-btn:hover {
+.edit-sch-btn:hover {
     text-decoration: underline;
     cursor: pointer;
 }
-.adminUni-main-container {
+.adminSch-main-container {
     display: flex;
     flex-direction: column;
 }
-.adminUni-container {
+.adminSch-container {
     border: 3px solid;
     border-color: black;
     border-radius: 10px;
@@ -72,91 +72,93 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
-.adminUni-description-container {
+.adminSch-description-container {
     display: flex;
     margin-left: 30px;
 }
-.adminUni-image {
+.adminSch-description-container {
+    display: flex;
+    margin-left: 30px;
+}
+.adminSch-image {
     height: 50px;
     margin-top: 20px;
 }
-.adminUni-desc {
+.adminSch-desc {
     display: flex;
     flex-direction: column;
     text-align: start;
     margin-top: -10px;
     margin-left: 17px;
 }
-.adminUni-name, .adminUni-state, .adminUni-major, .adminUni-fees, .adminUni-length {
-    color: black;
+.adminSch-name, .adminSch-org, .adminSch-type, .adminSch-grant, .adminSch-deadline {
     font-family: "Nunito";
 }
-.adminUni-name {
+.adminSch-name {
     font-size: 26px;
     font-weight: 700;
 }
-.adminUni-state {
-    margin-top: -10px;
+.adminSch-org, .adminSch-type {
+    font-size: 18px;
 }
-.adminUni-major {
+.adminSch-grant {
     font-size: 20px;
     font-weight: 600;
     margin-top: 0px;
 }
-.adminUni-fees-years {
+.adminSch-deadline-container {
     margin-right: 30px;
 }
-.adminUni-fees {
+.adminSch-deadline-text {
     font-size: 20px;
     font-weight: 600;
 }
-.adminUni-length {
+.adminSch-deadline {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
-
 @media screen and (max-width: 850px) {
-    .top-section-adminUni {
+    .top-section-adminSch {
         gap: 100px;
     }
-    .search-container-adminUni {
+    .search-container-adminSch {
         margin-left: 100px;
     }
-    .student-searchbar-adminUni {
+    .searchbar-adminSch {
         width: 200px;
     }
-    .edit-uni-btn {
+    .edit-sch-btn {
         margin-left: 450px;
     }
 }
 
 @media screen and (min-width: 400px) and (max-width: 750px) {
-    .top-section-adminUni {
+    .top-section-adminSch {
         gap: 20px;
     }
-    .search-container-adminUni {
+    .search-container-adminSch {
         margin-left: 10px;
     }
-    .student-searchbar-adminUni {
+    .searchbar-adminSch {
         width: 100px;
     }
-    .adminUni-name {
-        font-size: 20px;
-    }
-    .adminUni-state {
-        display: none;
-    }
-    .adminUni-major {
-        font-size: 14px;
-    }
-    .adminUni-fees{
-        display: none;
-    }
-    .adminUni-length {
-        display: none;
-    }
-    .edit-uni-btn {
+    .edit-sch-btn {
         margin-left: 200px;
+    }
+    .adminSch-name {
+        font-size: 16px;
+    }
+    .adminSch-grant {
+        font-size: 15px;
+    }
+    .adminSch-org {
+        display: none;
+    }
+    .adminSch-type {
+        font-size: 15px;
+    }
+    .adminSch-deadline-container {
+        display: none;
     }
 }

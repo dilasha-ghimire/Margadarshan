@@ -1,6 +1,7 @@
 package com.GyanSarathi.Margadarshan.dto;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,13 +25,13 @@ public class ScholarshipDto {
     private String scholarshipType;
 
     @NotNull
-    private long grant;
+    private String grant;
 
     @NotNull
     private String scholarshipDeadline;
 
-    @NotNull
-    private int scholarshipGpa;
+    @Null
+    private String scholarshipGpa;
 
     @NotNull
     private MultipartFile scholarshipImage;

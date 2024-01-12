@@ -1,4 +1,4 @@
-import "../css-files/adminUniHeader.css";
+import AdminHeader from "./AdminHeader";
 import "../css-files/adminUniCentre.css";
 import "../css-files/addUniversity.css";
 import "../css-files/editUniversityAdmin.css";
@@ -15,15 +15,16 @@ function AdminUniversity() {
     const [filteredUni, setFilteredUni] = useState([]);
     const [universityDetails, setUniversityDetails] = useState({});
     const { register, handleSubmit, setValue } = useForm();
+    const [searchInput, setSearchInput] = useState("");
 
-    useEffect(()=>{
-        if(isEditUniVisible && universityDetails){
-            setValue("universityName",universityDetails?.name),
-            setValue("universityCity",universityDetails?.city),
-            setValue("universityState",universityDetails?.state),
-            setValue("universityMajor",universityDetails?.major),
-            setValue("universityFees",universityDetails?.fees),
-            setValue("universityLength",universityDetails?.length)
+    useEffect(() => {
+        if (isEditUniVisible && universityDetails) {
+            setValue("universityName", universityDetails?.name),
+                setValue("universityCity", universityDetails?.city),
+                setValue("universityState", universityDetails?.state),
+                setValue("universityMajor", universityDetails?.major),
+                setValue("universityFees", universityDetails?.fees),
+                setValue("universityLength", universityDetails?.length)
         }
         else {
             setValue("universityName", "");
@@ -33,7 +34,7 @@ function AdminUniversity() {
             setValue("universityFees", "");
             setValue("universityLength", "");
         }
-    },[isEditUniVisible, universityDetails, setValue]);
+    }, [isEditUniVisible, universityDetails, setValue]);
 
     const { data, refetch } = useQuery({
         queryKey: "GETDATA",
@@ -42,11 +43,40 @@ function AdminUniversity() {
         },
     })
 
+    const clearAddUniForm = () => {
+        setValue("universityName", "");
+        setValue("universityCity", "");
+        setValue("universityState", "");
+        setValue("universityMajor", "");
+        setValue("universityFees", "");
+        setValue("universityLength", "");
+    };
+
     const saveUniversity = useMutation({
         mutationKey: "SAVEDATA",
-        mutationFn: (requestData: any) => {
-            console.log(requestData)
-            return axios.post("http://localhost:8080/api/save-university", requestData);
+        mutationFn: async (requestData: any) => {
+            try {
+                const formData = new FormData();
+                formData.append("universityImage", requestData.universityImage[0]);
+                formData.append("universityName", requestData.universityName);
+                formData.append("universityState", requestData.universityState);
+                formData.append("universityCity", requestData.universityCity);
+                formData.append("universityMajor", requestData.universityMajor);
+                formData.append("universityFees", requestData.universityFees);
+                formData.append("universityLength", requestData.universityLength);
+
+                const response = await axios.post("http://localhost:8080/api/save-university", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    }
+                });
+
+                console.log(response);
+                return response.data;
+            }
+            catch (error) {
+                console.error("Error uploading file:", error);
+            }
         },
         onSuccess: () => {
             setAddUniVisible(false);
@@ -68,9 +98,31 @@ function AdminUniversity() {
 
     const editUniversity = useMutation({
         mutationKey: "SAVEDATA",
-        mutationFn: (requestData: any) => {
-            console.log(requestData)
-            return axios.post("http://localhost:8080/api/save-university", requestData);
+        mutationFn: async (requestData: any) => {
+            try {
+                const formData = new FormData();
+                if (requestData.universityImage && requestData.universityImage.length > 0) {
+                    formData.append("universityImage", requestData.universityImage[0]);
+                }
+                formData.append("universityName", requestData.universityName);
+                formData.append("universityState", requestData.universityState);
+                formData.append("universityCity", requestData.universityCity);
+                formData.append("universityMajor", requestData.universityMajor);
+                formData.append("universityFees", requestData.universityFees);
+                formData.append("universityLength", requestData.universityLength);
+
+                const response = await axios.post("http://localhost:8080/api/save-university", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    }
+                });
+
+                console.log(response);
+                return response.data;
+            }
+            catch (error) {
+                console.error("Error uploading file:", error);
+            }
         },
         onSuccess: () => {
             setEditUniVisible(false);
@@ -86,7 +138,12 @@ function AdminUniversity() {
 
     const onSubmitSearch = async (value: any) => {
         try {
-            await saveUniName.mutateAsync(value);
+            if (value.universityName.trim() !== "") {
+                await saveUniName.mutateAsync(value);
+            }
+            else {
+                setFilteredUni([]);
+            }
         }
         catch (error) {
             console.error("Error filtering universities", error);
@@ -102,9 +159,9 @@ function AdminUniversity() {
             const response = await axios.get(`http://localhost:8080/api/university-by-id/${universityId}`);
             const universityDetails = response.data;
             console.log("University details:", universityDetails);
-            
+
             setUniversityDetails(universityDetails);
-        } 
+        }
         catch (error) {
             console.error("Error fetching university details", error);
         }
@@ -124,19 +181,38 @@ function AdminUniversity() {
         },
     });
 
-    const onSubmitEditUni = (value: any): void => {
-        value.universityId = universityDetails.id;
-        editUniversity.mutate(value);
+    const onSubmitEditUni = (formData: any): void => {
+        formData.universityId = universityDetails.id;
+        editUniversity.mutate(formData);
     }
+
+    useEffect(() => {
+        if (!searchInput) {
+            setFilteredUni([]);
+        } else {
+            saveUniName.mutate({ scholarshipName: searchInput });
+        }
+    }, [searchInput]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const editForm = document.querySelector(".edit-uni-container-adminUni");
+
+            if (editForm && !editForm.contains(event.target)) {
+                setEditUniVisible(false);
+            }
+        };
+
+        document.body.addEventListener("click", handleClickOutside);
+
+        return () => {
+            document.body.removeEventListener("click", handleClickOutside);
+        };
+    }, [setEditUniVisible]);
 
     return (
         <>
-            <div className="header-adminUni">
-                <div className="header-left-adminUni">
-                    <img className="logo-adminUni" src="src\assets\AboutPage\Margadarshan logo.png"></img>
-                    <p className="margadarshan-adminUni">MARGADARSHAN</p>
-                </div>
-            </div>
+            <AdminHeader />
 
             <div className="centre-adminUni">
                 <div className="top-section-adminUni">
@@ -145,7 +221,9 @@ function AdminUniversity() {
 
                         <form onSubmit={handleSubmit(onSubmitSearch)}>
                             <div className="student-searchbar-container-adminUni">
-                                <input className="student-searchbar-adminUni" {...register("universityName")}></input>
+                                <input className="student-searchbar-adminUni" {...register("universityName")}
+                                    value={searchInput}
+                                    onChange={(e) => setSearchInput(e.target.value)}></input>
                                 <div className="student-searchbtn-container-adminUni">
                                     <button className="student-searchbtn-adminUni" type="submit">
                                         <img className="student-search-img-adminUni" src="src\assets\AdminUniversity\search.png"></img>
@@ -162,19 +240,19 @@ function AdminUniversity() {
                 </div>
 
                 {isAddUniVisible && (
-                    <div className="add-uni-mainContainer-adminUni">
+                    <div className="add-uni-mainContainer-addUni">
                         <form onSubmit={handleSubmit(onSubmitAddUni)}>
-                            <div className="add-uni-sub1-adminUni">
+                            <div className="add-uni-sub1-addUni">
                                 <div className="add-uni-left-sec">
 
-                                    <label className="file-upload-label" htmlFor="universityImageId">
-                                        <div className="file-img-container">
-                                            <img className="file-img-adminUni" src="src\assets\AdminUniversity\file upload1.png"></img>
+                                    <label className="file-upload-label-addUni" htmlFor="universityImageId">
+                                        <div className="file-img-container-addUni">
+                                            <img className="file-img-addUni" src="src\assets\AdminUniversity\file upload1.png"></img>
                                         </div>
-                                        <button className="browse-button" type="submit">Browse files</button>
+                                        <button className="browse-button-addUni" type="submit">Browse files</button>
                                     </label>
 
-                                    <input id="universityImageId" type="file" className="file-input" {...register("universityImage")}></input>
+                                    <input id="universityImageId" type="file" className="file-input-addUni" {...register("universityImage")}></input>
                                 </div>
 
                                 <div className="add-uni-right-sec">
@@ -215,7 +293,7 @@ function AdminUniversity() {
                                 <div className="edit-uni-left-section">
                                     <label className="file-upload-label-editUni" htmlFor="universityImageId">
                                         <div className="file-img-container-editUni">
-                                            <img className="file-img-editUni-adminUni" src="src\assets\University\U-M_Logo-Hex.png"></img>
+                                            <img className="file-img-editUni-adminUni" src={universityDetails?.universityImage || "src/assets/AdminUniversity/file upload1.png"}></img>
                                         </div>
                                         <button className="browse-button-editUni" type="submit">Browse files</button>
                                     </label>
@@ -248,7 +326,7 @@ function AdminUniversity() {
                                     </div>
 
                                     <div className="edit-uni-buttons">
-                                        <button className="editUni-delete-btn" onClick={() => {
+                                        <button className="editUni-delete-btn" type="button" onClick={() => {
                                             deleteUniversity.mutate(universityDetails.id);
                                         }}>Delete</button>
 
@@ -266,7 +344,7 @@ function AdminUniversity() {
                             <p className="edit-uni-btn" onClick={() => handleEditClick(uni.id)}>Edit</p>
                             <div className="adminUni-container">
                                 <div className="adminUni-description-container">
-                                    <img className="adminUni-image" src="src\assets\University\Michigan_Technological_University_seal.svg.png" />
+                                    <img className="adminUni-image" src={`/${uni.universityImage}`}/>
                                     <div className="adminUni-desc">
                                         <p className="adminUni-name">{uni.name}</p>
                                         <p className="adminUni-state">{uni.city}, {uni.state}</p>

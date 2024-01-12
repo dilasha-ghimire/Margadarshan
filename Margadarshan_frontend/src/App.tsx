@@ -16,7 +16,8 @@ import AdminUniversity from './tsx-files/AdminUniversity.tsx';
 import Exam from './tsx-files/Exam.tsx';
 import MainHomepage from "./tsx-files/MainHomepage.tsx";
 import BFLHeader from "./tsx-files/BeforeLoginHeader.tsx";
-
+import AdminHeader from './tsx-files/AdminHeader.tsx';
+import AdminScholarship from './tsx-files/AdminScholarship.tsx';
 
 const router = createBrowserRouter(
     [
@@ -44,10 +45,10 @@ const router = createBrowserRouter(
             path:"/sop",
             element:<SOP/>
         },
-        {
-            path: "/exam",
-            element: <Exam/>
-        },
+        // {
+        //     path: "/exam",
+        //     element: <Exam/>
+        // },
         {
             path: "/about-us",
             element: <AboutUs/>
@@ -64,14 +65,14 @@ const router = createBrowserRouter(
             path: "/education",
             element: <Education/>
         },
-        {
-            path: "/sat",
-            element: <SAT/>
-        },
-        {
-            path: "/examsection",
-            element: <ExamSection/>
-        },
+        // {
+        //     path: "/sat",
+        //     element: <SAT/>
+        // },
+        // {
+        //     path: "/examsection",
+        //     element: <ExamSection/>
+        // },
         {
             path: "/adminUniversity",
             element: <AdminUniversity/>
@@ -80,6 +81,14 @@ const router = createBrowserRouter(
             path: "/mainhomepage",
             element: <MainHomepage/>
         },
+        {
+            path: "/adminHeader",
+            element: <AdminHeader/>       
+        },
+        {
+            path: "/adminScholarship",
+            element: <AdminScholarship/>
+        }
     ]
 )
 
