@@ -51,17 +51,23 @@ public class UniversityController{
         return ResponseEntity.ok(universities);
     }
 
-    /*@PostMapping("/universities-filtered-fees")
-    public ResponseEntity<List<University>> filteredUniversityFees(@RequestBody UniversityDto universityDto){
-        List<University> universities = universityService.findByFees(universityDto);
-        return ResponseEntity.ok(universities);
-    }*/
-  
     @GetMapping("/universities-major")
     public List<?> listAllMajors(){
         List<?> majors = universityService.listAllMajors();
         return majors;
     }
+
+    @PostMapping("/update-university")
+    public void updateUniversity(@ModelAttribute UniversityDto universityDto){
+        universityService.updateUniversity(universityDto);
+    }
+
+    @PostMapping("/update-university-without-image")
+    public void updateUniversityWithoutImage(@RequestBody UniversityDto universityDto){
+        universityService.updateUniversityWithoutImage(universityDto);
+    }
+
+
 
 
 }

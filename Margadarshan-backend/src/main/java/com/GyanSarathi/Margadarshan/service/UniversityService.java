@@ -23,8 +23,10 @@ public interface UniversityService {
 
     List<University> findByUniversityName(String universityName);
 
-//    List<University> findByFees(UniversityDto universityDto);
-
     List<?> listAllMajors();
+
+    String updateUniversity(UniversityDto universityDto);
+
+    String updateUniversityWithoutImage(UniversityDto universityDto);
 
 }
