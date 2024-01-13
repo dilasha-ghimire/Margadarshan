@@ -4,10 +4,12 @@ import com.GyanSarathi.Margadarshan.Repository.UniversityRepository;
 import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.UniversityService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -85,10 +87,41 @@ public class UniversityServiceImpl implements UniversityService{
         return universityRepository.listAllMajors();
     }
 
-    /*@Override
-    public List<University> findByFees(UniversityDto universityDto) {
-        return universityRepository.findByFees(universityDto.getUniversityFeesUpperBound(),universityDto.getUniversityFeesLowerBound());
-    }*/
+    @Override
+    public String  updateUniversity(UniversityDto universityDto) {
+        University existingUniversity = universityRepository.findById(universityDto.getUniversityId())
+                .orElseThrow(() -> new EntityNotFoundException("University not found"));
+        existingUniversity.setName(universityDto.getUniversityName());
+        existingUniversity.setState(universityDto.getUniversityState());
+        existingUniversity.setCity(universityDto.getUniversityCity());
+        existingUniversity.setMajor(universityDto.getUniversityMajor());
+        existingUniversity.setFees(universityDto.getUniversityFees());
+        existingUniversity.setLength(universityDto.getUniversityLength());
+        String fileName = UUID.randomUUID().toString()+"_"+ universityDto.getUniversityImage().getOriginalFilename();
+        Path filePath = Paths.get(uploadPath,fileName);
+        try {
+            Files.copy(universityDto.getUniversityImage().getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        existingUniversity.setUniversityImage(fileName);
+        universityRepository.save(existingUniversity);
+        return "University saved";
+    }
+
+    @Override
+    public String updateUniversityWithoutImage(UniversityDto universityDto) {
+        University existingUniversity = universityRepository.findById(universityDto.getUniversityId())
+                .orElseThrow(() -> new EntityNotFoundException("University not found"));
+        existingUniversity.setName(universityDto.getUniversityName());
+        existingUniversity.setState(universityDto.getUniversityState());
+        existingUniversity.setCity(universityDto.getUniversityCity());
+        existingUniversity.setMajor(universityDto.getUniversityMajor());
+        existingUniversity.setFees(universityDto.getUniversityFees());
+        existingUniversity.setLength(universityDto.getUniversityLength());
+        universityRepository.save(existingUniversity);
+        return "University updated";
+    }
 
 
 }

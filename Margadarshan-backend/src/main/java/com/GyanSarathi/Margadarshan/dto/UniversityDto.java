@@ -41,7 +41,6 @@ public class UniversityDto {
     @NotNull
     private int universityLength;
 
-    @NotNull
     private MultipartFile universityImage;
 
    
