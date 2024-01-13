@@ -111,7 +111,7 @@ function AdminUniversity() {
                 formData.append("universityFees", requestData.universityFees);
                 formData.append("universityLength", requestData.universityLength);
 
-                const response = await axios.post("http://localhost:8080/api/save-university", formData, {
+                const response = await axios.post("http://localhost:8080/api/update-university", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     }
@@ -161,6 +161,7 @@ function AdminUniversity() {
             const universityDetails = response.data;
             console.log("University details:", universityDetails);
 
+            setValue("universityId", universityDetails.id)
             setUniversityDetails(universityDetails);
         }
         catch (error) {
@@ -182,9 +183,19 @@ function AdminUniversity() {
         },
     });
 
-    const onSubmitEditUni = (formData: any): void => {
-        formData.universityId = universityDetails.id;
-        editUniversity.mutate(formData);
+    const onSubmitEditUni = async (formData: any): void => {
+        if (formData.universityImage) {
+            formData.universityId = formData.universityId || universityDetails.id;
+            console.log(formData);
+            editUniversity.mutate(formData);
+        } 
+        else {
+            const response = await axios.post("http://localhost:8080/api/update-university-without-image", formData);
+            console.log(response);
+            refetch(); 
+            setEditUniVisible(false);
+            alert("Updated!");
+        }
     }
 
     useEffect(() => {
@@ -304,6 +315,7 @@ function AdminUniversity() {
 
                                 <div className="edit-uni-right-sec">
                                     <div className="editUni-textfield">
+                                        <input type="hidden" {...register("universityId")}></input>
                                         <label className="uniName-editUni">Name of university</label>
                                         <input className="uniName-field-editUni" {...register("universityName")}></input>
 
@@ -345,7 +357,7 @@ function AdminUniversity() {
                             <p className="edit-uni-btn" onClick={() => handleEditClick(uni.id)}>Edit</p>
                             <div className="adminUni-container">
                                 <div className="adminUni-description-container">
-                                    <img className="adminUni-image" src={`/${uni.universityImage}`}/>
+                                    <img className="adminUni-image" src={`/${uni.universityImage}`} />
                                     <div className="adminUni-desc">
                                         <p className="adminUni-name">{uni.name}</p>
                                         <p className="adminUni-state">{uni.city}, {uni.state}</p>
