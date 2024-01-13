@@ -62,4 +62,14 @@ public class ScholarshipController{
         return scholarships;
     }
 
+    @PostMapping("/update-scholarship")
+    public void updateScholarship(@ModelAttribute ScholarshipDto scholarshipDto){
+        scholarshipService.updateScholarship(scholarshipDto);
+    }
+
+    @PostMapping("/update-scholarship-without-image")
+    public void updateScholarshipWithoutImage(@RequestBody ScholarshipDto scholarshipDto){
+        scholarshipService.updateScholarshipWithoutImage(scholarshipDto);
+    }
+
 }

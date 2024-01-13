@@ -12,4 +12,6 @@ public interface ExamDeadlineService {
     List<ExamDeadlines> findAll();
 
     String save(ExamDto examDto);
+
+    String updateExamDeadlines(ExamDto examDto);
 }
