@@ -68,9 +68,31 @@ function AdminUniversity() {
 
     const editUniversity = useMutation({
         mutationKey: "SAVEDATA",
-        mutationFn: (requestData: any) => {
-            console.log(requestData)
-            return axios.post("http://localhost:8080/api/save-university", requestData);
+        mutationFn: async (requestData: any) => {
+            try {
+                const formData = new FormData();
+                if (requestData.universityImage && requestData.universityImage.length > 0) {
+                    formData.append("universityImage", requestData.universityImage[0]);
+                }
+                formData.append("universityName", requestData.universityName);
+                formData.append("universityState", requestData.universityState);
+                formData.append("universityCity", requestData.universityCity);
+                formData.append("universityMajor", requestData.universityMajor);
+                formData.append("universityFees", requestData.universityFees);
+                formData.append("universityLength", requestData.universityLength);
+
+                const response = await axios.post("http://localhost:8080/api/update-university", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    }
+                });
+
+                console.log(response);
+                return response.data;
+            }
+            catch (error) {
+                console.error("Error uploading file:", error);
+            }
         },
         onSuccess: () => {
             setEditUniVisible(false);
@@ -102,7 +124,8 @@ function AdminUniversity() {
             const response = await axios.get(`http://localhost:8080/api/university-by-id/${universityId}`);
             const universityDetails = response.data;
             console.log("University details:", universityDetails);
-            
+
+            setValue("universityId", universityDetails.id)
             setUniversityDetails(universityDetails);
         } 
         catch (error) {
@@ -124,9 +147,19 @@ function AdminUniversity() {
         },
     });
 
-    const onSubmitEditUni = (value: any): void => {
-        value.universityId = universityDetails.id;
-        editUniversity.mutate(value);
+    const onSubmitEditUni = async (formData: any): void => {
+        if (formData.universityImage) {
+            formData.universityId = formData.universityId || universityDetails.id;
+            console.log(formData);
+            editUniversity.mutate(formData);
+        } 
+        else {
+            const response = await axios.post("http://localhost:8080/api/update-university-without-image", formData);
+            console.log(response);
+            refetch(); 
+            setEditUniVisible(false);
+            alert("Updated!");
+        }
     }
 
     return (
@@ -225,6 +258,7 @@ function AdminUniversity() {
 
                                 <div className="edit-uni-right-sec">
                                     <div className="editUni-textfield">
+                                        <input type="hidden" {...register("universityId")}></input>
                                         <label className="uniName-editUni">Name of university</label>
                                         <input className="uniName-field-editUni" {...register("universityName")}></input>
 
@@ -266,7 +300,7 @@ function AdminUniversity() {
                             <p className="edit-uni-btn" onClick={() => handleEditClick(uni.id)}>Edit</p>
                             <div className="adminUni-container">
                                 <div className="adminUni-description-container">
-                                    <img className="adminUni-image" src="src\assets\University\Michigan_Technological_University_seal.svg.png" />
+                                    <img className="adminUni-image" src={`/${uni.universityImage}`} />
                                     <div className="adminUni-desc">
                                         <p className="adminUni-name">{uni.name}</p>
                                         <p className="adminUni-state">{uni.city}, {uni.state}</p>
