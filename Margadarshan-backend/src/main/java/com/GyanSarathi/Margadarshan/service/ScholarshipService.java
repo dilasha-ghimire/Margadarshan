@@ -22,4 +22,8 @@ public interface ScholarshipService {
     List<Scholarship> findByGrantOrTypeOrGpa(ScholarshipDto scholarshipDto);
 
     List<Scholarship> filterByName(String scholarshipName);
+
+    String  updateScholarship(ScholarshipDto scholarshipDto);
+
+    String updateScholarshipWithoutImage(ScholarshipDto scholarshipDto);
 }

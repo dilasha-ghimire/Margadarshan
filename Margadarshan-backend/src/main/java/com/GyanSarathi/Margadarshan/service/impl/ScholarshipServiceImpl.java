@@ -5,6 +5,7 @@ import com.GyanSarathi.Margadarshan.dto.ScholarshipDto;
 import com.GyanSarathi.Margadarshan.entity.Scholarship;
 import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.ScholarshipService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -76,5 +77,40 @@ public class ScholarshipServiceImpl implements ScholarshipService {
     @Override
     public List<Scholarship> filterByName(String scholarshipName) {
         return scholarshipRepository.findByName(scholarshipName);
+    }
+
+    @Override
+    public String updateScholarship(ScholarshipDto scholarshipDto) {
+        Scholarship existingScholarship = scholarshipRepository.findById(scholarshipDto.getScholarshipId())
+                .orElseThrow(() -> new EntityNotFoundException("Scholarship not found"));
+        existingScholarship.setScholarshipName(scholarshipDto.getScholarshipName());
+        existingScholarship.setScholarshipType(scholarshipDto.getScholarshipType());
+        existingScholarship.setScholarshipDeadline(scholarshipDto.getScholarshipDeadline());
+        existingScholarship.setScholarshipGpa(scholarshipDto.getScholarshipGpa());
+        existingScholarship.setGrant(scholarshipDto.getGrant());
+
+        String fileName = UUID.randomUUID().toString()+"_"+ scholarshipDto.getScholarshipImage().getOriginalFilename();
+        Path filePath = Paths.get(uploadPath,fileName);
+        try {
+            Files.copy(scholarshipDto.getScholarshipImage().getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        existingScholarship.setScholarshipImage(fileName);
+        scholarshipRepository.save(existingScholarship);
+        return "Scholarship updated";
+    }
+
+    @Override
+    public String updateScholarshipWithoutImage(ScholarshipDto scholarshipDto) {
+        Scholarship existingScholarship = scholarshipRepository.findById(scholarshipDto.getScholarshipId())
+                .orElseThrow(() -> new EntityNotFoundException("Scholarship not found"));
+        existingScholarship.setScholarshipName(scholarshipDto.getScholarshipName());
+        existingScholarship.setScholarshipType(scholarshipDto.getScholarshipType());
+        existingScholarship.setScholarshipDeadline(scholarshipDto.getScholarshipDeadline());
+        existingScholarship.setScholarshipGpa(scholarshipDto.getScholarshipGpa());
+        existingScholarship.setGrant(scholarshipDto.getGrant());
+        scholarshipRepository.save(existingScholarship);
+        return "Scholarship updated";
     }
 }

@@ -5,6 +5,7 @@ import com.GyanSarathi.Margadarshan.dto.ExamDto;
 import com.GyanSarathi.Margadarshan.entity.Exam;
 import com.GyanSarathi.Margadarshan.entity.ExamDeadlines;
 import com.GyanSarathi.Margadarshan.service.ExamDeadlineService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,20 @@ public class ExamDeadlinesServiceImpl implements ExamDeadlineService {
         examDeadlines.setExam(exam);
         examDeadlinesRepository.save(examDeadlines);
         return "data saved";
+    }
+
+    @Override
+    public String updateExamDeadlines(ExamDto examDto) {
+        ExamDeadlines examDeadlines = examDeadlinesRepository.findById(examDto.getExamDateId())
+                .orElseThrow(() -> new EntityNotFoundException("Exam deadline not found"));
+        Exam exam = new Exam();
+        exam.setExamId(examDto.getExamId());
+        exam.setExamName(examDto.getExamName());
+        examDeadlines.setRegistrationDeadline(examDto.getRegistrationDeadline());
+        examDeadlines.setExamDate(examDto.getExamDate());
+        examDeadlines.setLateRegistrationDeadline(examDto.getLateRegistrationDeadline());
+        examDeadlines.setExam(exam);
+        examDeadlinesRepository.save(examDeadlines);
+        return "Exam deadline saved";
     }
 }

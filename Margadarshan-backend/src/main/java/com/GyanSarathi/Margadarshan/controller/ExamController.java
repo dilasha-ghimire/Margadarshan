@@ -1,6 +1,7 @@
 package com.GyanSarathi.Margadarshan.controller;
 
 import com.GyanSarathi.Margadarshan.dto.ExamDto;
+import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.Exam;
 import com.GyanSarathi.Margadarshan.entity.ExamDeadlines;
 import com.GyanSarathi.Margadarshan.service.ExamDeadlineService;
@@ -29,6 +30,11 @@ public class ExamController {
     public String saveExam(@RequestBody ExamDto examDto){
         examDeadlineService.save(examDto);
         return "data saved";
+    }
+
+    @PostMapping("/update-exams")
+    public void updateExams(@RequestBody ExamDto examDto){
+        examDeadlineService.updateExamDeadlines(examDto);
     }
 
 }
