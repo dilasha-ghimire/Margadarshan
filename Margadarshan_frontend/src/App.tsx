@@ -19,7 +19,8 @@ import BFLHeader from "./tsx-files/BeforeLoginHeader.tsx";
 import AdminHeader from './tsx-files/AdminHeader.tsx';
 import AdminScholarship from './tsx-files/AdminScholarship.tsx';
 import GRE from "./tsx-files/GRE.tsx";
-import ExamTable from "./tsx-files/ExamTable.tsx";
+import IELTS from './tsx-files/IELTS.tsx';
+import TOEFL from './tsx-files/TOEFL.tsx';
 
 const router = createBrowserRouter(
     [
@@ -94,6 +95,14 @@ const router = createBrowserRouter(
         {
             path: "/gre",
             element: <GRE/>
+        },
+        {
+            path: "/ielts",
+            element: <IELTS/>
+        },
+        {
+            path: "/toefl",
+            element: <TOEFL/>
         }
     ]
 )

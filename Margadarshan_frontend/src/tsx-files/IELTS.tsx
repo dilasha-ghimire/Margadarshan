@@ -3,12 +3,12 @@ import axios from "axios";
 import Header from "./Header";
 import ExamSection from "./ExamSection";
 
-function GRE() {
+function IELTS() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:8080/api/exam-deadlines")
-            .then(res => setData(res.data.filter(item => item.exam.examName === 'GRE')))
+            .then(res => setData(res.data.filter(item => item.exam.examName === 'IELTS')))
             .catch(err => console.log(err));
     }, []);
 
@@ -19,7 +19,7 @@ function GRE() {
             <table>
                 <thead>
                 <tr>
-                    <th>GRE Test Dates</th>
+                    <th>IELTS Test Dates</th>
                     <th>Registration Deadline</th>
                     <th>Late Registration Deadline</th>
                 </tr>
@@ -38,4 +38,4 @@ function GRE() {
     );
 }
 
-export default GRE;
+export default IELTS;
