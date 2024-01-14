@@ -44,16 +44,16 @@ public class ScholarshipController{
         scholarshipService.save(scholarshipDto);
     }
 
-
     @DeleteMapping("/delete-scholarship/{scholarshipId}")
     public void deleteScholarship(@PathVariable("scholarshipId") int scholarshipId){
         scholarshipService.deleteById(scholarshipId);
     }
 
-    @PostMapping("/scholarship-filtered")
-    public ResponseEntity<List<Scholarship>> filteredScholarship(@RequestBody ScholarshipDto scholarshipDto){
+    @GetMapping("/scholarship-filtered")
+    public List<Scholarship> filteredScholarship(@RequestBody ScholarshipDto scholarshipDto){
+        System.out.println(scholarshipDto.getGrantLowerBound());
         List<Scholarship> scholarships = scholarshipService.findByGrantOrTypeOrGpa(scholarshipDto);
-        return ResponseEntity.ok(scholarships);
+        return scholarships;
     }
 
     @PostMapping("/scholarships-by-name")

@@ -30,8 +30,14 @@ public class ScholarshipDto {
     @NotNull
     private String scholarshipDeadline;
 
-    @Null
+    @NotNull
     private String scholarshipGpa;
+
+    @NotNull
+    private Long grantUpperBound;
+
+    @NotNull
+    private Long grantLowerBound;
 
     @NotNull
     private MultipartFile scholarshipImage;
