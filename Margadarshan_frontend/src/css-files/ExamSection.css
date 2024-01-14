@@ -1,25 +1,19 @@
 .tarara{
-    /* background-color: purple; */
-    background-color: aqua;
+    display: none;
+    background-color:#152039;
     height: 200px;
     width: 100vw;
     display: flex;
-    /* margin-top: 160px; */
     margin-top:90px;
-
-}
-#exam{
-    font-size: xx-large;
-    font-weight: bolder;
+    justify-content: space-between;
+    position: fixed;
 }
 .left_div{
-    margin-left: 40px;
     display: flex;
     height:200px;
-    width: 100px;
-    flex-grow: 1;
-    background-color: aqua;
-    align-content: space-around;
+    width:45%;
+    background-color: #152039;
+    align-content: space-between;
 }
 #exam_text{
     color: #FFE34F;
@@ -27,41 +21,68 @@
     font-size:60px;
     line-height: 200px;
 }
-.left_content{
-    /* width: 100px; */
+.left_content1{
+    width:50%;
     height: 200px;
+    background-color:#152039;
 }
+
 .right_div{
     display: flex;
     height:200px;
-    width: 100px;
-    /* background-color:antiquewhite; */
-    flex-grow:2;
-    align-content:space-evenly;
-
+    width: 75%;
+    justify-content: space-around;
+    align-items: center;
 }
-img{
+.exam_image{
     height: 170px;
-    width: 160px;
-    margin-left: 50px;
+    width: 170px;
+    margin-left:30px;
+    margin-top: 20px;
 }
 .exam_types{
-    line-height:200px;
-    width:300px;
-    background-color:blue;
-    text-align: center;
-}
-.exam_types button{
-    width: 300px;
-    height: 200px;
-    font-weight:900;
-    font-size:40px;
+     width:200px;
+    height: 100px;
+    background-color:#152039;
+    text-align:start;
     color: #FFE34F;
-    border: none;
-    background-color:blue;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight:900;
+    font-size:50px;
 }
-.exam_types button:hover{
+.exam_types:hover{
     color: black;
     background-color: #FFE34F;
+}
+.dates h1{
+    /* width: 300px; */
+    margin-top: 320px;
+    text-align:start;
+    /* margin-top:300px; */
+    /* margin: 2%; */
+    margin-left: 8%;
+    /* color: #000; */
+}
+
+@media screen and (max-width:1360px){ 
+    .right_div{
+        width: 75%;
+        display: grid;
+        grid-template-columns:100px 100px;
+        grid-template-rows:100px 100px ;
+        row-gap:2px;
+        column-gap:2px;
+    }
+    .exam_types{
+        width:150px;
+       height: 90px;
+   }
+
+}
+@media screen and (max-width:835px){
+    .exam_image{
+        display: none;
+    }
 }

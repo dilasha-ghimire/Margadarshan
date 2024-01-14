@@ -1,44 +1,56 @@
 // import "../css-files/Exam.css";
 import "../css-files/Exam.css"
 import ExamSection from "./ExamSection";
+import {useEffect, useState} from "react";
+import axios from "axios";
 function Exam(){
+
+const [data,setdata]=useState([])
+    useEffect(()=>{
+        axios.get("http://localhost:8080/api/exam-deadlines")
+            .then(res =>setdata(res.data))
+            .catch(err => console.log(err));
+
+    },[])
+
     return(
     <>
     <ExamSection/>
-    <h1>Fall 2023 Test Dates</h1>
-    <table>
-        <thead>
+        <table>
+            <thead>
             <tr>
-                <th>SAT Test Dates</th>
-                <th>Registration Deadline</th>
-                <th>Late Registration Deadline</th>
+                <th> id</th>
+                <th>Exam_id</th>
+                <th> Exams</th>
+                <th>Exam Test Dates</th>
+                <th>registrationDeadline</th>
+                <th>lateRegistrationDeadline</th>
+                {/*<th>MobileNo</th>*/}
+                {/*<th>password</th>*/}
+
             </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>November 4, 2023</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>y</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            
-        </tbody>
-    </table>
-    
+            </thead>
+            <tbody>
+            {
+                data.map((user,index)=>{
+                    return <tr key={index}>
+                        <td> {user.examDateId}</td>
+                        <td> {user.exam.examId}</td>
+                        <td>{user.exam.examName}</td>
+                        <td>{user.examDate}</td>
+                        <td>{user.registrationDeadline}</td>
+                        <td>{user.lateRegistrationDeadline}</td>
+                        {/*<td>{user.mobileNo}</td>*/}
+                        {/*<td>{user.password}</td>*/}
+
+
+
+                    </tr>
+                })
+            }
+            </tbody>
+        </table>
+
     </>
     )
 }
