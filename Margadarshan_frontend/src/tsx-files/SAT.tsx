@@ -15,18 +15,14 @@ function SAT(){
         <table>
             <thead>
             <tr>
-                <th>id</th>
-                <th>Exams</th>
                 <th>SAT Test Dates</th>
-                <th>registrationDeadline</th>
-                <th>lateRegistrationDeadline</th>
+                <th>Registration Deadline</th>
+                <th>Late Registration Deadline</th>
             </tr>
             </thead>
             <tbody>
             {data.map((user,index)=>(
                 <tr key={index}>
-                    <td>{user.examDateId}</td>
-                    <td>{user.exam.examName}</td>
                     <td>{user.examDate}</td>
                     <td>{user.registrationDeadline}</td>
                     <td>{user.lateRegistrationDeadline}</td>
