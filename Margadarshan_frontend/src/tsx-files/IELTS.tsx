@@ -16,7 +16,8 @@ function IELTS() {
         <>
         <Header/>
         <ExamSection/>
-            <table>
+        <div className="table-container">
+        <table>
                 <thead>
                 <tr>
                     <th>IELTS Test Dates</th>
@@ -34,6 +35,8 @@ function IELTS() {
                 ))}
                 </tbody>
             </table>
+        </div>
+            
         </>
     );
 }

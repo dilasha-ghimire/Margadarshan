@@ -1,5 +1,3 @@
-// import "../css-files/Exam.css";
-import "../css-files/Exam.css"
 import ExamSection from "./ExamSection";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -16,7 +14,8 @@ const [data,setdata]=useState([])
     return(
     <>
     <ExamSection/>
-        <table>
+    <div className="table-container">
+    <table>
             <thead>
             <tr>
                 <th> id</th>
@@ -50,6 +49,8 @@ const [data,setdata]=useState([])
             }
             </tbody>
         </table>
+    </div>
+        
 
     </>
     )

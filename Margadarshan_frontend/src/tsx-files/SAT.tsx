@@ -12,7 +12,8 @@ function SAT(){
     return(
     <>
     <ExamSection/>
-        <table>
+    <div className="table-container">
+    <table>
             <thead>
             <tr>
                 <th>SAT Test Dates</th>
@@ -30,6 +31,8 @@ function SAT(){
                 ))}
             </tbody>
         </table>
+    </div>
+        
 
     </>    
     )
