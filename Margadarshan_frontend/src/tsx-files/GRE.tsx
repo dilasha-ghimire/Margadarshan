@@ -16,7 +16,8 @@ function GRE() {
         <>
         <Header/>
         <ExamSection/>
-            <table>
+        <div className="table-container">
+        <table>
                 <thead>
                 <tr>
                     <th>GRE Test Dates</th>
@@ -34,6 +35,8 @@ function GRE() {
                 ))}
                 </tbody>
             </table>
+        </div>
+            
         </>
     );
 }
