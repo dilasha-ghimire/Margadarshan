@@ -110,6 +110,7 @@ function AdminUniversity() {
                 formData.append("universityMajor", requestData.universityMajor);
                 formData.append("universityFees", requestData.universityFees);
                 formData.append("universityLength", requestData.universityLength);
+                formData.append("universityId", requestData.universityId);
 
                 const response = await axios.post("http://localhost:8080/api/update-university", formData, {
                     headers: {
@@ -184,12 +185,11 @@ function AdminUniversity() {
     });
 
     const onSubmitEditUni = async (formData: any): void => {
-        if (formData.universityImage) {
-            formData.universityId = formData.universityId || universityDetails.id;
-            console.log(formData);
+        if (formData.universityImage?.length!==0) {
             editUniversity.mutate(formData);
         } 
         else {
+            delete formData?.universityImage;
             const response = await axios.post("http://localhost:8080/api/update-university-without-image", formData);
             console.log(response);
             refetch(); 
