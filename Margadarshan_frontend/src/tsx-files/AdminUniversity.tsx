@@ -201,26 +201,8 @@ function AdminUniversity() {
     useEffect(() => {
         if (!searchInput) {
             setFilteredUni([]);
-        } else {
-            saveUniName.mutate({ scholarshipName: searchInput });
         }
     }, [searchInput]);
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            const editForm = document.querySelector(".edit-uni-container-adminUni");
-
-            if (editForm && !editForm.contains(event.target)) {
-                setEditUniVisible(false);
-            }
-        };
-
-        document.body.addEventListener("click", handleClickOutside);
-
-        return () => {
-            document.body.removeEventListener("click", handleClickOutside);
-        };
-    }, [setEditUniVisible]);
 
     return (
         <>
