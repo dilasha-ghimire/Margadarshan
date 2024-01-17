@@ -8,6 +8,9 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function AdminUniversity() {
     const [isAddUniVisible, setAddUniVisible] = useState(false);
@@ -16,6 +19,8 @@ function AdminUniversity() {
     const [universityDetails, setUniversityDetails] = useState({});
     const { register, handleSubmit, setValue } = useForm();
     const [searchInput, setSearchInput] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [selectedOption, setSelectedOption] = useState("");
 
     useEffect(() => {
         if (isEditUniVisible && universityDetails) {
@@ -185,14 +190,14 @@ function AdminUniversity() {
     });
 
     const onSubmitEditUni = async (formData: any): void => {
-        if (formData.universityImage?.length!==0) {
+        if (formData.universityImage?.length !== 0) {
             editUniversity.mutate(formData);
-        } 
+        }
         else {
             delete formData?.universityImage;
             const response = await axios.post("http://localhost:8080/api/update-university-without-image", formData);
             console.log(response);
-            refetch(); 
+            refetch();
             setEditUniVisible(false);
             alert("Updated!");
         }
@@ -250,30 +255,86 @@ function AdminUniversity() {
                                 </div>
 
                                 <div className="add-uni-right-sec">
-                                    <div className="addUni-textfield">
-                                        <label className="uniName-addUni">Name of university</label>
-                                        <input className="uniName-field-addUni" {...register("universityName")}></input>
+                                    {currentPage === 1 && (
+                                        <>
+                                            <div className="addUni-textfield">
+                                                <label className="uniName-addUni">Name of university</label>
+                                                <input className="uniName-field-addUni" {...register("universityName")}></input>
 
-                                        <div className="uniCity-uniState-container-addUni">
-                                            <div className="uniCity-container-addUni">
-                                                <label className="uniCity-addUni">City</label>
-                                                <input className="uniCity-field-addUni" {...register("universityCity")}></input>
+                                                <div className="uniCity-uniState-container-addUni">
+                                                    <div className="uniCity-container-addUni">
+                                                        <label className="uniCity-addUni">City</label>
+                                                        <input className="uniCity-field-addUni" {...register("universityCity")}></input>
+                                                    </div>
+                                                    <div className="uniState-addUni">
+                                                        <label className="uniState-addUni">State</label>
+                                                        <input className="uniState-field-addUni" {...register("universityState")}></input>
+                                                    </div>
+                                                </div>
+
+                                                <label className="uniMajor-addUni">Major</label>
+                                                <input className="uniMajor-field-addUni" {...register("universityMajor")}></input>
+                                                <label className="uniFees-addUni">Annual fees</label>
+                                                <input className="uniFees-field-addUni" {...register("universityFees")}></input>
+                                                <label className="uniLength-addUni">Length of study</label>
+                                                <input className="uniLength-field-addUni" {...register("universityLength")}></input>
                                             </div>
-                                            <div className="uniState-addUni">
-                                                <label className="uniState-addUni">State</label>
-                                                <input className="uniState-field-addUni" {...register("universityState")}></input>
+
+                                            <button className="next-btn-addUni" type="button" onClick={() => setCurrentPage(currentPage + 1)}>
+                                                Next <FontAwesomeIcon icon={faArrowRight} />
+                                            </button>
+                                        </>
+                                    )}
+
+                                    {currentPage === 2 && (
+                                        <>
+                                            <div className="addUni-textfield-2">
+                                                <div className="uniAvGpa-container-addUni">
+                                                    <label className="uniAvGpa-addUni">Average GPA</label>
+                                                    <input className="uniAvGpa-field-addUni"></input>
+                                                </div>
+
+                                                <div className="uniAvSats-uniAvGre-container-addUni">
+                                                    <div className="uniAvSats-container-addUni">
+                                                        <label className="uniAvSats-addUni">Average SATs</label>
+                                                        <input className="uniAvSats-field-addUni"></input>
+                                                    </div>
+                                                    <div className="uniAvGre-container-addUni">
+                                                        <label className="uniAvGre-addUni">Average GRE</label>
+                                                        <input className="uniAvGre-field-addUni"></input>
+                                                    </div>
+                                                </div>
+
+                                                <div className="uniAvIelts-uniAvToefl-container-addUni">
+                                                    <div className="uniAvIelts-container-addUni">
+                                                        <label className="uniAvIelts-addUni">Average IELTS</label>
+                                                        <input className="uniAvIelts-field-addUni"></input>
+                                                    </div>
+                                                    <div className="uniAvToefl-container-addUni">
+                                                        <label className="uniAvToefl-addUni">Average TOEFL</label>
+                                                        <input className="uniAvToefl-field-addUni"></input>
+                                                    </div>
+                                                </div>
+
+                                                <div className="uniSupEssay-container-addUni">
+                                                    <label className="uniSupEssay-addUni">Suupplementary essays</label>
+                                                    <select className="uniSupEssay-dropdown-addUni" value={selectedOption}
+                                                        onChange={(e) => setSelectedOption(e.target.value)}>
+                                                         {selectedOption === "" && <option value="" disabled>Select</option>}
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <label className="uniMajor-addUni">Major</label>
-                                        <input className="uniMajor-field-addUni" {...register("universityMajor")}></input>
-                                        <label className="uniFees-addUni">Annual fees</label>
-                                        <input className="uniFees-field-addUni" {...register("universityFees")}></input>
-                                        <label className="uniLength-addUni">Length of study</label>
-                                        <input className="uniLength-field-addUni" {...register("universityLength")}></input>
-                                    </div>
-
-                                    <button className="upload-btn-addUni" type="submit">Upload</button>
+                                            <div className="add-uni-buttons">
+                                                <button className="back-btn-addUni" type="button" onClick={() => setCurrentPage(currentPage - 1)}>
+                                                    <FontAwesomeIcon icon={faArrowLeft} /> Back
+                                                </button>
+                                                <button className="upload-btn-addUni" type="submit">Upload</button>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </form>
