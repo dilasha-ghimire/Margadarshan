@@ -201,8 +201,6 @@ function AdminScholarship() {
     useEffect(() => {
         if (!searchInput) {
             setFilteredSch([]);
-        } else {
-            getSchDetails.mutate({ scholarshipName: searchInput });
         }
     }, [searchInput]);
 
