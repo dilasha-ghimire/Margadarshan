@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"
 import '../css-files/bflheaderstyle.css';
 
-const BFLHeader: React.FC = () => {
+const BeforeLoginHeader: React.FC = () => {
     const [sidenavWidth, setSidenavWidth] = useState<string>('0');
 
     const openNav = () => {
@@ -32,10 +32,10 @@ const BFLHeader: React.FC = () => {
                 <div className="bfl-website-title">
                     <button className="bfl-logo-button" id="bfl-logo-button">
                         <div className="bfl-logo-container">
-                            <Link to="/ "><img className="bfl-logo" src="src\assets\Document\Margadarshan logo.png" alt="bfl-logo" /></Link>
+                            <Link to="/mainhomepage "><img className="bfl-logo" src="src\assets\Document\Margadarshan logo.png" alt="bfl-logo" /></Link>
                         </div>
                     </button>
-                    <Link to="/ "><div className="bfl-website-title-button"> MARGADARSHAN </div></Link>
+                    <Link to="/mainhomepage "><div className="bfl-website-title-button"> MARGADARSHAN </div></Link>
                 </div>
 
                 <div className="bfl-header-button-container">
@@ -72,4 +72,4 @@ const BFLHeader: React.FC = () => {
     );
 };
 
-export default BFLHeader;
+export default BeforeLoginHeader;

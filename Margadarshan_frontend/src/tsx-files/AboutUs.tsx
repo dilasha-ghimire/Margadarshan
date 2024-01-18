@@ -17,7 +17,7 @@ const AboutUs: React.FC = () => {
 
             <div className="about-us-content">
                 <div className="abt-image-container" style={{ backgroundImage: `url('src/assets/AboutPage/graduation.png')` }}>
-                    <div className="introduction color-overlay d-flex justify-content-center align-items-center">
+                    <div className="introduction abt-color-overlay d-flex justify-content-center align-items-center">
                         <h1 id= "abt-main-header" >Navigating Our Narrative</h1>
                     </div>
                 </div>
