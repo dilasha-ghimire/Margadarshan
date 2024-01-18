@@ -74,6 +74,8 @@ function AdminScholarship() {
             setValue("grant", scholarshipDetails?.grant);
             setValue("scholarshipGpa", scholarshipDetails?.scholarshipGpa);
             setValue("scholarshipDeadline", scholarshipDetails?.scholarshipDeadline);
+            setValue("id", scholarshipDetails?.id);
+
         }
         else {
             setValue("scholarshipName", "");
@@ -82,6 +84,8 @@ function AdminScholarship() {
             setValue("grant", "");
             setValue("scholarshipGpa", "");
             setValue("scholarshipDeadline", "");
+            setValue("id", "");
+
         }
     }, [isEditSchVisible, scholarshipDetails, setValue]);
 
@@ -103,6 +107,8 @@ function AdminScholarship() {
     const editScholarship = useMutation({
         mutationKey: "SAVE_DATA",
         mutationFn: async (requestData: any) => {
+            console.log(requestData)
+            console.log("Image: ",requestData.scholarshipImage);
             try {
                 const formData = new FormData();
                 if (requestData.scholarshipImage && requestData.scholarshipImage.length > 0) {
@@ -114,8 +120,9 @@ function AdminScholarship() {
                 formData.append("grant", requestData.grant);
                 formData.append("scholarshipGpa", requestData.scholarshipGpa);
                 formData.append("scholarshipDeadline", requestData.scholarshipDeadline);
+                formData.append("scholarshipId", requestData.id);
 
-                const response = await axios.post("http://localhost:8080/api/save-scholarship", formData, {
+                const response = await axios.post("http://localhost:8080/api/update-scholarship", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     }
@@ -135,9 +142,22 @@ function AdminScholarship() {
         },
     });
 
-    const onSubmitEditSch = (formData: any): void => {
-        formData.scholarshipId = scholarshipDetails.id;
-        editScholarship.mutate(formData);
+    const onSubmitEditSch = async (formData: any): void => {
+        debugger;
+        console.log(typeof formData.scholarshipImage)
+        if (typeof formData.scholarshipImage!=="string") {
+            editScholarship.mutate(formData);
+        } 
+        else {
+            
+            delete formData?.scholarshipImage;
+            formData.scholarshipId=formData.id;
+            const response = await axios.post("http://localhost:8080/api/update-scholarship-without-image", formData);
+            console.log(response);
+            refetch();
+            setEditSchVisible(false);
+            alert("Updated!");
+        }
     }
 
     const deleteScholarship = useMutation({
@@ -181,8 +201,6 @@ function AdminScholarship() {
     useEffect(() => {
         if (!searchInput) {
             setFilteredSch([]);
-        } else {
-            getSchDetails.mutate({ scholarshipName: searchInput });
         }
     }, [searchInput]);
 

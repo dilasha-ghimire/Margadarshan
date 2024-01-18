@@ -71,11 +71,48 @@
 .uniMajor-addUni, .uniFees-addUni, .uniLength-addUni {
     margin-top: 10px;
 }
-.upload-btn-addUni {
+.upload-btn-addUni, .next-btn-addUni, .back-btn-addUni {
     background-color: white;
     color: black;
     border-radius: 20px;
     width: 150px;
+}
+
+.addUni-textfield-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+.addUni-textfield-2 label {
+    color: #FFE34F;
+    font-family: "Nunito";
+}
+.addUni-textfield-2 input {
+    width: 200px;
+    height: 30px;
+}
+.uniAvSats-uniAvGre-container-addUni, .uniAvIelts-uniAvToefl-container-addUni {
+    display: flex;
+    gap: 20px;
+}
+.uniAvGpa-container-addUni, .uniAvSats-container-addUni, .uniAvGre-container-addUni, .uniAvIelts-container-addUni, .uniAvToefl-container-addUni, .uniSupEssay-container-addUni {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.uniSupEssay-dropdown-addUni {
+    width: 110px;
+    height: 30px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+.add-uni-buttons {
+    display: flex;
+    margin-top: 30px;
+    gap: 30px;
+    margin-right: -80px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -92,24 +129,38 @@
         height: 40px;
         font-size: 12px;
     }
-    .addUni-textfield input {
+    .addUni-textfield input, .addUni-textfield-2 input {
         width: 150px;
         font-size: 9px;
         height: 20px;
+    }
+    .back-btn-addUni, .upload-btn-addUni, .next-btn-addUni {
+        width: 110px;
+    }
+    .add-uni-buttons {
+        margin-right: -40px;
     }
 }
 
 @media screen and (min-width: 400px) and (max-width: 750px) {
     .add-uni-mainContainer-addUni {
         left: 20px;
-        width: 400px;
+        width: 450px;
         height: 450px;
     }
-    .uniCity-uniState-container-addUni {
+    .addUni-textfield-2 {
+        gap: 10px;
+        margin-right: 20px;
+    }
+    .uniCity-uniState-container-addUni, .uniAvSats-uniAvGre-container-addUni, .uniAvIelts-uniAvToefl-container-addUni {
         flex-direction: column;
     }
-    .upload-btn-addUni {
+    .next-btn-addUni {
         margin-top: 20px;
+    }
+    .add-uni-buttons {
+        margin-top: 20px;
+        gap: 10px;
     }
 }
 
