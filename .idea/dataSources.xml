@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-<<<<<<< Updated upstream
+
     <data-source source="LOCAL" name="sat@localhost" uuid="aa56682a-fa96-4438-b707-fc23a3a8563e">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/sat</jdbc-url>
-=======
-    <data-source source="LOCAL" name="@localhost" uuid="14354931-0dee-41c6-8416-a035a100a38b">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
->>>>>>> Stashed changes
+
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

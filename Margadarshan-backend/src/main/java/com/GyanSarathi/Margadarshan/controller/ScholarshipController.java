@@ -40,20 +40,36 @@ public class ScholarshipController{
         return scholarship;
     }
     @PostMapping("/save-scholarship")
-    public void addScholarship(@RequestBody ScholarshipDto scholarshipDto){
+    public void addScholarship(@ModelAttribute ScholarshipDto scholarshipDto){
         scholarshipService.save(scholarshipDto);
     }
-
 
     @DeleteMapping("/delete-scholarship/{scholarshipId}")
     public void deleteScholarship(@PathVariable("scholarshipId") int scholarshipId){
         scholarshipService.deleteById(scholarshipId);
     }
 
-    @PostMapping("/scholarship-filtered")
-    public ResponseEntity<List<Scholarship>> filteredScholarship(@RequestBody ScholarshipDto scholarshipDto){
+    @GetMapping("/scholarship-filtered")
+    public List<Scholarship> filteredScholarship(@RequestBody ScholarshipDto scholarshipDto){
+        System.out.println(scholarshipDto.getGrantLowerBound());
         List<Scholarship> scholarships = scholarshipService.findByGrantOrTypeOrGpa(scholarshipDto);
-        return ResponseEntity.ok(scholarships);
+        return scholarships;
+    }
+
+    @PostMapping("/scholarships-by-name")
+    public List<Scholarship> filteredByName(@RequestBody ScholarshipDto scholarshipDto){
+        List<Scholarship> scholarships = scholarshipService.filterByName(scholarshipDto.getScholarshipName());
+        return scholarships;
+    }
+
+    @PostMapping("/update-scholarship")
+    public void updateScholarship(@ModelAttribute ScholarshipDto scholarshipDto){
+        scholarshipService.updateScholarship(scholarshipDto);
+    }
+
+    @PostMapping("/update-scholarship-without-image")
+    public void updateScholarshipWithoutImage(@RequestBody ScholarshipDto scholarshipDto){
+        scholarshipService.updateScholarshipWithoutImage(scholarshipDto);
     }
 
 }

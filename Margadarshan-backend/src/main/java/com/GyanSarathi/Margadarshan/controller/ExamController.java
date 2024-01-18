@@ -1,12 +1,14 @@
 package com.GyanSarathi.Margadarshan.controller;
 
+import com.GyanSarathi.Margadarshan.dto.ExamDto;
+import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.Exam;
+import com.GyanSarathi.Margadarshan.entity.ExamDeadlines;
+import com.GyanSarathi.Margadarshan.service.ExamDeadlineService;
 import com.GyanSarathi.Margadarshan.service.ExamService;
+import com.GyanSarathi.Margadarshan.service.impl.ExamDeadlinesServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,13 +16,25 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/api")
 public class ExamController {
-    private final ExamService examService;
+    private final ExamDeadlineService examDeadlineService;
     @Autowired
-    public ExamController(ExamService examService) {
-        this.examService = examService;
+    public ExamController(ExamDeadlineService examDeadlineService) {
+        this.examDeadlineService = examDeadlineService;
     }
-    @GetMapping("/exams")
-    public List<Exam> findAllExams(){
-        return examService.findAll();
+    @GetMapping("/exam-deadlines")
+    public List<ExamDeadlines> findAllExams(){
+        return examDeadlineService.findAll();
     }
+
+    @PostMapping("/save-exams")
+    public String saveExam(@RequestBody ExamDto examDto){
+        examDeadlineService.save(examDto);
+        return "data saved";
+    }
+
+    @PostMapping("/update-exams")
+    public void updateExams(@RequestBody ExamDto examDto){
+        examDeadlineService.updateExamDeadlines(examDto);
+    }
+
 }

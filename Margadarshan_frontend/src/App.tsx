@@ -16,9 +16,12 @@ import AdminUniversity from './tsx-files/AdminUniversity.tsx';
 import Exam from './tsx-files/Exam.tsx';
 import MainHomepage from "./tsx-files/MainHomepage.tsx";
 import BFLHeader from "./tsx-files/BeforeLoginHeader.tsx";
-//import AdminHeader from './tsx-files/AdminHeader.tsx';
-//import AdminScholarship from './tsx-files/AdminScholarship.tsx';
-//import GRE from "./tsx-files/GRE.tsx";
+import AdminHeader from './tsx-files/AdminHeader.tsx';
+import AdminScholarship from './tsx-files/AdminScholarship.tsx';
+import GRE from "./tsx-files/GRE.tsx";
+import IELTS from './tsx-files/IELTS.tsx';
+import TOEFL from './tsx-files/TOEFL.tsx';
+import Roadmap from './tsx-files/Roadmap.tsx';
 
 const router = createBrowserRouter(
     [
@@ -82,6 +85,30 @@ const router = createBrowserRouter(
             path: "/mainhomepage",
             element: <MainHomepage/>
         },
+        {
+            path: "/adminHeader",
+            element: <AdminHeader/>       
+        },
+        {
+            path: "/adminScholarship",
+            element: <AdminScholarship/>
+        },
+        {
+            path: "/gre",
+            element: <GRE/>
+        },
+        {
+            path: "/ielts",
+            element: <IELTS/>
+        },
+        {
+            path: "/toefl",
+            element: <TOEFL/>
+        }, 
+        {
+            path: "/roadmap",
+            element: <Roadmap/>
+        }
     ]
 )
 

@@ -77,7 +77,7 @@ input {
     border-radius: 5px;
     height: 40px;
     width: 220px;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 .text-field-name, .text-field-address, .text-field-number, .text-field-email, .text-field-password, .text-field-rePassword {
     color: black;

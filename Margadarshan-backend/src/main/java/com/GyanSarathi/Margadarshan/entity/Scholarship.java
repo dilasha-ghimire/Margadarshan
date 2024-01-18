@@ -26,15 +26,15 @@ public class Scholarship {
     private String scholarshipType;
 
     @Column(name = "scholarship_grant", nullable = false)
-    private long grant;
+    private String grant;
 
     @Column(name = "scholarship_deadline", nullable = false)
     private String scholarshipDeadline;
 
     @Column(name = "scholarship_gpa", nullable = false)
-    private int scholarshipGpa;
+    private String scholarshipGpa;
 
     @Column(name = "scholarship_image", nullable = false)
-    private byte[] scholarshipImage;
+    private String scholarshipImage;
 
 }
