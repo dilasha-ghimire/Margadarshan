@@ -73,5 +73,13 @@ public class UniversityController{
         return universityService.filterForRoadmap(roadmapDto);
     }
 
+    @GetMapping("/roadmap-unis-dropdown")
+    public List<?> uniDropdownRoadmap(){
+        return universityService.listAllUniversities();
+    }
+
+
+
+
 
 }
