@@ -41,11 +41,11 @@ function SOP() {
         <div className="rasmi" style={{ opacity: bodyOpacity }}>
         
         <div className="t">
-          <h1 className="sn" id="clu">
-            SOP and essays
-          </h1>
-          <h3 className="sn">Upload your SOP and essays for review</h3>
-          <button id="sopUploadButton" className="other-button" onClick={handleButtonClick}>
+          <span className="sop_info" >SOP and essays</span>
+          <br /><br />
+          <span className="sop_intro">Upload your SOP and essays for review</span>
+          <br /><br />
+          <button id="sopUploadButton" onClick={handleButtonClick}>
             <b>Click me</b>
           </button>
         </div>
@@ -58,7 +58,7 @@ function SOP() {
             </label>
             <br />
             <input
-                type="title"
+                type="Inputtitle"
                 value={documentTitle}
                 onChange={(e) => setDocumentTitle(e.target.value)}
             />

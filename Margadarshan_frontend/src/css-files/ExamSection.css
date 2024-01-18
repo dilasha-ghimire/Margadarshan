@@ -1,5 +1,5 @@
 .tarara{
-    display: none;
+    /* display: none; */
     background-color:#152039;
     height: 200px;
     width: 100vw;
@@ -74,7 +74,7 @@
     .exam_types{
         width:150px;
        height: 90px;
-       font-size:40px;
+       font-size:35px;
    }
 
 }
@@ -82,6 +82,34 @@
     .exam_image{
         display: none;
     }
+}
+@media screen and (max-width:500px) {
+    .right_div{
+        grid-template-columns:50px 50px;
+        grid-template-rows:50px 50px ;
+        row-gap:30px;
+        column-gap:0px;
+    }
+    .left_content1{
+        position: fixed;
+        width:25%;
+    }
+    .dates h1{
+        font-size:35px;
+    }
+    .exam_types{
+        width:100px;
+       height: 60px;
+       font-size:25px;
+       margin-top:50px;
+   }
+   #exam_text{
+    color: #FFE34F;
+    font-size:40px;
+}
+.left_div{
+    width:25%;
+}
 }
 table,th,td{
     border:2px solid black;
