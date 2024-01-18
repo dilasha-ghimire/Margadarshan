@@ -11,6 +11,9 @@ import lombok.*;
 public class RoadmapDto {
 
     @NotNull
+    private String universityName;
+
+    @NotNull
     private String degreeSelection;
 
     @NotNull
@@ -26,6 +29,7 @@ public class RoadmapDto {
     private String greScore;
 
     private String satScore;
+
 
 
 

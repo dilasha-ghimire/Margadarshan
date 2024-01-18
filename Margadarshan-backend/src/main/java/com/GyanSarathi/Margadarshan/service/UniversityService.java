@@ -32,4 +32,6 @@ public interface UniversityService {
 
     List<University> filterForRoadmap(RoadmapDto roadmapDto);
 
+    List<?> listAllUniversities();
+
 }
