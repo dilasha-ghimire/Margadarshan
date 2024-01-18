@@ -1,6 +1,7 @@
 package com.GyanSarathi.Margadarshan.controller;
 
 import com.GyanSarathi.Margadarshan.Repository.UniversityRepository;
+import com.GyanSarathi.Margadarshan.dto.RoadmapDto;
 import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.UniversityService;
@@ -67,7 +68,10 @@ public class UniversityController{
         universityService.updateUniversityWithoutImage(universityDto);
     }
 
-
+    @GetMapping("/roadmap")
+    public List<University> listUniForRoadmap(@RequestBody RoadmapDto roadmapDto){
+        return universityService.filterForRoadmap(roadmapDto);
+    }
 
 
 }
