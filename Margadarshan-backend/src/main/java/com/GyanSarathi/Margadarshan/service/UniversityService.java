@@ -1,5 +1,6 @@
 package com.GyanSarathi.Margadarshan.service;
 
+import com.GyanSarathi.Margadarshan.dto.RoadmapDto;
 import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.University;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,7 @@ public interface UniversityService {
     String updateUniversity(UniversityDto universityDto);
 
     String updateUniversityWithoutImage(UniversityDto universityDto);
+
+    List<University> filterForRoadmap(RoadmapDto roadmapDto);
 
 }

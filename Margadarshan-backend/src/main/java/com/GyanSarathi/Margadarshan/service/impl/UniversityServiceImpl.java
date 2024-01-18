@@ -1,6 +1,7 @@
 package com.GyanSarathi.Margadarshan.service.impl;
 
 import com.GyanSarathi.Margadarshan.Repository.UniversityRepository;
+import com.GyanSarathi.Margadarshan.dto.RoadmapDto;
 import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.UniversityService;
@@ -17,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -44,6 +46,12 @@ public class UniversityServiceImpl implements UniversityService{
         university.setFees(universityDto.getUniversityFees());
         university.setName(universityDto.getUniversityName());
         university.setLength(universityDto.getUniversityLength());
+        university.setAverageUniversityGpa(universityDto.getAverageUniversityGpa());
+        university.setAverageIeltsScore(universityDto.getAverageIeltsScore());
+        university.setAverageToeflScore(universityDto.getAverageToeflScore());
+        university.setAverageGreScore(universityDto.getAverageGreScore());
+        university.setAverageSatScore(universityDto.getAverageSatScore());
+        university.setRequiredEssays(universityDto.isRequiredEssays());
 
         String fileName = UUID.randomUUID().toString()+"_"+ universityDto.getUniversityImage().getOriginalFilename();
         Path filePath = Paths.get(uploadPath,fileName);
@@ -97,6 +105,12 @@ public class UniversityServiceImpl implements UniversityService{
         existingUniversity.setMajor(universityDto.getUniversityMajor());
         existingUniversity.setFees(universityDto.getUniversityFees());
         existingUniversity.setLength(universityDto.getUniversityLength());
+        existingUniversity.setAverageUniversityGpa(universityDto.getAverageUniversityGpa());
+        existingUniversity.setAverageIeltsScore(universityDto.getAverageIeltsScore());
+        existingUniversity.setAverageToeflScore(universityDto.getAverageToeflScore());
+        existingUniversity.setAverageGreScore(universityDto.getAverageGreScore());
+        existingUniversity.setAverageSatScore(universityDto.getAverageSatScore());
+        existingUniversity.setRequiredEssays(universityDto.isRequiredEssays());
         String fileName = UUID.randomUUID().toString()+"_"+ universityDto.getUniversityImage().getOriginalFilename();
         Path filePath = Paths.get(uploadPath,fileName);
         try {
@@ -119,8 +133,47 @@ public class UniversityServiceImpl implements UniversityService{
         existingUniversity.setMajor(universityDto.getUniversityMajor());
         existingUniversity.setFees(universityDto.getUniversityFees());
         existingUniversity.setLength(universityDto.getUniversityLength());
+        existingUniversity.setAverageUniversityGpa(universityDto.getAverageUniversityGpa());
+        existingUniversity.setAverageIeltsScore(universityDto.getAverageIeltsScore());
+        existingUniversity.setAverageToeflScore(universityDto.getAverageToeflScore());
+        existingUniversity.setAverageGreScore(universityDto.getAverageGreScore());
+        existingUniversity.setAverageSatScore(universityDto.getAverageSatScore());
+        existingUniversity.setRequiredEssays(universityDto.isRequiredEssays());
         universityRepository.save(existingUniversity);
         return "University updated";
+    }
+
+    @Override
+    public List<University> filterForRoadmap(RoadmapDto roadmapDto) {
+        if(Objects.equals(roadmapDto.getDegreeSelection(), "Masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Toefl")){
+            List<University> listOfMastersUniversityWithToefl =
+                    universityRepository.filterForRoadmap
+                            (Double.parseDouble(roadmapDto.getGpa()),0,Integer.parseInt(roadmapDto.getToeflScore()),
+                                    Integer.parseInt(roadmapDto.getGreScore()),0);
+            return listOfMastersUniversityWithToefl;
+        } else if (Objects.equals(roadmapDto.getDegreeSelection(), "Masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Ielts")) {
+            List<University> listOfMastersUniversityWithIelts =
+                    universityRepository.filterForRoadmap
+                            (Double.parseDouble(roadmapDto.getGpa()),Integer.parseInt(roadmapDto.getIeltsScore()),0,
+                                    Integer.parseInt(roadmapDto.getGreScore()),0);
+            return listOfMastersUniversityWithIelts;
+        }
+        else if (Objects.equals(roadmapDto.getDegreeSelection(), "Bachelors") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Ielts")) {
+            List<University> listOfBachelorsUniversityWithIelts =
+                    universityRepository.filterForRoadmap
+                            (Double.parseDouble(roadmapDto.getGpa()), Integer.parseInt(roadmapDto.getIeltsScore()), 0,
+                                    0, Integer.parseInt(roadmapDto.getSatScore()));
+            return listOfBachelorsUniversityWithIelts;
+        }
+        else if (Objects.equals(roadmapDto.getDegreeSelection(), "Bachelors") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Toefl")) {
+            List<University> listOfBachelorsUniversityWithToefl =
+                    universityRepository.filterForRoadmap
+                            (Double.parseDouble(roadmapDto.getGpa()), 0, Integer.parseInt(roadmapDto.getToeflScore()),
+                                    0, Integer.parseInt(roadmapDto.getSatScore()));
+            return listOfBachelorsUniversityWithToefl;
+        }
+
+        return null;
     }
 
 

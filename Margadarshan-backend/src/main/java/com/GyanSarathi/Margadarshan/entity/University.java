@@ -39,6 +39,23 @@ public class University{
     @Column(name = "university_image")
     private String universityImage;
 
+    @Column(name="average_university_Gpa",nullable = false)
+    private String averageUniversityGpa;
+
+    @Column(name = "average_ielts_score", nullable = false)
+    private String averageIeltsScore;
+
+    @Column(name = "average_toefl_score", nullable = false)
+    private String averageToeflScore;
+
+    @Column(name = "average_gre_score", nullable = false)
+    private String averageGreScore;
+
+    @Column(name = "average_sat_score", nullable = false)
+    private String averageSatScore;
+
+    @Column(name = "required_essays", nullable = false)
+    private boolean requiredEssays;
 
 
 }
