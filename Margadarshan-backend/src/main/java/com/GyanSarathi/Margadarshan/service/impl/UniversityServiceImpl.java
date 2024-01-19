@@ -172,6 +172,7 @@ public class UniversityServiceImpl implements UniversityService{
             List<University> listOfBachelorsUniversityWithToefl =
                     universityRepository.filterForRoadmap
                             (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageBachelorsGpa()), 0, Integer.parseInt(roadmapDto.getToeflScore()),
+
                                     0, Integer.parseInt(roadmapDto.getSatScore()));
             return listOfBachelorsUniversityWithToefl;
         }
