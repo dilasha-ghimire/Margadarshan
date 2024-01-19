@@ -24,12 +24,20 @@ function AdminUniversity() {
 
     useEffect(() => {
         if (isEditUniVisible && universityDetails) {
-            setValue("universityName", universityDetails?.name),
-                setValue("universityCity", universityDetails?.city),
-                setValue("universityState", universityDetails?.state),
-                setValue("universityMajor", universityDetails?.major),
-                setValue("universityFees", universityDetails?.fees),
-                setValue("universityLength", universityDetails?.length)
+            setValue("universityName", universityDetails?.name);
+            setValue("universityCity", universityDetails?.city);
+            setValue("universityState", universityDetails?.state);
+            setValue("universityMajor", universityDetails?.major);
+            setValue("universityFees", universityDetails?.fees);
+            setValue("universityLength", universityDetails?.length);
+            setValue("averageBachelorsGpa", universityDetails?.averageBachelorsGpa);
+            setValue("averageMastersGpa", universityDetails?.averageMastersGpa);
+            setValue("averageSatScore", universityDetails?.averageSatScore);
+            setValue("averageGreScore", universityDetails?.averageGreScore);
+            setValue("averageIeltsScore", universityDetails?.averageIeltsScore);
+            setValue("averageToeflScore", universityDetails?.averageToeflScore);
+            console.log("requiredEssays from payload:", universityDetails?.requiredEssays);
+            setValue("requiredEssays", universityDetails?.requiredEssays ? "Yes" : "No");
         }
         else {
             setValue("universityName", "");
@@ -38,8 +46,15 @@ function AdminUniversity() {
             setValue("universityMajor", "");
             setValue("universityFees", "");
             setValue("universityLength", "");
+            setValue("averageBachelorsGpa", "");
+            setValue("averageMastersGpa", "");
+            setValue("averageSatScore", "");
+            setValue("averageGreScore", "");
+            setValue("averageIeltsScore", "");
+            setValue("averageToeflScore", "");
+            setValue("requiredEssays", false);
         }
-    }, [isEditUniVisible, universityDetails, setValue]);
+    }, [isEditUniVisible, universityDetails, setValue, setSelectedOption]);
 
     const { data, refetch } = useQuery({
         queryKey: "GETDATA",
@@ -55,6 +70,13 @@ function AdminUniversity() {
         setValue("universityMajor", "");
         setValue("universityFees", "");
         setValue("universityLength", "");
+        setValue("averageBachelorsGpa", "");
+        setValue("averageMastersGpa", "");
+        setValue("averageSatScore", "");
+        setValue("averageGreScore", "");
+        setValue("averageIeltsScore", "");
+        setValue("averageToeflScore", "");
+        setValue("requiredEssays", "Select");
     };
 
     const saveUniversity = useMutation({
@@ -69,6 +91,13 @@ function AdminUniversity() {
                 formData.append("universityMajor", requestData.universityMajor);
                 formData.append("universityFees", requestData.universityFees);
                 formData.append("universityLength", requestData.universityLength);
+                formData.append("averageBachelorsGpa", requestData.averageBachelorsGpa);
+                formData.append("averageMastersGpa", requestData.averageMastersGpa);
+                formData.append("averageSatScore", requestData.averageSatScore);
+                formData.append("averageGreScore", requestData.averageGreScore);
+                formData.append("averageIeltsScore", requestData.averageIeltsScore);
+                formData.append("averageToeflScore", requestData.averageToeflScore);
+                formData.append("requiredEssays", requestData.requiredEssays);
 
                 const response = await axios.post("http://localhost:8080/api/save-university", formData, {
                     headers: {
@@ -115,6 +144,13 @@ function AdminUniversity() {
                 formData.append("universityMajor", requestData.universityMajor);
                 formData.append("universityFees", requestData.universityFees);
                 formData.append("universityLength", requestData.universityLength);
+                formData.append("averageBachelorsGpa", requestData.averageBachelorsGpa);
+                formData.append("averageMastersGpa", requestData.averageMastersGpa);
+                formData.append("averageSatScore", requestData.averageSatScore);
+                formData.append("averageGreScore", requestData.averageGreScore);
+                formData.append("averageIeltsScore", requestData.averageIeltsScore);
+                formData.append("averageToeflScore", requestData.averageToeflScore);
+                formData.append("requiredEssays", requestData.requiredEssays);
                 formData.append("universityId", requestData.universityId);
 
                 const response = await axios.post("http://localhost:8080/api/update-university", formData, {
@@ -139,6 +175,7 @@ function AdminUniversity() {
 
 
     const onSubmitAddUni = (formData: any): void => {
+        formData.requiredEssays = selectedOption;
         saveUniversity.mutate(formData);
         clearAddUniForm();
     }
@@ -209,6 +246,24 @@ function AdminUniversity() {
         }
     }, [searchInput]);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const editForm = document.querySelector(".edit-uni-container-adminUni");
+            const isNextButton = event.target.classList.contains("next-btn-editUni");
+            const isBackButton = event.target.classList.contains("back-btn-editUni");
+
+            if (editForm && !editForm.contains(event.target) && !isNextButton && !isBackButton) {
+                setEditUniVisible(false);
+            }
+        };
+
+        document.body.addEventListener("click", handleClickOutside);
+
+        return () => {
+            document.body.removeEventListener("click", handleClickOutside);
+        };
+    }, [setEditUniVisible]);
+
     return (
         <>
             <AdminHeader />
@@ -246,7 +301,7 @@ function AdminUniversity() {
 
                                     <label className="file-upload-label-addUni" htmlFor="universityImageId">
                                         <div className="file-img-container-addUni">
-                                            <img className="file-img-addUni" src="src\assets\AdminUniversity\file upload1.png"></img>
+                                            <img className="file-img-addUni" src="src/assets/AdminUniversity/file upload1.png"></img>
                                         </div>
                                         <button className="browse-button-addUni" type="submit">Browse files</button>
                                     </label>
@@ -290,29 +345,35 @@ function AdminUniversity() {
                                         <>
                                             <div className="addUni-textfield-2">
                                                 <div className="uniAvGpa-container-addUni">
-                                                    <label className="uniAvGpa-addUni">Average GPA</label>
-                                                    <input className="uniAvGpa-field-addUni"></input>
+                                                    <div className="uniBachelorsGpa-container-addUni">
+                                                        <label className="uniBachelorsGpa-addUni">Average Bachelors GPA</label>
+                                                        <input className="uniBachelorsGpa-field-addUni" {...register("averageBachelorsGpa")}></input>
+                                                    </div>
+                                                    <div className="uniMastersGpa-container-addUni">
+                                                        <label className="uniMastersGpa-addUni">Average Masters GPA</label>
+                                                        <input className="uniMastersGpa-field-addUni" {...register("averageMastersGpa")}></input>
+                                                    </div>
                                                 </div>
 
                                                 <div className="uniAvSats-uniAvGre-container-addUni">
                                                     <div className="uniAvSats-container-addUni">
                                                         <label className="uniAvSats-addUni">Average SATs</label>
-                                                        <input className="uniAvSats-field-addUni"></input>
+                                                        <input className="uniAvSats-field-addUni" {...register("averageSatScore")}></input>
                                                     </div>
                                                     <div className="uniAvGre-container-addUni">
                                                         <label className="uniAvGre-addUni">Average GRE</label>
-                                                        <input className="uniAvGre-field-addUni"></input>
+                                                        <input className="uniAvGre-field-addUni" {...register("averageGreScore")}></input>
                                                     </div>
                                                 </div>
 
                                                 <div className="uniAvIelts-uniAvToefl-container-addUni">
                                                     <div className="uniAvIelts-container-addUni">
                                                         <label className="uniAvIelts-addUni">Average IELTS</label>
-                                                        <input className="uniAvIelts-field-addUni"></input>
+                                                        <input className="uniAvIelts-field-addUni" {...register("averageIeltsScore")}></input>
                                                     </div>
                                                     <div className="uniAvToefl-container-addUni">
                                                         <label className="uniAvToefl-addUni">Average TOEFL</label>
-                                                        <input className="uniAvToefl-field-addUni"></input>
+                                                        <input className="uniAvToefl-field-addUni" {...register("averageToeflScore")}></input>
                                                     </div>
                                                 </div>
 
@@ -320,7 +381,7 @@ function AdminUniversity() {
                                                     <label className="uniSupEssay-addUni">Suupplementary essays</label>
                                                     <select className="uniSupEssay-dropdown-addUni" value={selectedOption}
                                                         onChange={(e) => setSelectedOption(e.target.value)}>
-                                                         {selectedOption === "" && <option value="" disabled>Select</option>}
+                                                        {selectedOption === "" && <option value="" disabled>Select</option>}
                                                         <option value="Yes">Yes</option>
                                                         <option value="No">No</option>
                                                     </select>
@@ -357,37 +418,103 @@ function AdminUniversity() {
                                 </div>
 
                                 <div className="edit-uni-right-sec">
-                                    <div className="editUni-textfield">
-                                        <input type="hidden" {...register("universityId")}></input>
-                                        <label className="uniName-editUni">Name of university</label>
-                                        <input className="uniName-field-editUni" {...register("universityName")}></input>
+                                    {currentPage === 1 && (
+                                        <>
+                                            <div className="editUni-textfield">
+                                                <input type="hidden" {...register("universityId")}></input>
+                                                <label className="uniName-editUni">Name of university</label>
+                                                <input className="uniName-field-editUni" {...register("universityName")}></input>
 
-                                        <div className="uniCity-uniState-container-editUni">
-                                            <div className="uniCity-container-editUni">
-                                                <label className="uniCity-editUni">City</label>
-                                                <input className="uniCity-field-editUni" {...register("universityCity")}></input>
+                                                <div className="uniCity-uniState-container-editUni">
+                                                    <div className="uniCity-container-editUni">
+                                                        <label className="uniCity-editUni">City</label>
+                                                        <input className="uniCity-field-editUni" {...register("universityCity")}></input>
+                                                    </div>
+                                                    <div className="uniState-editUni">
+                                                        <label className="uniState-editUni">State</label>
+                                                        <input className="uniState-field-editUni" {...register("universityState")}></input>
+                                                    </div>
+                                                </div>
+
+                                                <label className="uniMajor-editUni">Major</label>
+                                                <input className="uniMajor-field-editUni" {...register("universityMajor")}></input>
+                                                <label className="uniFees-editUni">Annual fees</label>
+                                                <input className="uniFees-field-editUni" {...register("universityFees")}></input>
+                                                <label className="uniLength-editUni">Length of study</label>
+                                                <input className="uniLength-field-editUni" {...register("universityLength")}></input>
                                             </div>
-                                            <div className="uniState-editUni">
-                                                <label className="uniState-editUni">State</label>
-                                                <input className="uniState-field-editUni" {...register("universityState")}></input>
+
+                                            <button className="next-btn-editUni" type="button" onClick={() => setCurrentPage(currentPage + 1)}>
+                                                Next <FontAwesomeIcon icon={faArrowRight} />
+                                            </button>
+                                        </>
+                                    )}
+
+                                    {currentPage === 2 && (
+                                        <>
+                                            <div className="editUni-textfield-2">
+                                                <div className="uniAvGpa-container-editUni">
+                                                    <input type="hidden" {...register("universityId")}></input>
+                                                    <div className="uniBachelorsGpa-container-editUni">
+                                                        <label className="uniBachelorsGpa-editUni">Average Bachelors GPA</label>
+                                                        <input className="uniBachelorsGpa-field-editUni" {...register("averageBachelorsGpa")}></input>
+                                                    </div>
+                                                    <div className="uniMastersGpa-container-editUni">
+                                                        <label className="uniMastersGpa-editUni">Average Masters GPA</label>
+                                                        <input className="uniMastersGpa-field-editUni" {...register("averageMastersGpa")}></input>
+                                                    </div>
+                                                </div>
+
+                                                <div className="uniAvSats-uniAvGre-container-editUni">
+                                                    <div className="uniAvSats-container-editUni">
+                                                        <label className="uniAvSats-editUni">Average SATs</label>
+                                                        <input className="uniAvSats-field-editUni" {...register("averageSatScore")}></input>
+                                                    </div>
+                                                    <div className="uniAvGre-container-editUni">
+                                                        <label className="uniAvGre-editUni">Average GRE</label>
+                                                        <input className="uniAvGre-field-editUni" {...register("averageGreScore")}></input>
+                                                    </div>
+                                                </div>
+
+                                                <div className="uniAvIelts-uniAvToefl-container-editUni">
+                                                    <div className="uniAvIelts-container-editUni">
+                                                        <label className="uniAvIelts-editUni">Average IELTS</label>
+                                                        <input className="uniAvIelts-field-editUni" {...register("averageIeltsScore")}></input>
+                                                    </div>
+                                                    <div className="uniAvToefl-container-editUni">
+                                                        <label className="uniAvToefl-editUni">Average TOEFL</label>
+                                                        <input className="uniAvToefl-field-editUni" {...register("averageToeflScore")}></input>
+                                                    </div>
+                                                </div>
+
+                                                <div className="uniSupEssay-container-editUni">
+                                                    <label className="uniSupEssay-editUni">Supplementary essays</label>
+                                                    <select
+                                                        className="uniSupEssay-dropdown-editUni"
+                                                        value={selectedOption}
+                                                        onChange={(e) => setSelectedOption(e.target.value)}
+                                                    >
+                                                        <option value="Select" disabled>Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <label className="uniMajor-editUni">Major</label>
-                                        <input className="uniMajor-field-editUni" {...register("universityMajor")}></input>
-                                        <label className="uniFees-editUni">Annual fees</label>
-                                        <input className="uniFees-field-editUni" {...register("universityFees")}></input>
-                                        <label className="uniLength-editUni">Length of study</label>
-                                        <input className="uniLength-field-editUni" {...register("universityLength")}></input>
-                                    </div>
+                                            <div className="edit-uni-buttons">
+                                                <button className="editUni-delete-btn" type="button" onClick={() => {
+                                                    deleteUniversity.mutate(universityDetails.id);
+                                                }}>Delete</button>
 
-                                    <div className="edit-uni-buttons">
-                                        <button className="editUni-delete-btn" type="button" onClick={() => {
-                                            deleteUniversity.mutate(universityDetails.id);
-                                        }}>Delete</button>
-
-                                        <button className="editUni-update-btn" type="submit">Update</button>
-                                    </div>
+                                                <div className="update-back-btn-container-editUni">
+                                                    <button className="back-btn-editUni" type="button" onClick={() => setCurrentPage(currentPage - 1)}>
+                                                        <FontAwesomeIcon icon={faArrowLeft} /> Back
+                                                    </button>
+                                                    <button className="editUni-update-btn" type="submit">Update</button>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </form>

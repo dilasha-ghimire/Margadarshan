@@ -43,10 +43,8 @@ public class UniversityDto {
 
     private MultipartFile universityImage;
 
-    @NotNull
     private String averageBachelorsGpa;
 
-    @NotNull
     private String averageMastersGpa;
 
     @NotNull
@@ -55,13 +53,10 @@ public class UniversityDto {
     @NotNull
     private String averageToeflScore;
 
-    @NotNull
     private String averageSatScore;
 
-    @NotNull
     private String averageGreScore;
 
     @NotNull
     private boolean requiredEssays;
-
 }
