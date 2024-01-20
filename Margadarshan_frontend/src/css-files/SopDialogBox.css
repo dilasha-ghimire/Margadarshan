@@ -11,18 +11,68 @@ body{
     margin:200px;
     margin-left: 660px;
 }
+@media screen and (max-width:754px) {
+    .sop_first-div{
+        background-color:aqua;
+        margin:100px;
+        margin-top:450px;
+        margin-left:10px;
+        width:650px;
+    }
+    .title{
+        width:100px;
+        left:270px;
+    }
+}
+@media screen and (min-width:754px) and (max-width:1030px) {
+    .sop_first-div{
+        background-color:aqua;
+        margin:100px;
+        margin-top:450px;
+        width:650px;
+    }
+    .title{
+        width:100px;
+        left:270px;
+    }
+    input[type="Inputtitle"] {
+        width:200px;
+        height:35px
+    }
+    #document-name{
+        color: yellow;
+        font-family:'Paytone One';
+        font-size:xx-large;
+        font-size: 25px;
+    }
+}
+@media screen and (min-width:1030px) and (max-width:1400px) {
+    .sop_first-div{
+        background-color:blueviolet;
+        margin:100px;
+        margin-top: 450px;
+        margin-left:200px;
+    }
+}
+@media screen and (min-width:1400px) and (max-width: 1500px) {
+    .sop_first-div {
+        width: 730px;
+        background-color:chartreuse;
+    }
+}
+
 .select{
-    position: absolute;
-    top: 400px;
-    left: 90px;
     display: flex;
     row-gap:25px;
 }
 .select input{
-    width:300px;
+    width:350px;
     height:40px ;
     border-radius:20px;
     font-weight: 700;
+    margin-top: 400px;
+    margin-left: 50px;
+
 }
 input[type="submit"]{
     margin-left:30px;
@@ -37,10 +87,10 @@ input[type="submit"]{
     color: yellow;
     font-family:'Paytone One';
     font-size:xx-large;
-    font-size: 45px;
+    font-size: 35px;
 }
-input[type="title"]{
-    width:400px;
+input[type="Inputtitle"] {
+    width:350px;
     height:35px
 }
 #image-preview{
