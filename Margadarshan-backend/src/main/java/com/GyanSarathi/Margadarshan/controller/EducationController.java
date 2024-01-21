@@ -24,9 +24,14 @@ public class EducationController {
         return educationService.listOfEducation(educationDto);
     }
 
-    @PostMapping("/add-education")
-    public void addOnEducation(@RequestBody EducationDto educationDto){
-        educationService.addOnEducation(educationDto);
+//    @PostMapping("/add-education")
+//    public void addOnEducation(@RequestBody EducationDto educationDto){
+//        educationService.addOnEducation(educationDto);
+//    }
+
+    @PostMapping("/save-education")
+    public void saveEducation(@RequestBody EducationDto educationDto){
+        educationService.save(educationDto);
     }
 
 }

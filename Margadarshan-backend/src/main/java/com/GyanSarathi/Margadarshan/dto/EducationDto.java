@@ -12,7 +12,8 @@ import lombok.*;
 
 public class EducationDto {
 
-    private int educationId;
+    @NotNull
+    private Integer educationId;
 
     @NotNull
     private String educationInstitute;
