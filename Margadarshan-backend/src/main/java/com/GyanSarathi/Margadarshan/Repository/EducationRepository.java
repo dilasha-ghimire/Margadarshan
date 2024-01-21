@@ -19,4 +19,5 @@ public interface EducationRepository extends JpaRepository<Education,Integer> {
 //    @Query(value = "SELECT Education.education_id, Education.education_institute, Education.education_qualification, Students.student_id, Students.full_name FROM Education LEFT JOIN Students ON Education.student_id = Students.student_id WHERE Students.student_id = ?1", nativeQuery = true)
 //    List<Education> listOfEducationTwo(int studentId);
 
+
 }

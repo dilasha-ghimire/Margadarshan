@@ -18,5 +18,4 @@ public interface EducationService {
 
     public String save(EducationDto educationDto);
 
-
 }
