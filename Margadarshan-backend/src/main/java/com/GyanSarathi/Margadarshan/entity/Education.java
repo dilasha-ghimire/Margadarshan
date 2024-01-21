@@ -28,5 +28,17 @@ public class Education {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id")
     private Student student;
+    
+    /*CREATE TABLE `Education` (
+  `education_id` int NOT NULL AUTO_INCREMENT,
+  `education_institute` varchar(100) NOT NULL,
+  `education_qualification` varchar(100) NOT NULL,
+  `student_id` int NOT NULL,
+  PRIMARY KEY (`education_id`),
+  KEY `student_id` (`student_id`),
+  CONSTRAINT `education_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `Students` (`student_id`)
+)
+
+*/
 
 }

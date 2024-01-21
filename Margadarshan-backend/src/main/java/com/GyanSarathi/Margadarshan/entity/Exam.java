@@ -26,6 +26,13 @@ public class Exam{
     private String examName;
 
 
+    /*CREATE TABLE `exams` (
+  `exam_id` int NOT NULL,
+  `exam_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`exam_id`)
+)
+
+*/
 
 
 
