@@ -32,5 +32,4 @@ public class RoadmapDto {
     private String greScore;
 
     private String satScore;
-
 }

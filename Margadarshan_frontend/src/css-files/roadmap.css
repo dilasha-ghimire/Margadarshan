@@ -11,14 +11,33 @@
 }
 
 .roadmap-img {
-    margin-top: 100px;
+    margin-top: -40px;
+}
+
+.top-roadmap-buttons, .bottom-roadmap-buttons {
+    display: flex;
+    gap: 340px;
+}
+.top-roadmap-buttons {
+    margin-left: 170px;
+}
+.bottom-roadmap-buttons {
+    margin-left: 380px;
+    margin-top: -50px;
+}
+.roadmap-button {
+    height: 100px;
+    z-index: 10;
+}
+.roadmap-button:hover {
+    cursor: pointer;
 }
 
 .sidebar-roadmap {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 20;
     top: 10vh;
     ;
     left: 0px;
@@ -38,6 +57,12 @@
     font-family: "Paytone One"
 }
 
+.study-level-radio-container {
+    display: flex;
+    gap: 30px;
+    margin-left: 40px;
+}
+
 .univesity-gpa-container-roadmap {
     display: flex;
     flex-direction: column;
@@ -45,7 +70,7 @@
     margin-left: 30px;
     margin-top: 20px;
 }
-.uni-dropdown-roadmap {
+.uni-dropdown-roadmap, .major-dropdown-roadmap {
     width: 170px;
     height: 30px;
     background-color: white;
@@ -53,12 +78,11 @@
     border-radius: 5px;
     border: solid black 2px;
 }
-.gpa-input-roadmap {
+.gpa-input-roadmap, .sats-input-roadmap {
     height: 35px;
     width: 200px;
 }
 
-.standard-test-container-roadmap,
 .english-test-container-roadmap {
     width: 320px;
     display: flex;
@@ -73,12 +97,10 @@
     padding-bottom: 10px;
     padding-right: 10px;
 }
-.sat-gre-container-roadmap,
 .ielts-toefl-container-roadmap {
     display: flex;
     gap: 20px;
 }
-.standard-test-dropdown-roadmap,
 .english-test-dropdown-roadmap {
     width: 100px;
     height: 30px;
@@ -87,12 +109,10 @@
     border-radius: 5px;
     border: solid black 2px;
 }
-.standard-test-score-container-roadmap,
 .english-test-score-container-roadmap {
     display: flex;
     gap: 20px;
 }
-.standard-test-score-input-roadmap,
 .english-test-score-input-roadmap {
     width: 100px;
     height: 30px;
