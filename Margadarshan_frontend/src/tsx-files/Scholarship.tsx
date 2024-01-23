@@ -2,17 +2,23 @@ import "../css-files/scholarshipCentre.css";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Header from './Header';
+import { useState } from "react";
 
 function Scholarship() {
-    const {data} = useQuery({
+    const [filteredSch, setFilteredSch] = useState([]);
+
+    const { data } = useQuery({
         queryKey: "GET_DATA",
         queryFn() {
             return axios.get("http://localhost:8080/api/scholarships")
         }
     })
+
+    const scholarship = data?.data || [];
+    const displayScholarship = filteredSch.length > 0 ? filteredSch : scholarship
     return (
         <>
-            <Header/>
+            <Header />
 
             <div className="centre">
                 <div className="page-heading">
@@ -44,53 +50,26 @@ function Scholarship() {
                 </div>
 
                 <div className="scholarship-list">
-                    <div className="sch-container">
-                        <div className="sch-description">
-                            <div className="sch-image-container">
-                                <img className="sch-image" src="src\assets\Scholarship\peo.png" />
+                    {displayScholarship.map((sch, index) => (
+                        <div className="sch-container">
+                            <div className="sch-description">
+                                <div className="sch-image-container">
+                                    <img className="sch-image" src={`/${sch.scholarshipImage}`}/>
+                                </div>
+                                <div className="sch-desc-container">
+                                    <p className="sch-name">{sch.scholarshipName}</p>
+                                    <p className="sch-institute">{sch.scholarshipOrganization}</p>
+                                    <p className="sch-type">{sch.scholarshipType}</p>
+                                    <p className="grant">Grant: {sch.grant}</p>
+                                </div>
                             </div>
-                            <div className="sch-desc-container">
-                                <p className="sch-name">P.E.O. International Peace Scholarship (IPS)</p>
-                                <p className="sch-institute">The International Peace Scholarship Fund</p>
-                                <p className="sch-type">Women's scholarship</p>
-                                <p className="grant">Grant: $12,500</p>
-                            </div>
-                        </div>
-                        <div className="sch-deadline">
-                            <p className="deadline">Deadline:</p>
-                            <p className="date">15 Dec 2023</p>
-                        </div>
-                    </div>
-
-                    <div className="sch-container">
-                        <div className="sch-description">
-                            <div className="sch-image-container">
-                                <img className="sch-image" src="src\assets\Scholarship\uni of memphis.png" />
-                            </div>
-                            <div className="sch-desc-container">
-                                <p className="sch-name">International Merit Scholarship</p>
-                                <p className="sch-institute">University of Memphis</p>
-                                <p className="sch-type">Merit-based scholarship</p>
-                                <p className="grant">Grant: Various benefits</p>
+                            <div className="sch-deadline">
+                                <p className="deadline">Deadline:</p>
+                                <p className="date">{sch.scholarshipDeadline}</p>
                             </div>
                         </div>
-                        <div className="sch-deadline">
-                            <p className="deadline">Deadline:</p>
-                            <p className="date">31 July 2024</p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
-
-                <div className="scholarship-choice">
-                    {data?.data?.map(sch=>{
-                    return  (<>
-                        <p className="sch-choice">{sch.scholarshipName}</p>
-                        <p className="sch-choice">{sch.scholarshipOrganization}</p>
-                        <p className="sch-choice">{sch.scholarshipType}</p>
-                        <p className="sch-choice">{sch.grant}</p>
-                        <p className="sch-choice">{sch.scholarshipDeadline}</p>
-                    </>)
-                })}</div>
             </div>
         </>
     )

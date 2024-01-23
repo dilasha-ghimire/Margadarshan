@@ -33,4 +33,16 @@ public class Student{
     @Column(name = "password", nullable = false)
     private String password;
 
+     /*
+    CREATE TABLE `Students` (
+  `student_id` int NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `number` bigint NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`student_id`)
+)
+    */
+
 }

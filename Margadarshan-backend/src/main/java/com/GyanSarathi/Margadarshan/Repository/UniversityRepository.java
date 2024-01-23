@@ -11,12 +11,22 @@ import java.util.Optional;
 
 @Repository
 public interface UniversityRepository extends JpaRepository<University,Integer> {
-    @Query("SELECT u FROM University u WHERE u.major = :university_major OR u.state = :university_state OR u.fees = :university_fees")
-    List<University> findByMajorOrFeesOrState(@Param("university_major") String universityMajor,
-                                              @Param("university_state") String universityState,
-                                              @Param("university_fees") long universityFees);
+    List<University> findUniversitiesByName(String universityName);
 
-    Optional<University> findUniversitiesByName(String universityName);
+    @Query(value = "select * from Universities where (university_fees <= ?1 and university_fees >=?2) OR university_major=?3 OR university_state=?4", nativeQuery = true)
+    List<University> findByMajorOrFeesOrState(long universityFeesUpperBound,
+                                              long universityFeesLowerBound, String universityMajor, String universityState);
+
+    @Query(value = "select university_major from Universities", nativeQuery = true)
+    List<?> listAllMajors();
+
+    @Query(value = "select * from Universities where university_name=?1 and CAST(average_bachelors_gpa AS SIGNED)<=?2 and (CAST(average_ielts_score AS SIGNED)<=?3 or CAST(average_toefl_score AS SIGNED) <= ?4) and (CAST(average_gre_score AS SIGNED)<=?5 or CAST(average_sat_score AS SIGNED)<=?6)", nativeQuery = true)
+    List<University> filterForRoadmap(String universityName,double averageBachelorsGpa, int averageIeltsScore, int averageToeflScore, int averageGreScore, int averageSatScore);
+
+    @Query(value = "select * from Universities where university_name=?1 and CAST(average_masters_gpa AS SIGNED)<=?2 and (CAST(average_ielts_score AS SIGNED)<=?3 or CAST(average_toefl_score AS SIGNED) <= ?4) and (CAST(average_gre_score AS SIGNED)<=?5 or CAST(average_sat_score AS SIGNED)<=?6)", nativeQuery = true)
+    List<University> filterForRoadmapTwo(String universityName,double averageMastersGpa, int averageIeltsScore, int averageToeflScore, int averageGreScore, int averageSatScore);
+
+    @Query(value = "select university_name from Universities", nativeQuery = true)
+    List<?> listAllUniversities();
+
 }
-
-

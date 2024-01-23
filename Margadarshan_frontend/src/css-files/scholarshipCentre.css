@@ -244,8 +244,11 @@ body, html {
     margin-top: -7px;
 }
 @media screen and (min-width: 400px) and (max-width: 750px) {
-    .sch-institute, .sch-type {
+    .sch-institute {
         display: none;
+    }
+    .sch-type {
+        font-size: 15px;
     }
 }
 .grant {
