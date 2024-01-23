@@ -68,7 +68,7 @@ public class UniversityController{
         universityService.updateUniversityWithoutImage(universityDto);
     }
 
-    @GetMapping("/roadmap")
+    @PostMapping("/roadmap")
     public List<University> listUniForRoadmap(@RequestBody RoadmapDto roadmapDto){
         return universityService.filterForRoadmap(roadmapDto);
     }
