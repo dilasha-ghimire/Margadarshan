@@ -190,7 +190,7 @@ body{
 .abt-vnv-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 42px;
     z-index: 9;
     margin: 20px;
     padding: 30px;
