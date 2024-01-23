@@ -37,4 +37,18 @@ public class Scholarship {
     @Column(name = "scholarship_image", nullable = false)
     private String scholarshipImage;
 
+      /*
+    CREATE TABLE `Scholarship` (
+  `scholarship_id` int NOT NULL AUTO_INCREMENT,
+  `scholarship_name` varchar(255) NOT NULL,
+  `scholarship_organization` varchar(255) NOT NULL,
+  `scholarship_type` varchar(255) NOT NULL,
+  `scholarship_grant` varchar(255) NOT NULL,
+  `scholarship_deadline` varchar(255) NOT NULL,
+  `scholarship_gpa` varchar(255) DEFAULT NULL,
+  `scholarship_image` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`scholarship_id`)
+)
+*/
+
 }
