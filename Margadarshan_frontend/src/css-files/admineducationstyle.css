@@ -1,0 +1,110 @@
+.adedu-content{
+    margin-left: 70px;
+}
+.adedu-mainbar {
+    display: flex;
+    margin-top: 100px;
+    gap: 7vw;
+}
+.adedu-searchbar-container {
+    display: flex;
+    position: absolute;
+    gap: 2vw;
+    right: 0;
+}
+#adedu-p1{
+    padding-top: 2px;
+}
+.adedu-searchbar {
+    height: 30px;
+    width: 30vw;
+    border-color: grey;
+}
+.adedu-searchbtn {
+    height: 27px;
+    width: 25px;
+    background-color: white;
+    margin-right: 2vw;
+}
+
+.adedu-searchbtn-container{
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+}
+.adedu-searchbtn:hover {
+    border: none;
+}
+.adedu-search-img{
+    height: 25px;
+    margin-left: -14px;
+    margin-top: -23px;
+}
+.adedu-edheader{
+    margin-top: 60px;
+    padding-right: 30px;
+    padding-left: 30px;
+    font-family: "Agency FB";
+}
+.adedu-edheader h2{
+    font-size: 35px;
+}
+.adedu-data-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+@media screen and (min-width:950px) and (max-width: 1350px) {
+    .adedu-data-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 949px){
+    .adedu-data-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+.studetail-data-container{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px 20px 20px;
+    padding: 10px;
+    border: 5px solid #383d52;
+    border-radius: 10px;
+    align-items: flex-start;
+}
+
+.adedu-in{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#adedu-user-icon{
+    font-size: 50px;
+    margin-top: 15px;
+    margin-left: 10px;
+    color: #898b8f;
+}
+#adedu-student-name{
+    margin: 35px 0 0 0;
+    font-size: 23px;
+    font-weight: bold;
+    font-family: "Barlow Condensed Medium";
+    color: #383d52;
+}
+#adedu-institute-name{
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 20px;
+    font-family: "Barlow Condensed Black";
+    font-weight: bolder;
+}
+#adedu-student-qualification{
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-size: 20px;
+    font-family: "Barlow Condensed Black";
+    font-weight: bolder;
+}

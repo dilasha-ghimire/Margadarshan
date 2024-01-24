@@ -3,9 +3,13 @@ body{
 }
 
 .about-us-content{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
     position: absolute;
     width: 100%;
     top: 90px;
+    gap: 10px;
 }
 
 .abt-image-container {
@@ -79,6 +83,7 @@ body{
 .abt-margadarshan-animation {
     top: 81vh;
     padding-top: 2vh;
+    padding-bottom: 2vh;
     height: 16vh;
     background-color: white;
 }
@@ -145,7 +150,8 @@ body{
         height: 12vh;
     }
     .abt-introduction {
-        padding-top: 40px;
+        padding-top: 4vw;
+        padding-bottom: 4vw;
     }
     #intro-para{
         padding-left: 30px;
@@ -155,9 +161,10 @@ body{
     }
 }
 
-@media screen and (min-width: 1120px) and (max-width: 1500px) {
+@media screen and (min-width: 1120px){
     .abt-introduction {
-        padding-top: 40px;
+        padding-top: 4vw;
+        padding-bottom: 4vw;
     }
 
     #intro-para {

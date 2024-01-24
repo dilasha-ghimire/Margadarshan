@@ -21,7 +21,7 @@ import GRE from "./tsx-files/GRE.tsx";
 import IELTS from './tsx-files/IELTS.tsx';
 import TOEFL from './tsx-files/TOEFL.tsx';
 import Roadmap from './tsx-files/Roadmap.tsx';
-
+import AdminEducation from "./tsx-files/AdminEducation.tsx";
 
 const router = createBrowserRouter(
     [
@@ -104,6 +104,10 @@ const router = createBrowserRouter(
         {
             path: "/roadmap",
             element: <Roadmap/>
+        },
+        {
+            path: "/admineducation",
+            element: <AdminEducation/>
         }
     ]
 )
