@@ -3,6 +3,11 @@ import { Link } from "react-router-dom"
 import '../css-files/headerstyle.css';
 
 const Header: React.FC = () => {
+
+    useEffect(() => {
+        document.title = "Header | Margadarshan"
+    }, [])
+
     const [sidenavWidth, setSidenavWidth] = useState<string>('0');
 
     const openNav = () => {
