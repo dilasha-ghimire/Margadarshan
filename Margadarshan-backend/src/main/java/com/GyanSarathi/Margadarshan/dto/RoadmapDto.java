@@ -19,10 +19,10 @@ public class RoadmapDto {
     @NotNull
     private String languageTestSelection;
 
-    @NotNull
+
     private String averageBachelorsGpa;
 
-    @NotNull
+
     private String averageMastersGpa;
 
     private String ieltsScore;
@@ -32,4 +32,8 @@ public class RoadmapDto {
     private String greScore;
 
     private String satScore;
+
+    private String essaysPrepared;
+
+
 }

@@ -30,7 +30,7 @@ public interface UniversityService {
 
     String updateUniversityWithoutImage(UniversityDto universityDto);
 
-    List<University> filterForRoadmap(RoadmapDto roadmapDto);
+    University filterForRoadmap(RoadmapDto roadmapDto);
 
     List<?> listAllUniversities();
 

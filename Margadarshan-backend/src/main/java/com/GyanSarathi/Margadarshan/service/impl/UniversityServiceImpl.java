@@ -147,34 +147,34 @@ public class UniversityServiceImpl implements UniversityService{
     }
 
     @Override
-    public List<University> filterForRoadmap(RoadmapDto roadmapDto) {
+    public University filterForRoadmap(RoadmapDto roadmapDto) {
         if(Objects.equals(roadmapDto.getDegreeSelection(), "Masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Toefl")){
-            List<University> listOfMastersUniversityWithToefl =
+            University MastersUniversityWithToefl =
                     universityRepository.filterForRoadmapTwo
                             (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageMastersGpa()),0,Integer.parseInt(roadmapDto.getToeflScore()),
                                     Integer.parseInt(roadmapDto.getGreScore()),0);
-            return listOfMastersUniversityWithToefl;
+            return MastersUniversityWithToefl;
         } else if (Objects.equals(roadmapDto.getDegreeSelection(), "Masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Ielts")) {
-            List<University> listOfMastersUniversityWithIelts =
+            University MastersUniversityWithIelts =
                     universityRepository.filterForRoadmapTwo
                             (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageMastersGpa()),Integer.parseInt(roadmapDto.getIeltsScore()),0,
                                     Integer.parseInt(roadmapDto.getGreScore()),0);
-            return listOfMastersUniversityWithIelts;
+            return MastersUniversityWithIelts;
         }
         else if (Objects.equals(roadmapDto.getDegreeSelection(), "Bachelors") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Ielts")) {
-            List<University> listOfBachelorsUniversityWithIelts =
+            University BachelorsUniversityWithIelts =
                     universityRepository.filterForRoadmap
                             (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageBachelorsGpa()), Integer.parseInt(roadmapDto.getIeltsScore()), 0,
                                     0, Integer.parseInt(roadmapDto.getSatScore()));
-            return listOfBachelorsUniversityWithIelts;
+            return BachelorsUniversityWithIelts;
         }
         else if (Objects.equals(roadmapDto.getDegreeSelection(), "Bachelors") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Toefl")) {
-            List<University> listOfBachelorsUniversityWithToefl =
+            University BachelorsUniversityWithToefl =
                     universityRepository.filterForRoadmap
                             (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageBachelorsGpa()), 0, Integer.parseInt(roadmapDto.getToeflScore()),
 
                                     0, Integer.parseInt(roadmapDto.getSatScore()));
-            return listOfBachelorsUniversityWithToefl;
+            return BachelorsUniversityWithToefl;
         }
 
         return null;
