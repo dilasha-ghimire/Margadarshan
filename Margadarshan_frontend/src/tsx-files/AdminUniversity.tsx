@@ -13,6 +13,11 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function AdminUniversity() {
+
+    useEffect(() => {
+        document.title = "Admin Universities | Margadarshan"
+    }, [])
+
     const [isAddUniVisible, setAddUniVisible] = useState(false);
     const [isEditUniVisible, setEditUniVisible] = useState(false);
     const [filteredUni, setFilteredUni] = useState([]);

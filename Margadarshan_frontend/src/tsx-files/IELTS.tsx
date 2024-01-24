@@ -4,6 +4,11 @@ import Header from "./Header";
 import ExamSection from "./ExamSection";
 
 function IELTS() {
+
+    useEffect(() => {
+        document.title = "Exams | Margadarshan"
+    }, [])
+
     const [data, setData] = useState([]);
 
     useEffect(() => {

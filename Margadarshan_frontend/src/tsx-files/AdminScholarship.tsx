@@ -10,6 +10,11 @@ import { useQuery } from "react-query";
 import { useEffect } from "react";
 
 function AdminScholarship() {
+
+    useEffect(() => {
+        document.title = "Admin Scholarships | Margadarshan"
+    }, [])
+
     const [isAddSchVisible, setAddSchVisible] = useState(false);
     const { register, handleSubmit, setValue } = useForm();
     const [filteredSch, setFilteredSch] = useState([]);

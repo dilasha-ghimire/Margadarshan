@@ -1,9 +1,14 @@
 import '../css-files/login.css'
 import { Link } from "react-router-dom"
 import axios from 'axios'
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 
 function Login() {
+
+    useEffect(() => {
+        document.title = "Login | Margadarshan"
+    }, [])
+
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
     const [emailError, setEmailError] = useState("");

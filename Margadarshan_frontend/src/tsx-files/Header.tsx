@@ -51,7 +51,7 @@ const Header: React.FC = () => {
 
                         <div className="header-drop-down-uni">
                             <Link to="/university"><button className="header-drop-down-button">Universities</button></Link>
-                            <Link to="/scholarship"><button className="header-drop-down-button">Scholarship</button></Link>
+                            <Link to="/scholarship"><button className="header-drop-down-button">Scholarships</button></Link>
                             <Link to="/sat"><button className="header-drop-down-button">Exams</button></Link>
                         </div>
                     </div>

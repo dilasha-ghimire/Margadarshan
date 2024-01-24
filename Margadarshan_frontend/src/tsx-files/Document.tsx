@@ -6,7 +6,7 @@ import Header from "./Header.tsx";
 const Document: React.FC = () => {
 
     useEffect(() => {
-        document.title = "Document | Margadarshan"
+        document.title = "Documents | Margadarshan"
     }, [])
 
 
