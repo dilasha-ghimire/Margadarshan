@@ -19,9 +19,15 @@ public class EducationController {
         this.educationService = educationService;
     }
 
+/*
     @GetMapping("/education")
     public List<?> listOfEducation(@RequestBody EducationDto educationDto){
         return educationService.listOfEducation(educationDto);
+    }*/
+
+    @GetMapping("/education")
+    public List<Object[]> listOfEducationWithStudentName() {
+        return educationService.listOfEducationWithStudentName();
     }
 
 //    @PostMapping("/add-education")

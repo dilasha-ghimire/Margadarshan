@@ -22,9 +22,14 @@ public class EducationServiceImpl implements EducationService {
     }
 
 
-    @Override
+   /* @Override
     public List<?> listOfEducation(EducationDto educationDto) {
         return educationRepository.listOfEducation(educationDto.getStudentId());
+    }
+*/
+    @Override
+    public List<Object[]> listOfEducationWithStudentName() {
+        return educationRepository.listOfEducationWithStudentName();
     }
 
     @Override
