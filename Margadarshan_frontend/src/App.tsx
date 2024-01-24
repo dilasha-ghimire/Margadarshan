@@ -15,6 +15,7 @@ import ExamSection from './tsx-files/ExamSection.tsx';
 import AdminUniversity from './tsx-files/AdminUniversity.tsx';
 import Exam from './tsx-files/Exam.tsx';
 import MainHomepage from "./tsx-files/MainHomepage.tsx";
+<<<<<<< Updated upstream
 //import AdminHeader from './tsx-files/AdminHeader.tsx';
 //import AdminScholarship from './tsx-files/AdminScholarship.tsx';
 //import GRE from "./tsx-files/GRE.tsx";
@@ -22,6 +23,15 @@ import MainHomepage from "./tsx-files/MainHomepage.tsx";
 //import TOEFL from './tsx-files/TOEFL.tsx';
 //import Roadmap from './tsx-files/Roadmap.tsx';
 
+=======
+import AdminHeader from './tsx-files/AdminHeader.tsx';
+import AdminScholarship from './tsx-files/AdminScholarship.tsx';
+import GRE from "./tsx-files/GRE.tsx";
+import IELTS from './tsx-files/IELTS.tsx';
+import TOEFL from './tsx-files/TOEFL.tsx';
+import Roadmap from './tsx-files/Roadmap.tsx';
+import AdminEducation from "./tsx-files/AdminEducation.tsx";
+>>>>>>> Stashed changes
 
 const router = createBrowserRouter(
     [
@@ -81,6 +91,37 @@ const router = createBrowserRouter(
             path: "/mainhomepage",
             element: <MainHomepage/>
         },
+<<<<<<< Updated upstream
+=======
+        {
+            path: "/adminHeader",
+            element: <AdminHeader/>       
+        },
+        {
+            path: "/adminScholarship",
+            element: <AdminScholarship/>
+        },
+        {
+            path: "/gre",
+            element: <GRE/>
+        },
+        {
+            path: "/ielts",
+            element: <IELTS/>
+        },
+        {
+            path: "/toefl",
+            element: <TOEFL/>
+        }, 
+        {
+            path: "/roadmap",
+            element: <Roadmap/>
+        },
+        {
+            path: "/admineducation",
+            element: <AdminEducation/>
+        }
+>>>>>>> Stashed changes
     ]
 )
 

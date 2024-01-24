@@ -28,7 +28,7 @@ const MainHomepage: React.FC = () => {
             firstTimeLoad = false;
         }
         else {
-            setTimeout(() => showSlides(), 3000);
+            setTimeout(() => showSlides(), 2000);
         }
 
     })();
@@ -51,7 +51,7 @@ const MainHomepage: React.FC = () => {
                 currentSlide.style.display = "block";
             }
         }
-        setTimeout(showSlides, 10000);
+        setTimeout(showSlides, 2000);
     }
 
 
@@ -121,7 +121,8 @@ const MainHomepage: React.FC = () => {
                     </div>
 
                     <div className="mhp-arrow">
-                        <FontAwesomeIcon className="mhp-animated-icon" icon={faArrowDown} />                    </div>
+                        <FontAwesomeIcon className="mhp-animated-icon" icon={faArrowDown} />
+                    </div>
 
                     <div className="mhp-service-section">
                         <div className="mhp-services">
@@ -203,7 +204,7 @@ const MainHomepage: React.FC = () => {
                                 <div className="mhp-testimonial-header">
                                     <img src="src/assets/Homepage/img2.jpg" id="mhp-test-img" alt="Aanya Acharya profile picture"/>
                                         <div className="header-txt">
-                                            <p className="mhp-p-name">Aanya Acharya</p>
+                                            <p className="mhp-p-name">Saisha Acharya</p>
                                             <p>Proven Customer</p>
                                         </div>
                                 </div>
@@ -215,7 +216,7 @@ const MainHomepage: React.FC = () => {
                                 <div className="mhp-testimonial-header">
                                     <img src="src/assets/Homepage/img3.jpeg" id="mhp-test-img" alt="Parth Gautam profile picture"/>
                                         <div className="header-txt">
-                                            <p className="mhp-p-name">Parth Gautam</p>
+                                            <p className="mhp-p-name">Ojaswi Gautam</p>
                                             <p>Proven Customer</p>
                                         </div>
                                 </div>

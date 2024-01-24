@@ -23,17 +23,18 @@ body{
     height: 100%;
     background-color: rgba(0,0,0,.4);
 }
+
 .mhp-image{
     display: none;
     position: absolute;
-    filter: blur(4px);
+    filter: blur(2px);
 }
 @keyframes blurInOut {
-    0%, 10%, 90%, 100% { filter: blur(4px); }
+    0%, 10%, 90%, 100% { filter: blur(2px); }
     30%, 70% { filter: blur(0px); }
 }
 .mhp-animate {
-    animation: blurInOut 9s ease-in-out infinite;
+    animation: blurInOut 2s ease-in-out infinite;
 }
 
 
@@ -636,7 +637,6 @@ body{
 .mhp-nv-header{
     padding-top: 2vw;
     padding-left: 3vw;
-    padding-bottom: 2vw;
     color: #FFE34F;
     display: flex;
     align-items: flex-start;
@@ -645,9 +645,10 @@ body{
     font-size: 40px;
 }
 .mhp-nv-scroll{
-    min-height: 500px;
+    min-height: 540px;
     display: flex;
     overflow-x: auto;
+    padding-top: 2vw;
     padding-right: 30px;
 }
 .mhp-nv-scroll::-webkit-scrollbar{
@@ -657,13 +658,34 @@ body{
     min-width: 270px;
     height: 300px;
     background-color: #c9cbc3;
-    margin: 10px 30px 30px 30px;
+    margin: 20px 30px 30px 30px;
     border-radius: 30px;
 }
-.mhp-vn-btn{
+.mhp-vn-btn {
     padding: 0;
-    border-radius: 30px;
+    border-radius: 32px;
+
+    transition: 0.25s;
+    border: 2px solid;
+    background: none;
+    font: inherit;
+    line-height: 1;
 }
+
+.mhp-vn-btn:hover,
+.mhp-vn-btn:focus {
+    animation: pulse 1s;
+    box-shadow: 0 0 0 2em transparent;
+    border-color: #FFE34F;
+    color: #fff;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 #8c94b2;
+    }
+}
+
 #mhp-btn-img{
     height: 450px;
     width: 300px;
