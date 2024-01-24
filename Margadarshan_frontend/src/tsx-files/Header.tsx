@@ -32,10 +32,10 @@ const Header: React.FC = () => {
                 <div className="header-website-title">
                     <button className="header-logo-button" id="header-logo-button">
                         <div className="header-logo-container">
-                            <Link to="/ "><img className="header-logo" src="src\assets\Document\Margadarshan logo.png" alt="header-logo" /></Link>
+                            <Link to="/mainhomepage "><img className="header-logo" src="src\assets\Document\Margadarshan logo.png" alt="header-logo" /></Link>
                         </div>
                     </button>
-                    <Link to="/ "><div className="header-website-title-button"> MARGADARSHAN </div></Link>
+                    <Link to="/mainhomepage "><div className="header-website-title-button"> MARGADARSHAN </div></Link>
                 </div>
 
                 <div className="header-header-button-container">
@@ -60,7 +60,7 @@ const Header: React.FC = () => {
                         </div>
                     </div>
 
-                    <button className="header-header-button">Roadmap</button>
+                    <Link to="/roadmap"><button className="header-header-button">Roadmap</button></Link>
                 </div>
 
                 <div id="header-mySidenav" className="header-sidenav" style={{ width: sidenavWidth }}>
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
                     <Link to="/education ">Education</Link>
                     <Link to="/document ">Documents</Link>
                     <Link to="/sop ">SOP and Essays</Link>
-                    <Link to="/ ">Roadmap</Link>
+                    <Link to="/roadmap ">Roadmap</Link>
                 </div>
 
                 <div className="header-profile-container">
