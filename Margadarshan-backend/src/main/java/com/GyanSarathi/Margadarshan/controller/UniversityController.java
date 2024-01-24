@@ -1,10 +1,13 @@
 package com.GyanSarathi.Margadarshan.controller;
 
 import com.GyanSarathi.Margadarshan.Repository.UniversityRepository;
+import com.GyanSarathi.Margadarshan.dto.RoadmapDto;
 import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.University;
+import com.GyanSarathi.Margadarshan.response.RoadmapResponse;
 import com.GyanSarathi.Margadarshan.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-public class UniversityController {
+public class UniversityController{
 
     private final UniversityService universityService;
 
@@ -27,8 +30,8 @@ public class UniversityController {
         return universityService.getAll();
     }
     @PostMapping("/save-university")
-    public void saveUniversity(@RequestBody UniversityDto universityDto){
-        universityService.save(universityDto);
+    public void saveUniversity(@ModelAttribute UniversityDto universityDto){
+        universityService.saveWithImage(universityDto);
     }
     @GetMapping("/university-by-id/{universityId}")
     public Optional<University> getUniversityById(@PathVariable("universityId") int universityId){
@@ -45,9 +48,48 @@ public class UniversityController {
     }
 
     @PostMapping("/university-by-name")
-    public ResponseEntity<Optional<University>> findUniversityByName(@RequestBody UniversityDto universityDto){
-        Optional<University> universities = universityService.findByUniversityName(universityDto.getUniversityName());
+    public ResponseEntity<List<University>> findUniversityByName(@RequestBody UniversityDto universityDto){
+        List<University> universities = universityService.findByUniversityName(universityDto.getUniversityName());
         return ResponseEntity.ok(universities);
     }
+
+    @GetMapping("/universities-major")
+    public List<?> listAllMajors(){
+        List<?> majors = universityService.listAllMajors();
+        return majors;
+    }
+
+    @PostMapping("/update-university")
+    public void updateUniversity(@ModelAttribute UniversityDto universityDto){
+        universityService.updateUniversity(universityDto);
+    }
+
+    @PostMapping("/update-university-without-image")
+    public void updateUniversityWithoutImage(@RequestBody UniversityDto universityDto){
+        universityService.updateUniversityWithoutImage(universityDto);
+    }
+
+    @PostMapping("/roadmap")
+    public RoadmapResponse uniForRoadmap(@RequestBody RoadmapDto roadmapDto){
+        University university = universityService.filterForRoadmap(roadmapDto);
+        String message = null;
+        if(roadmapDto.getEssaysPrepared()=="Yes" && university.isRequiredEssays()==true || university.isRequiredEssays()==true){
+            message = "Your written essays will become handy";
+        } else if (roadmapDto.getEssaysPrepared()=="No" && university.isRequiredEssays()==true) {
+            message = "The selected University requires essays.";
+        } else if (roadmapDto.getEssaysPrepared()=="No" && university.isRequiredEssays()==false) {
+            message= "No essays required";
+        }
+        return new RoadmapResponse(university, message);
+    }
+
+    @GetMapping("/roadmap-unis-dropdown")
+    public List<?> uniDropdownRoadmap(){
+        return universityService.listAllUniversities();
+    }
+
+
+
+
 
 }

@@ -21,11 +21,11 @@
     border-color: grey;
 }
 .student-searchbtn-adminUni {
-    height: 30px;
+    height: 27px;
     width: 25px;
     background-color: white;
     margin-left: -45px;
-    margin-top: 4px;
+    margin-top: 8px;
 }
 .student-searchbtn-adminUni:hover {
     border: none;
@@ -33,7 +33,7 @@
 .student-search-img-adminUni {
     height: 25px;
     margin-left: -14px;
-    margin-top: -6px;
+    margin-top: -23px;
 }
 .add-uni-btn-adminUni:hover {
     background-color: white;
@@ -44,6 +44,7 @@
 
 .adminUni-list {
     padding-bottom: 50px;
+    padding-top: 20px;
 }
 .edit-uni-btn {
     color: black;
@@ -53,6 +54,10 @@
 .edit-uni-btn:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+.adminUni-main-container {
+    display: flex;
+    flex-direction: column;
 }
 .adminUni-container {
     border: 3px solid;
@@ -110,6 +115,7 @@
     font-weight: 500;
 }
 
+
 @media screen and (max-width: 850px) {
     .top-section-adminUni {
         gap: 100px;
@@ -119,6 +125,9 @@
     }
     .student-searchbar-adminUni {
         width: 200px;
+    }
+    .edit-uni-btn {
+        margin-left: 450px;
     }
 }
 
@@ -146,5 +155,8 @@
     }
     .adminUni-length {
         display: none;
+    }
+    .edit-uni-btn {
+        margin-left: 200px;
     }
 }

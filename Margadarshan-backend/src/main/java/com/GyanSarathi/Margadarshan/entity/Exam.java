@@ -25,8 +25,16 @@ public class Exam{
     @Column(name = "exam_name")
     private String examName;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "exam",cascade = CascadeType.ALL)
-    private List<ExamDeadlines> examDeadlines = new ArrayList<>();
+
+    /*CREATE TABLE `exams` (
+  `exam_id` int NOT NULL,
+  `exam_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`exam_id`)
+)
+
+*/
+
+
 
 
 

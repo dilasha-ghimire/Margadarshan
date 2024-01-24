@@ -1,8 +1,10 @@
 package com.GyanSarathi.Margadarshan.service;
 
+import com.GyanSarathi.Margadarshan.dto.RoadmapDto;
 import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.University;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +12,7 @@ import java.util.Optional;
 @Service
 public interface UniversityService {
 
-    String save(UniversityDto universityDto);
+    String saveWithImage(UniversityDto universityDto);
 
     List<University> getAll();
 
@@ -20,6 +22,16 @@ public interface UniversityService {
 
     List<University> findByMajorOrStateOrFees(UniversityDto universityDto);
 
-    Optional<University> findByUniversityName(String universityName);
+    List<University> findByUniversityName(String universityName);
+
+    List<?> listAllMajors();
+
+    String updateUniversity(UniversityDto universityDto);
+
+    String updateUniversityWithoutImage(UniversityDto universityDto);
+
+    University filterForRoadmap(RoadmapDto roadmapDto);
+
+    List<?> listAllUniversities();
 
 }
