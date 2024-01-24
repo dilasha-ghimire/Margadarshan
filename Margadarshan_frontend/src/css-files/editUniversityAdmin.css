@@ -2,7 +2,7 @@
     display: flex;
     background-color: #152039;
     width: 900px;
-    height: 450px;
+    height: 500px;
     z-index: 50;
 
     padding-left: 50px;
@@ -29,6 +29,7 @@
 }
 .file-img-editUni-adminUni {
     height: 250px;
+    width: 100%;
 }
 .browse-button-editUni {
     margin-top: 10px;
@@ -75,12 +76,50 @@
     display: flex;
     gap: 20px;
     margin-top: 30px;
+    align-items: end;
 }
-.editUni-delete-btn, .editUni-update-btn {
+.editUni-delete-btn, .editUni-update-btn, .next-btn-editUni, .back-btn-editUni {
     background-color: white;
     color: black;
     border-radius: 20px;
     width: 150px;
+    height: 50px;
+}
+
+.editUni-textfield-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+.editUni-textfield-2 label {
+    color: #FFE34F;
+    font-family: "Nunito";
+}
+.editUni-textfield-2 input {
+    width: 200px;
+    height: 30px;
+}
+.uniAvSats-uniAvGre-container-editUni, .uniAvIelts-uniAvToefl-container-editUni, .uniAvGpa-container-editUni {
+    display: flex;
+    gap: 20px;
+}
+.uniBachelorsGpa-container-editUni, .uniMastersGpa-container-editUni, .uniAvSats-container-editUni, .uniAvGre-container-editUni, .uniAvIelts-container-editUni, .uniAvToefl-container-editUni, .uniSupEssay-container-editUni {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.uniSupEssay-dropdown-editUni {
+    width: 110px;
+    height: 30px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+.update-back-btn-container-editUni {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -97,15 +136,18 @@
         height: 40px;
         font-size: 12px;
     }
-    .editUni-textfield input {
+    .editUni-textfield input, .editUni-textfield-2 input {
         width: 150px;
         font-size: 9px;
         height: 20px;
     }
-    .edit-uni-buttons {
-        margin-top: 10px;
+    .editUni-textfield label, .editUni-textfield-2 label {
+        font-size: 14px;
     }
-    .editUni-delete-btn, .editUni-update-btn {
+    .edit-uni-buttons {
+        margin-top: -20px;
+    }
+    .editUni-delete-btn, .editUni-update-btn, .next-btn-editUni, .back-btn-editUni {
         height: 40px;
     }
 }
@@ -114,12 +156,26 @@
     .edit-uni-container-adminUni {
         left: 20px;
         width: 400px;
-        height: 450px;
+        height: 460px;
     }
-    .uniCity-uniState-container-editUni {
+    .editUni-textfield-2 {
+        gap: 5px;
+    }
+    .uniCity-uniState-container-editUni, .uniAvGpa-container-editUni, .uniAvSats-uniAvGre-container-editUni, .uniAvIelts-uniAvToefl-container-editUni {
         flex-direction: column;
+    }
+    .uniAvGpa-container-editUni, .uniAvSats-uniAvGre-container-editUni, .uniAvIelts-uniAvToefl-container-editUni {
+        gap: 5px;
     }
     .edit-uni-buttons {
         margin-left: -150px;
+        margin-top: 10px;
+    }
+    .editUni-delete-btn, .editUni-update-btn, .next-btn-editUni, .back-btn-editUni {
+        height: 30px;
+        line-height: 0.8;
+    }
+    .next-btn-editUni {
+        margin-top: 20px;
     }
 }

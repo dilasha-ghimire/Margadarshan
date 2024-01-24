@@ -46,7 +46,8 @@ public class UniversityServiceImpl implements UniversityService{
         university.setFees(universityDto.getUniversityFees());
         university.setName(universityDto.getUniversityName());
         university.setLength(universityDto.getUniversityLength());
-        university.setAverageUniversityGpa(universityDto.getAverageUniversityGpa());
+        university.setAverageBachelorsGpa(universityDto.getAverageBachelorsGpa());
+        university.setAverageMastersGpa(universityDto.getAverageMastersGpa());
         university.setAverageIeltsScore(universityDto.getAverageIeltsScore());
         university.setAverageToeflScore(universityDto.getAverageToeflScore());
         university.setAverageGreScore(universityDto.getAverageGreScore());
@@ -105,7 +106,8 @@ public class UniversityServiceImpl implements UniversityService{
         existingUniversity.setMajor(universityDto.getUniversityMajor());
         existingUniversity.setFees(universityDto.getUniversityFees());
         existingUniversity.setLength(universityDto.getUniversityLength());
-        existingUniversity.setAverageUniversityGpa(universityDto.getAverageUniversityGpa());
+        existingUniversity.setAverageBachelorsGpa(universityDto.getAverageBachelorsGpa());
+        existingUniversity.setAverageMastersGpa(universityDto.getAverageMastersGpa());
         existingUniversity.setAverageIeltsScore(universityDto.getAverageIeltsScore());
         existingUniversity.setAverageToeflScore(universityDto.getAverageToeflScore());
         existingUniversity.setAverageGreScore(universityDto.getAverageGreScore());
@@ -133,7 +135,8 @@ public class UniversityServiceImpl implements UniversityService{
         existingUniversity.setMajor(universityDto.getUniversityMajor());
         existingUniversity.setFees(universityDto.getUniversityFees());
         existingUniversity.setLength(universityDto.getUniversityLength());
-        existingUniversity.setAverageUniversityGpa(universityDto.getAverageUniversityGpa());
+        existingUniversity.setAverageBachelorsGpa(universityDto.getAverageBachelorsGpa());
+        existingUniversity.setAverageMastersGpa(universityDto.getAverageMastersGpa());
         existingUniversity.setAverageIeltsScore(universityDto.getAverageIeltsScore());
         existingUniversity.setAverageToeflScore(universityDto.getAverageToeflScore());
         existingUniversity.setAverageGreScore(universityDto.getAverageGreScore());
@@ -144,33 +147,34 @@ public class UniversityServiceImpl implements UniversityService{
     }
 
     @Override
-    public List<University> filterForRoadmap(RoadmapDto roadmapDto) {
+    public University filterForRoadmap(RoadmapDto roadmapDto) {
         if(Objects.equals(roadmapDto.getDegreeSelection(), "Masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Toefl")){
-            List<University> listOfMastersUniversityWithToefl =
-                    universityRepository.filterForRoadmap
-                            (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getGpa()),0,Integer.parseInt(roadmapDto.getToeflScore()),
+            University MastersUniversityWithToefl =
+                    universityRepository.filterForRoadmapTwo
+                            (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageMastersGpa()),0,Integer.parseInt(roadmapDto.getToeflScore()),
                                     Integer.parseInt(roadmapDto.getGreScore()),0);
-            return listOfMastersUniversityWithToefl;
+            return MastersUniversityWithToefl;
         } else if (Objects.equals(roadmapDto.getDegreeSelection(), "Masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Ielts")) {
-            List<University> listOfMastersUniversityWithIelts =
-                    universityRepository.filterForRoadmap
-                            (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getGpa()),Integer.parseInt(roadmapDto.getIeltsScore()),0,
+            University MastersUniversityWithIelts =
+                    universityRepository.filterForRoadmapTwo
+                            (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageMastersGpa()),Integer.parseInt(roadmapDto.getIeltsScore()),0,
                                     Integer.parseInt(roadmapDto.getGreScore()),0);
-            return listOfMastersUniversityWithIelts;
+            return MastersUniversityWithIelts;
         }
         else if (Objects.equals(roadmapDto.getDegreeSelection(), "Bachelors") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Ielts")) {
-            List<University> listOfBachelorsUniversityWithIelts =
+            University BachelorsUniversityWithIelts =
                     universityRepository.filterForRoadmap
-                            (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getGpa()), Integer.parseInt(roadmapDto.getIeltsScore()), 0,
+                            (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageBachelorsGpa()), Integer.parseInt(roadmapDto.getIeltsScore()), 0,
                                     0, Integer.parseInt(roadmapDto.getSatScore()));
-            return listOfBachelorsUniversityWithIelts;
+            return BachelorsUniversityWithIelts;
         }
         else if (Objects.equals(roadmapDto.getDegreeSelection(), "Bachelors") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Toefl")) {
-            List<University> listOfBachelorsUniversityWithToefl =
+            University BachelorsUniversityWithToefl =
                     universityRepository.filterForRoadmap
-                            (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getGpa()), 0, Integer.parseInt(roadmapDto.getToeflScore()),
+                            (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageBachelorsGpa()), 0, Integer.parseInt(roadmapDto.getToeflScore()),
+
                                     0, Integer.parseInt(roadmapDto.getSatScore()));
-            return listOfBachelorsUniversityWithToefl;
+            return BachelorsUniversityWithToefl;
         }
 
         return null;
