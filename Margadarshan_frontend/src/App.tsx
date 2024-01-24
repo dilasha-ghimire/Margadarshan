@@ -21,14 +21,12 @@ import GRE from "./tsx-files/GRE.tsx";
 import IELTS from './tsx-files/IELTS.tsx';
 import TOEFL from './tsx-files/TOEFL.tsx';
 import Roadmap from './tsx-files/Roadmap.tsx';
-<<<<<<< Updated upstream
 import AdminEducation from "./tsx-files/AdminEducation.tsx";
-
-=======
 import AdminExam from './tsx-files/AdminExam.tsx';
 import AdminExam_SAT from './tsx-files/AdminExam_SAT.tsx';
 import AdminExam_GRE from './tsx-files/AdminExam_GRE.tsx';
->>>>>>> Stashed changes
+
+
 const router = createBrowserRouter(
     [
         {
@@ -110,12 +108,10 @@ const router = createBrowserRouter(
         {
             path: "/roadmap",
             element: <Roadmap/>
-<<<<<<< Updated upstream
         },
         {
             path: "/admineducation",
             element: <AdminEducation/>
-=======
         }, 
         {
             path: "/adminExam",
@@ -128,7 +124,6 @@ const router = createBrowserRouter(
         {
             path: "/adminExam_gre",
             element: <AdminExam_GRE/>
->>>>>>> Stashed changes
         }
     ]
 )
