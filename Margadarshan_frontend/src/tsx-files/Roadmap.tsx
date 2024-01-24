@@ -11,6 +11,11 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
 function Roadmap() {
+
+    useEffect(() => {
+        document.title = "Roadmap | Margadarshan"
+    }, [])
+
     const [selectedUniOption, setSelectedUniOption] = useState("");
     const [selectedMajorOption, setSelectedMajorOption] = useState("");
     const [selectedEnglishTest, setSelectedEnglishTest] = useState("");

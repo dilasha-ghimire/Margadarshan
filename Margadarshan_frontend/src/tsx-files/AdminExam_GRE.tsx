@@ -1,6 +1,12 @@
 import AdminExam from './AdminExam';
 import "../css-files/AdminExam.css"
+import {useEffect} from "react";
 function AdminExam_GRE(){
+
+    useEffect(() => {
+        document.title = "Admin Exams | Margadarshan"
+    }, [])
+
     return (
         <>
         <AdminExam/>

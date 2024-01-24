@@ -3,9 +3,15 @@ import axios from 'axios';
 import { useMutation } from 'react-query';
 import "../css-files/AdminExam.css"
 import AdminExam from './AdminExam';
+import {useEffect} from "react";
 // import "../tsx-files/AdminExam"
 
 const AdminExam_SAT = () => {
+
+  useEffect(() => {
+    document.title = "Admin Exams | Margadarshan"
+  }, [])
+
   const { register, handleSubmit, reset } = useForm();
 
   // Define a mutation function using react-query's useMutation

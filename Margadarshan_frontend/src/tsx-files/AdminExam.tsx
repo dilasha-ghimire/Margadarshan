@@ -1,7 +1,13 @@
 import Header from "./Header";
 import "../css-files/ExamSection.css"
 import { Link } from "react-router-dom";
+import {useEffect} from "react";
 function AdminExam(){
+
+    useEffect(() => {
+        document.title = "Admin Exams | Margadarshan"
+    }, [])
+
     return(
         <>
         <Header/>
