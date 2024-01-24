@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../css-files/mhomepagestyle.css';
 import Header from "./Header.tsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,6 +7,10 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 
 const MainHomepage: React.FC = () => {
+
+    useEffect(() => {
+        document.title = "Margadarshan"
+    }, [])
 
     let slideIndex: number = 0;
     (function initSlides(): void {
@@ -28,7 +32,7 @@ const MainHomepage: React.FC = () => {
             firstTimeLoad = false;
         }
         else {
-            setTimeout(() => showSlides(), 2000);
+            setTimeout(() => showSlides(), 3000);
         }
 
     })();
@@ -51,7 +55,7 @@ const MainHomepage: React.FC = () => {
                 currentSlide.style.display = "block";
             }
         }
-        setTimeout(showSlides, 2000);
+        setTimeout(showSlides, 3000);
     }
 
 

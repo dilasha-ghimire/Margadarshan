@@ -6,6 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 function AdminEducation() {
+
+    useEffect(() => {
+        document.title = "Admin Education | Margadarshan"
+    }, [])
+
     const [educationData, setEducationData] = useState([]);
     const [filteredEducationData, setFilteredEducationData] = useState([]);
     const [searchInput, setSearchInput] = useState('');
