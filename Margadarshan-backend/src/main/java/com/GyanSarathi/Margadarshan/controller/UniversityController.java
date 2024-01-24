@@ -4,6 +4,7 @@ import com.GyanSarathi.Margadarshan.Repository.UniversityRepository;
 import com.GyanSarathi.Margadarshan.dto.RoadmapDto;
 import com.GyanSarathi.Margadarshan.dto.UniversityDto;
 import com.GyanSarathi.Margadarshan.entity.University;
+import com.GyanSarathi.Margadarshan.response.RoadmapResponse;
 import com.GyanSarathi.Margadarshan.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -69,8 +70,17 @@ public class UniversityController{
     }
 
     @PostMapping("/roadmap")
-    public List<University> listUniForRoadmap(@RequestBody RoadmapDto roadmapDto){
-        return universityService.filterForRoadmap(roadmapDto);
+    public RoadmapResponse uniForRoadmap(@RequestBody RoadmapDto roadmapDto){
+        University university = universityService.filterForRoadmap(roadmapDto);
+        String message = null;
+        if(roadmapDto.getEssaysPrepared()=="Yes" && university.isRequiredEssays()==true || university.isRequiredEssays()==true){
+            message = "Your written essays will become handy";
+        } else if (roadmapDto.getEssaysPrepared()=="No" && university.isRequiredEssays()==true) {
+            message = "The selected University requires essays.";
+        } else if (roadmapDto.getEssaysPrepared()=="No" && university.isRequiredEssays()==false) {
+            message= "No essays required";
+        }
+        return new RoadmapResponse(university, message);
     }
 
     @GetMapping("/roadmap-unis-dropdown")
