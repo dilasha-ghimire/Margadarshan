@@ -220,7 +220,7 @@ const MainHomepage: React.FC = () => {
                                 <div className="mhp-testimonial-header">
                                     <img src="src/assets/Homepage/img3.jpeg" id="mhp-test-img" alt="Parth Gautam profile picture"/>
                                         <div className="header-txt">
-                                            <p className="mhp-p-name">Ojaswi Gautam</p>
+                                            <p className="mhp-p-name">Ojashwi Bajracharya</p>
                                             <p>Proven Customer</p>
                                         </div>
                                 </div>

@@ -1,5 +1,5 @@
 .adedu-content{
-    margin-left: 70px;
+    margin-left: 90px;
 }
 .adedu-mainbar {
     display: flex;
@@ -25,6 +25,7 @@
     width: 25px;
     background-color: white;
     margin-right: 2vw;
+    margin-top: 2px;
 }
 
 .adedu-searchbtn-container{

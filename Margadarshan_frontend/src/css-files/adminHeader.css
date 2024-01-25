@@ -7,7 +7,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 90px;
     z-index: 100;
 }
 .header-left-admin {
@@ -28,5 +28,111 @@
     font-family: "Paytone One";
     font-size: 22px;
     margin-left: 25px;
-    
 }
+
+.admin-header-nav {
+    position: fixed;
+    top: 130px;
+    left: 10px;
+    padding: 1.7rem 1.9rem 0;
+    width: 85px;
+    background-color: #152039;
+    box-shadow: 1px 0 0 rgba(22, 8, 43, 0.1);
+    border-radius: 20px;
+    z-index: 100;
+    transition: .4s;
+    overflow: hidden;
+}
+
+.admin-header-nav:hover {
+    width: 219px;
+}
+
+.admin-header-nav-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 3rem;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.admin-header-nav-container::-webkit-scrollbar {
+    display: none;
+}
+
+.admin-header-nav-list,
+.admin-header-nav-items {
+    display: grid;
+}
+
+.admin-header-nav-list {
+    row-gap: 2.5rem;
+}
+
+.admin-header-nav-items {
+    row-gap: 1.7rem;
+}
+
+.admin-header-nav-link {
+    display: flex;
+    align-items: center;
+    color: #b7d8bc;
+}
+
+.admin-header-nav-link:hover {
+    color: #FFE34F;
+}
+
+.admin-header-nav-icon {
+    font-size: 1.3rem;
+    margin-right: .5rem;
+}
+
+.admin-header-nav-name {
+    font-size:.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.admin-header-nav-logout {
+    margin-top: 5rem;
+}
+
+.admin-header-nav-dropdown {
+    overflow: hidden;
+    max-height: 21px;
+    transition: .4s ease-in-out;
+}
+
+.admin-header-nav-dropdown-collapse {
+    background-color: #677594;
+    border-radius: .25rem;
+    margin-top: 1rem;
+}
+
+.admin-header-nav-dropdown-content {
+    display: grid;
+    row-gap: .5rem;
+    padding: .75rem 2.5rem .75rem 1.8rem;
+}
+
+.admin-header-nav-dropdown-item {
+    font-size: .75rem;
+    font-weight: 500;
+    color: rgb(45, 37, 60);
+}
+
+.admin-header-nav-dropdown-item:hover {
+    color: #FFE34F;;
+}
+
+.admin-header-nav-dropdown:hover {
+    max-height: 100rem;
+}
+
+.active {
+    color: #FFE34F;
+}
+

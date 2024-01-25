@@ -102,6 +102,7 @@
     color: white;
     border: none;
     border-radius: 0;
+    margin-top: 0;
     width: 160px;
     height: 40px;
     transition: background-color, color, 0.25s;
