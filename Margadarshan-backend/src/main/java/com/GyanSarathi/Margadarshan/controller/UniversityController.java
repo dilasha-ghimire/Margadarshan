@@ -3,15 +3,19 @@ package com.GyanSarathi.Margadarshan.controller;
 import com.GyanSarathi.Margadarshan.Repository.UniversityRepository;
 import com.GyanSarathi.Margadarshan.dto.RoadmapDto;
 import com.GyanSarathi.Margadarshan.dto.UniversityDto;
+import com.GyanSarathi.Margadarshan.entity.Scholarship;
 import com.GyanSarathi.Margadarshan.entity.University;
 //import com.GyanSarathi.Margadarshan.response.RoadmapResponse;
 import com.GyanSarathi.Margadarshan.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -29,6 +33,16 @@ public class UniversityController{
     public List<University> getAllUniversityData(){
         return universityService.getAll();
     }
+
+    @GetMapping("/universities-record")
+    public ResponseEntity<Object> findAllRecords() {
+        List<University> universities = universityService.getAll();
+        int totalRecords = universities.size();
+        Map<String, Object> response = new HashMap<>();
+        response.put("totalRecords", totalRecords);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping("/save-university")
     public void saveUniversity(@ModelAttribute UniversityDto universityDto){
         universityService.saveWithImage(universityDto);

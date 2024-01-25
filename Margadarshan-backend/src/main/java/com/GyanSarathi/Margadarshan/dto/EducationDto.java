@@ -24,4 +24,5 @@ public class EducationDto {
     @NotNull
     private int studentId;
 
+
 }

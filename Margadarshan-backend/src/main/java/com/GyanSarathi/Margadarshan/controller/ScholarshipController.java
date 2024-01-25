@@ -8,10 +8,13 @@ import com.GyanSarathi.Margadarshan.entity.Student;
 import com.GyanSarathi.Margadarshan.entity.University;
 import com.GyanSarathi.Margadarshan.service.ScholarshipService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -38,6 +41,14 @@ public class ScholarshipController{
             throw new RuntimeException("Scholarship data not found - " + scholarshipId);
         }
         return scholarship;
+    }
+    @GetMapping("/scholarship-record")
+    public ResponseEntity<Object> findAllRecords() {
+        List<Scholarship> scholarships = scholarshipService.getAll();
+        int totalRecords = scholarships.size();
+        Map<String, Object> response = new HashMap<>();
+        response.put("totalRecords", totalRecords);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PostMapping("/save-scholarship")
     public void addScholarship(@ModelAttribute ScholarshipDto scholarshipDto){

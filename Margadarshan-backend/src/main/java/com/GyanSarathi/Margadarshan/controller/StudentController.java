@@ -7,11 +7,14 @@ import com.GyanSarathi.Margadarshan.response.LoginResponse;
 import com.GyanSarathi.Margadarshan.response.OtpResponse;
 import com.GyanSarathi.Margadarshan.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin
@@ -29,6 +32,16 @@ public class StudentController {
     @GetMapping("/students")
     public List<Student> findAll(){
         return studentService.findAll();
+    }
+
+    @GetMapping("/students-record")
+    public ResponseEntity<Object> findAllRecords() {
+        List<Student> students = studentService.findAll();
+        int totalRecords = students.size();
+        Map<String, Object> response = new HashMap<>();
+        response.put("totalRecords", totalRecords);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/student-by-id/{studentId}")

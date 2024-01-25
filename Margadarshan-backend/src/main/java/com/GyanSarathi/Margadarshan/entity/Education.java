@@ -25,7 +25,7 @@ public class Education {
     @Column(name = "education_qualification", nullable = false)
     private String educationQualification;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
     
@@ -38,7 +38,6 @@ public class Education {
   KEY `student_id` (`student_id`),
   CONSTRAINT `education_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `Students` (`student_id`)
 )
-
 */
 
 }

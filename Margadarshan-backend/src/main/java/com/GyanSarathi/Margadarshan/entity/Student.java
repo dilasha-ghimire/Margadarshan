@@ -1,7 +1,11 @@
 package com.GyanSarathi.Margadarshan.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,6 +37,10 @@ public class Student{
     @Column(name = "password", nullable = false)
     private String password;
 
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Education> educations = new ArrayList<>();
+
      /*
     CREATE TABLE `Students` (
   `student_id` int NOT NULL AUTO_INCREMENT,
@@ -44,5 +52,4 @@ public class Student{
   PRIMARY KEY (`student_id`)
 )
     */
-
 }
