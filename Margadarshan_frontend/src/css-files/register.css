@@ -26,7 +26,6 @@
 }
 .gyansarathi {
     font-size: 26px;
-    margin-top: -50px;
 }
 .website-img-container {
     display: flex;
@@ -49,6 +48,7 @@
     display: flex;
     flex-direction: column;
     align-items: start;
+    gap: 10px;
 }
 .main-title, .subtitle {
     font-family: "Nunito";
