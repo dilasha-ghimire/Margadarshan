@@ -146,8 +146,8 @@ body, html {
     }
 }
 .search-button-container-sch {
-    margin-right: 110px;
-    margin-top: 20px;
+    margin-left: 480px;
+    margin-top: 40px;
 }
 .search {
     height: 45px;
@@ -279,3 +279,39 @@ body, html {
 .sch-choice {
     color: black;
 }
+
+.sch-type-dropdown, .grant-dropdown {
+    background-color: white;
+    color: black;
+    height: 35px;
+    width: 200px;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+.gpa-dropdown {
+    background-color: white;
+    color: black;
+    height: 35px;
+    width: 125px;
+    border-width: 2px;
+    border-radius: 5px;
+}
+.type-choice, .grant-choice {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.gpa-drop-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 20px;
+}
+.gpa-text {
+    font-family: "Nunito";
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
