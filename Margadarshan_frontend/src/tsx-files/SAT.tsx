@@ -3,6 +3,11 @@ import ExamSection from "./ExamSection";
 import {useEffect, useState} from "react";
 import axios from "axios";
 function SAT(){
+
+    useEffect(() => {
+        document.title = "Exams | Margadarshan"
+    }, [])
+
     const [data,setdata]=useState([])
     useEffect(() => {
         axios.get("http://localhost:8080/api/exam-deadlines")

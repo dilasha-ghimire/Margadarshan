@@ -21,6 +21,10 @@ import GRE from "./tsx-files/GRE.tsx";
 import IELTS from './tsx-files/IELTS.tsx';
 import TOEFL from './tsx-files/TOEFL.tsx';
 import Roadmap from './tsx-files/Roadmap.tsx';
+import AdminEducation from "./tsx-files/AdminEducation.tsx";
+import AdminExam from './tsx-files/AdminExam.tsx';
+import AdminExam_SAT from './tsx-files/AdminExam_SAT.tsx';
+import AdminExam_GRE from './tsx-files/AdminExam_GRE.tsx';
 
 
 const router = createBrowserRouter(
@@ -104,6 +108,22 @@ const router = createBrowserRouter(
         {
             path: "/roadmap",
             element: <Roadmap/>
+        },
+        {
+            path: "/admineducation",
+            element: <AdminEducation/>
+        }, 
+        {
+            path: "/adminExam",
+            element: <AdminExam/>
+        }, 
+        {
+            path: "/adminExam_sat",
+            element: <AdminExam_SAT/>
+        }, 
+        {
+            path: "/adminExam_gre",
+            element: <AdminExam_GRE/>
         }
     ]
 )

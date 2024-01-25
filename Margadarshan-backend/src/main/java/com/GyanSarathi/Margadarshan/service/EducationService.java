@@ -10,7 +10,9 @@ import java.util.List;
 
 @Service
 public interface EducationService {
-    List<?> listOfEducation(EducationDto educationDto);
+//    List<?> listOfEducation(EducationDto educationDto);
+
+    List<Object[]> listOfEducationWithStudentName();
 
 //    void addOnEducation(EducationDto educationDto);
 //

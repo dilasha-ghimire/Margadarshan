@@ -13,6 +13,11 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function AdminUniversity() {
+
+    useEffect(() => {
+        document.title = "Admin Universities | Margadarshan"
+    }, [])
+
     const [isAddUniVisible, setAddUniVisible] = useState(false);
     const [isEditUniVisible, setEditUniVisible] = useState(false);
     const [filteredUni, setFilteredUni] = useState([]);
@@ -301,9 +306,8 @@ function AdminUniversity() {
 
                                     <label className="file-upload-label-addUni" htmlFor="universityImageId">
                                         <div className="file-img-container-addUni">
-                                            <img className="file-img-addUni" src="src/assets/AdminUniversity/file upload1.png"></img>
+                                            <img className="file-img-addUni" src="src/assets/AdminUniversity/insert image.png"></img>
                                         </div>
-                                        <button className="browse-button-addUni" type="submit">Browse files</button>
                                     </label>
 
                                     <input id="universityImageId" type="file" className="file-input-addUni" {...register("universityImage")}></input>

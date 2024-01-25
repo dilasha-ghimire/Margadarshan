@@ -11,13 +11,23 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 
 function Roadmap() {
+
+    useEffect(() => {
+        document.title = "Roadmap | Margadarshan"
+    }, [])
+
     const [selectedUniOption, setSelectedUniOption] = useState("");
     const [selectedMajorOption, setSelectedMajorOption] = useState("");
     const [selectedEnglishTest, setSelectedEnglishTest] = useState("");
     const [isBachelorDivVisible, setBachelorDivVisible] = useState(false);
     const [isMasterDivVisible, setMasterDivVisible] = useState(false);
     const [selectedStudyLevel, setSelectedStudyLevel] = useState("");
+    const [ selectedEssay, setSelectedEssay ] = useState("");
     const { register, handleSubmit } = useForm();
+
+    const [isPopupVisible, setPopupVisible] = useState(false);
+    const [popupMessage, setPopupMessage] = useState<string | null>(null);
+    const [universityAverages, setUniversityAverages] = useState<any | null>(null);
 
     useEffect(() => {
         return () => {
@@ -68,11 +78,13 @@ function Roadmap() {
             value.universityMajor = selectedMajorOption;
             value.universityName = selectedUniOption;
             value.languageTestSelection = selectedEnglishTest;
+            value.essaysPrepared = selectedEssay;
+            value.degreeSelection = selectedStudyLevel;
 
-            if (selectedEnglishTest === "IELTS") {
+            if (selectedEnglishTest === "Ielts") {
                 value.ieltsScore = value.ieltsScore;
             }
-            if (selectedEnglishTest === "TOEFL") {
+            if (selectedEnglishTest === "Toefl") {
                 value.toeflScore = value.toeflScore;
             }
 
@@ -85,6 +97,11 @@ function Roadmap() {
             console.error("Error loading roadmap", error);
         }
     }
+
+    const togglePopup = (message: string | null = null) => {
+        setPopupMessage(message);
+        setPopupVisible(!isPopupVisible);
+    };
 
     return (
         <>
@@ -184,13 +201,19 @@ function Roadmap() {
 
                                 <div className="radio-container1-roadmap">
                                     <label>Yes</label>
-                                    <input type="radio" checked={true} name="radio-roadmap"></input>
+                                    <input type="radio" checked={true} name="radio-roadmap"
+                                        onClick={() => {
+                                            setSelectedEssay("Yes");
+                                        }}></input>
                                     <span className="checkmark-roadmap"></span>
                                 </div>
 
                                 <div className="radio-container2-roadmap">
                                     <label>No</label>
-                                    <input type="radio" name="radio-roadmap"></input>
+                                    <input type="radio" name="radio-roadmap"
+                                        onClick={() => {
+                                            setSelectedEssay("No");
+                                        }}></input>
                                     <span className="checkmark-roadmap"></span>
                                 </div>
                             </div>
@@ -267,13 +290,19 @@ function Roadmap() {
 
                                 <div className="radio-container1-roadmap">
                                     <label>Yes</label>
-                                    <input type="radio" checked={true} name="radio-roadmap"></input>
+                                    <input type="radio" checked={true} name="radio-roadmap"
+                                        onClick={() => {
+                                            setSelectedEssay("Yes");
+                                        }}></input>
                                     <span className="checkmark-roadmap"></span>
                                 </div>
 
                                 <div className="radio-container2-roadmap">
                                     <label>No</label>
-                                    <input type="radio" name="radio-roadmap"></input>
+                                    <input type="radio" name="radio-roadmap" 
+                                        onClick={() => {
+                                            setSelectedEssay("No");
+                                        }}></input>
                                     <span className="checkmark-roadmap"></span>
                                 </div>
                             </div>
@@ -289,6 +318,11 @@ function Roadmap() {
 
                 <div className='roadmap-container-main'>
                     <div className='top-roadmap-buttons'>
+                        {/* {isPopupVisible && ( */}
+                            <div className='pop-up'>
+                                <p className='pop-up-text'>{popupMessage || "Default message"}</p>
+                            </div>
+                        {/* )} */}
                         <img className='roadmap-button' src='src\assets\Roadmap\location.png'></img>
                         <img className='roadmap-button' src='src\assets\Roadmap\location.png'></img>
                         <img className='roadmap-button' src='src\assets\Roadmap\location.png'></img>

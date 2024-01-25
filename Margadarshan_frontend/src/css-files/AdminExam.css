@@ -1,0 +1,66 @@
+.adminExam_main{
+    /* margin-top: 200px; */
+    margin-left: 600px;
+    width:600px;
+    height: 400px;
+    background-color: #152039;
+}
+/* .adminExam_Textfield{
+    display: flex;
+    justify-content: space-between;
+}
+.first_div{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 400px;
+    background-color: aqua;
+}
+.first_div label{
+    color: #FFE34F;
+    font-family: "Nunito";
+}
+.second_div{
+    width: 400px;
+    height: 400px;
+}
+.second_div input {
+    height: 40px;
+}
+.andminExam_Text{
+
+    font-weight:500;
+    font-size:30px;
+}
+input[type="date"] {
+    width: 250px;
+    height: 30px;
+} */
+.Ani{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    place-items:center;
+}
+.Rasu{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    /* background-color:blue; */
+    width: 450px;
+    height:340px;
+    font-weight: 700;
+}
+.Rasu label{
+    color: #FFE34F;
+    font-family: "Nunito";
+    font-size: 25px;
+    line-height: 70px;
+}
+.ExamAdmin_UploadButton{
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    width: 150px;
+    margin-left: 360px;
+}
