@@ -1,3 +1,4 @@
+/*
 package com.GyanSarathi.Margadarshan.response;
 
 import com.GyanSarathi.Margadarshan.entity.University;
@@ -18,3 +19,4 @@ public class RoadmapResponse {
 
 
 }
+*/

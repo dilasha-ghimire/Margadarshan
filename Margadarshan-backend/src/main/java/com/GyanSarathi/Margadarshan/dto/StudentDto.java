@@ -8,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class StudentDto {
 
     @NotNull
@@ -28,4 +27,6 @@ public class StudentDto {
 
     @NotNull
     private String studentPassword;
+
+    private String otp;
 }

@@ -49,7 +49,7 @@ public class ScholarshipController{
         scholarshipService.deleteById(scholarshipId);
     }
 
-    @GetMapping("/scholarship-filtered")
+    @PostMapping("/scholarship-filtered")
     public List<Scholarship> filteredScholarship(@RequestBody ScholarshipDto scholarshipDto){
         System.out.println(scholarshipDto.getGrantLowerBound());
         List<Scholarship> scholarships = scholarshipService.findByGrantOrTypeOrGpa(scholarshipDto);

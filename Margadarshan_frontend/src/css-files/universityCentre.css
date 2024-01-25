@@ -146,11 +146,7 @@
         width: 200px;
     }
 }
-/* @media screen and (min-width: 400px) and (max-width: 750px) {
-    .text-field1 {
-        width: 130px;
-    }
-} */
+
 .fee-button-container {
     display: flex;
     align-items: center;

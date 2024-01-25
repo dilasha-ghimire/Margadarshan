@@ -113,7 +113,6 @@ function AdminScholarship() {
         mutationKey: "SAVE_DATA",
         mutationFn: async (requestData: any) => {
             console.log(requestData)
-            console.log("Image: ",requestData.scholarshipImage);
             try {
                 const formData = new FormData();
                 if (requestData.scholarshipImage && requestData.scholarshipImage.length > 0) {
@@ -148,7 +147,6 @@ function AdminScholarship() {
     });
 
     const onSubmitEditSch = async (formData: any): void => {
-        debugger;
         console.log(typeof formData.scholarshipImage)
         if (typeof formData.scholarshipImage!=="string") {
             editScholarship.mutate(formData);
@@ -259,9 +257,8 @@ function AdminScholarship() {
 
                                     <label className="file-upload-label-addSch" htmlFor="scholarshipImageId">
                                         <div className="file-img-container-addSch">
-                                            <img className="file-img-addSch" src={"src/assets/AdminUniversity/file upload1.png"}></img>
+                                            <img className="file-img-addSch" src={"src/assets/AdminUniversity/insert image.png"}></img>
                                         </div>
-                                        <button className="browse-button-addSch" type="submit">Browse files</button>
                                     </label>
 
                                     <input id="scholarshipImageId" type="file" className="file-input-addSch" {...register("scholarshipImage")}></input>

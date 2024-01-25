@@ -22,7 +22,14 @@ function Roadmap() {
     const [isBachelorDivVisible, setBachelorDivVisible] = useState(false);
     const [isMasterDivVisible, setMasterDivVisible] = useState(false);
     const [selectedStudyLevel, setSelectedStudyLevel] = useState("");
+    const [selectedEssay, setSelectedEssay] = useState("");
     const { register, handleSubmit } = useForm();
+
+    const [isPopupVisible, setPopupVisible] = useState(false);
+    const [popupMessage, setPopupMessage] = useState<string | null>(null);
+
+    const [roadmapGpa, setRoadmapGpa] = useState("");
+    const [universityGpa, setUniversityGpa] = useState("");
 
     useEffect(() => {
         return () => {
@@ -62,9 +69,11 @@ function Roadmap() {
 
     const enterRoadmapData = useMutation({
         mutationKey: "SAVE DATA",
-        mutationFn: (requestData: any) => {
-            console.log(requestData)
-            return axios.post("http://localhost:8080/api/roadmap", requestData);
+        mutationFn: async (requestData: any) => {
+            const response = await axios.post("http://localhost:8080/api/roadmap", requestData);
+            setUniversityGpa(response.data.averageBachelorsGpa);
+            console.log(response.data);  
+            return response.data;
         },
     });
 
@@ -73,11 +82,13 @@ function Roadmap() {
             value.universityMajor = selectedMajorOption;
             value.universityName = selectedUniOption;
             value.languageTestSelection = selectedEnglishTest;
+            value.essaysPrepared = selectedEssay;
+            value.degreeSelection = selectedStudyLevel;
 
-            if (selectedEnglishTest === "IELTS") {
+            if (selectedEnglishTest === "Ielts") {
                 value.ieltsScore = value.ieltsScore;
             }
-            if (selectedEnglishTest === "TOEFL") {
+            if (selectedEnglishTest === "Toefl") {
                 value.toeflScore = value.toeflScore;
             }
 
@@ -90,6 +101,33 @@ function Roadmap() {
             console.error("Error loading roadmap", error);
         }
     }
+
+    const compareGpa = () => {
+        try {
+          const roadmapGpaFloat = parseFloat(roadmapGpa);
+          const universityGpaFloat = parseFloat(universityGpa);
+    
+          if (!isNaN(roadmapGpaFloat) && !isNaN(universityGpaFloat)) {
+            if (roadmapGpaFloat < universityGpaFloat) {
+              togglePopup("Your GPA is lower than the university's required GPA.");
+            } else {
+              togglePopup("Your GPA is equal or higher than the university's required GPA.");
+            }
+          } else {
+            togglePopup("Please enter valid GPA values.");
+          }
+        } 
+        catch (error) {
+          console.error("An unexpected error occurred:", error.message);
+        }
+      };
+
+    const togglePopup = (message: string | null = null) => {
+        setPopupMessage(message);
+        setPopupVisible(!isPopupVisible);
+    };
+
+
 
     return (
         <>
@@ -189,13 +227,19 @@ function Roadmap() {
 
                                 <div className="radio-container1-roadmap">
                                     <label>Yes</label>
-                                    <input type="radio" checked={true} name="radio-roadmap"></input>
+                                    <input type="radio" checked={true} name="radio-roadmap"
+                                        onClick={() => {
+                                            setSelectedEssay("Yes");
+                                        }}></input>
                                     <span className="checkmark-roadmap"></span>
                                 </div>
 
                                 <div className="radio-container2-roadmap">
                                     <label>No</label>
-                                    <input type="radio" name="radio-roadmap"></input>
+                                    <input type="radio" name="radio-roadmap"
+                                        onClick={() => {
+                                            setSelectedEssay("No");
+                                        }}></input>
                                     <span className="checkmark-roadmap"></span>
                                 </div>
                             </div>
@@ -272,13 +316,19 @@ function Roadmap() {
 
                                 <div className="radio-container1-roadmap">
                                     <label>Yes</label>
-                                    <input type="radio" checked={true} name="radio-roadmap"></input>
+                                    <input type="radio" checked={true} name="radio-roadmap"
+                                        onClick={() => {
+                                            setSelectedEssay("Yes");
+                                        }}></input>
                                     <span className="checkmark-roadmap"></span>
                                 </div>
 
                                 <div className="radio-container2-roadmap">
                                     <label>No</label>
-                                    <input type="radio" name="radio-roadmap"></input>
+                                    <input type="radio" name="radio-roadmap"
+                                        onClick={() => {
+                                            setSelectedEssay("No");
+                                        }}></input>
                                     <span className="checkmark-roadmap"></span>
                                 </div>
                             </div>
@@ -294,6 +344,11 @@ function Roadmap() {
 
                 <div className='roadmap-container-main'>
                     <div className='top-roadmap-buttons'>
+                        {/* {isPopupVisible && ( */}
+                        <div className='pop-up'>
+                            <p className='pop-up-text'>{popupMessage || "Default message"}</p>
+                        </div>
+                        {/* )} */}
                         <img className='roadmap-button' src='src\assets\Roadmap\location.png'></img>
                         <img className='roadmap-button' src='src\assets\Roadmap\location.png'></img>
                         <img className='roadmap-button' src='src\assets\Roadmap\location.png'></img>

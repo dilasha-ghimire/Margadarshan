@@ -5,24 +5,32 @@ import com.GyanSarathi.Margadarshan.dto.LoginDto;
 import com.GyanSarathi.Margadarshan.dto.StudentDto;
 import com.GyanSarathi.Margadarshan.entity.Student;
 import com.GyanSarathi.Margadarshan.response.LoginResponse;
+import com.GyanSarathi.Margadarshan.response.OtpResponse;
 import com.GyanSarathi.Margadarshan.service.StudentService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.mail.SimpleMailMessage;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
     private final PasswordEncoder passwordEncoder;
 
+    private final JavaMailSender javaMailSender;
+
+
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder) {
+    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender) {
         this.studentRepository = studentRepository;
         this.passwordEncoder = passwordEncoder;
+        this.javaMailSender = javaMailSender;
     }
 
     @Override
@@ -78,6 +86,45 @@ public class StudentServiceImpl implements StudentService {
         }else {
             return new LoginResponse("Email does not exist", false);
         }
+    }
+
+    public String generateOtp(){
+        Random random = new Random();
+        int otp = 100000 + random.nextInt(900000);
+        return String.valueOf(otp);
+    }
+
+    @Override
+    public OtpResponse generateOtpToEmail(String email) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        long emailExists = studentRepository.emailExists(email);
+        if(emailExists==1){
+            String otp = generateOtp();
+            studentRepository.updateOtp(otp,email);
+            message.setTo(email);
+            message.setSubject("Margadarshan password reset OTP");
+            message.setText("Your OTP for password reset is: " + otp);
+            javaMailSender.send(message);
+            return new OtpResponse("OTP Sent");
+        }else {
+            return new OtpResponse("Email does not exist");
+        }
+    }
+
+    @Override
+    public OtpResponse validateOtp(String email, String Otp) {
+        String otp = studentRepository.otp(email);
+        if(Objects.equals(Otp,otp)){
+            return new OtpResponse("Success");
+        }else {
+            return new OtpResponse("Unsuccessful");
+        }
+    }
+
+    @Override
+    public void updatePassword(String password, String email) {
+        String encodedPassword = this.passwordEncoder.encode(password);
+        studentRepository.updatePassword(encodedPassword,email);
     }
 }
 
