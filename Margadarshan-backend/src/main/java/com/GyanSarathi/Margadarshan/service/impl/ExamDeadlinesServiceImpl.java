@@ -21,7 +21,6 @@ public class ExamDeadlinesServiceImpl implements ExamDeadlineService {
         this.examDeadlinesRepository = examDeadlinesRepository;
     }
 
-
     @Override
     public List<ExamDeadlines> findAll() {
         return examDeadlinesRepository.findAll();
