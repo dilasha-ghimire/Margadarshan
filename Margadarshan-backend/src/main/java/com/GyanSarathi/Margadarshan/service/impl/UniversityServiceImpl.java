@@ -148,8 +148,7 @@ public class UniversityServiceImpl implements UniversityService{
 
     @Override
     public University filterForRoadmap(RoadmapDto roadmapDto) {
-
-        if(Objects.equals(roadmapDto.getDegreeSelection(), "masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"TOEFL")){
+        /*if(Objects.equals(roadmapDto.getDegreeSelection(), "masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"TOEFL")){
             University MastersUniversityWithToefl =
                     universityRepository.filterForRoadmapTwo
                             (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageMastersGpa()),0,Integer.parseInt(roadmapDto.getToeflScore()),
@@ -176,9 +175,8 @@ public class UniversityServiceImpl implements UniversityService{
 
                                     0, Integer.parseInt(roadmapDto.getSatScore()));
             return BachelorsUniversityWithToefl;
-        }
-
-        return null;
+        }*/
+        return universityRepository.filterForRoadmap(roadmapDto.getUniversityName());
     }
 
     @Override
