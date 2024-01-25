@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom"
 import '../css-files/documentstyle.css';
 import Header from "./Header.tsx";
 
 const Document: React.FC = () => {
+
+    useEffect(() => {
+        document.title = "Documents | Margadarshan"
+    }, [])
+
+
     const [sideNavWidth, setSideNavWidth] = useState<string>('0');
 
     const openSideNav = () => {

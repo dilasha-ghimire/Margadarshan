@@ -34,7 +34,7 @@ body{
     30%, 70% { filter: blur(0px); }
 }
 .mhp-animate {
-    animation: blurInOut 2s ease-in-out infinite;
+    animation: blurInOut 3s ease-in-out infinite;
 }
 
 
