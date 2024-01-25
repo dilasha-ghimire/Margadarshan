@@ -4,9 +4,11 @@ import com.GyanSarathi.Margadarshan.dto.LoginDto;
 import com.GyanSarathi.Margadarshan.dto.StudentDto;
 import com.GyanSarathi.Margadarshan.entity.Student;
 import com.GyanSarathi.Margadarshan.response.LoginResponse;
+import com.GyanSarathi.Margadarshan.response.OtpResponse;
 import com.GyanSarathi.Margadarshan.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class StudentController {
     private final StudentService studentService;
+    private static String otp;
 
     @Autowired
     public StudentController(StudentService studentService){
@@ -54,5 +57,31 @@ public class StudentController {
         LoginResponse loginResponse = studentService.loginStudent(loginDto);
         return ResponseEntity.ok(loginResponse);
     }
+
+    @PostMapping("/send-otp")
+    public ResponseEntity<?> sendOtp(@RequestBody StudentDto studentDto){
+        OtpResponse otpResponse = studentService.generateOtpToEmail(studentDto.getStudentEmail());
+        return ResponseEntity.ok(otpResponse);
+    }
+
+    @PostMapping("/validate-otp")
+    public ResponseEntity<?> validateOtp(@RequestBody StudentDto studentDto){
+        OtpResponse otpResponse = studentService.validateOtp(studentDto.getStudentEmail(),studentDto.getOtp());
+        return ResponseEntity.ok(otpResponse);
+    }
+
+    @PostMapping("/password-reset")
+    public String resetPassword(@RequestBody StudentDto studentDto){
+        studentService.updatePassword(studentDto.getStudentPassword(),studentDto.getStudentEmail());
+        return "Password reset complete";
+    }
+
+
+
+
+
+
+
+
 
 }
