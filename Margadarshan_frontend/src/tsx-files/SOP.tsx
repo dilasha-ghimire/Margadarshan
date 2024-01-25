@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import '../css-files/SOPUpload.css'
 import '../css-files/SopDialogBox.css'
 import Header from './Header';
 
 function SOP() {
+
+    useEffect(() => {
+        document.title = "SOP and Essays | Margadarshan"
+    }, [])
+
     const [documentTitle, setDocumentTitle] = useState('');
     const [imagePreview, setImagePreview] = useState('');
 

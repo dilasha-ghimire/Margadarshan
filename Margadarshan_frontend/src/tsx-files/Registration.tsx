@@ -4,8 +4,14 @@ import {useForm} from 'react-hook-form';
 import {useMutation} from "react-query";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
+import {useEffect} from "react";
 
 function Registration() {
+
+    useEffect(() => {
+        document.title = "Registration | Margadarshan"
+    }, [])
+
     const navigate = useNavigate();
 
     const saveData=useMutation({

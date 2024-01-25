@@ -148,27 +148,43 @@ public class UniversityServiceImpl implements UniversityService{
 
     @Override
     public University filterForRoadmap(RoadmapDto roadmapDto) {
+<<<<<<< HEAD
         if(Objects.equals(roadmapDto.getDegreeSelection(), "masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"TOEFL")){
+=======
+        if(Objects.equals(roadmapDto.getDegreeSelection(), "Masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Toefl")){
+>>>>>>> c6cc91fd8e131f9d5c1eee31bc1238252e913724
             University MastersUniversityWithToefl =
                     universityRepository.filterForRoadmapTwo
                             (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageMastersGpa()),0,Integer.parseInt(roadmapDto.getToeflScore()),
                                     Integer.parseInt(roadmapDto.getGreScore()),0);
             return MastersUniversityWithToefl;
+<<<<<<< HEAD
         } else if (Objects.equals(roadmapDto.getDegreeSelection(), "masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"IELTS")) {
+=======
+        } else if (Objects.equals(roadmapDto.getDegreeSelection(), "Masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Ielts")) {
+>>>>>>> c6cc91fd8e131f9d5c1eee31bc1238252e913724
             University MastersUniversityWithIelts =
                     universityRepository.filterForRoadmapTwo
                             (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageMastersGpa()),Integer.parseInt(roadmapDto.getIeltsScore()),0,
                                     Integer.parseInt(roadmapDto.getGreScore()),0);
             return MastersUniversityWithIelts;
         }
+<<<<<<< HEAD
         else if (Objects.equals(roadmapDto.getDegreeSelection(), "bachelors") && Objects.equals(roadmapDto.getLanguageTestSelection(),"IELTS")) {
+=======
+        else if (Objects.equals(roadmapDto.getDegreeSelection(), "Bachelors") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Ielts")) {
+>>>>>>> c6cc91fd8e131f9d5c1eee31bc1238252e913724
             University BachelorsUniversityWithIelts =
                     universityRepository.filterForRoadmap
                             (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageBachelorsGpa()), Integer.parseInt(roadmapDto.getIeltsScore()), 0,
                                     0, Integer.parseInt(roadmapDto.getSatScore()));
             return BachelorsUniversityWithIelts;
         }
+<<<<<<< HEAD
         else if (Objects.equals(roadmapDto.getDegreeSelection(), "bachelors") && Objects.equals(roadmapDto.getLanguageTestSelection(),"TOEFL")) {
+=======
+        else if (Objects.equals(roadmapDto.getDegreeSelection(), "Bachelors") && Objects.equals(roadmapDto.getLanguageTestSelection(),"Toefl")) {
+>>>>>>> c6cc91fd8e131f9d5c1eee31bc1238252e913724
             University BachelorsUniversityWithToefl =
                     universityRepository.filterForRoadmap
                             (roadmapDto.getUniversityName(),Double.parseDouble(roadmapDto.getAverageBachelorsGpa()), 0, Integer.parseInt(roadmapDto.getToeflScore()),

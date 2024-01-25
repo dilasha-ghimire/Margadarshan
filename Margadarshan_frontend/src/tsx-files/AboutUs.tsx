@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { faUserGroup } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +11,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css-files/aboutUsStyle.css';
 
 const AboutUs: React.FC = () => {
+
+    useEffect(() => {
+        document.title = "About | Margadarshan"
+    }, [])
+
     return (
         <div>
             <Header/>

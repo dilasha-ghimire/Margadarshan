@@ -1,5 +1,5 @@
 import "../css-files/universityCentre.css";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useForm } from 'react-hook-form';
 import { useMutation } from "react-query";
 import { useQuery } from "react-query";
@@ -7,6 +7,11 @@ import axios from "axios";
 import Header from './Header';
 
 function University() {
+
+    useEffect(() => {
+        document.title = "Universities | Margadarshan"
+    }, [])
+
     const { register, handleSubmit } = useForm();
     const [filteredUni, setFilteredUni] = useState([]);
     const [selectedMajorOption, setSelectedMajorOption] = useState("");

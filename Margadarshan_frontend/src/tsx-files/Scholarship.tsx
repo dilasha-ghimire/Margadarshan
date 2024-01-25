@@ -2,9 +2,14 @@ import "../css-files/scholarshipCentre.css";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Header from './Header';
-import { useState } from "react";
+import {useEffect, useState} from "react";
 
 function Scholarship() {
+
+    useEffect(() => {
+        document.title = "Scholarships | Margadarshan"
+    }, [])
+
     const [filteredSch, setFilteredSch] = useState([]);
 
     const { data } = useQuery({
@@ -23,7 +28,7 @@ function Scholarship() {
             <div className="centre">
                 <div className="page-heading">
                     <div className="scholarship-title">
-                        <p className="title-main-text">Scholarship</p>
+                        <p className="title-main-text">Scholarships</p>
                         <p className="title-subtext">
                             Discover tailored scholarships that match your criteria
                         </p>
