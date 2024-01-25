@@ -306,9 +306,8 @@ function AdminUniversity() {
 
                                     <label className="file-upload-label-addUni" htmlFor="universityImageId">
                                         <div className="file-img-container-addUni">
-                                            <img className="file-img-addUni" src="src/assets/AdminUniversity/file upload1.png"></img>
+                                            <img className="file-img-addUni" src="src/assets/AdminUniversity/insert image.png"></img>
                                         </div>
-                                        <button className="browse-button-addUni" type="submit">Browse files</button>
                                     </label>
 
                                     <input id="universityImageId" type="file" className="file-input-addUni" {...register("universityImage")}></input>

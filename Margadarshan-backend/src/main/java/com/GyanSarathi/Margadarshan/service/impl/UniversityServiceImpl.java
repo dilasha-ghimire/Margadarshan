@@ -148,6 +148,10 @@ public class UniversityServiceImpl implements UniversityService{
 
     @Override
     public University filterForRoadmap(RoadmapDto roadmapDto) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8da0d4946d6116d95f14a8b90e23f9b629e4a45b
         if(Objects.equals(roadmapDto.getDegreeSelection(), "masters") && Objects.equals(roadmapDto.getLanguageTestSelection(),"TOEFL")){
             University MastersUniversityWithToefl =
                     universityRepository.filterForRoadmapTwo

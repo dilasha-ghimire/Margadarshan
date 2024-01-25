@@ -33,6 +33,15 @@
     cursor: pointer;
 }
 
+.pop-up {
+    display: flex;
+    background-color: white;
+    margin-top: -50px;
+    border-radius: 5px;
+    padding-top: 5px;
+    position: fixed;
+}
+
 .sidebar-roadmap {
     height: 100%;
     width: 0;

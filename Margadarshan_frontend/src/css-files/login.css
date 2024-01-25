@@ -21,7 +21,6 @@
 }
 .gyansarathi-login {
     font-size: 26px;
-    margin-top: -50px;
 }
 .login-img {
     width: 500px;
@@ -46,7 +45,7 @@
     flex-direction: column;
     align-items: start;
     margin-left: 60px;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 .login-title, .login-welcome, .login-to-account {
     color: black;
@@ -58,7 +57,7 @@
 }
 .login-welcome, .login-to-account {
     font-size: 20px;
-    margin-top: -15px;
+    margin-top: -10px;
 }
 .user-input-login {
     display: flex;
