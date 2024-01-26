@@ -68,7 +68,7 @@ const AdminHeader: React.FC = () => {
 
                                     <div className="admin-header-nav-dropdown-collapse">
                                         <div className="admin-header-nav-dropdown-content">
-                                            <Link to="#" className="admin-header-nav-dropdown-item">KYC Profile</Link>
+                                            <Link to="/adminProfile" className="admin-header-nav-dropdown-item">KYC Profile</Link>
                                             <Link to="/admineducation" className="admin-header-nav-dropdown-item">Education</Link>
                                             <Link to="#" className="admin-header-nav-dropdown-item">Documents</Link>
                                             <Link to="#" className="admin-header-nav-dropdown-item">SOP and Essays</Link>
