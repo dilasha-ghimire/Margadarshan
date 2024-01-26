@@ -58,7 +58,6 @@ public class StudentController {
         studentService.save(studentDto);
     }
 
-
     @DeleteMapping("/delete-student/{studentId}")
     public void deleteStudent(@PathVariable("studentId") int studentId){
         studentService.deleteById(studentId);
@@ -70,7 +69,7 @@ public class StudentController {
         LoginResponse loginResponse = studentService.loginStudent(loginDto);
         return ResponseEntity.ok(loginResponse);
     }
-
+        
     @PostMapping("/send-otp")
     public ResponseEntity<?> sendOtp(@RequestBody StudentDto studentDto){
         OtpResponse otpResponse = studentService.generateOtpToEmail(studentDto.getStudentEmail());
@@ -88,13 +87,6 @@ public class StudentController {
         studentService.updatePassword(studentDto.getStudentPassword(),studentDto.getStudentEmail());
         return "Password reset complete";
     }
-
-
-
-
-
-
-
 
 
 }
