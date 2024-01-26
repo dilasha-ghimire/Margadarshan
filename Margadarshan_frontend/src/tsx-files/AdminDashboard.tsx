@@ -109,7 +109,7 @@ const AdminDashboard: React.FC = () => {
                         </Link>
                     </div>
                     <div className="admin-dashboard-studentbtn">
-                        <Link to="/ ">
+                        <Link to="/adminProfile ">
                             <button id="admin-dashboard-button">
                                 <FontAwesomeIcon className="admin-dashboard-button-icon" icon={faUser} />
                                 <h1 id="admin-dashboard-btn-title">Students</h1>

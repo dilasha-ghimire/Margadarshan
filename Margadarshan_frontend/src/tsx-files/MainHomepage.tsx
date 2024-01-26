@@ -61,8 +61,19 @@ const MainHomepage: React.FC = () => {
 
     return (
         <div>
+
             <Header/>
 
+        {/*<p  style={{*/}
+        {/*        background: "red",*/}
+        {/*        position: "absolute",*/}
+        {/*        color: "white",*/}
+        {/*        "z-index": "9999999"*/}
+        {/*    }}>*/}
+        {/*            {localStorage.getItem("accessToken")? <Header/>:"You need to login"}*/}
+        {/*</p>*/}
+
+            
             <div className="mhp-content">
                 <div className="mhp-img-section">
                     <div className="mhp-image mhp-animate mhp-img-usa" style={{ backgroundImage: `url('src/assets/Homepage/USA.jpg')` }}>
