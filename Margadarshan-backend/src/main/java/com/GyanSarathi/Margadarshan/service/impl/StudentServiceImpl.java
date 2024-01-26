@@ -71,20 +71,21 @@ public class StudentServiceImpl implements StudentService {
         Student student1 = studentRepository.findByEmail(loginDto.getEmail());
         if (student1 != null) {
             String password = loginDto.getPassword();
+            int id = student1.getId();
             String encodedPassword = student1.getPassword();
             boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
             if (isPwdRight) {
                 Optional<Student> student = studentRepository.findOneByEmailAndPassword(loginDto.getEmail(), encodedPassword);
                 if (student.isPresent()) {
-                    return new LoginResponse("Login Success", true);
+                    return new LoginResponse("Login Success", true,id);
                 } else {
-                    return new LoginResponse("Login Failed", false);
+                    return new LoginResponse("Login Failed", false,0);
                 }
             } else {
-                return new LoginResponse("password does not match", false);
+                return new LoginResponse("password does not match", false,0);
             }
         }else {
-            return new LoginResponse("Email does not exist", false);
+            return new LoginResponse("Email does not exist", false,0);
         }
     }
 
