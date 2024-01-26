@@ -95,7 +95,7 @@ function AdminExam(){
         </div>
     </div>
     <div className="dates">
-        <h1>Fall 2023 Test Dates</h1>
+        <h1 style={{ marginLeft: '110px', fontSize: '40px' }}>Fall 2023 Test Dates</h1>
     </div>
     {isSatContentVisible && (
     <div className="adminExam_main">

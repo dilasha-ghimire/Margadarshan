@@ -19,8 +19,8 @@ const AdminHeader: React.FC = () => {
         <>
             <div className="header-admin">
                 <div className="header-left-admin">
-                    <img className="logo-admin" src="src\assets\AboutPage\Margadarshan logo.png"></img>
-                    <p className="margadarshan-admin">MARGADARSHAN</p>
+                    <Link to="/adminDashboard"><img className="logo-admin" src="src\assets\AboutPage\Margadarshan logo.png"></img></Link>
+                    <Link to="/adminDashboard"><p className="margadarshan-admin">MARGADARSHAN</p></Link>
                 </div>
             </div>
 
@@ -29,7 +29,7 @@ const AdminHeader: React.FC = () => {
                     <div>
                         <div className="admin-header-nav-list">
                             <div className="admin-header-nav-items">
-                                <Link to="#" className="admin-header-nav-link">
+                                <Link to="/adminDashboard" className="admin-header-nav-link">
                                     <FontAwesomeIcon className="admin-header-nav-icon" icon={faHouse} />
                                     <span className="admin-header-nav-name">Home</span>
                                 </Link>
@@ -45,19 +45,19 @@ const AdminHeader: React.FC = () => {
                                 </Link>
 
                                 <div className="admin-header-nav-dropdown">
-                                    <Link to="/adminExam_sat" className="admin-header-nav-link">
+                                    <Link to="/adminExam" className="admin-header-nav-link">
                                         <FontAwesomeIcon className="admin-header-nav-icon" icon={faPenNib} />
                                         <span className="admin-header-nav-name">Exams</span>
                                     </Link>
 
-                                    <div className="admin-header-nav-dropdown-collapse">
-                                        <div className="admin-header-nav-dropdown-content">
-                                            <Link to="/adminExam_sat" className="admin-header-nav-dropdown-item">SAT</Link>
-                                            <Link to="/adminExam_gre" className="admin-header-nav-dropdown-item">GRE</Link>
-                                            <Link to="#" className="admin-header-nav-dropdown-item">IELTS</Link>
-                                            <Link to="#" className="admin-header-nav-dropdown-item">TOEFL</Link>
-                                        </div>
-                                    </div>
+                                    {/*<div className="admin-header-nav-dropdown-collapse">*/}
+                                    {/*    <div className="admin-header-nav-dropdown-content">*/}
+                                    {/*        <Link to="/adminExam_sat" className="admin-header-nav-dropdown-item">SAT</Link>*/}
+                                    {/*        <Link to="/adminExam_gre" className="admin-header-nav-dropdown-item">GRE</Link>*/}
+                                    {/*        <Link to="#" className="admin-header-nav-dropdown-item">IELTS</Link>*/}
+                                    {/*        <Link to="#" className="admin-header-nav-dropdown-item">TOEFL</Link>*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
                                 </div>
 
                                 <div className="admin-header-nav-dropdown">
