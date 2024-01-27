@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import '../css-files/adminDashboard.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +14,21 @@ interface DataRecord {
 }
 
 const AdminDashboard: React.FC = () => {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedOTP = localStorage.getItem('adminOTP');
+
+        if (storedOTP == null){
+            navigate('/login');
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('adminOTP');
+        navigate('/login');
+    }
 
     useEffect(() => {
         document.title = "Admin Dashboard | Margadarshan"
@@ -50,12 +65,10 @@ const AdminDashboard: React.FC = () => {
                     <p className="margadarshan-admin-dashboard">MARGADARSHAN</p>
                 </div>
                 <div className="header-right-admin-dashboard">
-                    <Link to="#">
-                        <button className="admin-dashboard-logout">
+                        <button onClick={handleLogout} className="admin-dashboard-logout">
                             <FontAwesomeIcon icon={faArrowRightFromBracket} className="admin-dashboard-logout-icon"/>
                             Logout
                         </button>
-                    </Link>
                 </div>
             </div>
 

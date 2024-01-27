@@ -98,6 +98,12 @@
 
 .admin-header-nav-logout {
     margin-top: 5rem;
+    margin-left: -19px;
+    background-color: #152039;
+    outline: none;
+}
+.admin-header-nav-logout:hover {
+    border-color: #152039;
 }
 
 .admin-header-nav-dropdown {
