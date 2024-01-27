@@ -1,7 +1,8 @@
 import '../css-files/login.css'
 import { Link } from "react-router-dom"
 import axios from 'axios'
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
@@ -9,40 +10,45 @@ function Login() {
         document.title = "Login | Margadarshan"
     }, [])
 
-    const[email, setEmail] = useState("");
-    const[password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const[rememberMe, setRememberMe] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false);
+    const navigate = useNavigate();
 
-    const handleLogin = async(e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:8080/api/login", {
-                email, password
+            const response = await axios.post('http://localhost:8080/api/login', {
+                email,
+                password,
+                
             });
 
-            // const token = response.data.token;
-            if(response.data.success) {
-                console.log("Login successful!");
-            }
-            else {
-                console.log("Login failed")
-            }   
-        }
+            console.log('Response:', response.data);
+            const { message, status } = response.data;
 
-        catch(err) {
-            if (err.response && err.response.status === 401) {
-                setEmailError('*Invalid email address');
-                setPasswordError('*Invalid password');
-            } 
-            else {
-                // Other error (e.g., network issue)
-                setEmailError('Error logging in');
-            };
+            if (status) {
+                console.log('Login successful!');
+                navigate('/mainhomepage');
+            } else {
+                console.log('Login failed');
+                console.log(message)
+                if (message === 'password does not match') {
+                    setPasswordError('*Password does not match');
+                } else if (message === 'email does not exist') {
+                    setEmailError('*Email does not exist');
+                } else {
+                    setEmailError('*Email does not exist');
+                    setPasswordError('*Password does not match');
+                }
+            }
+        } catch (err) {
+            console.error('Error during login:', err.message);
         }
-    }
+    };
 
     return (
         <>
@@ -64,10 +70,15 @@ function Login() {
 
                     <form onSubmit={handleLogin}>
                         <div className='user-input-login'>
-                            <input className='email-txtfld-login' placeholder='Enter your email address' value={email} onChange={(e) => {setEmail(e.target.value); setEmailError("");}}></input>
-                            
-                            <input className='password-txtfld-login' type='password' placeholder='Enter your password' value={password} onChange={(e) => {setPassword(e.target.value); setPasswordError("")}}></input>
-                            {/* {passwordError && <p className='error-message'>{passwordError}</p>} */}
+                            <div className='email-container-login'>
+                                <input className='email-txtfld-login' placeholder='Enter your email address' value={email} onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}></input>
+                                {emailError && <p className='error-message-email'>{emailError}</p>}
+                            </div>
+
+                            <div className='password-container-login'>
+                                <input className='password-txtfld-login' type='password' placeholder='Enter your password' value={password} onChange={(e) => { setPassword(e.target.value); setPasswordError("") }}></input>
+                                {passwordError && <p className='error-message-password'>{passwordError}</p>}
+                            </div>
                         </div>
 
                         <div className='remember-forgot-login-container'>
