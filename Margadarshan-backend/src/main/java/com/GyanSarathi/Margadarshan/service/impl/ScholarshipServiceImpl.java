@@ -110,12 +110,15 @@ public class ScholarshipServiceImpl implements ScholarshipService {
     }
 
     @Override
-    public List<Scholarship> findByGrantOrTypeOrGpa(ScholarshipDto scholarshipDto) {
+    public List<Scholarship> findByGrantAndType(ScholarshipDto scholarshipDto) {
         if(scholarshipDto.getGrantLowerBound()==null){
-            List<Scholarship> scholarshipsOne = scholarshipRepository.findByGrantOrTypeOrGpaTwo(scholarshipDto.getGrant(),scholarshipDto.getScholarshipType(),scholarshipDto.getScholarshipGpa());
+            List<Scholarship> scholarshipsOne = scholarshipRepository.findByType(scholarshipDto.getScholarshipType());
             return scholarshipsOne;
-        }else{
-            List<Scholarship> scholarships = scholarshipRepository.findByGrantOrTypeOrGpa(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound(),scholarshipDto.getScholarshipType(),scholarshipDto.getScholarshipGpa());
+        }else if (scholarshipDto.getScholarshipType()==null){
+            List<Scholarship> scholarships = scholarshipRepository.findByGrant(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound());
+            return scholarships;
+        }else {
+            List<Scholarship> scholarships = scholarshipRepository.findByGrantAndType(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound(),scholarshipDto.getScholarshipType());
             return scholarships;
         }
     }
