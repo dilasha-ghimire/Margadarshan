@@ -62,8 +62,7 @@ public class ScholarshipController{
 
     @PostMapping("/scholarship-filtered")
     public List<Scholarship> filteredScholarship(@RequestBody ScholarshipDto scholarshipDto){
-        System.out.println(scholarshipDto.getGrantLowerBound());
-        List<Scholarship> scholarships = scholarshipService.findByGrantOrTypeOrGpa(scholarshipDto);
+        List<Scholarship> scholarships = scholarshipService.findByGrantAndType(scholarshipDto);
         return scholarships;
     }
 
