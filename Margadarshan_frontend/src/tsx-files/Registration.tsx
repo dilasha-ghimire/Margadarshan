@@ -73,7 +73,7 @@ function Registration() {
             <div className='main-section'>
                 <div className="left-section">
                     <div className="website-title">
-                        <p className="margadarshan">MARGADARSHAN</p>
+                        <Link to="/mainhomepage"><p className="margadarshan">MARGADARSHAN</p></Link>
                         <p className="gyansarathi">by GyanSarathi</p>
                     </div>
                     <div className="website-img-container">
