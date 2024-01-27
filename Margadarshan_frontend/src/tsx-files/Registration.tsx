@@ -31,6 +31,7 @@ function Registration() {
         },
 
         onSuccess: () => {
+            alert("Your account has been created!");
             navigate("/login");
         }
     });
