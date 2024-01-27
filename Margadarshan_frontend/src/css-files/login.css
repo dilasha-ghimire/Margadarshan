@@ -71,8 +71,22 @@ input {
     border-style: solid;
     color: black;
 }
-.error-message {
+.email-container-login, .password-container-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.error-message-email, .error-message-password {
     color: red;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 0px;
+}
+.error-message-email {
+    margin-left: -150px;
+}
+.error-message-password {
+    margin-left: -135px;
 }
 
 .remember-forgot-login-container {
@@ -112,6 +126,7 @@ input[type="checkbox"]:checked:after {
 }
 .forgot-password-login {
     margin-left: 100px;
+    margin-top: 15px;
 }
 .forgot-password-login:hover {
     cursor: pointer;
@@ -139,7 +154,7 @@ input[type="checkbox"]:checked:after {
 
 @media screen and (max-width:1400px) {
     .left-sec-login {
-        margin-top: -90px;
+        margin-top: -50px;
     }
     .login-img {
         display: none;
@@ -154,7 +169,6 @@ input[type="checkbox"]:checked:after {
 @media screen and (min-width:400px) and (max-width:750px) {
     .left-sec-login {
         margin-left: 30px;
-        margin-top: -70px;
     }
     .margadarshan-login {
         font-size: 50px;
@@ -162,5 +176,14 @@ input[type="checkbox"]:checked:after {
     .right-sec-login {
         margin-left: -430px;
         width: 450px;
+    }
+    .error-message-email {
+        margin-left: -130px;
+    }
+    .error-message-password {
+        margin-left: -115px;
+    }
+    .login-btn-container {
+        margin-left: 40px;
     }
 }
