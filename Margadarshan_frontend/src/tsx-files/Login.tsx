@@ -84,7 +84,7 @@ function Login() {
                         <div className='remember-forgot-login-container'>
                             <input type='checkbox' checked={rememberMe} onChange={() => setRememberMe(!rememberMe)}></input>
                             <label className='remember-login'>Remember me</label>
-                            <p className='forgot-password-login'>Forgot password</p>
+                            <Link to={"/forgotPassword"}><p className='forgot-password-login'>Forgot password</p></Link>
                         </div>
 
                         <div className='login-btn-container'>

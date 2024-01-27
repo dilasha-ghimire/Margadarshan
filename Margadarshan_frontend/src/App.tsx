@@ -25,6 +25,7 @@ import AdminEducation from "./tsx-files/AdminEducation.tsx";
 import AdminExam from './tsx-files/AdminExam.tsx';
 import AdminDashboard from "./tsx-files/AdminDashboard.tsx";
 import AdminProfile from "./tsx-files/AdminProfile.tsx";
+import ForgotPassword from './tsx-files/ForgotPassword.tsx';
 // import AdminExam_SAT from './tsx-files/AdminExam_SAT.tsx';
 // import AdminExam_GRE from './tsx-files/AdminExam_GRE.tsx';
 
@@ -126,6 +127,10 @@ const router = createBrowserRouter(
         {
             path: "/adminProfile",
             element: <AdminProfile/>
+        },
+        {
+            path: "/forgotPassword",
+            element: <ForgotPassword/>
         }
         // , 
         // {
