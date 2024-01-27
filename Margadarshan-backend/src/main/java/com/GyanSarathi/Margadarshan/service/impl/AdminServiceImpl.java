@@ -2,6 +2,7 @@ package com.GyanSarathi.Margadarshan.service.impl;
 
 import com.GyanSarathi.Margadarshan.Repository.AdminRepository;
 import com.GyanSarathi.Margadarshan.response.OtpResponse;
+import com.GyanSarathi.Margadarshan.response.OtpResponseAdmin;
 import com.GyanSarathi.Margadarshan.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -48,12 +49,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public OtpResponse validateOtp(String email, String Otp) {
+    public OtpResponseAdmin validateOtp(String email, String Otp) {
         String otp = adminRepository.otp(email);
         if(Objects.equals(Otp,otp)){
-            return new OtpResponse("Otp verified");
+            return new OtpResponseAdmin("Otp verified",otp);
         }else {
-            return new OtpResponse("Otp does not match!");
+            return new OtpResponseAdmin("Otp does not match!",otp);
         }
     }
 }
