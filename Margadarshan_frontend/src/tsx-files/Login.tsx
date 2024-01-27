@@ -112,6 +112,7 @@ function Login() {
 
             if (message === 'Otp verified'){
                 navigate('/adminDashboard');
+                localStorage.setItem('adminOTP', otp);
             }
             if (message === 'Otp does not match!') {
                 setErrorOtpMessage("* OTP verification failed");

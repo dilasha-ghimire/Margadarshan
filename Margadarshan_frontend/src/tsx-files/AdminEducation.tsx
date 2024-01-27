@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../css-files/admineducationstyle.css';
 import AdminHeader from './AdminHeader';
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import {useNavigate} from "react-router-dom";
 
 function AdminEducation() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedOTP = localStorage.getItem('adminOTP');
+
+        if (storedOTP == null){
+            navigate('/login');
+        }
+    }, []);
 
     useEffect(() => {
         document.title = "Admin Education | Margadarshan"
