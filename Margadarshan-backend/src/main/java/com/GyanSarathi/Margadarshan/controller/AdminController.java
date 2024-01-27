@@ -4,6 +4,7 @@ package com.GyanSarathi.Margadarshan.controller;
 import com.GyanSarathi.Margadarshan.dto.AdminDto;
 import com.GyanSarathi.Margadarshan.dto.StudentDto;
 import com.GyanSarathi.Margadarshan.response.OtpResponse;
+import com.GyanSarathi.Margadarshan.response.OtpResponseAdmin;
 import com.GyanSarathi.Margadarshan.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class AdminController {
 
     @PostMapping("/validate-admin-otp")
     public ResponseEntity<?> validateOtp(@RequestBody AdminDto adminDto){
-        OtpResponse otpResponse = adminService.validateOtp(adminDto.getAdminEmail(),adminDto.getOtp());
+        OtpResponseAdmin otpResponse = adminService.validateOtp(adminDto.getAdminEmail(),adminDto.getOtp());
         return ResponseEntity.ok(otpResponse);
     }
 
