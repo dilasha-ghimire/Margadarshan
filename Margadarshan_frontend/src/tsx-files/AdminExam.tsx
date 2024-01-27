@@ -1,10 +1,13 @@
-import Header from "./Header";
 import "../css-files/ExamSection.css"
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useMutation } from 'react-query';
 import "../css-files/AdminExam.css"
 import {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
+import AdminHeader from "./AdminHeader.tsx";
+
+
 function AdminExam(){
 
     useEffect(() => {
@@ -57,9 +60,9 @@ function AdminExam(){
 
     return(
         <>
-        <Header/>
+        <AdminHeader/>
         <div className="tarara">
-        <div className="left_div">
+        <div className="left_div" style={{ marginLeft: '100px' }}>
             <div id="exam_text" className="left_content1">Exams</div>
             <div className="left_content"><img className="exam_image" src="src\assets\Exam\section-calendar.png" alt="image" /></div>
 
@@ -92,7 +95,7 @@ function AdminExam(){
         </div>
     </div>
     <div className="dates">
-        <h1>Fall 2023 Test Dates</h1>
+        <h1 style={{ marginLeft: '110px', fontSize: '40px' }}>Fall 2023 Test Dates</h1>
     </div>
     {isSatContentVisible && (
     <div className="adminExam_main">

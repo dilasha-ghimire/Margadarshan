@@ -61,8 +61,19 @@ const MainHomepage: React.FC = () => {
 
     return (
         <div>
+
             <Header/>
 
+        {/*<p  style={{*/}
+        {/*        background: "red",*/}
+        {/*        position: "absolute",*/}
+        {/*        color: "white",*/}
+        {/*        "z-index": "9999999"*/}
+        {/*    }}>*/}
+        {/*            {localStorage.getItem("accessToken")? <Header/>:"You need to login"}*/}
+        {/*</p>*/}
+
+            
             <div className="mhp-content">
                 <div className="mhp-img-section">
                     <div className="mhp-image mhp-animate mhp-img-usa" style={{ backgroundImage: `url('src/assets/Homepage/USA.jpg')` }}>
@@ -220,7 +231,7 @@ const MainHomepage: React.FC = () => {
                                 <div className="mhp-testimonial-header">
                                     <img src="src/assets/Homepage/img3.jpeg" id="mhp-test-img" alt="Parth Gautam profile picture"/>
                                         <div className="header-txt">
-                                            <p className="mhp-p-name">Ojaswi Gautam</p>
+                                            <p className="mhp-p-name">Ojashwi Bajracharya</p>
                                             <p>Proven Customer</p>
                                         </div>
                                 </div>

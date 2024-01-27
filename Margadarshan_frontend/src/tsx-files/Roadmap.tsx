@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import { useRef } from 'react';
 
 function Roadmap() {
 
@@ -17,19 +18,27 @@ function Roadmap() {
     }, [])
 
     const [selectedUniOption, setSelectedUniOption] = useState("");
-    const [selectedMajorOption, setSelectedMajorOption] = useState("");
     const [selectedEnglishTest, setSelectedEnglishTest] = useState("");
     const [isBachelorDivVisible, setBachelorDivVisible] = useState(false);
     const [isMasterDivVisible, setMasterDivVisible] = useState(false);
     const [selectedStudyLevel, setSelectedStudyLevel] = useState("");
     const [selectedEssay, setSelectedEssay] = useState("");
     const { register, handleSubmit } = useForm();
+    const [universityDetails, setUniversityDetails] = useState<any>(null);
 
-    const [isPopupVisible, setPopupVisible] = useState(false);
+    const [isGpaPopupVisible, setGpaPopupVisible] = useState(false);
+    const [isSatGrePopupVisible, setSatGrePopupVisible] = useState(false);
+    const [isIeltsToeflPopupVisible, setIeltsToeflPopupVisible] = useState(false);
+    const [isFirstPopupVisible, setFirstPopupVisible] = useState(false);
+    const [isUniPopupVisible, setUniPopupVisible] = useState(false);
+    const [isEssayPopupVisible, setEssayPopupVisible] = useState(false);
+
     const [popupMessage, setPopupMessage] = useState<string | null>(null);
 
-    const [roadmapGpa, setRoadmapGpa] = useState("");
-    const [universityGpa, setUniversityGpa] = useState("");
+    const [messageGpa, setMessageGpa] = useState("");
+    const [messageSatGre, setMessageSatGre] = useState("");
+    const [messageIeltsToefl, setMessageIeltsToefl] = useState("");
+    const [messageEssay, setMessageEssay] = useState("");
 
     useEffect(() => {
         return () => {
@@ -51,14 +60,6 @@ function Roadmap() {
         setSideNavWidth('0');
     };
 
-    const { data: majorsData } = useQuery({
-        queryKey: "GETMAJORS",
-        queryFn() {
-            return axios.get("http://localhost:8080/api/universities-major");
-        }
-    })
-    const majors = majorsData?.data || [];
-
     const { data: universityData } = useQuery({
         queryKey: "GETUNIVERSITIES",
         queryFn() {
@@ -71,63 +72,230 @@ function Roadmap() {
         mutationKey: "SAVE DATA",
         mutationFn: async (requestData: any) => {
             const response = await axios.post("http://localhost:8080/api/roadmap", requestData);
-            setUniversityGpa(response.data.averageBachelorsGpa);
-            console.log(response.data);  
-            return response.data;
+            const details = response.data;
+            setUniversityDetails(details);
+            return details;
         },
     });
 
+    const formValuesRef = useRef<any>({});
+
     const onSubmit = async (value: any) => {
         try {
-            value.universityMajor = selectedMajorOption;
             value.universityName = selectedUniOption;
             value.languageTestSelection = selectedEnglishTest;
             value.essaysPrepared = selectedEssay;
             value.degreeSelection = selectedStudyLevel;
 
-            if (selectedEnglishTest === "Ielts") {
+            if (selectedEnglishTest === "IELTS") {
                 value.ieltsScore = value.ieltsScore;
             }
-            if (selectedEnglishTest === "Toefl") {
+            if (selectedEnglishTest === "TOEFL") {
                 value.toeflScore = value.toeflScore;
             }
 
             await enterRoadmapData.mutateAsync(value);
 
-            setBachelorDivVisible(false);
-            setMasterDivVisible(false);
+            formValuesRef.current = value;
+
+            closeSideNav();
         }
         catch (error) {
             console.error("Error loading roadmap", error);
         }
     }
 
-    const compareGpa = () => {
-        try {
-          const roadmapGpaFloat = parseFloat(roadmapGpa);
-          const universityGpaFloat = parseFloat(universityGpa);
-    
-          if (!isNaN(roadmapGpaFloat) && !isNaN(universityGpaFloat)) {
-            if (roadmapGpaFloat < universityGpaFloat) {
-              togglePopup("Your GPA is lower than the university's required GPA.");
-            } else {
-              togglePopup("Your GPA is equal or higher than the university's required GPA.");
-            }
-          } else {
-            togglePopup("Please enter valid GPA values.");
-          }
-        } 
-        catch (error) {
-          console.error("An unexpected error occurred:", error.message);
-        }
-      };
+    useEffect(() => {
+        if (enterRoadmapData.isSuccess) {
+            const result = enterRoadmapData.data;
 
-    const togglePopup = (message: string | null = null) => {
-        setPopupMessage(message);
-        setPopupVisible(!isPopupVisible);
+            if (selectedStudyLevel === 'bachelors') {
+                compareBachelorsGpa(formValuesRef.current.averageBachelorsGpa, result.averageBachelorsGpa);
+                compareSatsScore(formValuesRef.current.satScore, universityDetails.averageSatScore);
+                compareEssays(formValuesRef.current.essaysPrepared, universityDetails.requiredEssays);
+
+                if (selectedEnglishTest === "IELTS") {
+                    compareIeltsScore(formValuesRef.current.ieltsScore, result.averageIeltsScore);
+                }
+                else {
+                    compareToeflScore(formValuesRef.current.greScore, result.averageGreScore);
+                }
+            }
+            else if (selectedStudyLevel === 'masters') {
+                compareMastersGpa(formValuesRef.current.averageMastersGpa, universityDetails.averageMastersGpa);
+                compareGreScore(formValuesRef.current.greScore, universityDetails.averageGreScore);
+                compareEssays(formValuesRef.current.essaysPrepared, universityDetails.requiredEssays);
+
+                if (selectedEnglishTest === "IELTS") {
+                    compareIeltsScore(formValuesRef.current.ieltsScore, result.averageIeltsScore);
+                }
+                else {
+                    compareToeflScore(formValuesRef.current.greScore, result.averageGreScore);
+                }
+            }
+
+            setBachelorDivVisible(false);
+            setMasterDivVisible(false);
+        }
+    }, [enterRoadmapData.isSuccess, selectedStudyLevel]);
+
+    const compareBachelorsGpa = (userGpa: string, universityGpa: string) => {
+        const userGpaFloat = parseFloat(userGpa);
+        const universityGpaFloat = parseFloat(universityGpa);
+
+        if (!isNaN(userGpaFloat) && !isNaN(universityGpaFloat)) {
+            if (userGpaFloat >= universityGpaFloat) {
+                setMessageGpa("Congratulations! Your GPA meets or exceeds the university's requirements.");
+            } else {
+                setMessageGpa("Sorry, your GPA is below the university's requirements.");
+            }
+        } else {
+            setMessageGpa("Please enter valid GPA values.");
+        }
     };
 
+    const compareMastersGpa = (userGpa: string, universityGpa: string) => {
+        const userGpaFloat = parseFloat(userGpa);
+        const universityGpaFloat = parseFloat(universityGpa);
 
+        if (!isNaN(userGpaFloat) && !isNaN(universityGpaFloat)) {
+            if (userGpaFloat >= universityGpaFloat) {
+                setMessageGpa("Congratulations! Your GPA meets or exceeds the university's requirements.");
+            } else {
+                setMessageGpa("Sorry, your GPA is below the university's requirements.");
+            }
+        } else {
+            setMessageGpa("Please enter valid GPA values.");
+        }
+    };
+
+    const compareSatsScore = (userSatsScore: string, universitySatsScore: string) => {
+        const userSatsScoreInteger = parseInt(userSatsScore);
+        const universitySatsScoreInteger = parseInt(universitySatsScore);
+
+        console.log("userSatsScore:", userSatsScore); // Log the actual value received
+        console.log("userSatsScoreInteger:", userSatsScoreInteger);
+        console.log("universitySatsScore:", universitySatsScore); // Log the actual value received
+        console.log("universitySatsScoreInteger:", universitySatsScoreInteger);
+
+        if (!isNaN(userSatsScoreInteger) && !isNaN(universitySatsScoreInteger)) {
+            if (userSatsScoreInteger >= universitySatsScoreInteger) {
+                setMessageSatGre("Congratulations! Your SATs score meets or exceeds the university's requirements.");
+            } else {
+                setMessageSatGre("Sorry, your SATs score is below the university's requirements.");
+            }
+        } else {
+            setMessageSatGre("Please enter valid SATs score values.");
+        }
+        console.log(setMessageSatGre);
+    };
+
+    const compareGreScore = (userGreScore: string, universityGreScore: string) => {
+        const userGreScoreFloat = parseFloat(userGreScore);
+        const universityGreScoreFloat = parseFloat(universityGreScore);
+
+        if (!isNaN(userGreScoreFloat) && !isNaN(universityGreScoreFloat)) {
+            if (userGreScoreFloat >= universityGreScoreFloat) {
+                setMessageSatGre("Congratulations! Your GRE score meets or exceeds the university's requirements.")
+            } else {
+                setMessageSatGre("Sorry, your GRE score is below the university's requirements.")
+            }
+        } else {
+            setMessageSatGre("Please enter valid GRE score values.")
+        }
+    };
+
+    const compareIeltsScore = (userIeltsScore: string, universityIeltsScore: string) => {
+        const userIeltsScoreFloat = parseFloat(userIeltsScore);
+        const universityIeltsScoreFloat = parseFloat(universityIeltsScore);
+
+        if (!isNaN(userIeltsScoreFloat) && !isNaN(universityIeltsScoreFloat)) {
+            if (userIeltsScoreFloat >= universityIeltsScoreFloat) {
+                setMessageIeltsToefl("Congratulations! Your IELTS score meets or exceeds the university's requirements.");
+            } else {
+                setMessageIeltsToefl("Sorry, your IELTS score is below the university's requirements.");
+            }
+        } else {
+            setMessageIeltsToefl("Please enter valid IELTS score values.");
+        }
+        console.log(setMessageIeltsToefl);
+    };
+
+    const compareToeflScore = (userToeflScore: string, universityToeflScore: string) => {
+        const userToeflScoreFloat = parseFloat(userToeflScore);
+        const universityToeflScoreFloat = parseFloat(universityToeflScore);
+
+        if (!isNaN(userToeflScoreFloat) && !isNaN(universityToeflScoreFloat)) {
+            if (userToeflScoreFloat >= universityToeflScoreFloat) {
+                setMessageIeltsToefl("Congratulations! Your TOEFL score meets or exceeds the university's requirements.");
+            } else {
+                setMessageIeltsToefl("Sorry, your TOEFL score is below the university's requirements.");
+            }
+        } else {
+            setMessageIeltsToefl("Please enter valid TOEFL score values.");
+        }
+    };
+
+    const compareEssays = (userEssays: string, universityRequiresEssays: boolean) => {
+        if (userEssays.toLowerCase() === "yes" && universityRequiresEssays) {
+            setMessageEssay("Congratulations! You have prepared the required essays.");
+        } 
+        else if (userEssays.toLowerCase() === "yes" && !universityRequiresEssays) {
+            setMessageEssay("You have prepared essays, but the university does not require them.");
+        }
+        else if (userEssays.toLowerCase() === "no" && universityRequiresEssays) {
+            setMessageEssay("You haven't prepared essays, but the university does not require them.");
+        }
+        else if (userEssays.toLowerCase() === "no" && !universityRequiresEssays) {
+            setMessageEssay("You haven't prepared essays, and the university does not require them.");
+        } 
+        else {
+            setMessageEssay("Essay preparation or requirements do not match.");
+        }
+    };
+
+    const handleGpaButtonClick = () => {
+        setPopupMessage(messageGpa);
+        togglePopupGpa();
+        console.log("Gpa message: ", messageGpa)
+    };
+
+    const handleSatsGreButtonClick = () => {
+        setPopupMessage(messageSatGre);
+        togglePopupSatGre();
+        console.log("Sats/Gre message: ", messageSatGre)
+    };
+
+    const handleIeltsToeflButtonClick = () => {
+        setPopupMessage(messageIeltsToefl);
+        togglePopupIeltsToefl();
+        console.log("Ielts/Toefl message: ", messageIeltsToefl)
+    };
+
+    const handleEssayButtonClick = () => {
+        setPopupMessage(messageEssay);
+        togglePopupEssay();
+        console.log("Essay message: ", messageEssay)
+    }
+
+    const togglePopupGpa = () => {
+        setGpaPopupVisible(!isGpaPopupVisible);
+    };
+    const togglePopupSatGre = () => {
+        setSatGrePopupVisible(!isSatGrePopupVisible);
+    };
+    const togglePopupIeltsToefl = () => {
+        setIeltsToeflPopupVisible(!isIeltsToeflPopupVisible);
+    };
+    const togglePopupFirst = () => {
+        setFirstPopupVisible(!isFirstPopupVisible);
+    };
+    const togglePopupUni = () => {
+        setUniPopupVisible(!isUniPopupVisible);
+    };
+    const togglePopupEssay = () => {
+        setEssayPopupVisible(!isEssayPopupVisible);
+    }
 
     return (
         <>
@@ -167,7 +335,7 @@ function Roadmap() {
                             <div className='univesity-gpa-container-roadmap'>
                                 <select className='uni-dropdown-roadmap' value={selectedUniOption}
                                     onChange={(e) => setSelectedUniOption(e.target.value)}>
-                                    {selectedMajorOption === "" && <option value="" disabled>Select a university</option>}
+                                    {selectedUniOption === "" && <option value="" disabled>Select a university</option>}
                                     {uni.map((uni, index) => (
                                         <option key={index} value={uni}>
                                             {uni}
@@ -177,7 +345,7 @@ function Roadmap() {
 
                                 <input className='gpa-input-roadmap' placeholder='Enter your GPA' {...register("averageBachelorsGpa")}></input>
 
-                                <input className='sats-input-roadmap' placeholder='Enter your SAT scores' {...register("satScore")}></input>
+                                <input className='sats-input-roadmap' placeholder='Enter your SATs score' {...register("satScore")}></input>
                             </div>
 
                             <div className='english-test-container-roadmap'>
@@ -227,7 +395,7 @@ function Roadmap() {
 
                                 <div className="radio-container1-roadmap">
                                     <label>Yes</label>
-                                    <input type="radio" checked={true} name="radio-roadmap"
+                                    <input type="radio" name="radio-roadmap"
                                         onClick={() => {
                                             setSelectedEssay("Yes");
                                         }}></input>
@@ -253,7 +421,7 @@ function Roadmap() {
                             <div className='univesity-gpa-container-roadmap'>
                                 <select className='uni-dropdown-roadmap' value={selectedUniOption}
                                     onChange={(e) => setSelectedUniOption(e.target.value)}>
-                                    {selectedMajorOption === "" && <option value="" disabled>Select a university</option>}
+                                    {selectedUniOption === "" && <option value="" disabled>Select a university</option>}
                                     {uni.map((uni, index) => (
                                         <option key={index} value={uni}>
                                             {uni}
@@ -261,19 +429,9 @@ function Roadmap() {
                                     ))}
                                 </select>
 
-                                <select className='major-dropdown-roadmap' value={selectedMajorOption}
-                                    onChange={(e) => setSelectedMajorOption(e.target.value)}>
-                                    {selectedMajorOption === "" && <option value="" disabled>Select a major</option>}
-                                    {majors.map((major, index) => (
-                                        <option key={index} value={major}>
-                                            {major}
-                                        </option>
-                                    ))}
-                                </select>
+                                <input className='gpa-input-roadmap' placeholder='Enter your GPA' {...register("averageMastersGpa")}></input>
 
-                                <input className='gpa-input-roadmap' placeholder='Enter your GPA'></input>
-
-                                <input className='sats-input-roadmap' placeholder='Enter your SAT scores'></input>
+                                <input className='sats-input-roadmap' placeholder='Enter your GRE score' {...register("greScore")}></input>
                             </div>
 
                             <div className='english-test-container-roadmap'>
@@ -316,7 +474,7 @@ function Roadmap() {
 
                                 <div className="radio-container1-roadmap">
                                     <label>Yes</label>
-                                    <input type="radio" checked={true} name="radio-roadmap"
+                                    <input type="radio" name="radio-roadmap"
                                         onClick={() => {
                                             setSelectedEssay("Yes");
                                         }}></input>
@@ -344,22 +502,66 @@ function Roadmap() {
 
                 <div className='roadmap-container-main'>
                     <div className='top-roadmap-buttons'>
-                        {/* {isPopupVisible && ( */}
-                        <div className='pop-up'>
-                            <p className='pop-up-text'>{popupMessage || "Default message"}</p>
+
+                        <div className='gpa-popup-container'>
+                            {isFirstPopupVisible && (
+                                <div className='pop-up'>
+                                    <p className='pop-up-text'>Your journey starts here!</p>
+                                </div>
+                            )}
+                            <img className='roadmap-button' src='src\assets\Roadmap\location.png' onClick={togglePopupFirst}></img>
                         </div>
-                        {/* )} */}
-                        <img className='roadmap-button' src='src\assets\Roadmap\location.png'></img>
-                        <img className='roadmap-button' src='src\assets\Roadmap\location.png'></img>
-                        <img className='roadmap-button' src='src\assets\Roadmap\location.png'></img>
+
+                        <div className='gpa-popup-container'>
+                            {isGpaPopupVisible && (
+                                <div className='pop-up'>
+                                    <p className='pop-up-text'>{messageGpa || "Enter your Gpa"}</p>
+                                </div>
+                            )}
+                            <img className='roadmap-button' src='src\assets\Roadmap\location.png' onClick={handleGpaButtonClick}></img>
+                        </div>
+
+                        <div className='gpa-popup-container'>
+                            {isIeltsToeflPopupVisible && (
+                                <div className='pop-up'>
+                                    <p className='pop-up-text'>{messageIeltsToefl || "Enter your English test score"}</p>
+                                </div>
+                            )}
+                            <img className='roadmap-button' src='src\assets\Roadmap\location.png' onClick={handleIeltsToeflButtonClick}></img>
+                        </div>
+
                     </div>
 
                     <img className='roadmap-img' src='src\assets\Roadmap\roadmap.png'></img>
 
                     <div className='bottom-roadmap-buttons'>
-                        <img className='roadmap-button' src='src\assets\Roadmap\location upside-down.png'></img>
-                        <img className='roadmap-button' src='src\assets\Roadmap\location upside-down.png'></img>
-                        <img className='roadmap-button' src='src\assets\Roadmap\location upside-down.png'></img>
+
+                        <div className='gpa-popup-container'>
+                            <img className='roadmap-button' src='src\assets\Roadmap\location upside-down.png' onClick={togglePopupUni}></img>
+                            {isUniPopupVisible && (
+                                <div className='pop-up-down'>
+                                    <p className='pop-up-text'>{selectedUniOption ? `You have selected ${selectedUniOption}` : "Select a university"}</p>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className='gpa-popup-container'>
+                            {isSatGrePopupVisible && (
+                                <div className='pop-up-down'>
+                                    <p className='pop-up-text'>{messageSatGre || "Enter your standardized test score"}</p>
+                                </div>
+                            )}
+                            <img className='roadmap-button' src='src\assets\Roadmap\location upside-down.png' onClick={handleSatsGreButtonClick}></img>
+                        </div>
+
+                        <div className='gpa-popup-container'>
+                            <img className='roadmap-button' src='src\assets\Roadmap\location upside-down.png' onClick={handleEssayButtonClick}></img>
+                            {isEssayPopupVisible && (
+                                <div className='pop-up-down'>
+                                    <p className='pop-up-text'>{messageEssay || "Essay prepared?"}</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
 

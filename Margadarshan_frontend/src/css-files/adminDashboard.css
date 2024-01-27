@@ -1,0 +1,157 @@
+body{
+    background-color: white;
+}
+.header-admin-dashboard {
+    background-color: #152039;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    z-index: 100;
+}
+.header-left-admin-dashboard {
+    display: flex;
+    align-items: end;
+    margin-left: 24px;
+    margin-top: 21px;
+}
+.logo-admin-dashboard {
+    width: 55px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+.margadarshan-admin-dashboard {
+    border: none;
+    color: #FFE34F;
+    background-color: #152039;
+    font-family: "Paytone One";
+    font-size: 22px;
+    margin-left: 25px;
+}
+.header-right-admin-dashboard{
+    margin-right: 20px;
+}
+.admin-dashboard-logout{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #FFE34F;
+    color: #152039;
+}
+.admin-dashboard-logout-icon{
+    padding: 4px;
+}
+.admin-dashboard-content{
+    background-color: white;
+    position: absolute;
+    top: 90px;
+    height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+}
+.admin-dashboard-record{
+    background-color: white;
+    width: 100vw;
+    flex: 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+}
+.admin-dashboard-record-title{
+    background-color: white;
+}
+.admin-dashboard-record-title h2{
+    padding: 25px 0 5px 0;
+    font-size: 35px;
+}
+.admin-dashboard-students{
+    background-color: #313d52;
+    margin: 1vw;
+    border-radius: 15px;
+}
+.admin-dashboard-university{
+    background-color: #313d52;
+    margin: 1vw;
+    border-radius: 15px;
+}
+.admin-dashboard-scholarship{
+    background-color: #313d52;
+    margin: 1vw;
+    border-radius: 15px;
+}
+#admin-dashboard-data{
+    font-size: 6vw;
+    color: #FFE34F;
+    text-align: end;
+    margin-right: 10px;
+}
+#admin-dashboard-datatext{
+    padding: 30px 10px 10px 10px;
+    font-size: 30px;
+    font-family: "Barlow Condensed Black";
+    font-weight: bold;
+    color: rgb(152, 148, 129);
+}
+
+@media screen and (max-width: 680px){
+    .admin-dashboard-record {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    #admin-dashboard-data{
+        font-size: 50px;
+        color: #FFE34F;
+        text-align: end;
+        margin-right: 10px;
+    }
+    .admin-dashboard-students{
+        width: 90%;
+        background-color: #313d52;
+        margin: 0 5vw 0 5vw;
+        border-radius: 15px;
+    }
+    .admin-dashboard-university{
+        width: 90%;
+        background-color: #313d52;
+        margin: 0 5vw 0 5vw;
+        border-radius: 15px;
+    }
+    .admin-dashboard-scholarship{
+        width: 90%;
+        background-color: #313d52;
+        margin: 0 5vw 0 5vw;
+        border-radius: 15px;
+    }
+}
+
+
+
+
+
+
+.admin-dashboard-buttons{
+    background-color: white;
+    width: 100vw;
+    flex: 3;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#admin-dashboard-button{
+    font-size: 1vw;
+    color: #383d52;
+    background-color: #677594;
+}
+
+.admin-dashboard-button-icon{
+    font-size: 6vw;
+    padding: 1vw;
+}
+
+

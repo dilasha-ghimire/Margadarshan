@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "scholarships")
 public class Scholarship {
     @Column(name = "scholarship_id",nullable = false)
     @Id

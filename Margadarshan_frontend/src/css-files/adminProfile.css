@@ -1,0 +1,52 @@
+.adprofile-content{
+    margin-left: 90px;
+}
+.adprofile-mainbar {
+    display: flex;
+    margin-top: 100px;
+    gap: 7vw;
+}
+.adprofile-searchbar-container {
+    display: flex;
+    position: absolute;
+    gap: 2vw;
+    right: 0;
+}
+#adprofile-p1{
+    padding-top: 2px;
+}
+.adprofile-searchbar {
+    height: 30px;
+    width: 30vw;
+    border-color: grey;
+}
+.adprofile-searchbtn {
+    height: 27px;
+    width: 25px;
+    background-color: white;
+    margin-right: 2vw;
+    margin-top: 2px;
+}
+
+.adprofile-searchbtn-container{
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+}
+.adprofile-searchbtn:hover {
+    border: none;
+}
+.adprofile-search-img{
+    height: 25px;
+    margin-left: -14px;
+    margin-top: -23px;
+}
+.adprofile-proheader{
+    margin-top: 60px;
+    padding-right: 30px;
+    padding-left: 30px;
+    font-family: "Agency FB";
+}
+.adprofile-proheader h2{
+    font-size: 35px;
+}
