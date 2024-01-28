@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 function ForgotPassword() {
     const [emailError, setEmailError] = useState("");
@@ -155,6 +157,8 @@ function ForgotPassword() {
                     </div>
                 ) : (
                     <div className='right-sec-forgotP'>
+                        <Link to={"/login"}><FontAwesomeIcon icon={faArrowLeft} className='back-btn-forgotP'/></Link>
+
                         <div className='page-heading-forgotP'>
                             <p className='forgotP-title'>Forgot Password?</p>
                             <p className='forgotP-subtitle'>{otpSent

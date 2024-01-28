@@ -120,29 +120,6 @@ input {
     margin-left: 55px;
     margin-top: 20px;
 }
-input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    height: 30px;
-    width: 30px;
-    border: 2px solid black; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-input[type="checkbox"]::after {
-    content: "\f00c";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 600;
-    font-size: 20px;
-    color: black; 
-    margin-left: -13px;
-    display: none;
-}
-input[type="checkbox"]:checked:after {
-    display: block;
-}
 .forgot-password-login {
     color: black;
     font-family: "Nunito";
@@ -150,8 +127,8 @@ input[type="checkbox"]:checked:after {
     text-decoration: underline;
 }
 .forgot-password-login {
-    margin-left: 300px;
-    margin-top: 15px;
+    margin-left: 240px;
+    margin-top: 25px;
 }
 .forgot-password-login:hover {
     cursor: pointer;
@@ -162,7 +139,7 @@ input[type="checkbox"]:checked:after {
     display: flex;
     gap: 100px;
     margin-left: 60px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .signup-login, .login-btn-login {
     width: 140px;
