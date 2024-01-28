@@ -110,7 +110,7 @@ function Scholarship() {
                                     <option>Government scholarship</option>
                                     <option>Ethnicity-based scholarship</option>
                                     <option>Needs-based scholarship</option>
-                                    <option>Women's scholarship</option>
+                                    <option>Women’s scholarship</option>
                                     <option className="merit-based-option">Merit-based scholarship</option>
                                 </select>
 
@@ -149,10 +149,6 @@ function Scholarship() {
                                             {option.label}
                                         </option>
                                     ))}
-                                    <option>Full-ride scholarship</option>
-                                    <option>Partial tuition waiver</option>
-                                    <option>Accomodation covered</option>
-                                    <option>TA/RA scholarship</option>
                                 </select>
                             </div>
 

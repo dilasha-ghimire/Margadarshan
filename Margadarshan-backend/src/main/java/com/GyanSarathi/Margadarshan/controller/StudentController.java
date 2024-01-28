@@ -44,7 +44,7 @@ public class StudentController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/student-by-id/{studentId}")
+    @PostMapping("/student-by-id/{studentId}")
     public Optional<Student> getStudent(@PathVariable int studentId){
         Optional<Student> theStudent = studentService.findById(studentId);
         if(theStudent.isEmpty()){
