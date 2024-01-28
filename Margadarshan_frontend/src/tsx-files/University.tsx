@@ -1,10 +1,11 @@
 import "../css-files/universityCentre.css";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useForm } from 'react-hook-form';
 import { useMutation } from "react-query";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Header from './Header';
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 
 function University() {
 
@@ -75,7 +76,7 @@ function University() {
 
     return (
         <>
-            <Header />
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
             <div className="centre">
                 <div className="page-heading">

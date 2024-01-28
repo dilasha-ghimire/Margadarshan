@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
 import "../css-files/ExamSection.css"
 import Header from "./Header"
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
+import React from "react";
 function ExamSection(){
     return(
         <>
-        <Header/>
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
         <div className="tarara">
         <div className="left_div">
             <div id="exam_text" className="left_content1">Exams</div>

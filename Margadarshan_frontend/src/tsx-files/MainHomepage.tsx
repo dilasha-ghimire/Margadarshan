@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 
 const MainHomepage: React.FC = () => {
 
@@ -32,7 +33,7 @@ const MainHomepage: React.FC = () => {
             firstTimeLoad = false;
         }
         else {
-            setTimeout(() => showSlides(), 3000);
+            setTimeout(() => showSlides(), 2500);
         }
 
     })();
@@ -55,25 +56,15 @@ const MainHomepage: React.FC = () => {
                 currentSlide.style.display = "block";
             }
         }
-        setTimeout(showSlides, 3000);
+        setTimeout(showSlides, 2500);
     }
 
 
     return (
         <div>
 
-            <Header/>
+         {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
-        {/*<p  style={{*/}
-        {/*        background: "red",*/}
-        {/*        position: "absolute",*/}
-        {/*        color: "white",*/}
-        {/*        "z-index": "9999999"*/}
-        {/*    }}>*/}
-        {/*            {localStorage.getItem("accessToken")? <Header/>:"You need to login"}*/}
-        {/*</p>*/}
-
-            
             <div className="mhp-content">
                 <div className="mhp-img-section">
                     <div className="mhp-image mhp-animate mhp-img-usa" style={{ backgroundImage: `url('src/assets/Homepage/USA.jpg')` }}>

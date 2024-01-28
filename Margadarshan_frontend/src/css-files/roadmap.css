@@ -1,3 +1,34 @@
+.login-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-modal {
+    background-image: url('src/assets/Homepage/Roadmap.png');
+    background-size: cover;
+    background-color: #fff;
+    padding: 50px 400px 350px 400px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-modal h2 {
+    color:  burlywood;
+    font-size: 40px;
+    margin-top: 0;
+}
+
+.login-modal button{
+    border-color: #152039;
+}
+
 .open-sidebar-btn-roadmap {
     background-color: #152039;
     display: block;

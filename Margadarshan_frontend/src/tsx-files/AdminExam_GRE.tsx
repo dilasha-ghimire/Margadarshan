@@ -5,11 +5,25 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import "../css-files/adminScholarship.css"
+import {useNavigate} from "react-router-dom";
+
+
 function AdminExam_GRE(){
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedOTP = localStorage.getItem('adminOTP');
+
+    if (storedOTP == null){
+      navigate('/login');
+    }
+  }, []);
 
   useEffect(() => {
     document.title = "Admin Exams GRE | Margadarshan"
 }, [])
+
 
   const [isGreContentVisible, setGreContentVisible] = useState(false);
   const handleGreButtonClick = () => {

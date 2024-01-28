@@ -8,8 +8,19 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 
 function AdminScholarship() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedOTP = localStorage.getItem('adminOTP');
+
+        if (storedOTP == null){
+            navigate('/login');
+        }
+    }, []);
 
     useEffect(() => {
         document.title = "Admin Scholarships | Margadarshan"

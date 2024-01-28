@@ -1,6 +1,6 @@
 import Header from './Header';
 import "../css-files/roadmap.css";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -10,8 +10,23 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 
 function Roadmap() {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const storedID = localStorage.getItem('loggedInUserId');
+
+        if (storedID == null){
+            setIsLoggedIn(false);
+        }
+        else {
+            setIsLoggedIn(true);
+        }
+    }, []);
 
     useEffect(() => {
         document.title = "Roadmap | Margadarshan"
@@ -301,8 +316,10 @@ function Roadmap() {
 
     return (
         <>
-            <Header />
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
+            {isLoggedIn ? (
+            <>
             <div className='sidebar-roadmap' style={{ width: sideNavWidth }}>
                 <a href="javascript:void(0)" className="close-sidebar-btn-roadmap" onClick={closeSideNav}><FontAwesomeIcon icon={faArrowLeft} /></a>
                 <p className='sidebar-title-roadmap'>Enter the following details to construct your journey to the United States</p>
@@ -569,6 +586,15 @@ function Roadmap() {
                 </div>
 
             </div>
+            </>
+                ) : (
+                    <div className="login-modal-overlay">
+                        <div className="login-modal">
+                            <h2>Login to Access</h2>
+                            <Link to="/login"><button>Login</button></Link>
+                        </div>
+                    </div>
+                )}
         </>
     );
 }

@@ -11,8 +11,19 @@ import { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import {useNavigate} from "react-router-dom";
 
 function AdminUniversity() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedOTP = localStorage.getItem('adminOTP');
+
+        if (storedOTP == null){
+            navigate('/login');
+        }
+    }, []);
 
     useEffect(() => {
         document.title = "Admin Universities | Margadarshan"

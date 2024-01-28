@@ -27,14 +27,6 @@ body{
 .mhp-image{
     display: none;
     position: absolute;
-    filter: blur(2px);
-}
-@keyframes blurInOut {
-    0%, 10%, 90%, 100% { filter: blur(2px); }
-    30%, 70% { filter: blur(0px); }
-}
-.mhp-animate {
-    animation: blurInOut 3s ease-in-out infinite;
 }
 
 
