@@ -6,13 +6,14 @@ import AdminExam from './AdminExam';
 import "../css-files/adminScholarship.css"
 import { useEffect } from 'react';
 
-const AdminExam_SAT = () => {
-  useEffect(() => {
-    document.title = "Admin Exams SAT | Margadarshan"
-}, [])
+const AdminExam_TOEFL = () => {
+
+    useEffect(() => {
+        document.title = "Admin Exams TOEFL | Margadarshan"
+    }, [])
 
   const { register, handleSubmit, reset } = useForm();
-  const [isSatContentVisible, setSatContentVisible] = useState(false);
+  const [isToeflContentVisible, settoeflContentVisible] = useState(false);
   const [isSatEditContentVisible, setSatEditContentVisible] = useState(false);
   const queryClient = useQueryClient();
 
@@ -28,7 +29,7 @@ const AdminExam_SAT = () => {
     {
       onSuccess: () => {
         // Hide the "adminExam_main" container
-        setSatContentVisible(false);
+        settoeflContentVisible(false);
 
         // Refetch to update the adminExam_sat data
         refetchExams();
@@ -42,7 +43,7 @@ const AdminExam_SAT = () => {
   const onSubmit = async (data) => {
     try {
       // Manually set the examId to 1 for SAT
-      data.examId = 1;
+      data.examId = 4;
 
       // Trigger the mutation with the form data
       await mutation.mutateAsync(data);
@@ -58,16 +59,16 @@ const AdminExam_SAT = () => {
     <>
       <AdminExam />
       <div className="adminExam_manage">
-        <button className="adminExam-Button" onClick={() => setSatContentVisible(!isSatContentVisible)}>
+        <button className="adminExam-Button" onClick={() => settoeflContentVisible(!isToeflContentVisible)}>
           +
         </button>
-        {isSatContentVisible && (
+        {isToeflContentVisible && (
           <div className="adminExam_main">
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* Your form fields go here */}
               <div className="Ani">
                 <div className="Rasu">
-                  <label className="andminExam_Text">SAT Test Dates</label>
+                  <label className="andminExam_Text">TOEFL Test Dates</label>
                   <input type="text" {...register('examDate')} />
                   <label className="andminExam_Text">Registration Deadline</label>
                   <input type="text" {...register('registrationDeadline')} />
@@ -89,7 +90,7 @@ const AdminExam_SAT = () => {
               {/* Your form fields go here */}
               <div className="Ani">
                 <div className="Rasu">
-                  <label className="andminExam_Text">SAT Test Dates</label>
+                  <label className="andminExam_Text">TOEFL Test Dates</label>
                   <input type="text" {...register('examDate')} />
                   <label className="andminExam_Text">Registration Deadline</label>
                   <input type="text" {...register('registrationDeadline')} />
@@ -106,14 +107,14 @@ const AdminExam_SAT = () => {
       
             {/* Display uploaded exam data */}
             <div className="adminSch-list">
-            {examsData?.filter((exam) => exam.exam.examId === 1) // Filter exams with examId 1
+            {examsData?.filter((exam) => exam.exam.examId === 4) // Filter exams with examId 1
     .map((exam, index) => (
                 <div className="adminSch-main-container" key={index}>
                   <p className="edit-sch-btn" onClick={() => setSatEditContentVisible(!isSatEditContentVisible)}>Edit</p>
                   <div className="adminSch-container">
-                  <div className="adminSch-description-container">
+                    <div className="adminSch-description-container">
                       <div className="adminSch-desc">
-                        <p className="adminSch-name">SAT Test Dates</p>
+                        <p className="adminSch-name">TOEFL Test Dates</p>
                         <p className="adminSch-name">Registration Deadline</p>
                         <p className="adminSch-name">Late Registration Deadline</p>                
                       </div>
@@ -137,4 +138,4 @@ const AdminExam_SAT = () => {
   );
 };
 
-export default AdminExam_SAT;
+export default AdminExam_TOEFL;
