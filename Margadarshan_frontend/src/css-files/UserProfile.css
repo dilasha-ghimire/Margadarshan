@@ -1,0 +1,40 @@
+
+.left-section-userP {
+    background-color: #152039;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    position: fixed;
+    top: 90px;
+    height: 750px;
+}
+.title-userP {
+    font-family: "Paytone One";
+    color: #FFE34F;
+    font-size: 48px;
+    margin-top: 50px;
+}
+.main-img-userP {
+    height: 400px;
+    margin-top: 110px;
+}
+
+.right-section-userP {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 550px;
+    margin-top: 150px;
+}
+.personal-details-userP {
+    font-family: "Nunito";
+    font-size: 34px;
+}
+.logged-in-user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.logged-in-user-container p {
+    font-size: 20px;
+}

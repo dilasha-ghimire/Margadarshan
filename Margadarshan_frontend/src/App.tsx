@@ -31,6 +31,7 @@ import AdminExam_TOEFL from './tsx-files/AdminExam_TOEFL.tsx';
 
 import AdminProfile from "./tsx-files/AdminProfile.tsx";
 import ForgotPassword from './tsx-files/ForgotPassword.tsx';
+import UserProfile from './tsx-files/UserProfile.tsx';
 
 
 const router = createBrowserRouter(
@@ -150,6 +151,10 @@ const router = createBrowserRouter(
         {
             path: "/adminExam_toefl",
             element: <AdminExam_TOEFL/>
+        },
+        {
+            path: "/userProfile",
+            element: <UserProfile/>
         }
     ]
 )

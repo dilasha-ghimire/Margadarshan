@@ -82,9 +82,9 @@ const Header: React.FC = () => {
 
                 <div className="header-profile-container">
                     <button className="header-logout-button">Logout</button>
-                    <button className="header-profile-button">
+                    <Link to={"/userProfile"}><button className="header-profile-button">
                         <img className="header-profile" src="src\assets\Document\profile.png" alt="header-profile" />
-                    </button>
+                    </button></Link>
                 </div>
 
                 <div className="header-click" onClick={openNav}>

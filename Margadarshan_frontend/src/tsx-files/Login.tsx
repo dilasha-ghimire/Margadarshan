@@ -14,7 +14,6 @@ function Login() {
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -28,11 +27,13 @@ function Login() {
             });
 
             console.log('Response:', response.data);
-            const { message, status } = response.data;
+            const { message, status, id } = response.data;
 
             if (status) {
                 console.log('Login successful!');
                 navigate('/mainhomepage');
+                localStorage.setItem('loggedInUserId', id);
+                console.log("Logged in user: ",id)
             } else {
                 console.log('Login failed');
                 console.log(message)
