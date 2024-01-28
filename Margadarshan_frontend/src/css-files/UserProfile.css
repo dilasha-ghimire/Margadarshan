@@ -37,4 +37,8 @@
 }
 .logged-in-user-container p {
     font-size: 20px;
+
+}
+.profile-login-popup {
+    margin-top: 300px;
 }

@@ -9,6 +9,7 @@ import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import Header from './Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css-files/aboutUsStyle.css';
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 
 const AboutUs: React.FC = () => {
 
@@ -18,7 +19,7 @@ const AboutUs: React.FC = () => {
 
     return (
         <div>
-            <Header/>
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
             <div className="about-us-content">
                 <div className="abt-image-container" style={{ backgroundImage: `url('src/assets/AboutPage/graduation.png')` }}>

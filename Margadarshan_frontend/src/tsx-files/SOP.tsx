@@ -1,7 +1,9 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../css-files/SOPUpload.css'
 import '../css-files/SopDialogBox.css'
 import Header from './Header';
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
+import {Link} from "react-router-dom";
 
 function SOP() {
 
@@ -11,6 +13,7 @@ function SOP() {
 
     const [documentTitle, setDocumentTitle] = useState('');
     const [imagePreview, setImagePreview] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     // const previewImage = (e) => {
     //     const input = e.target;
@@ -33,6 +36,19 @@ function SOP() {
             reader.readAsDataURL(input.files[0]);
         }
     };
+
+    useEffect(() => {
+        const storedID = localStorage.getItem('loggedInUserId');
+
+        if (storedID == null){
+            setIsLoggedIn(false);
+        }
+        else {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+
     const[isAddUniVisible,setAddUniVisible]=useState(false);
     const [bodyOpacity, setBodyOpacity] = useState(1);
     const handleButtonClick = () => {
@@ -42,7 +58,10 @@ function SOP() {
    
     return(
     <>
-    <Header/>
+        {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
+
+        {isLoggedIn ? (
+        <div className="user-sop">
         <div className="rasmi" style={{ opacity: bodyOpacity }}>
         
         <div className="t">
@@ -82,10 +101,14 @@ function SOP() {
             </div>
         </form>
     </div>
-
       )}
-      
-
+        </div>
+        ) : (
+            <div className="sop-login-popup">
+                <h2>Login to Access</h2>
+                <Link to="/login"><button>Login</button></Link>
+            </div>
+        )}
     </>
     )
 }

@@ -2,9 +2,10 @@ import "../css-files/scholarshipCentre.css";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Header from './Header';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 
 function Scholarship() {
     const { register, handleSubmit } = useForm();
@@ -78,7 +79,7 @@ function Scholarship() {
 
     return (
         <>
-            <Header />
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
             <div className="centre">
                 <div className="page-heading">

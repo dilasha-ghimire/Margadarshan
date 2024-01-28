@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import Header from './Header';
 import '../css-files/educationstyle.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 import {Link} from "react-router-dom";
 import {useForm} from "react-hook-form";
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 
 
 const Education: React.FC = () => {
@@ -15,6 +16,7 @@ const Education: React.FC = () => {
 
     const [isEduFormVisible, setEduFormVisible] = useState(false);
     const { register, handleSubmit, setValue } = useForm();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleEduButtonClick = () => {
         setEduFormVisible(!isEduFormVisible);
@@ -23,10 +25,22 @@ const Education: React.FC = () => {
     const onSubmitUpdateEdu = (formData: any): void => {
     };
 
+    useEffect(() => {
+        const storedID = localStorage.getItem('loggedInUserId');
+
+        if (storedID == null){
+            setIsLoggedIn(false);
+        }
+        else {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
     return (
         <div>
-            <Header/>
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
+            {isLoggedIn ? (
             <div className="edu-content">
                 <div id="edu-navigation" className="edu-sidenavbar">
                     <div id="mySidenav" className="edu-sidenav-content">
@@ -74,43 +88,49 @@ const Education: React.FC = () => {
 
                         {/*-----------------------------------------*/}
 
-                        <div className="test-version">
-                            <div className="sample">
-                                <div className="cont">
-                                    <FontAwesomeIcon id="edu-icon" icon={faUserGraduate} />
-                                    <div className= "edtext">
-                                        <div className="ed-division">
-                                            <h2> B.Sc. (Hons) Computing </h2>
-                                            <button className="random"> ✎ </button>
-                                        </div>
-                                        <h3> Softwarica College of IT & E-Commerce</h3>
-                                    </div>
-                                </div>
-                                <div className="cont">
-                                    <FontAwesomeIcon id="edu-icon" icon={faUserGraduate} />
-                                    <div className= "edtext">
-                                        <div className="ed-division">
-                                            <h2> A Level </h2>
-                                            <button className="random"> ✎ </button>
-                                        </div>
-                                        <h3> Rato Bangala School</h3>
-                                    </div>
-                                </div>
-                                <div className="cont">
-                                    <FontAwesomeIcon id="edu-icon" icon={faUserGraduate} />
-                                    <div className= "edtext">
-                                        <div className="ed-division">
-                                            <h2> SEE </h2>
-                                            <button className="random"> ✎ </button>
-                                        </div>
-                                        <h3> Premier International School</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {/*<div className="test-version">*/}
+                        {/*    <div className="sample">*/}
+                        {/*        <div className="cont">*/}
+                        {/*            <FontAwesomeIcon id="edu-icon" icon={faUserGraduate} />*/}
+                        {/*            <div className= "edtext">*/}
+                        {/*                <div className="ed-division">*/}
+                        {/*                    <h2> B.Sc. (Hons) Computing </h2>*/}
+                        {/*                    <button className="random"> ✎ </button>*/}
+                        {/*                </div>*/}
+                        {/*                <h3> Softwarica College of IT & E-Commerce</h3>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*        <div className="cont">*/}
+                        {/*            <FontAwesomeIcon id="edu-icon" icon={faUserGraduate} />*/}
+                        {/*            <div className= "edtext">*/}
+                        {/*                <div className="ed-division">*/}
+                        {/*                    <h2> A Level </h2>*/}
+                        {/*                    <button className="random"> ✎ </button>*/}
+                        {/*                </div>*/}
+                        {/*                <h3> Rato Bangala School</h3>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*        <div className="cont">*/}
+                        {/*            <FontAwesomeIcon id="edu-icon" icon={faUserGraduate} />*/}
+                        {/*            <div className= "edtext">*/}
+                        {/*                <div className="ed-division">*/}
+                        {/*                    <h2> SEE </h2>*/}
+                        {/*                    <button className="random"> ✎ </button>*/}
+                        {/*                </div>*/}
+                        {/*                <h3> Premier International School</h3>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>
+            ) : (
+                <div className="edu-login-popup">
+                    <h2>Login to Access</h2>
+                    <Link to="/login"><button>Login</button></Link>
+                </div>
+            )}
         </div>
     );
 };

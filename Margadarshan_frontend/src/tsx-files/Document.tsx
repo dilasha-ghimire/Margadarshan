@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom"
 import '../css-files/documentstyle.css';
 import Header from "./Header.tsx";
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 
 const Document: React.FC = () => {
 
@@ -11,6 +12,8 @@ const Document: React.FC = () => {
 
 
     const [sideNavWidth, setSideNavWidth] = useState<string>('0');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
     const openSideNav = () => {
         setSideNavWidth('250px');
@@ -19,10 +22,23 @@ const Document: React.FC = () => {
     const closeSideNav = () => {
         setSideNavWidth('0');
     };
+
+    useEffect(() => {
+        const storedID = localStorage.getItem('loggedInUserId');
+
+        if (storedID == null){
+            setIsLoggedIn(false);
+        }
+        else {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
     return (
         <div>
-            <Header/>
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
+            {isLoggedIn ? (
             <div className="doc-content">
                 <div className="doc-clickbtn" onClick={openSideNav}>
                     <button className="doc-click-btn">→</button>
@@ -82,6 +98,12 @@ const Document: React.FC = () => {
                     </div>
                 </div>
             </div>
+            ) : (
+                <div className="doc-login-popup">
+                    <h2>Login to Access</h2>
+                    <Link to="/login"><button>Login</button></Link>
+                </div>
+            )}
         </div>
     );
 };

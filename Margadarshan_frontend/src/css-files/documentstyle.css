@@ -148,3 +148,7 @@ body {
         box-sizing: border-box; 
     }
 }
+
+.doc-login-popup {
+    margin-top: 300px;
+}
