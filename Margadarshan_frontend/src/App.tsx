@@ -24,10 +24,13 @@ import Roadmap from './tsx-files/Roadmap.tsx';
 import AdminEducation from "./tsx-files/AdminEducation.tsx";
 import AdminExam from './tsx-files/AdminExam.tsx';
 import AdminDashboard from "./tsx-files/AdminDashboard.tsx";
+import AdminExam_SAT from './tsx-files/AdminExam_SAT.tsx';
+import AdminExam_GRE from './tsx-files/AdminExam_GRE.tsx';
+import AdminExam_IELTS from './tsx-files/AdminExam_IELTS.tsx';
+import AdminExam_TOEFL from './tsx-files/AdminExam_TOEFL.tsx';
+
 import AdminProfile from "./tsx-files/AdminProfile.tsx";
 import ForgotPassword from './tsx-files/ForgotPassword.tsx';
-// import AdminExam_SAT from './tsx-files/AdminExam_SAT.tsx';
-// import AdminExam_GRE from './tsx-files/AdminExam_GRE.tsx';
 
 
 const router = createBrowserRouter(
@@ -131,16 +134,23 @@ const router = createBrowserRouter(
         {
             path: "/forgotPassword",
             element: <ForgotPassword/>
+        },
+        {
+            path: "/adminExam_sat",
+            element: <AdminExam_SAT/>
+        }, 
+        {
+            path: "/adminExam_gre",
+            element: <AdminExam_GRE/>
+        }, 
+        {
+            path: "/adminExam_ielts",
+            element: <AdminExam_IELTS/>
+        }, 
+        {
+            path: "/adminExam_toefl",
+            element: <AdminExam_TOEFL/>
         }
-        // , 
-        // {
-        //     path: "/adminExam_sat",
-        //     element: <AdminExam_SAT/>
-        // }, 
-        // {
-        //     path: "/adminExam_gre",
-        //     element: <AdminExam_GRE/>
-        // }
     ]
 )
 
