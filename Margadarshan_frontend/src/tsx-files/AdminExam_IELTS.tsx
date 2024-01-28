@@ -5,15 +5,15 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import "../css-files/adminScholarship.css"
-function AdminExam_GRE(){
+function AdminExam_IELTS(){
 
   useEffect(() => {
-    document.title = "Admin Exams GRE | Margadarshan"
+    document.title = "Admin Exams IELTS | Margadarshan"
 }, [])
 
-  const [isGreContentVisible, setGreContentVisible] = useState(false);
-  const handleGreButtonClick = () => {
-      setGreContentVisible(!isGreContentVisible);
+  const [isIeltsContentVisible, setIeltsContentVisible] = useState(false);
+  const handleIeltsButtonClick = () => {
+      setIeltsContentVisible(!isIeltsContentVisible);
   };
 
   const { register, handleSubmit, reset } = useForm();
@@ -25,7 +25,7 @@ function AdminExam_GRE(){
   {
     onSuccess: () => {
       // Hide the "adminExam_main" container
-      setGreContentVisible(false);
+      setIeltsContentVisible(false);
 
       // Refetch to update the adminExam_sat data
       refetchExams();
@@ -36,14 +36,14 @@ function AdminExam_GRE(){
   });
 
     // Use react-query's useQuery to fetch exam data
-    const { data: examsData, refetch: refetchExams } = useQuery('adminExam_gre', async () => {
+    const { data: examsData, refetch: refetchExams } = useQuery('adminExam_ielts', async () => {
       const response = await axios.get('http://localhost:8080/api/exam-deadlines');
       return response.data;
     });
 
   const onSubmit = async (data) => {
     try {
-      data.examId = 2;
+      data.examId = 3;
 
       // Trigger the mutation with the form data
       await mutation.mutateAsync(data);
@@ -61,13 +61,13 @@ function AdminExam_GRE(){
         <>
         <AdminExam/>
         <div className='adminExam_manage'>
-          <button className='adminExam-Button' onClick={handleGreButtonClick}>+</button>
-          {isGreContentVisible && (
+          <button className='adminExam-Button' onClick={handleIeltsButtonClick}>+</button>
+          {isIeltsContentVisible && (
         <div className="adminExam_main">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="Ani">
               <div className="Rasu">
-                <label className="andminExam_Text">GRE Test Dates</label>
+                <label className="andminExam_Text">IELTS Test Dates</label>
                 <input type="text" {...register('examDate')} />
                 <label className="andminExam_Text">Registration Deadline</label>
                 <input type="text" {...register('registrationDeadline')}/>
@@ -87,28 +87,26 @@ function AdminExam_GRE(){
         
         {/* Display uploaded exam data */}
         <div className="adminSch-list">
-        {examsData?.filter((exam) => exam.exam.examId === 2) // Filter exams with examId 1
+        {examsData?.filter((exam) => exam.exam.examId === 3)
     .map((exam, index) => (
                 <div className="adminSch-main-container" key={index}>
                   {/* <p className="edit-sch-btn" onClick={() => setSatEditContentVisible(!isSatEditContentVisible)}>Edit</p> */}
                   <div className="adminSch-container">
-                    <div className="adminSch-description-container">
-                    {/* <img className="adminSch-image" src="" /> */}
+                  <div className="adminSch-description-container">
                       <div className="adminSch-desc">
-                        {/* <p className="adminSch-name">{exam.examDateId}</p> */}
-                                        <p className="adminSch-name">{exam.examDate}</p>
-                                        <p className="adminSch-type">{exam.registrationDeadline}</p>
-                                        <p className="adminSch-grant">{exam.lateRegistrationDeadline}</p>
+                        <p className="adminSch-name">IELTS Test Dates</p>
+                        <p className="adminSch-name">Registration Deadline</p>
+                        <p className="adminSch-name">Late Registration Deadline</p>                
                       </div>
+                      
                     </div>
                     <div className="adminSch-deadline-container">
                       {/* Display your exam details here */}
-                  {/* <p className='ademinSch-deadlin'>{exam.examDate}</p>
-                  <p>{exam.registrationDeadline}</p>
-                  <p>{exam.lateRegistrationDeadline}</p> */}
-                   {/* <p className="adminSch-deadline-text">Deadline</p>
-                                    <p className="ademinSch-deadlin">yassg</p> */}
-                    </div>
+                  <p className='adminSch-name'>{exam.examDate}</p>
+                  <p className='adminSch-name'>{exam.registrationDeadline}</p>
+                  <p className='adminSch-name'>{exam.lateRegistrationDeadline}</p>
+
+                  </div>
                   </div>
                   <div></div>
                   <div className='adminSch-deadline-container'></div>
@@ -119,4 +117,4 @@ function AdminExam_GRE(){
         </>
     )
 }
-export default AdminExam_GRE;
+export default AdminExam_IELTS;
