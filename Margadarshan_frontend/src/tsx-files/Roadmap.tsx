@@ -29,7 +29,6 @@ function Roadmap() {
     const [isGpaPopupVisible, setGpaPopupVisible] = useState(false);
     const [isSatGrePopupVisible, setSatGrePopupVisible] = useState(false);
     const [isIeltsToeflPopupVisible, setIeltsToeflPopupVisible] = useState(false);
-    const [isFirstPopupVisible, setFirstPopupVisible] = useState(false);
     const [isUniPopupVisible, setUniPopupVisible] = useState(false);
     const [isEssayPopupVisible, setEssayPopupVisible] = useState(false);
 
@@ -99,6 +98,12 @@ function Roadmap() {
             formValuesRef.current = value;
 
             closeSideNav();
+
+            setGpaPopupVisible(true);
+            setUniPopupVisible(true);
+            setSatGrePopupVisible(true);
+            setIeltsToeflPopupVisible(true);
+            setEssayPopupVisible(true);
         }
         catch (error) {
             console.error("Error loading roadmap", error);
@@ -286,9 +291,6 @@ function Roadmap() {
     };
     const togglePopupIeltsToefl = () => {
         setIeltsToeflPopupVisible(!isIeltsToeflPopupVisible);
-    };
-    const togglePopupFirst = () => {
-        setFirstPopupVisible(!isFirstPopupVisible);
     };
     const togglePopupUni = () => {
         setUniPopupVisible(!isUniPopupVisible);
@@ -504,42 +506,43 @@ function Roadmap() {
                     <div className='top-roadmap-buttons'>
 
                         <div className='gpa-popup-container'>
-                            {isFirstPopupVisible && (
-                                <div className='pop-up'>
-                                    <p className='pop-up-text'>Your journey starts here!</p>
-                                </div>
-                            )}
-                            <img className='roadmap-button' src='src\assets\Roadmap\location.png' onClick={togglePopupFirst}></img>
+                            <div className='pop-up1'>
+                                <p className='pop-up-text'>Your journey starts here!</p>
+                            </div>
+                            <img className='roadmap-button-start' src='src\assets\Roadmap\start.png'></img>
                         </div>
 
                         <div className='gpa-popup-container'>
                             {isGpaPopupVisible && (
-                                <div className='pop-up'>
+                                <div className='pop-up2'>
                                     <p className='pop-up-text'>{messageGpa || "Enter your Gpa"}</p>
                                 </div>
                             )}
-                            <img className='roadmap-button' src='src\assets\Roadmap\location.png' onClick={handleGpaButtonClick}></img>
+                            <img className='roadmap-button2' src='src\assets\Roadmap\location3.png' onClick={handleGpaButtonClick}></img>
                         </div>
 
                         <div className='gpa-popup-container'>
                             {isIeltsToeflPopupVisible && (
-                                <div className='pop-up'>
+                                <div className='pop-up3'>
                                     <p className='pop-up-text'>{messageIeltsToefl || "Enter your English test score"}</p>
                                 </div>
                             )}
-                            <img className='roadmap-button' src='src\assets\Roadmap\location.png' onClick={handleIeltsToeflButtonClick}></img>
+                            <img className='roadmap-button3' src='src\assets\Roadmap\location5.png' onClick={handleIeltsToeflButtonClick}></img>
                         </div>
 
                     </div>
 
-                    <img className='roadmap-img' src='src\assets\Roadmap\roadmap.png'></img>
+                    <div className='roadmap-end-container'>
+                        <img className='roadmap-img' src='src\assets\Roadmap\roadmap.png'></img>
+                        <img className='roadmap-img-end' src='src\assets\Roadmap\end.png'></img>
+                    </div>
 
                     <div className='bottom-roadmap-buttons'>
 
                         <div className='gpa-popup-container'>
-                            <img className='roadmap-button' src='src\assets\Roadmap\location upside-down.png' onClick={togglePopupUni}></img>
+                            <img className='roadmap-button4' src='src\assets\Roadmap\location2.png' onClick={togglePopupUni}></img>
                             {isUniPopupVisible && (
-                                <div className='pop-up-down'>
+                                <div className='pop-up-down1'>
                                     <p className='pop-up-text'>{selectedUniOption ? `You have selected ${selectedUniOption}` : "Select a university"}</p>
                                 </div>
                             )}
@@ -547,17 +550,17 @@ function Roadmap() {
 
                         <div className='gpa-popup-container'>
                             {isSatGrePopupVisible && (
-                                <div className='pop-up-down'>
+                                <div className='pop-up-down2'>
                                     <p className='pop-up-text'>{messageSatGre || "Enter your standardized test score"}</p>
                                 </div>
                             )}
-                            <img className='roadmap-button' src='src\assets\Roadmap\location upside-down.png' onClick={handleSatsGreButtonClick}></img>
+                            <img className='roadmap-button5' src='src\assets\Roadmap\location4.png' onClick={handleSatsGreButtonClick}></img>
                         </div>
 
                         <div className='gpa-popup-container'>
-                            <img className='roadmap-button' src='src\assets\Roadmap\location upside-down.png' onClick={handleEssayButtonClick}></img>
+                            <img className='roadmap-button6' src='src\assets\Roadmap\location6.png' onClick={handleEssayButtonClick}></img>
                             {isEssayPopupVisible && (
-                                <div className='pop-up-down'>
+                                <div className='pop-up-down3'>
                                     <p className='pop-up-text'>{messageEssay || "Essay prepared?"}</p>
                                 </div>
                             )}

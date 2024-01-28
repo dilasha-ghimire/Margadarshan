@@ -1,6 +1,6 @@
 import '../css-files/adminHeader.css';
 import React, {useEffect} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,12 @@ import { faPenNib } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const AdminHeader: React.FC = () => {
+
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('adminOTP');
+        navigate('/login');
+    }
 
     useEffect(() => {
         document.title = "Admin Header | Margadarshan"
@@ -76,10 +82,10 @@ const AdminHeader: React.FC = () => {
                                     </div>
                                 </div>
 
-                                <Link to="#" className="admin-header-nav-link admin-header-nav-logout">
+                                <button onClick={handleLogout} className="admin-header-nav-link admin-header-nav-logout">
                                     <FontAwesomeIcon className="admin-header-nav-icon" icon={faArrowRightFromBracket} />
                                     <span className="admin-header-nav-name">Log Out</span>
-                                </Link>
+                                </button>
                             </div>
                         </div>
                     </div>
