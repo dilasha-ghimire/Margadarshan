@@ -14,4 +14,5 @@ public interface ExamDeadlineService {
     String save(ExamDto examDto);
 
     String updateExamDeadlines(ExamDto examDto);
+
 }

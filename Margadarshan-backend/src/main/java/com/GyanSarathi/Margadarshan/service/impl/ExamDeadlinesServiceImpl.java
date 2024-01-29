@@ -21,6 +21,10 @@ public class ExamDeadlinesServiceImpl implements ExamDeadlineService {
         this.examDeadlinesRepository = examDeadlinesRepository;
     }
 
+
+
+
+
     @Override
     public List<ExamDeadlines> findAll() {
         return examDeadlinesRepository.findAll();
@@ -28,20 +32,26 @@ public class ExamDeadlinesServiceImpl implements ExamDeadlineService {
 
     @Override
     public String save(ExamDto examDto) {
-        ExamDeadlines examDeadlines = new ExamDeadlines();
-        Exam exam = new Exam();
-        exam.setExamId(examDto.getExamId());
-        exam.setExamName(examDto.getExamName());
-        if(examDto.getExamDateId()!=null){
-            examDeadlines = examDeadlinesRepository.findById(examDto.getExamDateId())
-                    .orElseThrow(()-> new NullPointerException("data not found"));
+        long maxRowCount = 5;
+        long rowCount = examDeadlinesRepository.countAllByExamExamId(examDto.getExamId());
+        if(rowCount>=maxRowCount){
+            throw new RuntimeException("Exceeds the limit for the given exam");
+        }else{
+            ExamDeadlines examDeadlines = new ExamDeadlines();
+            Exam exam = new Exam();
+            exam.setExamId(examDto.getExamId());
+            exam.setExamName(examDto.getExamName());
+            if(examDto.getExamDateId()!=null){
+                examDeadlines = examDeadlinesRepository.findById(examDto.getExamDateId())
+                        .orElseThrow(()-> new NullPointerException("data not found"));
+            }
+            examDeadlines.setExamDate(examDto.getExamDate());
+            examDeadlines.setRegistrationDeadline(examDto.getRegistrationDeadline());
+            examDeadlines.setLateRegistrationDeadline(examDto.getLateRegistrationDeadline());
+            examDeadlines.setExam(exam);
+            examDeadlinesRepository.save(examDeadlines);
+            return "data saved";
         }
-        examDeadlines.setExamDate(examDto.getExamDate());
-        examDeadlines.setRegistrationDeadline(examDto.getRegistrationDeadline());
-        examDeadlines.setLateRegistrationDeadline(examDto.getLateRegistrationDeadline());
-        examDeadlines.setExam(exam);
-        examDeadlinesRepository.save(examDeadlines);
-        return "data saved";
     }
 
     @Override
