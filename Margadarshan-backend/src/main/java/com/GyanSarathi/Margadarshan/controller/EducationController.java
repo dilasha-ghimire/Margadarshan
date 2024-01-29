@@ -29,7 +29,12 @@ public class EducationController {
     }
     @PostMapping("/save-education")
     public String saveEducation(@RequestBody EducationDto educationDto){
-         return educationService.saveEducation(educationDto);
+        try {
+            educationService.saveEducation(educationDto);
+            return "Data saved";
+        } catch (RuntimeException e){
+            return e.getMessage();
+        }
     }
 
     @PostMapping("/update-education")
