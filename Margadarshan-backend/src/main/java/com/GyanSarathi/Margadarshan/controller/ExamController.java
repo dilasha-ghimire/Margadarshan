@@ -28,8 +28,12 @@ public class ExamController {
 
     @PostMapping("/save-exams")
     public String saveExam(@RequestBody ExamDto examDto){
-        examDeadlineService.save(examDto);
-        return "data saved";
+        try {
+            examDeadlineService.save(examDto);
+            return "data saved";
+        } catch (RuntimeException e){
+            return e.getMessage();
+        }
     }
 
     @PostMapping("/update-exams")

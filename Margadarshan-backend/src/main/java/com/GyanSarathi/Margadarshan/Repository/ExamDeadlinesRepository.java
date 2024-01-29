@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ExamDeadlinesRepository extends JpaRepository<ExamDeadlines,Integer> {
+    long countAllByExamExamId(int examId);
 
 }
