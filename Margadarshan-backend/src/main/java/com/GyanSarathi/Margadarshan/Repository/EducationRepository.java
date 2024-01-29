@@ -21,4 +21,6 @@ public interface EducationRepository extends JpaRepository<Education,Integer> {
 
     Education findByEducationId(int educationId);
 
+    long countAllByStudentId(int studentId);
+
 }

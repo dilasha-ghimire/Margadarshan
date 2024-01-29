@@ -62,6 +62,11 @@ public class EducationServiceImpl implements EducationService {
 
     @Override
     public String saveEducation(EducationDto educationDto) {
+        long maxRowCount = 3;
+        long rowCount = educationRepository.countAllByStudentId(educationDto.getStudentId());
+        if(rowCount>=maxRowCount) {
+            throw new RuntimeException("Exceeds education limit for the given student");
+        }
         Education education = new Education();
         Student student = new Student();
         student.setId(educationDto.getStudentId());
