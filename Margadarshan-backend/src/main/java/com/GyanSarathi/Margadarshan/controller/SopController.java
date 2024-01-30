@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -24,16 +25,12 @@ public class SopController {
     }
 
     @PostMapping("/save-sop")
-    public Sop saveSop(@ModelAttribute SopDto sopDto){
-        try {
-            return sopService.saveSOP(sopDto);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void saveSop(@ModelAttribute SopDto sopDto) throws IOException {
+        sopService.saveSOP(sopDto);
     }
 
     @PostMapping("/retrieve-sop")
-    public ResponseEntity<List<Sop>> listOfSopByStudentId(@ModelAttribute SopDto sopDto){
-        return ResponseEntity.ok(sopService.findSopById(sopDto));
+    public List<?> listOfSopByStudentId(@ModelAttribute SopDto sopDto){
+        return sopService.findSopById(sopDto);
     }
 }

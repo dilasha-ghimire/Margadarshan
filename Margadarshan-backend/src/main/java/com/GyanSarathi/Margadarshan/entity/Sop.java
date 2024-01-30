@@ -22,11 +22,11 @@ public class Sop{
     @Column(name = "sop_name",nullable = false)
     private String sopName;
 
-    @Lob
-    @Column(name = "sop_pdf",columnDefinition = "LONGBLOB",nullable = false)
-    private byte[] sopPdf;
+    @Column(name = "sop_pdf")
+    private String sopPdf;
 
-    @Column(name = "student_id")
-    private int studentId;
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 
 }
