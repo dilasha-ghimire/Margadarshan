@@ -1,9 +1,30 @@
 import '../css-files/UserProfile.css'
 import Header from './Header';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
+import {Link} from "react-router-dom";
 
 function UserProfile() {
+
+    useEffect(() => {
+        document.title = "Profile | Margadarshan"
+    }, [])
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const storedID = localStorage.getItem('loggedInUserId');
+
+        if (storedID == null){
+            setIsLoggedIn(false);
+        }
+        else {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+
     const [userDetails, setUserDetails] = useState(null);
 
     useEffect(() => {
@@ -29,27 +50,35 @@ function UserProfile() {
 
     return (
         <>
-            <Header/>
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
-            <div className='left-section-userP'>
-                <p className='title-userP'>Profile</p>
-                <img className='main-img-userP' src='src\assets\Registration\margadarshan.png'></img>
-            </div>
-
-            <div className='right-section-userP'>
-                <p className='personal-details-userP'>Personal details</p>
-
-                {userDetails ? (
-                    <div className='logged-in-user-container'>
-                        <p>Name: {userDetails.fullName}</p>
-                        <p>Address: {userDetails.address}</p>
-                        <p>Mobile number: {userDetails.number}</p>
-                        <p>Email address: {userDetails.email}</p>
+            {isLoggedIn ? (
+                <>
+                    <div className='left-section-userP'>
+                        <p className='title-userP'>Profile</p>
+                        <img className='main-img-userP' src='src\assets\Registration\margadarshan.png'></img>
                     </div>
-                ) : (
-                    <p>Loading user details...</p>
-                )}
-            </div>
+                    <div className='right-section-userP'>
+                        <p className='personal-details-userP'>Personal details</p>
+
+                        {userDetails ? (
+                            <div className='logged-in-user-container'>
+                                <p>Name: {userDetails.fullName}</p>
+                                <p>Address: {userDetails.address}</p>
+                                <p>Mobile number: {userDetails.number}</p>
+                                <p>Email address: {userDetails.email}</p>
+                            </div>
+                        ) : (
+                            <p>Loading user details...</p>
+                        )}
+                    </div>
+                </>
+            ) : (
+                <div className="profile-login-popup">
+                <h2>Login to Access</h2>
+                <Link to="/login"><button>Login</button></Link>
+                </div>
+            )}
         </>
     )
 }

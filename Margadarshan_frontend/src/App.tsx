@@ -1,6 +1,7 @@
 import './App.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import { QueryClient, QueryClientProvider } from 'react-query';
+
 import University from "./tsx-files/University.tsx";
 import Scholarship from './tsx-files/Scholarship.tsx';
 import Registration from './tsx-files/Registration.tsx';
@@ -28,7 +29,6 @@ import AdminExam_SAT from './tsx-files/AdminExam_SAT.tsx';
 import AdminExam_GRE from './tsx-files/AdminExam_GRE.tsx';
 import AdminExam_IELTS from './tsx-files/AdminExam_IELTS.tsx';
 import AdminExam_TOEFL from './tsx-files/AdminExam_TOEFL.tsx';
-
 import AdminProfile from "./tsx-files/AdminProfile.tsx";
 import ForgotPassword from './tsx-files/ForgotPassword.tsx';
 import UserProfile from './tsx-files/UserProfile.tsx';

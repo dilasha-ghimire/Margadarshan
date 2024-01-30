@@ -5,11 +5,23 @@ import { useMutation, useQueryClient, useQuery } from 'react-query';
 import AdminExam from './AdminExam';
 import "../css-files/adminScholarship.css"
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AdminExam_SAT = () => {
+
   useEffect(() => {
     document.title = "Admin Exams SAT | Margadarshan"
 }, [])
+
+const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedOTP = localStorage.getItem('adminOTP');
+
+    if (storedOTP == null){
+      navigate('/login');
+    }
+  }, []);
 
   const { register, handleSubmit, reset } = useForm();
   const [isSatContentVisible, setSatContentVisible] = useState(false);

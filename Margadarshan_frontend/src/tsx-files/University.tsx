@@ -1,10 +1,11 @@
 import "../css-files/universityCentre.css";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useForm } from 'react-hook-form';
 import { useMutation } from "react-query";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Header from './Header';
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 
 function University() {
 
@@ -59,7 +60,7 @@ function University() {
 
     const generateFeeOptions = () => {
         const lowerBounds = [0, 30000, 40000, 50000, 60000];
-        const upperBounds = [30000, 40000, 50000, 60000, Infinity];
+        const upperBounds = [30000, 40000, 50000, 60000, 100000];
         return lowerBounds.map((lower, index) => {
             const upper = upperBounds[index];
             const label = upper === Infinity ? `>${lower}` : `$${lower} - $${upper}`;
@@ -75,7 +76,7 @@ function University() {
 
     return (
         <>
-            <Header />
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
             <div className="centre">
                 <div className="page-heading">

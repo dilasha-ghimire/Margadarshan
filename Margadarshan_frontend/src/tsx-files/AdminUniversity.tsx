@@ -11,8 +11,19 @@ import { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 function AdminUniversity() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedOTP = localStorage.getItem('adminOTP');
+
+        if (storedOTP == null) {
+            navigate('/login');
+        }
+    }, []);
 
     useEffect(() => {
         document.title = "Admin Universities | Margadarshan"
@@ -26,6 +37,7 @@ function AdminUniversity() {
     const [searchInput, setSearchInput] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedOption, setSelectedOption] = useState("");
+    const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
         if (isEditUniVisible && universityDetails) {
@@ -174,7 +186,7 @@ function AdminUniversity() {
         onSuccess: () => {
             setEditUniVisible(false);
             alert("Updated!");
-            refetch();
+            refetch(); 
         },
     });
 
@@ -183,6 +195,7 @@ function AdminUniversity() {
         formData.requiredEssays = selectedOption;
         saveUniversity.mutate(formData);
         clearAddUniForm();
+        setSelectedImage("src/assets/AdminUniversity/insert image.png");
     }
 
     const onSubmitSearch = async (value: any) => {
@@ -232,6 +245,8 @@ function AdminUniversity() {
     });
 
     const onSubmitEditUni = async (formData: any): void => {
+        formData.requiredEssays = formData.requiredEssays === "Yes";
+        
         if (formData.universityImage?.length !== 0) {
             editUniversity.mutate(formData);
         }
@@ -306,11 +321,30 @@ function AdminUniversity() {
 
                                     <label className="file-upload-label-addUni" htmlFor="universityImageId">
                                         <div className="file-img-container-addUni">
-                                            <img className="file-img-addUni" src="src/assets/AdminUniversity/insert image.png"></img>
+                                            {selectedImage ? (
+                                                <img
+                                                    className={"addUni-image"}
+                                                    src={selectedImage}
+                                                    alt="Selected Image"
+                                                />
+                                            ) : (
+                                                <img className="file-img-addUni" src="src/assets/AdminUniversity/insert image.png"></img>
+                                            )}
                                         </div>
                                     </label>
 
-                                    <input id="universityImageId" type="file" className="file-input-addUni" {...register("universityImage")}></input>
+                                    <input id="universityImageId" 
+                                    type="file" 
+                                    className="file-input-addUni" 
+                                    {...register("universityImage", {
+                                        onChange: (e) => {
+                                            const file = e.target.files[0];
+                                            if(file) {
+                                                const imageUrl = URL.createObjectURL(file);
+                                                setSelectedImage(imageUrl);
+                                            }
+                                        }
+                                    })}></input>
                                 </div>
 
                                 <div className="add-uni-right-sec">
@@ -413,12 +447,31 @@ function AdminUniversity() {
                                 <div className="edit-uni-left-section">
                                     <label className="file-upload-label-editUni" htmlFor="universityImageId">
                                         <div className="file-img-container-editUni">
-                                            <img className="file-img-editUni-adminUni" src={universityDetails?.universityImage || "src/assets/AdminUniversity/file upload1.png"}></img>
+                                            {selectedImage ? (
+                                                <img
+                                                className={"addUni-image"}
+                                                src={selectedImage}
+                                                alt="Selected Image"
+                                            />
+                                            ) : (
+                                                <img className="file-img-editUni-adminUni" src={universityDetails?.universityImage || "src/assets/AdminUniversity/file upload1.png"}></img>
+                                            )}
                                         </div>
-                                        <button className="browse-button-editUni" type="submit">Browse files</button>
+                                
                                     </label>
 
-                                    <input id="universityImageId" type="file" className="file-input" {...register("universityImage")}></input>
+                                    <input id="universityImageId" 
+                                    type="file" 
+                                    className="file-input" 
+                                    {...register("universityImage", {
+                                        onChange: (e) => {
+                                            const file = e.target.files[0];
+                                            if(file) {
+                                                const imageUrl = URL.createObjectURL(file);
+                                                setSelectedImage(imageUrl);
+                                            }
+                                        }
+                                    })}></input>
                                 </div>
 
                                 <div className="edit-uni-right-sec">

@@ -115,7 +115,7 @@ public class ScholarshipServiceImpl implements ScholarshipService {
             List<Scholarship> scholarshipsOne = scholarshipRepository.findByType(scholarshipDto.getScholarshipType(),scholarshipDto.getScholarshipGpa());
             return scholarshipsOne;
         }else if (scholarshipDto.getScholarshipType()==null){
-            List<Scholarship> scholarships = scholarshipRepository.findByGrant(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound());
+            List<Scholarship> scholarships = scholarshipRepository.findByGrant(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound(),scholarshipDto.getScholarshipGpa());
             return scholarships;
         }else {
             List<Scholarship> scholarships = scholarshipRepository.findByGrantAndType(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound(),scholarshipDto.getScholarshipType(),scholarshipDto.getScholarshipGpa());

@@ -34,7 +34,8 @@ function Login() {
                 navigate('/mainhomepage');
                 localStorage.setItem('loggedInUserId', id);
                 console.log("Logged in user: ",id)
-            } else {
+            } 
+            else {
                 console.log('Login failed');
                 console.log(message)
                 if (message === 'password does not match') {

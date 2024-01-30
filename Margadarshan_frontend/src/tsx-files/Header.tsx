@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import '../css-files/headerstyle.css';
 
 const Header: React.FC = () => {
@@ -23,6 +23,13 @@ const Header: React.FC = () => {
             setSidenavWidth('0');
         }
     };
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('loggedInUserId');
+        navigate('/login');
+    }
 
     useEffect(() => {
         window.addEventListener('resize', handleResize);
@@ -81,7 +88,7 @@ const Header: React.FC = () => {
                 </div>
 
                 <div className="header-profile-container">
-                    <button className="header-logout-button">Logout</button>
+                    <button onClick={handleLogout}  className="header-logout-button">Logout</button>
                     <Link to={"/userProfile"}><button className="header-profile-button">
                         <img className="header-profile" src="src\assets\Document\profile.png" alt="header-profile" />
                     </button></Link>

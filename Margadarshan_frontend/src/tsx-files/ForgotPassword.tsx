@@ -117,7 +117,7 @@ function ForgotPassword() {
             <div className="forgotP-page">
                 <div className="left-sec-forgotP">
                     <div className="website-title-forgotP">
-                        <p className="margadarshan-forgotP">MARGADARSHAN</p>
+                        <Link to="/mainhomepage"><p className="margadarshan-forgotP">MARGADARSHAN</p></Link>
                         <p className="gyansarathi-forgotP">by GyanSarathi</p>
                     </div>
                     <img className="login-img" src="src\assets\Registration\margadarshan.png"></img>

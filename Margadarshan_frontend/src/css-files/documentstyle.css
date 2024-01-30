@@ -17,113 +17,33 @@ body {
     transition: margin-left 0.5s;
 }
 
-.doc-sidenavbar {
-    height: 100%;    
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 10vh;; 
-    left: 0px;
-    background-color: #152039;
-    overflow-x: hidden;
-    padding-top: 20px; 
-    transition: 0.5s;
-}
-
-.doc-click-btn {
-    border: none;
-    background-color: #152039;
-    color: white;
-    position: fixed;
-    padding: 5px 15px 10px;
-    top: 92px;
-    left: -10px;
-    font-size: 30px;
-    vertical-align: middle;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-}
-
-.doc-sidenav-content p{
-    color: #FFE34F;
-    background-color: #152039;
-    font-family: "Paytone One";
-    font-size: 40px;
-    margin: 40px 40px 2px 20px;
-}
-
-.doc-sidenav-content a {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    color: white;
-    text-decoration: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 10px;
-    padding: 12px;
-    font-size: 23px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.doc-sidenav-content .doc-link {
-    background-color: #FFE34F;
-    color: #152039;
-}
-
-.doc-sidenav-content a:hover {
-    background-color: #FFE34F;
-    color: #152039;
-}
-
-.doc-sidenavbar .doc-close-btn {
-    text-decoration: none;
-    color: #FFE34F;
-    background-color: #152039;
-    font-family: "Paytone One";
-    font-size: 200px;
-    position: absolute;
-    top: 2px;
-    right: 10px;
-    font-size: 38px;
-    margin-left: 50px;
-}
-
-.document-upload h1 {
-    color: #1a1a1a;
-    font-weight: bold;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 45px;
-    left: 5px;
-    margin-top: 40px;
-    margin-bottom: 2px;
-}
-
-.document-upload p {
-    color: #1a1a1a;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: larger;
-    margin: 2px 30px 20px 12px;
+.document-upload {
+    background-color: white;
+    position: relative;
+    top: 15px;
+    margin-left: 20vw;
 }
 
 .doc-add {
-    width: 200px;
-    height: 200px; 
+    width: 13vw;
+    height: 13vw;
     margin-left: -8px;
     margin-top: -3px;
 }
 
 .doc-add-button-container {
     margin-top: 50px;
-    margin-left: 20px;
+    margin-left: 3.5vw;
     margin-right: 20px;
+    padding-bottom: 50px;
     display: flex;
     flex-wrap: wrap;
-    gap: 50px; 
+    gap: 11vh;
 }
 
 .doc-add-button-container button {
-    width: 200px; 
-    height: 200px; 
+    width: 13vw;
+    height: 13vw;
 }
 
 .doc-add-button-container p {
@@ -136,15 +56,20 @@ body {
 
 @media (max-width: 600px) {
     .doc-add {
-        width: 200px;
-        height: 200px; 
+        width: 13vw;
+        height: 13vw;
         margin-left: -8px;
         margin-top: -3px;
     }
 
     .doc-add-button-container button {
-        width: 100%; 
+        width: 13vw;
+        height: 13vw;
         max-width: 200px; 
         box-sizing: border-box; 
     }
+}
+
+.doc-login-popup {
+    margin-top: 300px;
 }
