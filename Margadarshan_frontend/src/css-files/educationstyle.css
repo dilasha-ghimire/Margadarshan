@@ -1,6 +1,5 @@
 .edu-content {
     background-color: white;
-    height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -60,8 +59,7 @@
     background-color: white;
     position: relative;
     top: 15px;
-    margin-left: 20vw;
-    height: 100%;
+    margin-left: 17vw;
 }
 
 .edu-title{
@@ -69,12 +67,12 @@
 }
 
 .edu-title h1{
-    margin-top: 1vw;
+    margin-top: 2vw;
     margin-left: 3vw;
     text-align: left;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
-    font-size: 3.5vw;
+    font-size: 3vw;
 }
 
 .edu-title p{
@@ -83,18 +81,23 @@
     margin-right: 2vw;
     font-family: "Barlow Condensed Medium";
     font-weight: bold;
-    font-size: 2vw;
+    font-size: 1.3vw;
 }
 
 .edu-timeline{
+    display: flex;
+    padding-top: 1vw;
+    flex-direction: column;
     position: relative;
     background-color: white;
+    margin-left: 2vw;
+    gap: 3vw;
 }
 
 .edu-addButton {
     position: absolute;
     right: 20px;
-    top: -5px;
+    top: 1vw;
     color: white;
     padding: 0 5px 5px 5px;
     font-size: 3vw;
@@ -114,7 +117,7 @@
     border-radius: 10px;
     right: 20px;
     margin-left: 20px;
-    top: 6vw;
+    top: 8vw;
 }
 
 .edu-form h3{
@@ -178,7 +181,7 @@
         border-radius: 10px;
         right: 20px;
         margin-left: 20px;
-        top: 6vw;
+        top: 8vw;
     }
 
     .edu-form h3{
@@ -231,29 +234,14 @@
     }
 }
 
-/*------------------------------------------------------*/
-
-.test-version{
-    /*background-color: rgba(94, 92, 92, 0.32);*/
-    /*padding: 30px 30px 30px 30px;*/
-}
-
-.sample{
-    /*background-color: bisque;*/
-    margin: 20px 20px 20px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.cont{
+.edu-student-data-container{
     display: flex;
     flex-direction: row;
 }
 
 #edu-icon{
-    font-size: 36px;
-    margin-top: 5px;
+    font-size: 3.5vw;
+    margin-top: 1vw;
     margin-left: 5px;
 }
 
@@ -263,15 +251,16 @@
     gap: 2vw;
 }
 
-.random{
-    padding: 0;
+.edu-edit-btn{
+    padding: 0 0 0 0;
+    margin-top: -10px;
     background-color: white;
     color: black;
     font-size: 2vw;
 }
 
 .edtext{
-    margin-left: 20px;
+    margin-left: 2vw;
     margin-top: 5px;
     text-align: left;
 }
@@ -286,7 +275,7 @@
 }
 
 @media (max-width: 660px) {
-    .random{
+    .edu-edit-btn{
         font-size: 3vw;
     }
 }

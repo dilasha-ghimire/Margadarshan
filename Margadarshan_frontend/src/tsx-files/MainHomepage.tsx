@@ -100,9 +100,9 @@ const MainHomepage: React.FC = () => {
                     <div className="mhp-image mhp-animate mhp-img-road" style={{ backgroundImage: `url('src/assets/Homepage/Roadmap.jpg')` }}>
                         <div className="mhp-road-text mhp-color-overlay d-flex">
                             <h1 id="mhp-road-main-header">
-                                <span className="road-first-line">Navigate your future with</span>
+                                <span className="road-first-line">Navigate future with your</span>
                                 <br/>
-                                <span className="road-second-line">our roadmap</span>
+                                <span className="road-second-line">personalised roadmap</span>
                             </h1>
                         </div>
                     </div>
