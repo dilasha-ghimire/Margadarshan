@@ -28,7 +28,7 @@
 .file-upload-label-addSch:hover {
     cursor: pointer;
 }
-.file-img-addSch {
+.file-img-addSch, .addSch-image {
     height: 250px;
 }
 .browse-button-addSch {

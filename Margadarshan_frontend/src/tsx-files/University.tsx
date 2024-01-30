@@ -60,7 +60,7 @@ function University() {
 
     const generateFeeOptions = () => {
         const lowerBounds = [0, 30000, 40000, 50000, 60000];
-        const upperBounds = [30000, 40000, 50000, 60000, Infinity];
+        const upperBounds = [30000, 40000, 50000, 60000, 100000];
         return lowerBounds.map((lower, index) => {
             const upper = upperBounds[index];
             const label = upper === Infinity ? `>${lower}` : `$${lower} - $${upper}`;

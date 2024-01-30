@@ -327,25 +327,29 @@ function Roadmap() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='study-level-radio-container'>
                         <div className="radio-container1-roadmap">
-                            <label>Bachelors</label>
-                            <input type="radio" name="study-radio-roadmap"
-                                onClick={() => {
-                                    setBachelorDivVisible(true);
-                                    setMasterDivVisible(false);
-                                    setSelectedStudyLevel('bachelors');
-                                }}></input>
-                            <span className="checkmark-roadmap"></span>
+                            <label className='bachelor-master-radio-label'>
+                                Bachelors
+                                <input type="radio" name="study-radio-roadmap"
+                                    onClick={() => {
+                                        setBachelorDivVisible(true);
+                                        setMasterDivVisible(false);
+                                        setSelectedStudyLevel('bachelors');
+                                    }}></input>
+                                <span className="checkmark-roadmap"></span>
+                            </label>
                         </div>
 
                         <div className="radio-container2-roadmap">
-                            <label>Masters</label>
-                            <input type="radio" name="study-radio-roadmap"
-                                onClick={() => {
-                                    setBachelorDivVisible(false);
-                                    setMasterDivVisible(true);
-                                    setSelectedStudyLevel('masters');
-                                }}></input>
-                            <span className="checkmark-roadmap"></span>
+                            <label className='bachelor-master-radio-label'>
+                                Masters
+                                <input type="radio" name="study-radio-roadmap"
+                                    onClick={() => {
+                                        setBachelorDivVisible(false);
+                                        setMasterDivVisible(true);
+                                        setSelectedStudyLevel('masters');
+                                    }}></input>
+                                <span className="checkmark-roadmap"></span>
+                            </label>
                         </div>
                     </div>
 
@@ -413,21 +417,25 @@ function Roadmap() {
                                 <label>Supplementary essays prepared:</label>
 
                                 <div className="radio-container1-roadmap">
-                                    <label>Yes</label>
-                                    <input type="radio" name="radio-roadmap"
-                                        onClick={() => {
-                                            setSelectedEssay("Yes");
-                                        }}></input>
-                                    <span className="checkmark-roadmap"></span>
+                                    <label className='sup-essay-radio-label'>
+                                        Yes
+                                        <input type="radio" name="radio-roadmap"
+                                            onClick={() => {
+                                                setSelectedEssay("Yes");
+                                            }}></input>
+                                        <span className="checkmark-roadmap"></span>
+                                    </label>
                                 </div>
 
                                 <div className="radio-container2-roadmap">
-                                    <label>No</label>
-                                    <input type="radio" name="radio-roadmap"
-                                        onClick={() => {
-                                            setSelectedEssay("No");
-                                        }}></input>
-                                    <span className="checkmark-roadmap"></span>
+                                    <label className='sup-essay-radio-label'>
+                                        No
+                                        <input type="radio" name="radio-roadmap"
+                                            onClick={() => {
+                                                setSelectedEssay("No");
+                                            }}></input>
+                                        <span className="checkmark-roadmap"></span>
+                                    </label>
                                 </div>
                             </div>
 
@@ -492,21 +500,25 @@ function Roadmap() {
                                 <label>Supplementary essays prepared:</label>
 
                                 <div className="radio-container1-roadmap">
-                                    <label>Yes</label>
-                                    <input type="radio" name="radio-roadmap"
-                                        onClick={() => {
-                                            setSelectedEssay("Yes");
-                                        }}></input>
-                                    <span className="checkmark-roadmap"></span>
+                                    <label className='sup-essay-radio-label'>
+                                        Yes
+                                        <input type="radio" name="radio-roadmap"
+                                            onClick={() => {
+                                                setSelectedEssay("Yes");
+                                            }}></input>
+                                        <span className="checkmark-roadmap"></span>
+                                    </label>
                                 </div>
 
                                 <div className="radio-container2-roadmap">
-                                    <label>No</label>
-                                    <input type="radio" name="radio-roadmap"
-                                        onClick={() => {
-                                            setSelectedEssay("No");
-                                        }}></input>
-                                    <span className="checkmark-roadmap"></span>
+                                    <label className='sup-essay-radio-label'>
+                                        No
+                                        <input type="radio" name="radio-roadmap"
+                                            onClick={() => {
+                                                setSelectedEssay("No");
+                                            }}></input>
+                                        <span className="checkmark-roadmap"></span>
+                                    </label>
                                 </div>
                             </div>
 
