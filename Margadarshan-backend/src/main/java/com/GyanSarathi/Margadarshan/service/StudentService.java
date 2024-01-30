@@ -1,7 +1,9 @@
 package com.GyanSarathi.Margadarshan.service;
 
 import com.GyanSarathi.Margadarshan.dto.LoginDto;
+import com.GyanSarathi.Margadarshan.dto.ProfileDto;
 import com.GyanSarathi.Margadarshan.dto.StudentDto;
+import com.GyanSarathi.Margadarshan.entity.Profile;
 import com.GyanSarathi.Margadarshan.entity.Student;
 import com.GyanSarathi.Margadarshan.response.LoginResponse;
 import com.GyanSarathi.Margadarshan.response.OtpResponse;
@@ -24,4 +26,8 @@ public interface StudentService {
     OtpResponse validateOtp(String email, String Otp);
 
     void updatePassword(String password, String email);
+
+    void saveCitizenshipImage(ProfileDto profileDto);
+
+    List<Profile> findCitizenshipByStudentId(ProfileDto profileDto);
 }
