@@ -27,7 +27,7 @@
 .file-upload-label-addUni:hover {
     cursor: pointer;
 }
-.file-img-addUni {
+.file-img-addUni, .addUni-image {
     height: 250px;
 }
 .browse-button-addUni {
