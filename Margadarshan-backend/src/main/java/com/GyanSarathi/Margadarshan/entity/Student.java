@@ -41,6 +41,10 @@ public class Student{
     @JsonIgnore
     private List<Education> educations = new ArrayList<>();
 
+    @OneToMany(mappedBy = "profileStudent",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Profile> profiles = new ArrayList<>();
+
      /*
     CREATE TABLE `Students` (
   `student_id` int NOT NULL AUTO_INCREMENT,

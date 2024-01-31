@@ -27,7 +27,5 @@ public interface StudentService {
 
     void updatePassword(String password, String email);
 
-    void saveCitizenshipImage(ProfileDto profileDto);
 
-    List<Profile> findCitizenshipByStudentId(ProfileDto profileDto);
 }

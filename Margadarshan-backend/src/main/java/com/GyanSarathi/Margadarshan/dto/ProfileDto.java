@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ProfileDto {
 
 

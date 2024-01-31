@@ -90,15 +90,6 @@ public class StudentController {
         return "Password reset complete";
     }
 
-    @PostMapping("/save-citizenship")
-    public void saveCitizenshipImage(@ModelAttribute ProfileDto profileDto){
-        studentService.saveCitizenshipImage(profileDto);
-    }
-
-    @PostMapping("/show-citizenship")
-    public List<Profile> showCitizenship(@ModelAttribute ProfileDto profileDto){
-        return studentService.findCitizenshipByStudentId(profileDto);
-    }
 
 
 }

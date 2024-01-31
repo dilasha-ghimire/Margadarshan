@@ -31,18 +31,11 @@ public class StudentServiceImpl implements StudentService {
 
     private final JavaMailSender javaMailSender;
 
-    private final ProfileRepository profileRepository;
-
-    @Value("${upload.path}")
-    private String uploadPath;
-
-
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender, ProfileRepository profileRepository) {
+    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender) {
         this.studentRepository = studentRepository;
         this.passwordEncoder = passwordEncoder;
         this.javaMailSender = javaMailSender;
-        this.profileRepository = profileRepository;
     }
 
     @Override
@@ -140,26 +133,6 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.updatePassword(encodedPassword,email);
     }
 
-    @Override
-    public void saveCitizenshipImage(ProfileDto profileDto) {
-        Profile profile = new Profile();
-        Student student = new Student();
-        student.setId(profileDto.getStudentId());
-        String fileName = UUID.randomUUID().toString()+"_"+ profileDto.getCitizenship().getOriginalFilename();
-        Path filePath = Paths.get(uploadPath,fileName);
-        try {
-            Files.copy(profileDto.getCitizenship().getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        profile.setCitizenship(fileName);
-        profile.setStudent(student);
-        profileRepository.save(profile);
-    }
 
-    @Override
-    public List<Profile> findCitizenshipByStudentId(ProfileDto profileDto) {
-        return profileRepository.findAlByStudentId(profileDto.getStudentId());
-    }
 }
 
