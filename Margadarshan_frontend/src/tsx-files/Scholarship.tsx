@@ -2,15 +2,15 @@ import "../css-files/scholarshipCentre.css";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Header from './Header';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 
 function Scholarship() {
     const { register, handleSubmit } = useForm();
     const [selectedSchType, setSelectedSchType] = useState("");
     const [selectedSchGpa, setSelectedSchGpa] = useState("");
-    const [selectedGrant, setSelectedGrant] = useState("");
     const [isGpaDropDownVisible, setGpaDropDownVisible] = useState(false);
     const [ selectedGrantAmount, setSelectedGrantAmount ] = useState("");
 
@@ -35,7 +35,7 @@ function Scholarship() {
         setGpaDropDownVisible(value === "Merit-based scholarship");
     };
 
-    const filterScholarship = useMutation({
+    const saveData = useMutation({
         mutationKey: "FILTER SCHOLARSHIP",
         mutationFn: (requestData: any) => {
             console.log(requestData)
@@ -48,18 +48,16 @@ function Scholarship() {
 
     const onSubmit = async (value: any) => {
         try {
-            const selectedGrantAmountValue = value.grant;
-            const [min, max] = selectedGrantAmountValue.split('-');
+            const [min, max] = selectedGrantAmount.split('-');
             value.grantLowerBound = parseInt(min);
             value.grantUpperBound = parseInt(max);
             value.scholarshipType = selectedSchType;
-            value.scholarshipGpa = selectedSchGpa;
-            value.grant = selectedGrant;
-    
-            await filterScholarship.mutateAsync(value);
+            value.scholarshipGpa = selectedSchGpa
+
+            await saveData.mutateAsync(value);
         }
         catch (error) {
-            console.error("Error filtering scholarship", error);
+            console.error("Error filtering universities", error);
             setFilteredSch([]);
         }
     }
@@ -78,7 +76,7 @@ function Scholarship() {
 
     return (
         <>
-            <Header />
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
             <div className="centre">
                 <div className="page-heading">
@@ -139,11 +137,11 @@ function Scholarship() {
                                 <p className="question">Choose the scholarship grant</p>
                                 <select
                                     className="grant-dropdown"
-                                    {...register("grant")}
-                                    value={selectedGrant}
-                                    onChange={(e) => setSelectedGrant(e.target.value)}>
+                                    value={selectedGrantAmount}
+                                    defaultValue={""}
+                                    onChange={(e) => setSelectedGrantAmount(e.target.value)}>
 
-                                    {selectedGrant === "" && <option value="" disabled>Select an option</option>}
+                                    <option value="" disabled>Select an option</option>
                                     {options.map((option, index) => (
                                         <option key={index} value={option.value}>
                                             {option.label}
@@ -172,7 +170,7 @@ function Scholarship() {
                                     <p className="sch-name">{sch.scholarshipName}</p>
                                     <p className="sch-institute">{sch.scholarshipOrganization}</p>
                                     <p className="sch-type">{sch.scholarshipType}</p>
-                                    <p className="grant">Grant: {sch.grant}</p>
+                                    <p className="grant">Grant: ${sch.grant}</p>
                                 </div>
                             </div>
                             <div className="sch-deadline">
@@ -187,4 +185,4 @@ function Scholarship() {
     )
 }
 
-export default Scholarship
+export default Scholarship;

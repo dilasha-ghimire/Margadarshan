@@ -8,8 +8,19 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 
 function AdminScholarship() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedOTP = localStorage.getItem('adminOTP');
+
+        if (storedOTP == null){
+            navigate('/login');
+        }
+    }, []);
 
     useEffect(() => {
         document.title = "Admin Scholarships | Margadarshan"
@@ -21,6 +32,7 @@ function AdminScholarship() {
     const [isEditSchVisible, setEditSchVisible] = useState(false);
     const [scholarshipDetails, setScholarshipDetails] = useState({});
     const [searchInput, setSearchInput] = useState("");
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const { data, refetch } = useQuery({
         queryKey: "GETDATA",
@@ -66,8 +78,19 @@ function AdminScholarship() {
         },
     });
 
+    const clearAddSchForm = () => {
+        setValue("scholarshipName", "");
+        setValue("scholarshipOrganization", "");
+        setValue("scholarshipType", "");
+        setValue("grant", "");
+        setValue("scholarshipGpa", "");
+        setValue("scholarshipDeadline", "");
+    };
+
     const onSubmitAddSch = (formData: any): void => {
         saveScholarship.mutate(formData);
+        clearAddSchForm();
+        setSelectedImage("src/assets/AdminUniversity/insert image.png");
     };
 
     useEffect(() => {
@@ -257,11 +280,31 @@ function AdminScholarship() {
 
                                     <label className="file-upload-label-addSch" htmlFor="scholarshipImageId">
                                         <div className="file-img-container-addSch">
-                                            <img className="file-img-addSch" src={"src/assets/AdminUniversity/insert image.png"}></img>
+                                            {selectedImage ? (
+                                                <img
+                                                className={"addSch-image"}
+                                                src={selectedImage}
+                                                alt="Selected Image"
+                                            />
+                                            ) : (
+                                                <img className="file-img-addSch" src={"src/assets/AdminUniversity/insert image.png"}></img>
+                                            )}
+                                            
                                         </div>
                                     </label>
 
-                                    <input id="scholarshipImageId" type="file" className="file-input-addSch" {...register("scholarshipImage")}></input>
+                                    <input id="scholarshipImageId" 
+                                    type="file" 
+                                    className="file-input-addSch" 
+                                    {...register("scholarshipImage", {
+                                        onChange: (e) => {
+                                            const file = e.target.files[0];
+                                            if(file) {
+                                                const imageUrl = URL.createObjectURL(file);
+                                                setSelectedImage(imageUrl);
+                                            }
+                                        }
+                                    })}></input>
                                 </div>
 
                                 <div className="add-sch-right-sec">
@@ -305,12 +348,31 @@ function AdminScholarship() {
 
                                     <label className="file-upload-label-editSch" htmlFor="scholarshipImageId">
                                         <div className="file-img-container-editSch">
-                                            <img className="file-img-editSch" src={scholarshipDetails?.scholarshipImage || "src/assets/AdminUniversity/file upload1.png"}></img>
+                                            {selectedImage ? (
+                                                <img
+                                                className={"addSch-image"}
+                                                src={selectedImage}
+                                                alt="Selected Image"
+                                            />
+                                            ) : (
+                                                <img className="file-img-editSch" src={scholarshipDetails?.scholarshipImage || "src/assets/AdminUniversity/file upload1.png"}></img>
+                                            )}
+                                            
                                         </div>
-                                        <button className="browse-button-editSch" type="submit">Browse files</button>
                                     </label>
 
-                                    <input id="scholarshipImageId" type="file" className="file-input-editSch" {...register("scholarshipImage")}></input>
+                                    <input id="scholarshipImageId" 
+                                    type="file" 
+                                    className="file-input-editSch" 
+                                    {...register("scholarshipImage", {
+                                        onChange: (e) => {
+                                            const file = e.target.files[0];
+                                            if(file) {
+                                                const imageUrl = URL.createObjectURL(file);
+                                                setSelectedImage(imageUrl);
+                                            }
+                                        }
+                                    })}></input>
                                 </div>
 
                                 <div className="edit-sch-right-sec">

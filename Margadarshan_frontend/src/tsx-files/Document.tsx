@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom"
 import '../css-files/documentstyle.css';
 import Header from "./Header.tsx";
+import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 
 const Document: React.FC = () => {
 
@@ -9,38 +10,34 @@ const Document: React.FC = () => {
         document.title = "Documents | Margadarshan"
     }, [])
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const [sideNavWidth, setSideNavWidth] = useState<string>('0');
+    useEffect(() => {
+        const storedID = localStorage.getItem('loggedInUserId');
 
-    const openSideNav = () => {
-        setSideNavWidth('250px');
-    };
+        if (storedID == null){
+            setIsLoggedIn(false);
+        }
+        else {
+            setIsLoggedIn(true);
+        }
+    }, []);
 
-    const closeSideNav = () => {
-        setSideNavWidth('0');
-    };
     return (
         <div>
-            <Header/>
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
+            {isLoggedIn ? (
             <div className="doc-content">
-                <div className="doc-clickbtn" onClick={openSideNav}>
-                    <button className="doc-click-btn">→</button>
-                </div>
-
-                <div id="doc-navigation" className="doc-sidenavbar" style={{ width: sideNavWidth }}>
-                    <a href="javascript:void(0)" className="doc-close-btn" onClick={closeSideNav}>←</a>
-                    <div id="mySidenav" className="doc-sidenav-content">
+                <div id="edu-navigation" className="edu-sidenavbar">
+                    <div id="mySidenav" className="edu-sidenav-content">
                         <p>Portfolio</p>
-                        <h1></h1>
                         <Link to="/education ">
                             <span>Education</span>
                         </Link>
-                        <h1></h1>
                         <Link to="/document " className="doc-link">
                             <span>Documents</span>
                         </Link>
-                        <h1></h1>
                         <Link to="/sop ">
                             <span>SoP and Essays</span>
                         </Link>
@@ -48,11 +45,12 @@ const Document: React.FC = () => {
                 </div>
 
                 <div className="document-upload">
-                    <h1>Documents</h1>
 
-                    <p>
-                        Upload your documents here to be reviewed by our team. Please ensure that you have the necessary permissions to upload these files.
-                    </p>
+                    <div className="edu-title">
+                        <h1>Documents</h1>
+                        <p>Upload your documents here to be reviewed by our team. Please ensure that you have the necessary permissions to upload these files.</p>
+                    </div>
+
 
                     <div className="doc-add-button-container">
                         <button className="resume">
@@ -82,6 +80,12 @@ const Document: React.FC = () => {
                     </div>
                 </div>
             </div>
+            ) : (
+                <div className="doc-login-popup">
+                    <h2>Login to Access</h2>
+                    <Link to="/login"><button>Login</button></Link>
+                </div>
+            )}
         </div>
     );
 };

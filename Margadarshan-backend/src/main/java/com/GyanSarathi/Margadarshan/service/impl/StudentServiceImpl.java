@@ -1,8 +1,10 @@
 package com.GyanSarathi.Margadarshan.service.impl;
 
 import com.GyanSarathi.Margadarshan.Repository.ProfileRepository;
+import com.GyanSarathi.Margadarshan.Repository.ProfileRepository;
 import com.GyanSarathi.Margadarshan.Repository.StudentRepository;
 import com.GyanSarathi.Margadarshan.dto.LoginDto;
+import com.GyanSarathi.Margadarshan.dto.ProfileDto;
 import com.GyanSarathi.Margadarshan.dto.ProfileDto;
 import com.GyanSarathi.Margadarshan.dto.StudentDto;
 import com.GyanSarathi.Margadarshan.entity.Profile;
@@ -32,10 +34,11 @@ public class StudentServiceImpl implements StudentService {
     private final JavaMailSender javaMailSender;
 
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender) {
+    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender, ProfileRepository profileRepository) {
         this.studentRepository = studentRepository;
         this.passwordEncoder = passwordEncoder;
         this.javaMailSender = javaMailSender;
+        this.profileRepository = profileRepository;
     }
 
     @Override
@@ -132,7 +135,6 @@ public class StudentServiceImpl implements StudentService {
         String encodedPassword = this.passwordEncoder.encode(password);
         studentRepository.updatePassword(encodedPassword,email);
     }
-
 
 }
 
