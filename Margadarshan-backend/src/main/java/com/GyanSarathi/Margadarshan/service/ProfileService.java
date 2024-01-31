@@ -13,7 +13,13 @@ public interface ProfileService {
 
     void saveCitizenshipImage(ProfileDto profileDto);
 
-    List<Profile> findCitizenshipByStudentId(ProfileDto profileDto);
+//    List<Profile> findCitizenshipByStudentId(ProfileDto profileDto);
+
+    List<ProfileDto> getProfileByStudentId(int studentId);
+
+    List<ProfileDto> mapProfileToDtos(List<Profile> profiles);
+
+    String updateProfile(ProfileDto profileDto);
 
 
 }

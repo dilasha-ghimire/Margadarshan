@@ -21,12 +21,28 @@ public class ProfileController {
 
 
     @PostMapping("/save-citizenship")
-    public void saveCitizenshipImage(@ModelAttribute ProfileDto profileDto){
-        profileService.saveCitizenshipImage(profileDto);
+    public String saveCitizenshipImage(@ModelAttribute ProfileDto profileDto){
+        try {
+            profileService.saveCitizenshipImage(profileDto);
+            return "Data saved";
+        } catch (RuntimeException e){
+            return e.getMessage();
+        }
+    }
+
+    //send studentId here
+    @PostMapping("/update-citizenship")
+    public String updateCitizenshipImage(@ModelAttribute ProfileDto profileDto){
+        try {
+            profileService.updateProfile(profileDto);
+            return "Data updated";
+        } catch (RuntimeException e){
+            return e.getMessage();
+        }
     }
 
     @PostMapping("/show-citizenship")
-    public List<Profile> showCitizenship(@RequestBody ProfileDto profileDto){
-        return profileService.findCitizenshipByStudentId(profileDto);
+    public List<ProfileDto> showCitizenship(@RequestBody ProfileDto profileDto){
+        return profileService.getProfileByStudentId(profileDto.getStudentId());
     }
 }

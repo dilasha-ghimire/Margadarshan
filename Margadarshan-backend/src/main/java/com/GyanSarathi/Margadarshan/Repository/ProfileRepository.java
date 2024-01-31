@@ -9,6 +9,11 @@ import java.util.List;
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Integer>{
 
-    @Query(value = "SELECT * FROM Profile p WHERE p.student_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM Profile WHERE student_id = ?1", nativeQuery = true)
     List<Profile> listByStudentId(int studentId);
+
+    long countAllByProfileStudentId(int studentId);
+
+   Profile findProfileByProfileStudentId(int profileId);
+
 }
