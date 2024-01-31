@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -110,16 +111,32 @@ public class ScholarshipServiceImpl implements ScholarshipService {
     }
 
     @Override
-    public List<Scholarship> findByGrantAndType(ScholarshipDto scholarshipDto) {
-        if(scholarshipDto.getGrantLowerBound()==null){
+    public List<Scholarship> findByGrantAndTypeAndGpa(ScholarshipDto scholarshipDto) {
+   /*     if(scholarshipDto.getGrantLowerBound()==null){
             List<Scholarship> scholarshipsOne = scholarshipRepository.findByType(scholarshipDto.getScholarshipType(),scholarshipDto.getScholarshipGpa());
             return scholarshipsOne;
         }else if (scholarshipDto.getScholarshipType()==null){
-            List<Scholarship> scholarships = scholarshipRepository.findByGrant(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound(),scholarshipDto.getScholarshipGpa());
+            List<Scholarship> scholarships = scholarshipRepository.findByGrant(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound());
             return scholarships;
         }else {
             List<Scholarship> scholarships = scholarshipRepository.findByGrantAndType(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound(),scholarshipDto.getScholarshipType(),scholarshipDto.getScholarshipGpa());
             return scholarships;
+        }*/
+        if(scholarshipDto.getGrantLowerBound()==null && !Objects.equals(scholarshipDto.getScholarshipType(), "Merit based scholarships")){
+            List<Scholarship> scholarships = scholarshipRepository.findByType(scholarshipDto.getScholarshipType());
+            return scholarships;
+        } else if (Objects.equals(scholarshipDto.getScholarshipType(), "Merit based scholarships") && scholarshipDto.getGrantLowerBound()==null) {
+            List<Scholarship> scholarships = scholarshipRepository.findByTypeAndGpa(scholarshipDto.getScholarshipType(),scholarshipDto.getScholarshipGpa());
+            return scholarships;
+        } else if (scholarshipDto.getGrantLowerBound()!=null && Objects.equals(scholarshipDto.getScholarshipType(), "Merit based scholarships")) {
+            List<Scholarship> scholarships = scholarshipRepository.findByGrantAndTypeAndGpa(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound(),scholarshipDto.getScholarshipType(),scholarshipDto.getScholarshipGpa());
+            return scholarships;
+        } else if (scholarshipDto.getGrantLowerBound()!=null && scholarshipDto.getScholarshipType() == null) {
+            List<Scholarship> scholarships = scholarshipRepository.findByGrant(scholarshipDto.getGrantUpperBound(),scholarshipDto.getGrantLowerBound());
+            return scholarships;
+        }else {
+            return null;
         }
+
     }
 }

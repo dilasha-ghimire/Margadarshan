@@ -41,6 +41,7 @@ public class Student{
     @JsonIgnore
     private List<Education> educations = new ArrayList<>();
 
+
      /*
     CREATE TABLE `Students` (
   `student_id` int NOT NULL AUTO_INCREMENT,

@@ -1,22 +1,30 @@
 package com.GyanSarathi.Margadarshan.service.impl;
 
+import com.GyanSarathi.Margadarshan.Repository.ProfileRepository;
+import com.GyanSarathi.Margadarshan.Repository.ProfileRepository;
 import com.GyanSarathi.Margadarshan.Repository.StudentRepository;
 import com.GyanSarathi.Margadarshan.dto.LoginDto;
+import com.GyanSarathi.Margadarshan.dto.ProfileDto;
+import com.GyanSarathi.Margadarshan.dto.ProfileDto;
 import com.GyanSarathi.Margadarshan.dto.StudentDto;
+import com.GyanSarathi.Margadarshan.entity.Profile;
 import com.GyanSarathi.Margadarshan.entity.Student;
 import com.GyanSarathi.Margadarshan.response.LoginResponse;
 import com.GyanSarathi.Margadarshan.response.OtpResponse;
 import com.GyanSarathi.Margadarshan.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.SimpleMailMessage;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.*;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -24,7 +32,6 @@ public class StudentServiceImpl implements StudentService {
     private final PasswordEncoder passwordEncoder;
 
     private final JavaMailSender javaMailSender;
-
 
     @Autowired
     public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender) {
@@ -127,5 +134,6 @@ public class StudentServiceImpl implements StudentService {
         String encodedPassword = this.passwordEncoder.encode(password);
         studentRepository.updatePassword(encodedPassword,email);
     }
+
 }
 

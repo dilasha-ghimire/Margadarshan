@@ -1,7 +1,9 @@
 package com.GyanSarathi.Margadarshan.controller;
 
 import com.GyanSarathi.Margadarshan.dto.LoginDto;
+import com.GyanSarathi.Margadarshan.dto.ProfileDto;
 import com.GyanSarathi.Margadarshan.dto.StudentDto;
+import com.GyanSarathi.Margadarshan.entity.Profile;
 import com.GyanSarathi.Margadarshan.entity.Student;
 import com.GyanSarathi.Margadarshan.response.LoginResponse;
 import com.GyanSarathi.Margadarshan.response.OtpResponse;
@@ -87,6 +89,5 @@ public class StudentController {
         studentService.updatePassword(studentDto.getStudentPassword(),studentDto.getStudentEmail());
         return "Password reset complete";
     }
-
 
 }
