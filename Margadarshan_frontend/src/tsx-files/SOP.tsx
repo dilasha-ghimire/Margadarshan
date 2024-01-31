@@ -11,6 +11,9 @@ function SOP() {
         document.title = "SOP and Essays | Margadarshan"
     }, [])
 
+    // handleUpload(e){
+    //     console.log(this.state,)
+    // }
     const [documentTitle, setDocumentTitle] = useState('');
     const [imagePreview, setImagePreview] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,6 +21,8 @@ function SOP() {
     // const previewImage = (e) => {
     //     const input = e.target;
     const previewImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.files,"$$$$");
+        console.log(e.target.files[0],"$$$");
         const input = e.target ?? null;
 
         if (input.files && input.files[0]) {
@@ -54,6 +59,7 @@ function SOP() {
     const handleButtonClick = () => {
         setAddUniVisible(!isAddUniVisible);
         setBodyOpacity(isAddUniVisible ? 1 : 0.3);
+
     };
    
     return(
@@ -76,26 +82,26 @@ function SOP() {
       </div>
       {isAddUniVisible &&(
         <div className="sop_first-div">
+            <form className="form">
         <div className="title">
-            <label htmlFor="input-doc" id="document-name">
-                Title of document
-            </label>
+            <label htmlFor="input-doc" id="document-name">Title of document</label>
             <br />
             <input
-                type="Inputtitle"
-                value={documentTitle}
+                type="text" value={documentTitle}
                 onChange={(e) => setDocumentTitle(e.target.value)}
             />
         </div>
-        <form action="" className="form">
+        
             <div id="image-preview">
                 {imagePreview && <img src={imagePreview} alt="Preview" />}
             </div>
             <div className="select">
                 <input
                     type="file"
+                    id="input-doc"
+                    name="file"
                     accept="image/*"
-                    onChange={previewImage}
+                    onChange={(e)=>previewImage(e)}
                 />
                 <input type="submit" value="Upload" />
             </div>
