@@ -23,11 +23,7 @@ public class Profile {
 
     @ManyToOne
     @JoinColumn(name = "student_id")
-<<<<<<< HEAD
     private Student profileStudent;
-=======
-    private Student student;
->>>>>>> d915e6f6301105017a2fa7f17e6eabc9d4cf192f
 
 
 }
