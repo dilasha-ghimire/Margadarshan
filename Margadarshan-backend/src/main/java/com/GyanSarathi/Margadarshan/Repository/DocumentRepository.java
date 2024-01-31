@@ -18,4 +18,6 @@ public interface DocumentRepository extends JpaRepository<Document,Integer> {
     long countAllByDocumentStudentId(int studentId);
 
     Document findDocumentByDocumentStudentId(int profileId);
+
+    List<Document> findAll();
 }

@@ -17,4 +17,8 @@ public interface DocumentService {
     List<DocumentDto> mapDocumentToDtos(List<Document> documents);
 
     String updateDocument(DocumentDto documentDto);
+
+    List<DocumentDto> getAllDocuments();
+
+    List<DocumentDto> mapDocumentsToDtosTwo(List<Document> documents);
 }
