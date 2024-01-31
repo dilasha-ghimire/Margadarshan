@@ -34,11 +34,10 @@ public class StudentServiceImpl implements StudentService {
     private final JavaMailSender javaMailSender;
 
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender, ProfileRepository profileRepository) {
+    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender) {
         this.studentRepository = studentRepository;
         this.passwordEncoder = passwordEncoder;
         this.javaMailSender = javaMailSender;
-        this.profileRepository = profileRepository;
     }
 
     @Override
