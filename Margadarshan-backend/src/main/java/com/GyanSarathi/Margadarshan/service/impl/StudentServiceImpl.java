@@ -3,10 +3,9 @@ package com.GyanSarathi.Margadarshan.service.impl;
 import com.GyanSarathi.Margadarshan.Repository.ProfileRepository;
 import com.GyanSarathi.Margadarshan.Repository.ProfileRepository;
 import com.GyanSarathi.Margadarshan.Repository.StudentRepository;
-import com.GyanSarathi.Margadarshan.dto.LoginDto;
+import com.GyanSarathi.Margadarshan.dto.*;
 import com.GyanSarathi.Margadarshan.dto.ProfileDto;
-import com.GyanSarathi.Margadarshan.dto.ProfileDto;
-import com.GyanSarathi.Margadarshan.dto.StudentDto;
+import com.GyanSarathi.Margadarshan.entity.Document;
 import com.GyanSarathi.Margadarshan.entity.Profile;
 import com.GyanSarathi.Margadarshan.entity.Student;
 import com.GyanSarathi.Margadarshan.response.LoginResponse;
@@ -32,6 +31,9 @@ public class StudentServiceImpl implements StudentService {
     private final PasswordEncoder passwordEncoder;
 
     private final JavaMailSender javaMailSender;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @Autowired
     public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender) {
@@ -135,5 +137,44 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.updatePassword(encodedPassword,email);
     }
 
+    @Override
+    public String updateProfileWithCitizenship(StudentDto studentDto) {
+        Student existingStudent = studentRepository.findStudentById(studentDto.getStudentId());
+        System.out.println(existingStudent);
+        String fileName = UUID.randomUUID().toString()+"_"+ studentDto.getCitizenshipFront().getOriginalFilename();
+        Path filePath = Paths.get(uploadPath,fileName);
+        try {
+            Files.copy(studentDto.getCitizenshipFront().getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        String fileName2 = UUID.randomUUID().toString()+"_"+ studentDto.getCitizenshipBack().getOriginalFilename();
+        Path filePath2 = Paths.get(uploadPath,fileName2);
+        try {
+            Files.copy(studentDto.getCitizenshipBack().getInputStream(), filePath2, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        existingStudent.setCitizenshipFront(fileName);
+        existingStudent.setCitizenshipBack(fileName2);
+        existingStudent.setFullName(studentDto.getStudentFullName());
+        existingStudent.setNumber(studentDto.getStudentNumber());
+        existingStudent.setAddress(studentDto.getStudentAddress());
+        studentRepository.save(existingStudent);
+        return "Profile updated";
+    }
+
+    @Override
+    public StudentDto getStudentByStudentId(StudentDto studentDto) {
+        Student student = studentRepository.findStudentById(studentDto.getStudentId());
+        return StudentDto.builder()
+                .studentAddress(student.getAddress())
+                .studentEmail(student.getEmail())
+                .studentNumber(student.getNumber())
+                .studentFullName(student.getFullName())
+                .citizenshipBackString(student.getCitizenshipBack())
+                .citizenshipFrontString(student.getCitizenshipFront())
+                .build();
+    }
 }
 
