@@ -51,6 +51,7 @@ public class DocumentController {
     public List<DocumentDto> getAllDocuments() {
         return documentService.getAllDocuments();
     }
+
 }
 
 

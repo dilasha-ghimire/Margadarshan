@@ -20,4 +20,5 @@ public interface DocumentRepository extends JpaRepository<Document,Integer> {
     Document findDocumentByDocumentStudentId(int profileId);
 
     List<Document> findAll();
+
 }

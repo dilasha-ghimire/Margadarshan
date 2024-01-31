@@ -21,4 +21,5 @@ public interface DocumentService {
     List<DocumentDto> getAllDocuments();
 
     List<DocumentDto> mapDocumentsToDtosTwo(List<Document> documents);
+
 }
