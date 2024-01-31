@@ -62,7 +62,7 @@ public class ScholarshipController{
 
     @PostMapping("/scholarship-filtered")
     public List<Scholarship> filteredScholarship(@RequestBody ScholarshipDto scholarshipDto){
-        List<Scholarship> scholarships = scholarshipService.findByGrantAndType(scholarshipDto);
+        List<Scholarship> scholarships = scholarshipService.findByGrantAndTypeAndGpa(scholarshipDto);
         return scholarships;
     }
 

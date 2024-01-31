@@ -5,13 +5,14 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @AllArgsConstructor
 @NotNull
 @Setter
 @NoArgsConstructor
-
+@ToString
 @Table(name = "SOP")
 public class Sop{
 

@@ -1,22 +1,28 @@
 package com.GyanSarathi.Margadarshan.service.impl;
 
+import com.GyanSarathi.Margadarshan.Repository.ProfileRepository;
 import com.GyanSarathi.Margadarshan.Repository.StudentRepository;
 import com.GyanSarathi.Margadarshan.dto.LoginDto;
+import com.GyanSarathi.Margadarshan.dto.ProfileDto;
 import com.GyanSarathi.Margadarshan.dto.StudentDto;
+import com.GyanSarathi.Margadarshan.entity.Profile;
 import com.GyanSarathi.Margadarshan.entity.Student;
 import com.GyanSarathi.Margadarshan.response.LoginResponse;
 import com.GyanSarathi.Margadarshan.response.OtpResponse;
 import com.GyanSarathi.Margadarshan.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.SimpleMailMessage;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.*;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -25,12 +31,18 @@ public class StudentServiceImpl implements StudentService {
 
     private final JavaMailSender javaMailSender;
 
+    private final ProfileRepository profileRepository;
+
+    @Value("${upload.path}")
+    private String uploadPath;
+
 
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender) {
+    public StudentServiceImpl(StudentRepository studentRepository, PasswordEncoder passwordEncoder, JavaMailSender javaMailSender, ProfileRepository profileRepository) {
         this.studentRepository = studentRepository;
         this.passwordEncoder = passwordEncoder;
         this.javaMailSender = javaMailSender;
+        this.profileRepository = profileRepository;
     }
 
     @Override
@@ -126,6 +138,28 @@ public class StudentServiceImpl implements StudentService {
     public void updatePassword(String password, String email) {
         String encodedPassword = this.passwordEncoder.encode(password);
         studentRepository.updatePassword(encodedPassword,email);
+    }
+
+    @Override
+    public void saveCitizenshipImage(ProfileDto profileDto) {
+        Profile profile = new Profile();
+        Student student = new Student();
+        student.setId(profileDto.getStudentId());
+        String fileName = UUID.randomUUID().toString()+"_"+ profileDto.getCitizenship().getOriginalFilename();
+        Path filePath = Paths.get(uploadPath,fileName);
+        try {
+            Files.copy(profileDto.getCitizenship().getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        profile.setCitizenship(fileName);
+        profile.setStudent(student);
+        profileRepository.save(profile);
+    }
+
+    @Override
+    public List<Profile> findCitizenshipByStudentId(ProfileDto profileDto) {
+        return profileRepository.findAlByStudentId(profileDto.getStudentId());
     }
 }
 
