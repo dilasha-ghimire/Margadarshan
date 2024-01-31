@@ -23,7 +23,7 @@ public class Profile {
 
     @ManyToOne
     @JoinColumn(name = "student_id")
-    private Student student;
+    private Student profileStudent;
 
 
 }
