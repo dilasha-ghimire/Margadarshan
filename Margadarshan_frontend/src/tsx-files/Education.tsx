@@ -26,7 +26,7 @@ const Education: React.FC = () => {
         setEduFormVisible(!isEduFormVisible);
     };
 
-    const handleEditClick = (event) => {
+    const handleEditEduClick = (event) => {
         const educationId = event.target.dataset.id;
         const educationToEdit = educationData.find((edu: any) => edu.educationId === parseInt(educationId));
         if (educationToEdit) {
@@ -148,7 +148,7 @@ const Education: React.FC = () => {
                                 <div className= "edtext">
                                     <div className="ed-division">
                                         <h2>{education.educationQualification}</h2>
-                                        <button className="edu-edit-btn" data-id={education.educationId} onClick={handleEditClick}> ✎ </button>
+                                        <button className="edu-edit-btn" data-id={education.educationId} onClick={handleEditEduClick}> ✎ </button>
                                     </div>
                                     <h3>{education.educationInstitute}</h3>
                                 </div>

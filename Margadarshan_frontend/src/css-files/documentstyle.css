@@ -24,52 +24,48 @@ body {
     margin-left: 20vw;
 }
 
-.doc-add {
-    width: 13vw;
-    height: 13vw;
-    margin-left: -8px;
-    margin-top: -3px;
-}
-
-.doc-add-button-container {
-    margin-top: 50px;
-    margin-left: 3.5vw;
-    margin-right: 20px;
-    padding-bottom: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 11vh;
-}
-
-.doc-add-button-container button {
-    width: 13vw;
-    height: 13vw;
-}
-
-.doc-add-button-container p {
-    color: #1a1a1a;
-}
-
-.document-upload {
-    height: 100%;
-}
-
-@media (max-width: 600px) {
-    .doc-add {
-        width: 13vw;
-        height: 13vw;
-        margin-left: -8px;
-        margin-top: -3px;
-    }
-
-    .doc-add-button-container button {
-        width: 13vw;
-        height: 13vw;
-        max-width: 200px; 
-        box-sizing: border-box; 
-    }
-}
-
 .doc-login-popup {
     margin-top: 300px;
+}
+
+.doc-timeline{
+    display: flex;
+    padding-top: 1vw;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+    margin-left: 2vw;
+    gap: 3vw;
+}
+
+.doc-img-input{
+    width: 100%;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#doc-form-img{
+    flex: 2;
+}
+
+#doc-form-submit-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.doc-browse-button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.1em 0.6em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #f1f1f1;
+    color: #152039;
+    cursor: pointer;
+    transition: border-color 0.25s;
 }
