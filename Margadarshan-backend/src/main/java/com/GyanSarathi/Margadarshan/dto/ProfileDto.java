@@ -16,10 +16,15 @@ public class ProfileDto {
     @NotNull
     private int profileId;
 
-    @NotNull
-    private MultipartFile citizenship;
+    private MultipartFile citizenshipFront;
+
+    private MultipartFile citizenshipBack;
 
     @NotNull
     private int studentId;
+
+    private String citizenshipFrontString;
+
+    private String citizenshipBackString;
 
 }

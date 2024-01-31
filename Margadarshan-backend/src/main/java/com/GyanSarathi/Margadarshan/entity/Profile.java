@@ -18,8 +18,11 @@ public class Profile {
     @Column(name = "profile_id")
     private int profileId;
 
-    @Column(name = "citizenship", nullable = false)
-    private String citizenship;
+    @Column(name = "citizenship_front", nullable = false)
+    private String citizenshipFront;
+
+    @Column(name = "citizenship_back", nullable = false)
+    private String citizenshipBack;
 
     @ManyToOne
     @JoinColumn(name = "student_id")
