@@ -1,25 +1,25 @@
 import "../css-files/ExamSection.css"
 import "../css-files/AdminExam.css"
-import {useEffect, useState} from "react";
+// import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import AdminHeader from "./AdminHeader.tsx";
 
 
 function AdminExam(){
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    useEffect(() => {
-        const storedOTP = localStorage.getItem('adminOTP');
-
-        if (storedOTP == null){
-            navigate('/login');
-        }
-    }, []);
-
-    useEffect(() => {
-        document.title = "Admin Exams | Margadarshan"
-    }, [])
+    // useEffect(() => {
+    //     const storedOTP = localStorage.getItem('adminOTP');
+    //
+    //     if (storedOTP == null){
+    //         navigate('/login');
+    //     }
+    // }, []);
+    //
+    // useEffect(() => {
+    //     document.title = "Admin Exams | Margadarshan"
+    // }, [])
 
     return(
         <>

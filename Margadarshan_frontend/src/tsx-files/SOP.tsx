@@ -4,56 +4,44 @@ import '../css-files/SopDialogBox.css'
 import Header from './Header';
 import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 import {Link} from "react-router-dom";
-
+import "../css-files/educationstyle.css"
+import axios from "axios";
 function SOP() {
 
     useEffect(() => {
         document.title = "SOP and Essays | Margadarshan"
     }, [])
 
-    // handleUpload(e){
-    //     console.log(this.state,)
-    // }
-    const [documentTitle, setDocumentTitle] = useState('');
-    const [imagePreview, setImagePreview] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    // const previewImage = (e) => {
-    //     const input = e.target;
-    const previewImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.files,"$$$$");
-        console.log(e.target.files[0],"$$$");
-        const input = e.target ?? null;
-
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-
-            // reader.onload = (e) => {
-            //     setImagePreview(e.target.result);
-            // };
-            reader.onload = (e) => {
-                const result = e.target?.result as string;
-                if (result) {
-                    setImagePreview(result);
-                }
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    };
+    // const [studentId, setStudentId] = useState(null);
+    const [studentId, setStudentId] = useState<string | null>(null);
 
     useEffect(() => {
         const storedID = localStorage.getItem('loggedInUserId');
 
-        if (storedID == null){
-            setIsLoggedIn(false);
+        if (storedID) {
+            setIsLoggedIn(true);
+            setStudentId(storedID);
         }
         else {
-            setIsLoggedIn(true);
+            setIsLoggedIn(false);
+            setStudentId(null);
         }
     }, []);
 
+    const [docName, setDocName] = useState("");
+    const [docFile, setDocFile] = useState(null);
 
+    const handleFileSelect = (files) => {
+        const file = files[0];
+        if (file) {
+            if (file.type !== "application/pdf") {
+                window.alert("Please select a PDF file.");
+                return;
+            }
+            setDocFile(file);
+        }
+    };
     const[isAddUniVisible,setAddUniVisible]=useState(false);
     const [bodyOpacity, setBodyOpacity] = useState(1);
     const handleButtonClick = () => {
@@ -61,61 +49,127 @@ function SOP() {
         setBodyOpacity(isAddUniVisible ? 1 : 0.3);
 
     };
-   
-    return(
-    <>
-        {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
-        {isLoggedIn ? (
-        <div className="user-sop">
-        <div className="rasmi" style={{ opacity: bodyOpacity }}>
-        
-        <div className="t">
-          <span className="sop_info" >SOP and essays</span>
-          <br /><br />
-          <span className="sop_intro">Upload your SOP and essays for review</span>
-          <br /><br />
-          <button id="sopUploadButton" onClick={handleButtonClick}>
-            <b>Click me</b>
-          </button>
-        </div>
-      </div>
-      {isAddUniVisible &&(
-        <div className="sop_first-div">
-            <form className="form">
-        <div className="title">
-            <label htmlFor="input-doc" id="document-name">Title of document</label>
-            <br />
-            <input
-                type="text" value={documentTitle}
-                onChange={(e) => setDocumentTitle(e.target.value)}
-            />
-        </div>
-        
-            <div id="image-preview">
-                {imagePreview && <img src={imagePreview} alt="Preview" />}
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!docFile) {
+            window.alert("Please select a PDF file to upload.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('sopName', docName);
+        formData.append('sopPdf', docFile);
+        // formData.append('studentId', studentId);
+        if (studentId !== null) {
+            formData.append('studentId', studentId);
+            window.alert("pdf saved successfully");
+        } else {
+            console.error("studentId is null. Unable to append to FormData.");
+            // Handle the error or display a message to the user
+            return;
+        }
+
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/save-sop', formData);
+            console.log("Server response:", response);
+
+            if (response.data === "sop saved") {
+                console.log("pdf saved successfully");
+                window.alert("pdf saved successfully");
+            }
+            else {
+                console.error("Error saving pdf");
+                // window.alert("Error saving pdf");
+            }
+        }
+        catch (error) {
+            console.error("Error saving file:", error);
+            window.alert("Error saving file");
+        }
+    };
+
+
+    return(
+        <>
+        <div>
+            {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
+
+            {isLoggedIn ? (
+            <div className="edu-content">
+                <div id="edu-navigation" className="edu-sidenavbar">
+                    <div id="mySidenav" className="edu-sidenav-content">
+                        <p>Portfolio</p>
+                        <Link to="/education " >
+                            <span>Education</span>
+                        </Link>
+                        <Link to="/document ">
+                            <span>Documents</span>
+                        </Link>
+                        <Link to="/sop" className="doc-link">
+                            <span>SoP and Essays</span>
+                        </Link>
+                    </div>
+                </div>
+
+
+
+            <div className="edu-main" style={{ opacity: bodyOpacity }}>
+                <div className="edu-title">
+                <br /><br />
+                    <span className="sop_info" >SOP and essays</span>
+                    <br /><br /><br />
+                    <span className="sop_intro">Upload your SOP and essays for review</span>
+                    <br /><br />
+                    <button id="sopUploadButton" onClick={handleButtonClick}>
+                        <b>Click me</b>
+                    </button>
+                </div>
             </div>
-            <div className="select">
-                <input
-                    type="file"
-                    id="input-doc"
-                    name="file"
-                    accept="image/*"
-                    onChange={(e)=>previewImage(e)}
-                />
-                <input type="submit" value="Upload" />
+
+
+
+            {isAddUniVisible &&(
+                <div className="sop_first-div">
+                    <form className="form" onSubmit={handleFormSubmit}>
+                        <div className="title">
+                            <label id="document-name">Title of document</label>
+                            <br />
+                            <input
+                                type="text"
+                                id="input-doc"
+                                value={docName}
+                                onChange={(e) => setDocName(e.target.value)}
+                            />
+                        </div>
+                        <div className="select">
+                            <input
+                                type="file"
+                                id="docFile"
+                                name="file"
+                                accept=".pdf"
+                                onChange={(e) => handleFileSelect(e.target.files)}
+                            />
+                            {/*<input type="submit" value="Upload" />*/}
+                            <button className='sop_uploadbtn' type="submit">upload</button>
+                        </div>
+                    </form>
+                </div>
+            )}
             </div>
-        </form>
+
+            ) : (
+    <div className="edu-login-popup">
+        <h2>Login to Access</h2>
+        <Link to="/login">
+            <button>Login</button>
+        </Link>
     </div>
-      )}
-        </div>
-        ) : (
-            <div className="sop-login-popup">
-                <h2>Login to Access</h2>
-                <Link to="/login"><button>Login</button></Link>
+)}
             </div>
-        )}
-    </>
+        </>
     )
 }
 export default SOP;
