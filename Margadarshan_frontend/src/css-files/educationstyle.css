@@ -162,10 +162,12 @@
 }
 
 #edu-submit{
+    width: 200px;
     background-color: #f1f1f1;
     color: #152039;
     height: 30px;
     margin-top: 15px;
+    margin-left: 0;
     padding: 2px 5px 25px 5px;
 }
 

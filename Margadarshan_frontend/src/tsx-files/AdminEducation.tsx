@@ -41,7 +41,7 @@ function AdminEducation() {
         }
     };
 
-    const onSubmitSearch = (e) => {
+    const onSubmitEduSearch = (e) => {
         e.preventDefault();
 
         const filteredData = educationData.filter(([education, studentName]) =>
@@ -57,7 +57,7 @@ function AdminEducation() {
 
             <div className="adedu-content">
                 <div className="adedu-mainbar">
-                    <form onSubmit={onSubmitSearch}>
+                    <form onSubmit={onSubmitEduSearch}>
                         <div className="adedu-searchbar-container">
                             <p id="adedu-p1">Search student: </p>
                             <input
@@ -65,11 +65,9 @@ function AdminEducation() {
                                 value={searchInput}
                                 onChange={(e) => setSearchInput(e.target.value)}
                             />
-                            <div className="adedu-searchbtn-container">
-                                <button className="adedu-searchbtn" type="submit">
-                                    <img className="adedu-search-img" src="src\assets\AdminUniversity\search.png"></img>
-                                </button>
-                            </div>
+                            <button className="adedu-searchbtn" type="submit">
+                                <img className="adedu-search-img" src="src\assets\AdminUniversity\search.png"></img>
+                            </button>
                         </div>
                     </form>
                 </div>

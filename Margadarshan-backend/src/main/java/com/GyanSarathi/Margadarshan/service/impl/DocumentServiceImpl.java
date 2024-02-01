@@ -100,4 +100,25 @@ public class DocumentServiceImpl implements DocumentService {
         documentRepository.save(existingDocument);
         return "updated";
     }
+
+    public List<DocumentDto> getAllDocuments() {
+        List<Document> documents = documentRepository.findAll();
+        return mapDocumentsToDtosTwo(documents);
+    }
+
+    public List<DocumentDto> mapDocumentsToDtosTwo(List<Document> documents) {
+        List<DocumentDto> documentDtos = new ArrayList<>();
+
+        for (Document document : documents) {
+            DocumentDto documentDto = DocumentDto.builder()
+                    .documentId(document.getDocumentId())
+                    .documentName(document.getDocumentName())
+                    .studentId(document.getDocumentStudent().getId())
+                    .studentName(document.getDocumentStudent().getFullName())
+                    .documentImageString(document.getDocumentImage())
+                    .build();
+            documentDtos.add(documentDto);
+        }
+        return documentDtos;
+    }
 }

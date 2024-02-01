@@ -121,6 +121,10 @@ const Document: React.FC = () => {
 
             if (response.data === "Documents fulfilled") {
                 window.alert("Selections of documents are limited to five.");
+                setDocFormVisible(false);
+                setDocName("");
+                setDocFile(null);
+
             }
             else if (response.data === "document saved" || response.data === "Data updated") {
                 const successMessage = isEditing ? "Document updated successfully" : "Document saved successfully";
@@ -134,6 +138,9 @@ const Document: React.FC = () => {
             else {
                 console.error("Error saving document");
                 window.alert("Error saving document");
+                setDocFormVisible(false);
+                setDocName("");
+                setDocFile(null);
             }
         }
         catch (error) {
@@ -233,7 +240,7 @@ const Document: React.FC = () => {
                                         <label id="edu-level">Browse files</label>
                                         <div className="doc-img-input">
                                             <div id="doc-form-img" style={{ width: "200px", height: "200px" }}>
-                                                <div className="doc-preview" style={{ width: "90%", height: "100%", overflow: "hidden" }}>
+                                                <div className="doc-preview" style={{ width: "100%", height: "100%", overflow: "hidden" }}>
                                                     {isEditing && editingDocumentId && docImagePreview ? (
                                                         <img
                                                             src={docImagePreview}
