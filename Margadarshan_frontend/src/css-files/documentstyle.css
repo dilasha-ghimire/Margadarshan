@@ -5,7 +5,7 @@ body {
 }
 
 .doc-content {
-    height: 100%;
+    height: calc(100vh - 90px);
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -15,12 +15,14 @@ body {
     left: 0;
     z-index: 2;
     transition: margin-left 0.5s;
+    background-color: white;
 }
 
 .document-upload {
+    height: calc(100vh - 125px);
+    width: 100%;
     background-color: white;
     position: relative;
-    top: 15px;
     margin-left: 20vw;
 }
 
@@ -30,12 +32,26 @@ body {
 
 .doc-timeline{
     display: flex;
-    padding-top: 1vw;
     flex-direction: column;
     position: relative;
     background-color: white;
-    margin-left: 2vw;
     gap: 3vw;
+}
+
+.doc-form {
+    position: absolute;
+    z-index: 9999;
+    background-color: #383d52;
+    padding: 30px;
+    border-radius: 10px;
+    right: 20px;
+    margin-left: 20px;
+    top: -10px;
+}
+
+.doc-form h3{
+    color: #f1f1f1;
+    margin-bottom: 20px;
 }
 
 .doc-img-input{
@@ -69,3 +85,44 @@ body {
     cursor: pointer;
     transition: border-color 0.25s;
 }
+
+.doc-data-display {
+    margin: 2.8vw 1vw 1vw 1vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+}
+
+.document-view h3 {
+    font-size: 2vw;
+}
+.adminDoc-image {
+    max-width: 20vw;
+    max-height: 30vw;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+}
+
+.doc-addButton {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    color: white;
+    padding: 0 5px 5px 5px;
+    font-size: 3vw;
+    background-color: #383d52;
+    border-radius: 6px;
+}
+
+.doc-addButton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.edit-doc-btn{
+    text-decoration: underline;
+    text-align: end;
+    margin-right: 2.5vw;
+    font-size: 1.3vw;
+}
+
