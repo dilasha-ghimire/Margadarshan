@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import '../css-files/documentstyle.css';
 import Header from "./Header.tsx";
 import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
+import axios from "axios";
 
 const Document: React.FC = () => {
 
@@ -10,18 +11,65 @@ const Document: React.FC = () => {
         document.title = "Documents | Margadarshan"
     }, [])
 
+    const [isDocFormVisible, setDocFormVisible] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [studentId, setStudentId] = useState(null);
+
+    const handleDocButtonClick = () => {
+        setDocFormVisible(!isDocFormVisible);
+    };
 
     useEffect(() => {
         const storedID = localStorage.getItem('loggedInUserId');
 
-        if (storedID == null){
-            setIsLoggedIn(false);
+        if (storedID) {
+            setIsLoggedIn(true);
+            setStudentId(storedID);
         }
         else {
-            setIsLoggedIn(true);
+            setIsLoggedIn(false);
+            setStudentId(null);
         }
     }, []);
+
+    const [docName, setDocName] = useState("");
+    const [docFile, setDocFile] = useState(null);
+
+    const handleFileSelect = (files) => {
+        const file = files[0];
+        if (file) {
+            setDocFile(file);
+        }
+    };
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('documentName', docName);
+        formData.append('documentImage', docFile);
+        formData.append('studentId', studentId);
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/save-document', formData);
+
+            if (response.data === "document saved") {
+                console.log("Document saved successfully");
+                window.alert("Document saved successfully");
+            }
+            else {
+                console.error("Error saving document");
+                window.alert("Error saving document");
+            }
+        }
+        catch (error) {
+            console.error("Error saving document:", error);
+            window.alert("Error saving document");
+        }
+    };
+
+
+
 
     return (
         <div>
@@ -51,32 +99,49 @@ const Document: React.FC = () => {
                         <p>Upload your documents here to be reviewed by our team. Please ensure that you have the necessary permissions to upload these files.</p>
                     </div>
 
+                    <div className="doc-timeline">
+                        <button className="edu-addButton" onClick={handleDocButtonClick}>
+                            +
+                        </button>
 
-                    <div className="doc-add-button-container">
-                        <button className="resume">
-                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
-                            <p>Resume</p>
-                        </button>
-                        <button className="university-certificate">
-                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
-                            <p>University Certificate</p>
-                        </button>
-                        <button className="university-transcript">
-                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
-                            <p>University Transcript</p>
-                        </button>
-                        <button className="sop">
-                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
-                            <p>Statement of Purpose</p>
-                        </button>
-                        <button className="english-proficiency">
-                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
-                            <p>IELTS/TOEFL</p>
-                        </button>
-                        <button className="sat-gre-gmat">
-                            <img className="doc-add" src="src\assets\Document\Add button.png" alt="add" />
-                            <p>SAT/GRE/GMAT</p>
-                        </button>
+                        {isDocFormVisible && (
+                            <div className="edu-form">
+                                <h3>Upload Document</h3>
+                                <form onSubmit={handleFormSubmit}>
+                                    <div className="edu-institute">
+                                        <label id="edu-name">Name of Document</label>
+                                        <input
+                                            type="text"
+                                            id="eduName"
+                                            value={docName}
+                                            onChange={(e) => setDocName(e.target.value)}
+                                        />
+                                    </div>
+
+                                    <div className="edu-lvl">
+                                        <label id="edu-level">Browse files</label>
+                                        <div className="doc-img-input">
+                                            <div id="doc-form-img" style={{ width: "200px", height: "200px" }}>
+                                                <div className="doc-preview" style={{ width: "90%", height: "100%", overflow: "hidden" }}>
+                                                    {docFile && <img src={URL.createObjectURL(docFile)} alt="Preview" style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
+                                                </div>
+                                            </div>
+                                            <div id="doc-form-submit-btn">
+                                                    <label htmlFor="docFile" className="doc-browse-button">Select</label>
+                                                    <input
+                                                        type="file"
+                                                        id="docFile"
+                                                        accept="image/*"
+                                                        style={{ display: "none" }}
+                                                        onChange={(e) => handleFileSelect(e.target.files)}
+                                                    />
+                                                    <button type="submit" id="edu-submit">Submit</button>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

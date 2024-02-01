@@ -6,27 +6,23 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-public class SopDto {
-
-
-    @NotNull
-    private int sopId;
+public class DocumentDto {
 
     @NotNull
-    private String sopName;
+    private int documentId;
 
     @NotNull
-    private MultipartFile sopPdf;
+    private MultipartFile documentImage;
 
     @NotNull
-    private String sopPdfString;
+    private String documentName;
 
     @NotNull
     private int studentId;
 
-
+    private String documentImageString;
 }

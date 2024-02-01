@@ -24,7 +24,7 @@ public class Profile {
     @Column(name = "citizenship_back", nullable = false)
     private String citizenshipBack;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "student_id")
     private Student profileStudent;
 
