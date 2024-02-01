@@ -26,7 +26,23 @@ const Education: React.FC = () => {
         setEduFormVisible(!isEduFormVisible);
     };
 
-    const handleEditClick = (event) => {
+    useEffect(() => {
+        const storedID = localStorage.getItem('loggedInUserId');
+        if (storedID == null) {
+            setIsLoggedIn(false);
+        } else {
+            setIsLoggedIn(true);
+            (async () => {
+                try {
+                    await fetchEducationData();
+                } catch (error) {
+                    console.error('Error fetching education data:', error);
+                }
+            })();
+        }
+    }, []);
+
+    const handleEditEduClick = (event) => {
         const educationId = event.target.dataset.id;
         const educationToEdit = educationData.find((edu: any) => edu.educationId === parseInt(educationId));
         if (educationToEdit) {
@@ -98,21 +114,7 @@ const Education: React.FC = () => {
         }
     };
 
-    useEffect(() => {
-        const storedID = localStorage.getItem('loggedInUserId');
-        if (storedID == null) {
-            setIsLoggedIn(false);
-        } else {
-            setIsLoggedIn(true);
-            (async () => {
-                try {
-                    await fetchEducationData();
-                } catch (error) {
-                    console.error('Error fetching education data:', error);
-                }
-            })();
-        }
-    }, []);
+
 
 
     return (
@@ -148,7 +150,7 @@ const Education: React.FC = () => {
                                 <div className= "edtext">
                                     <div className="ed-division">
                                         <h2>{education.educationQualification}</h2>
-                                        <button className="edu-edit-btn" data-id={education.educationId} onClick={handleEditClick}> ✎ </button>
+                                        <button className="edu-edit-btn" data-id={education.educationId} onClick={handleEditEduClick}> ✎ </button>
                                     </div>
                                     <h3>{education.educationInstitute}</h3>
                                 </div>

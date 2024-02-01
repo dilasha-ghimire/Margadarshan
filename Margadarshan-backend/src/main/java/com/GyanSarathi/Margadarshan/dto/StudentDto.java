@@ -2,12 +2,14 @@ package com.GyanSarathi.Margadarshan.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class StudentDto {
 
     @NotNull
@@ -29,4 +31,12 @@ public class StudentDto {
     private String studentPassword;
 
     private String otp;
+
+    private MultipartFile citizenshipFront;
+
+    private MultipartFile citizenshipBack;
+
+    private String citizenshipFrontString;
+
+    private String citizenshipBackString;
 }

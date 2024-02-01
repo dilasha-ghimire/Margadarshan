@@ -46,14 +46,14 @@ public class StudentController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/student-by-id/{studentId}")
+    /*@PostMapping("/student-by-id/{studentId}")
     public Optional<Student> getStudent(@PathVariable int studentId){
         Optional<Student> theStudent = studentService.findById(studentId);
         if(theStudent.isEmpty()){
             throw new RuntimeException("Student id not found - " + studentId);
         }
         return theStudent;
-    }
+    }*/
 
     @PostMapping("/save-student")
     public void addStudent(@RequestBody StudentDto studentDto){
@@ -89,5 +89,19 @@ public class StudentController {
         studentService.updatePassword(studentDto.getStudentPassword(),studentDto.getStudentEmail());
         return "Password reset complete";
     }
+
+    //update with student citizenship
+    @PostMapping("/update-student-profile")
+    public String updateProfile(@ModelAttribute StudentDto studentDto){
+        System.out.println(studentDto);
+        studentService.updateProfileWithCitizenship(studentDto);
+        return "profile updated";
+    }
+    //view profile
+    @PostMapping("/student-by-id")
+    public StudentDto getStudentById(@RequestBody StudentDto studentDto){
+        return studentService.getStudentByStudentId(studentDto);
+    }
+
 
 }

@@ -35,7 +35,8 @@ function AdminEducation() {
             const response = await axios.get('http://localhost:8080/api/education');
             setEducationData(response.data);
             setFilteredEducationData(response.data);
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching education data:', error);
         }
     };
@@ -83,7 +84,10 @@ function AdminEducation() {
                                 <div key={education.educationId} className="studetail-data-container">
                                     <div className = "adedu-in">
                                         <FontAwesomeIcon id="adedu-user-icon" icon={faUser} />
-                                        <p id="adedu-student-name">Student Name: {studentName}</p>
+                                        <div className="adedu-in-studetail">
+                                            <p id="adedu-student-id">Student ID: {education.student.id}</p>
+                                            <p id="adedu-student-name">Name: {studentName}</p>
+                                        </div>
                                     </div>
                                     <p id="adedu-institute-name">Institute: {education.educationInstitute}</p>
                                     <p id="adedu-student-qualification">Qualification: {education.educationQualification}</p>

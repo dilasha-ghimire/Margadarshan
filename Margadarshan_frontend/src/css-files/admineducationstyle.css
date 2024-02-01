@@ -84,12 +84,26 @@
 }
 #adedu-user-icon{
     font-size: 50px;
-    margin-top: 15px;
+    margin-top: 25px;
     margin-left: 10px;
     color: #898b8f;
 }
+.adedu-in-studetail{
+    display: flex;
+    flex-direction: column;
+}
+#adedu-student-id{
+    text-align: start;
+    padding: 10px 0 0 10px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 23px;
+    font-weight: bold;
+    font-family: "Barlow Condensed Medium";
+    color: #383d52;
+}
 #adedu-student-name{
-    margin: 35px 0 0 0;
+    padding: 0 0 0 10px;
     font-size: 23px;
     font-weight: bold;
     font-family: "Barlow Condensed Medium";

@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@ToString
 @Entity
 @Table(name = "Students")
 public class Student{
@@ -37,9 +37,18 @@ public class Student{
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    @Column(name = "citizenship_front")
+    private String citizenshipFront;
+
+    @Column(name = "citizenship_back")
+    private String citizenshipBack;
+
+
+
+
+    /*@OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Education> educations = new ArrayList<>();
+    private List<Education> educations = new ArrayList<>();*/
 
 
      /*
