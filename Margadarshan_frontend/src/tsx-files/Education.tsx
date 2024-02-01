@@ -26,6 +26,22 @@ const Education: React.FC = () => {
         setEduFormVisible(!isEduFormVisible);
     };
 
+    useEffect(() => {
+        const storedID = localStorage.getItem('loggedInUserId');
+        if (storedID == null) {
+            setIsLoggedIn(false);
+        } else {
+            setIsLoggedIn(true);
+            (async () => {
+                try {
+                    await fetchEducationData();
+                } catch (error) {
+                    console.error('Error fetching education data:', error);
+                }
+            })();
+        }
+    }, []);
+
     const handleEditEduClick = (event) => {
         const educationId = event.target.dataset.id;
         const educationToEdit = educationData.find((edu: any) => edu.educationId === parseInt(educationId));
@@ -98,21 +114,7 @@ const Education: React.FC = () => {
         }
     };
 
-    useEffect(() => {
-        const storedID = localStorage.getItem('loggedInUserId');
-        if (storedID == null) {
-            setIsLoggedIn(false);
-        } else {
-            setIsLoggedIn(true);
-            (async () => {
-                try {
-                    await fetchEducationData();
-                } catch (error) {
-                    console.error('Error fetching education data:', error);
-                }
-            })();
-        }
-    }, []);
+
 
 
     return (
