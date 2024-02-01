@@ -138,7 +138,7 @@ input {
 
 @media screen and (max-width : 1400px) {
     .website-title {
-        margin-top: -90px;
+        margin-top: -50px;
     }
     .website-img {
         display: none;
@@ -165,14 +165,13 @@ input {
     }
     .text-field-name, .text-field-address, .text-field-number, .text-field-email, .text-field-password, .text-field-rePassword {
         width: 140px;
+        height: 40px;
     }
     .text-field-name, .text-field-address, .text-field-email, .text-field-number {
         margin-left: -40px;
-        margin-top: 5px;
     }
     .password-text-fields {
         margin-right: 40px;
-        margin-top: -20px;
     }
     .text-field-password {
         margin-left: -40px;
@@ -183,12 +182,33 @@ input {
     .login-container {
         margin-left: 100px;
     }
+    .password-strength {
+        margin-left: -40px;
+        margin-top: 25px;
+    }
+    .password-strength-item {
+        font-size: 12px;
+    }
+    .register-button {
+        width: 200px;
+        height: 40px;
+        line-height: 0.8;
+        margin-top: -10px;
+        margin-left: -10px;
+    }
+    .login-container {
+        margin-left: 95px;
+        margin-top: 7px;
+    }
+    .already-account, .login {
+        font-size: 12px;
+    }
 }
 
 @media screen and (min-width : 400px) and (max-width : 750px) {
     .website-title {
-        margin-left: -70px;
-        margin-top: -70px;
+        margin-left: -100px;
+        margin-top: -40px;
     }
     .margadarshan {
         font-size: 50px;
