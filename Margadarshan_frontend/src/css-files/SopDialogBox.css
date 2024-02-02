@@ -2,38 +2,17 @@ body{
     margin: 0;
     padding: 0;
 }
-.sop_first-div{
-    position: relative;
-    background-color:#152039;
-    height: 400px;
-    width: 620px;
-    align-self: center;
-    margin:100px;
-    margin-left: 660px;
-}
+
 @media screen and (max-width:754px) {
-    .sop_first-div{
-        background-color:aqua;
-        margin:100px;
-        margin-top:450px;
-        margin-left:10px;
-        width:650px;
-    }
+
     .title{
-        width:100px;
-        left:270px;
+        width:300px;
     }
 }
 @media screen and (min-width:754px) and (max-width:1030px) {
-    .sop_first-div{
-        background-color:aqua;
-        margin:100px;
-        margin-top:450px;
-        width:650px;
-    }
     .title{
-        width:100px;
-        left:270px;
+        width:300px;
+        /* left:270px; */
     }
     input[type="Inputtitle"] {
         width:200px;
@@ -46,25 +25,6 @@ body{
         font-size: 25px;
     }
 }
-@media screen and (min-width:1030px) and (max-width:1400px) {
-    .sop_first-div{
-        background-color:blueviolet;
-        margin:100px;
-        margin-top: 450px;
-        margin-left:200px;
-    }
-}
-@media screen and (min-width:1400px) and (max-width: 1500px) {
-    .sop_first-div {
-        width: 730px;
-        background-color:chartreuse;
-    }
-}
-
-/* .select{
-    display: flex;
-    row-gap:25px;
-} */
 .select input{
     width:350px;
     height:40px ;
@@ -80,7 +40,7 @@ body{
     height:40px ;
     border-radius:20px;
     font-weight: 700;
-    margin-top:300px;
+    margin-top:60px;
     margin-left: 50px;
 }
 .title{
