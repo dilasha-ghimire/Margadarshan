@@ -1,6 +1,7 @@
 package com.GyanSarathi.Margadarshan.service.impl;
 
 import com.GyanSarathi.Margadarshan.Repository.SopRepository;
+import com.GyanSarathi.Margadarshan.config.ImageToBase64;
 import com.GyanSarathi.Margadarshan.dto.DocumentDto;
 import com.GyanSarathi.Margadarshan.dto.SopDto;
 import com.GyanSarathi.Margadarshan.dto.StudentDto;
@@ -29,6 +30,8 @@ public class SopServiceImpl implements SopService {
 
     @Value("${upload.path}")
     private String uploadPath;
+
+    ImageToBase64 imageToBase64 = new ImageToBase64();
 
     @Autowired
     public SopServiceImpl(SopRepository sopRepository) {
@@ -69,6 +72,7 @@ public class SopServiceImpl implements SopService {
                     .sopPdfString(sop.getSopPdf())
                     .studentName(sop.getStudent().getFullName())
                     .studentId(sop.getStudent().getId())
+                    .sopPdfString(imageToBase64.getImageBase64(sop.getSopPdf()))
                     .build();
             sopDtos.add(sopDto);
         }
