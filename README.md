@@ -1,6 +1,8 @@
 # Margadarshan
 
-<img width = "900" alt = "Preview Image" src = "https://github.com/dilasha-ghimire/Margadarshan/blob/main/Preview%20Image.png">
+<br/>
+
+<img width = "1000" alt = "Preview Image" src = "https://github.com/dilasha-ghimire/Margadarshan/blob/main/Preview%20Image.png">
 
 <br/> 
 
