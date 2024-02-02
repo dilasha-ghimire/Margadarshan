@@ -79,7 +79,7 @@ function AdminEducation() {
                     <div className="adedu-studetails-container">
                         <div className="adedu-data-container">
                             {filteredEducationData.map(([education, studentName]) => (
-                                <div key={education.educationId} className="studetail-data-container">
+                                <div key={education.educationId} className="studentdetail-data-container">
                                     <div className = "adedu-in">
                                         <FontAwesomeIcon id="adedu-user-icon" icon={faUser} />
                                         <div className="adedu-in-studetail">
