@@ -28,5 +28,7 @@ public class SopDto {
     @NotNull
     private int studentId;
 
+    private String studentName;
+
 
 }
