@@ -145,142 +145,19 @@
 
 
 
-//
-// import React, { useEffect, useState } from "react";
-// import axios from 'axios';
-// import { useForm } from 'react-hook-form';
-// import { useMutation, useQuery } from 'react-query';
-// import AdminExam from "./AdminExam";
-//
-// interface ExamDto {
-//   examDate: string;
-//   registrationDeadline: string;
-//   lateRegistrationDeadline: string;
-// }
-//
-// interface ExamData {
-//   exam: {
-//     examId: number;
-//   };
-//   examDateId: number;
-//   examDate: string;
-//   registrationDeadline: string;
-//   lateRegistrationDeadline: string;
-// }
-//
-// const AdminExam_IELTS: React.FC = () => {
-//   useEffect(() => {
-//     document.title = "Admin Exams IELTS | Margadarshan";
-//   }, []);
-//
-//   const [isIeltsContentVisible, setIeltsContentVisible] = useState(false);
-//
-//   const handleIeltsButtonClick = () => {
-//     setIeltsContentVisible(!isIeltsContentVisible);
-//   };
-//
-//   const { register, handleSubmit, reset } = useForm();
-//
-//   const mutation = useMutation((formData: ExamDto) =>
-//     axios.post("http://localhost:8080/api/save-exams", formData)
-//   , {
-//     onSuccess: () => {
-//       setIeltsContentVisible(false);
-//       refetchExams();
-//       alert('Exam submitted successfully!');
-//     },
-//   });
-//
-//   const { data: examsData, refetch: refetchExams } = useQuery('adminExam_ielts', async () => {
-//     const response = await axios.get<ExamData[]>('http://localhost:8080/api/exam-deadlines');
-//     return response.data;
-//   });
-//
-//   const onSubmit = async (data: ExamDto) => {
-//     try {
-//       data.examId = 3;
-//       await mutation.mutateAsync(data);
-//       reset();
-//     } catch (error) {
-//       console.error('Error submitting form:', error);
-//     }
-//   };
-//
-//   return (
-//     <>
-//       <AdminExam />
-//       <div className='adminExam_manage'>
-//         <button className='adminExam-Button' onClick={handleIeltsButtonClick}>+</button>
-//         {isIeltsContentVisible && (
-//           <div className="adminExam_main">
-//             <form onSubmit={handleSubmit(onSubmit)}>
-//               <div className="Ani">
-//                 <div className="Rasu">
-//                   <label className="andminExam_Text">IELTS Test Dates</label>
-//                   <input type="text" {...register('examDate',{required:"exam date is required"})} />
-//                   <label className="andminExam_Text">Registration Deadline</label>
-//                   <input type="text" {...register('registrationDeadline',{required:"registration date is required"})} />
-//                   <label className="andminExam_Text">Late Registration Deadline</label>
-//                   <input type="text" {...register('lateRegistrationDeadline',{required:"LateRegistration date is required"})} />
-//                 </div>
-//                 <button className="ExamAdmin_UploadButton" type="submit"
-//                   disabled={mutation.isLoading}
-//                 >
-//                   {mutation.isLoading ? 'Uploading...' : 'Upload'}
-//                 </button>
-//               </div>
-//             </form>
-//           </div>
-//         )}
-//       </div>
-//
-//       <div className="adminSch-list">
-//         {examsData?.filter((exam) => exam.exam.examId === 3)
-//           .map((exam, index) => (
-//             <div className="adminSch-main-container" key={index}>
-//               {/* <p className="edit-sch-btn">Edit</p> */}
-//               <button className="edit-sch-btn">Edit</button>
-//               <div className="adminSch-container">
-//                 <div className="adminSch-description-container">
-//                   <div className="adminSch-desc">
-//                     <p className="adminSch-name">IELTS Test Dates</p>
-//                     <p className="adminSch-name">Registration Deadline</p>
-//                     <p className="adminSch-name">Late Registration Deadline</p>
-//                   </div>
-//                 </div>
-//                 <div className="adminSch-deadline-container">
-//                   <p className='adminSch-name'>{exam.examDate}</p>
-//                   <p className='adminSch-name'>{exam.registrationDeadline}</p>
-//                   <p className='adminSch-name'>{exam.lateRegistrationDeadline}</p>
-//                 </div>
-//               </div>
-//               <div></div>
-//               <div className='adminSch-deadline-container'></div>
-//             </div>
-//           ))}
-//       </div>
-//     </>
-//   );
-// }
-//
-// export default AdminExam_IELTS;
-
-
 
 import React, { useEffect, useState } from "react";
-// import axios from 'axios';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
-// import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import AdminExam from "./AdminExam";
-import axios from "axios";
-import {useQuery} from "react-query";
 
-// interface ExamDto {
-//   examDate: string;
-//   registrationDeadline: string;
-//   lateRegistrationDeadline: string;
-// }
-//
+interface ExamDto {
+  examDate: string;
+  registrationDeadline: string;
+  lateRegistrationDeadline: string;
+}
+
 interface ExamData {
   exam: {
     examId: number;
@@ -297,141 +174,264 @@ const AdminExam_IELTS: React.FC = () => {
   }, []);
 
   const [isIeltsContentVisible, setIeltsContentVisible] = useState(false);
-    const [educationData, setEducationData] = useState([]);
-    const [editEducationId, setEditEducationId] = useState(null);
+
   const handleIeltsButtonClick = () => {
-      setEditEducationId(null);
-      setIeltsContentVisible(!isIeltsContentVisible);
+    setIeltsContentVisible(!isIeltsContentVisible);
   };
 
-  const { register, handleSubmit,setValue, reset } = useForm();
-  const handleEditClick = (event) => {
-    const examDateId = event.target.dataset.id;
-    const educationToEdit = educationData.find((edu) => edu.examDateId === parseInt(examDateId));
-    if (educationToEdit) {
-      setValue("eduName", educationToEdit.examDate);
-      setValue("eduLevel", educationToEdit.registrationDeadline);
-      setValue("lateRegistration", educationToEdit.lateRegistrationDeadline);
+  const { register, handleSubmit, reset } = useForm();
 
-      setEditEducationId(educationToEdit.examDateId);
-        setIeltsContentVisible(true);
-    }
-  };
-  const onSubmitSaveEdu=async (formData) => {
-      try {
-          let response;
-          if (editEducationId) {
-              response = await axios.post('http://localhost:8080/api/update-exams', {
-                  examDateId: editEducationId,
-                  examDate: formData.eduName,
-                  registrationDeadline: formData.eduLevel,
-                  lateRegistrationDeadline: formData.lateRegistration,
-                  // studentId: localStorage.getItem('loggedInUserId')
-              });
-          } else {
-              response = await axios.post('http://localhost:8080/api/save-exams', {
-                  examDate: formData.eduName,
-                  registrationDeadline: formData.eduLevel,
-                  lateRegistrationDeadline: formData.lateRegistration,
-                  examId:3,
-                  // studentId: localStorage.getItem('loggedInUserId')
-                  onSuccess: () => {
-                      setIeltsContentVisible(false);
-                      refetchExams();
-                      window.alert('Exam submitted successfully!');
-                  },
-              });
-          }
-          console.log('Response:', response);
-      }
-      catch (error) {
-          console.error('An error occurred while saving education data:', error);
-          window.alert("An error occurred while saving education data: " + error.message);
-      }
-  };
-
-
-
-  // const mutation = useMutation((formData: ExamDto) =>
-  //         axios.post("http://localhost:8080/api/save-exams", formData)
-  //     , {
-  //       onSuccess: () => {
-  //         setIeltsContentVisible(false);
-  //         refetchExams();
-  //         alert('Exam submitted successfully!');
-  //       },
-  //     });
+  const mutation = useMutation((formData: ExamDto) =>
+    axios.post("http://localhost:8080/api/save-exams", formData)
+  , {
+    onSuccess: () => {
+      setIeltsContentVisible(false);
+      refetchExams();
+      alert('Exam submitted successfully!');
+    },
+  });
 
   const { data: examsData, refetch: refetchExams } = useQuery('adminExam_ielts', async () => {
     const response = await axios.get<ExamData[]>('http://localhost:8080/api/exam-deadlines');
     return response.data;
   });
 
-  // const onSubmit = async (data: ExamDto) => {
-  //   try {
-  //     data.examId = 3;
-  //     await mutation.mutateAsync(data);
-  //     reset();
-  //   } catch (error) {
-  //     console.error('Error submitting form:', error);
-  //   }
-  // };
+  const onSubmit = async (data: ExamDto) => {
+    try {
+      data.examId = 3;
+      await mutation.mutateAsync(data);
+      reset();
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+  };
 
   return (
-      <>
-        <AdminExam />
-        <div className='adminExam_manage'>
-          <button className='adminExam-Button' onClick={handleIeltsButtonClick}>+</button>
-          {isIeltsContentVisible && (
-              <div className="adminExam_main">
-                <form onSubmit={handleSubmit(onSubmitSaveEdu)}>
-                  <div className="Ani">
-                    <div className="Rasu">
-                      <label htmlFor="eduName" className="andminExam_Text" >IELTS Test Dates</label>
-                      <input type="text" id="eduName" {...register('eduName',{required:"exam date is required"})} />
-                      <label htmlFor="eduLevel" className="andminExam_Text">Registration Deadline</label>
-                      <input type="text" id="eduLevel" {...register('eduLevel',{required:"registration date is required"})} />
-                      <label htmlFor="lateRegistration" className="andminExam_Text">Late Registration Deadline</label>
-                      <input type="text" id="lateRegistration" {...register('lateRegistration',{required:"LateRegistration date is required"})} />
-                    </div>
-                    <button className="ExamAdmin_UploadButton" type="submit"
-
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </form>
+    <>
+      <AdminExam />
+      <div className='adminExam_manage'>
+        <button className='adminExam-Button' onClick={handleIeltsButtonClick}>+</button>
+        {isIeltsContentVisible && (
+          <div className="adminExam_main">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="Ani">
+                <div className="Rasu">
+                  <label className="andminExam_Text">IELTS Test Dates</label>
+                  <input type="text" {...register('examDate',{required:"exam date is required"})} />
+                  <label className="andminExam_Text">Registration Deadline</label>
+                  <input type="text" {...register('registrationDeadline',{required:"registration date is required"})} />
+                  <label className="andminExam_Text">Late Registration Deadline</label>
+                  <input type="text" {...register('lateRegistrationDeadline',{required:"LateRegistration date is required"})} />
+                </div>
+                <button className="ExamAdmin_UploadButton" type="submit"
+                  disabled={mutation.isLoading}
+                >
+                  {mutation.isLoading ? 'Uploading...' : 'Upload'}
+                </button>
               </div>
-          )}
-        </div>
+            </form>
+          </div>
+        )}
+      </div>
 
-        <div className="adminSch-list">
-          {examsData?.filter((exam) => exam.exam.examId === 3)
-              .map((exam, index) => (
-                  <div className="adminSch-main-container" key={index}>
-                    {/* <p className="edit-sch-btn">Edit</p> */}
-                    <button className="edit-sch-btn" data-id={exam.examDateId} onClick={handleEditClick}>Edit</button>
-                    <div className="adminSch-container">
-                      <div className="adminSch-description-container">
-                        <div className="adminSch-desc">
-                          <p className="adminSch-name">IELTS Test Dates</p>
-                          <p className="adminSch-name">Registration Deadline</p>
-                          <p className="adminSch-name">Late Registration Deadline</p>
-                        </div>
-                      </div>
-                      <div className="adminSch-deadline-container">
-                        <p className='adminSch-name'>{exam.examDate}</p>
-                        <p className='adminSch-name'>{exam.registrationDeadline}</p>
-                        <p className='adminSch-name'>{exam.lateRegistrationDeadline}</p>
-                      </div>
-                    </div>
-                    <div></div>
-                    <div className='adminSch-deadline-container'></div>
+      <div className="adminSch-list">
+        {examsData?.filter((exam) => exam.exam.examId === 3)
+          .map((exam, index) => (
+            <div className="adminSch-main-container" key={index}>
+              {/* <p className="edit-sch-btn">Edit</p> */}
+              <button className="edit-sch-btn">Edit</button>
+              <div className="adminSch-container">
+                <div className="adminSch-description-container">
+                  <div className="adminSch-desc">
+                    <p className="adminSch-name">IELTS Test Dates</p>
+                    <p className="adminSch-name">Registration Deadline</p>
+                    <p className="adminSch-name">Late Registration Deadline</p>
                   </div>
-              ))}
-        </div>
-      </>
+                </div>
+                <div className="adminSch-deadline-container">
+                  <p className='adminSch-name'>{exam.examDate}</p>
+                  <p className='adminSch-name'>{exam.registrationDeadline}</p>
+                  <p className='adminSch-name'>{exam.lateRegistrationDeadline}</p>
+                </div>
+              </div>
+              <div></div>
+              <div className='adminSch-deadline-container'></div>
+            </div>
+          ))}
+      </div>
+    </>
   );
 }
 
 export default AdminExam_IELTS;
+
+//
+//
+// import React, { useEffect, useState } from "react";
+// // import axios from 'axios';
+// import { useForm } from 'react-hook-form';
+// // import { useMutation, useQuery } from 'react-query';
+// import AdminExam from "./AdminExam";
+// import axios from "axios";
+// import {useQuery} from "react-query";
+//
+// // interface ExamDto {
+// //   examDate: string;
+// //   registrationDeadline: string;
+// //   lateRegistrationDeadline: string;
+// // }
+// //
+// interface ExamData {
+//   exam: {
+//     examId: number;
+//   };
+//   examDateId: number;
+//   examDate: string;
+//   registrationDeadline: string;
+//   lateRegistrationDeadline: string;
+// }
+//
+// const AdminExam_IELTS: React.FC = () => {
+//   useEffect(() => {
+//     document.title = "Admin Exams IELTS | Margadarshan";
+//   }, []);
+//
+//   const [isIeltsContentVisible, setIeltsContentVisible] = useState(false);
+//     const [educationData, setEducationData] = useState([]);
+//     const [editEducationId, setEditEducationId] = useState(null);
+//   const handleIeltsButtonClick = () => {
+//       setEditEducationId(null);
+//       setIeltsContentVisible(!isIeltsContentVisible);
+//   };
+//
+//   const { register, handleSubmit,setValue, reset } = useForm();
+//   const handleEditClick = (event) => {
+//     const examDateId = event.target.dataset.id;
+//     const educationToEdit = educationData.find((edu) => edu.examDateId === parseInt(examDateId));
+//     if (educationToEdit) {
+//       setValue("eduName", educationToEdit.examDate);
+//       setValue("eduLevel", educationToEdit.registrationDeadline);
+//       setValue("lateRegistration", educationToEdit.lateRegistrationDeadline);
+//
+//       setEditEducationId(educationToEdit.examDateId);
+//         setIeltsContentVisible(true);
+//     }
+//   };
+//   const onSubmitSaveEdu=async (formData) => {
+//       try {
+//           let response;
+//           if (editEducationId) {
+//               response = await axios.post('http://localhost:8080/api/update-exams', {
+//                   examDateId: editEducationId,
+//                   examDate: formData.eduName,
+//                   registrationDeadline: formData.eduLevel,
+//                   lateRegistrationDeadline: formData.lateRegistration,
+//                   // studentId: localStorage.getItem('loggedInUserId')
+//               });
+//           } else {
+//               response = await axios.post('http://localhost:8080/api/save-exams', {
+//                   examDate: formData.eduName,
+//                   registrationDeadline: formData.eduLevel,
+//                   lateRegistrationDeadline: formData.lateRegistration,
+//                   examId:3,
+//                   // studentId: localStorage.getItem('loggedInUserId')
+//                   onSuccess: () => {
+//                       setIeltsContentVisible(false);
+//                       refetchExams();
+//                       window.alert('Exam submitted successfully!');
+//                   },
+//               });
+//           }
+//           console.log('Response:', response);
+//       }
+//       catch (error) {
+//           console.error('An error occurred while saving education data:', error);
+//           window.alert("An error occurred while saving education data: " + error.message);
+//       }
+//   };
+//
+//
+//
+//   // const mutation = useMutation((formData: ExamDto) =>
+//   //         axios.post("http://localhost:8080/api/save-exams", formData)
+//   //     , {
+//   //       onSuccess: () => {
+//   //         setIeltsContentVisible(false);
+//   //         refetchExams();
+//   //         alert('Exam submitted successfully!');
+//   //       },
+//   //     });
+//
+//   const { data: examsData, refetch: refetchExams } = useQuery('adminExam_ielts', async () => {
+//     const response = await axios.get<ExamData[]>('http://localhost:8080/api/exam-deadlines');
+//     return response.data;
+//   });
+//
+//   // const onSubmit = async (data: ExamDto) => {
+//   //   try {
+//   //     data.examId = 3;
+//   //     await mutation.mutateAsync(data);
+//   //     reset();
+//   //   } catch (error) {
+//   //     console.error('Error submitting form:', error);
+//   //   }
+//   // };
+//
+//   return (
+//       <>
+//         <AdminExam />
+//         <div className='adminExam_manage'>
+//           <button className='adminExam-Button' onClick={handleIeltsButtonClick}>+</button>
+//           {isIeltsContentVisible && (
+//               <div className="adminExam_main">
+//                 <form onSubmit={handleSubmit(onSubmitSaveEdu)}>
+//                   <div className="Ani">
+//                     <div className="Rasu">
+//                       <label htmlFor="eduName" className="andminExam_Text" >IELTS Test Dates</label>
+//                       <input type="text" id="eduName" {...register('eduName',{required:"exam date is required"})} />
+//                       <label htmlFor="eduLevel" className="andminExam_Text">Registration Deadline</label>
+//                       <input type="text" id="eduLevel" {...register('eduLevel',{required:"registration date is required"})} />
+//                       <label htmlFor="lateRegistration" className="andminExam_Text">Late Registration Deadline</label>
+//                       <input type="text" id="lateRegistration" {...register('lateRegistration',{required:"LateRegistration date is required"})} />
+//                     </div>
+//                     <button className="ExamAdmin_UploadButton" type="submit"
+//
+//                     >
+//                       Submit
+//                     </button>
+//                   </div>
+//                 </form>
+//               </div>
+//           )}
+//         </div>
+//
+//         <div className="adminSch-list">
+//           {examsData?.filter((exam) => exam.exam.examId === 3)
+//               .map((exam, index) => (
+//                   <div className="adminSch-main-container" key={index}>
+//                     {/* <p className="edit-sch-btn">Edit</p> */}
+//                     <button className="edit-sch-btn" data-id={exam.examDateId} onClick={handleEditClick}>Edit</button>
+//                     <div className="adminSch-container">
+//                       <div className="adminSch-description-container">
+//                         <div className="adminSch-desc">
+//                           <p className="adminSch-name">IELTS Test Dates</p>
+//                           <p className="adminSch-name">Registration Deadline</p>
+//                           <p className="adminSch-name">Late Registration Deadline</p>
+//                         </div>
+//                       </div>
+//                       <div className="adminSch-deadline-container">
+//                         <p className='adminSch-name'>{exam.examDate}</p>
+//                         <p className='adminSch-name'>{exam.registrationDeadline}</p>
+//                         <p className='adminSch-name'>{exam.lateRegistrationDeadline}</p>
+//                       </div>
+//                     </div>
+//                     <div></div>
+//                     <div className='adminSch-deadline-container'></div>
+//                   </div>
+//               ))}
+//         </div>
+//       </>
+//   );
+// }
+//
+// export default AdminExam_IELTS;

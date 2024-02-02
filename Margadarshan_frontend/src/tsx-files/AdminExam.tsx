@@ -11,12 +11,12 @@ function AdminExam(){
 
     useEffect(() => {
         const storedOTP = localStorage.getItem('adminOTP');
-
+    
         if (storedOTP == null){
             navigate('/login');
         }
     }, []);
-
+    
     useEffect(() => {
         document.title = "Admin Exams | Margadarshan"
     }, [])

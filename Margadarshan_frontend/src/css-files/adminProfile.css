@@ -50,3 +50,32 @@
 .adprofile-proheader h2{
     font-size: 35px;
 }
+
+.studetail-data-container {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+.student-detail-right-section-adminProfile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.citizenship-adminProfile {
+    height: 10vh;
+    width: 10vw;
+}
+
+@media screen and (max-width: 768px) {
+    .citizenship-adminProfile {
+        width: 15vw;
+        margin-left: 15vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .citizenship-adminProfile {
+        width: 18vw;
+        margin-left: -10px;
+    }
+}

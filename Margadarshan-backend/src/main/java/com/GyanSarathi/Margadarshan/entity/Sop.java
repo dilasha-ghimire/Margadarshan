@@ -2,15 +2,13 @@ package com.GyanSarathi.Margadarshan.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @AllArgsConstructor
 @NotNull
 @Setter
+@Getter
 @NoArgsConstructor
 @ToString
 @Table(name = "SOP")

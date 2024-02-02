@@ -30,7 +30,12 @@ public class SopController {
     }
 
     @PostMapping("/retrieve-sop")
-    public List<?> listOfSopByStudentId(@ModelAttribute SopDto sopDto){
-        return sopService.findSopById(sopDto);
+    public List<SopDto> listSopByStudentId(@RequestBody SopDto sopDto){
+        return sopService.getSopByStudentId(sopDto);
+    }
+
+    @PostMapping("/delete-sop")
+    public String deleteSopById(@RequestBody SopDto sopDto){
+        return sopService.deleteBySopId(sopDto);
     }
 }

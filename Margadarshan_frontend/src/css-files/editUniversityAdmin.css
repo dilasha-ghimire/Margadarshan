@@ -27,7 +27,7 @@
 .file-img-container-editUni {
     border: dotted white 2px;
 }
-.file-img-editUni-adminUni {
+.file-img-editUni-adminUni, .addEdit-image {
     height: 250px;
     width: 100%;
 }
@@ -129,7 +129,7 @@
         height: 350px;
         padding-top: 15px;
     }
-    .file-img-editUni-adminUni {
+    .file-img-editUni-adminUni, .addEdit-image {
         height: 120px;
     }
     .browse-button-editUni {
@@ -154,7 +154,7 @@
 
 @media screen and (min-width: 400px) and (max-width: 750px) {
     .edit-uni-container-adminUni {
-        left: 20px;
+        left: 80px;
         width: 400px;
         height: 460px;
     }

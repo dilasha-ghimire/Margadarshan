@@ -154,7 +154,7 @@ function AdminScholarship() {
                         "Content-Type": "multipart/form-data",
                     }
                 });
-
+                setSelectedImage(null)
                 console.log(response);
                 return response.data;
             }

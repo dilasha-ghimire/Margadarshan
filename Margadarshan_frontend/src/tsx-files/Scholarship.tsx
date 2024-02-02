@@ -64,7 +64,7 @@ function Scholarship() {
 
     const generateGrantAmountOptions = () => {
         const lowerBounds = [0, 1000, 5000, 10000, 25000];
-        const upperBounds = [1000, 5000, 10000, 25000, Infinity];
+        const upperBounds = [1000, 5000, 10000, 25000, 100000];
         return lowerBounds.map((lower, index) => {
             const upper = upperBounds[index];
             const label = upper === Infinity ? `>${lower}` : `$${lower} - $${upper}`;
