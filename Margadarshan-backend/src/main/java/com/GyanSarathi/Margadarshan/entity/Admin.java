@@ -13,7 +13,7 @@ public class Admin{
     @Column(name = "admin_id",nullable = false)
     private int adminId;
 
-    @Column(name = "admin_email", nullable = false)
+    @Column(name = "admin_email", nullable = false, unique = true)
     private String adminEmail;
 
     @Column(name = "otp")
