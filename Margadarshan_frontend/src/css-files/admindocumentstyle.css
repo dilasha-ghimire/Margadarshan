@@ -1,0 +1,44 @@
+.addoc-content{
+    margin-left: 90px;
+}
+
+.addoc-mainbar {
+    display: flex;
+    margin-top: 100px;
+    gap: 7vw;
+}
+.addoc-dheader{
+    margin-top: 60px;
+    padding-right: 30px;
+    padding-left: 30px;
+    font-family: "Agency FB";
+}
+.addoc-dheader h2{
+    font-size: 35px;
+}
+
+.addoc-data-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+@media screen and (min-width:950px) and (max-width: 1350px) {
+    .addoc-data-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 949px){
+    .addoc-data-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.admin-document-view{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px 20px 20px;
+    padding: 10px;
+    border: 5px solid #383d52;
+    border-radius: 10px;
+    align-items: flex-start;
+}
