@@ -114,6 +114,7 @@ public class DocumentServiceImpl implements DocumentService {
                     .documentId(document.getDocumentId())
                     .documentName(document.getDocumentName())
                     .studentId(document.getDocumentStudent().getId())
+                    .studentName(document.getDocumentStudent().getFullName())
                     .documentImageString(document.getDocumentImage())
                     .build();
             documentDtos.add(documentDto);

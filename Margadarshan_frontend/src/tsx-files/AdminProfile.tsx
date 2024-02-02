@@ -41,7 +41,7 @@ const AdminProfile: React.FC = () => {
         }
     };
 
-    const onSubmitSearch = (e) => {
+    const onSubmitProSearch = (e) => {
         e.preventDefault();
 
         const filteredStudents = students.filter((student) =>
@@ -58,7 +58,7 @@ const AdminProfile: React.FC = () => {
 
             <div className="adprofile-content">
                 <div className="adprofile-mainbar">
-                    <form onSubmit={onSubmitSearch}>
+                    <form onSubmit={onSubmitProSearch}>
                         <div className="adprofile-searchbar-container">
                             <p id="adprofile-p1">Search student: </p>
                             <input

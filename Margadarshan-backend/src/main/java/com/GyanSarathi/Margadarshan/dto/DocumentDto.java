@@ -25,4 +25,6 @@ public class DocumentDto {
     private int studentId;
 
     private String documentImageString;
+
+    private String studentName;
 }

@@ -31,6 +31,8 @@ public interface StudentService {
 
     String updateProfileWithCitizenship(StudentDto studentDto);
 
+    String updateProfileWithoutCitizenship(StudentDto studentDto);
+
     StudentDto getStudentByStudentId(StudentDto studentDto);
 
 
