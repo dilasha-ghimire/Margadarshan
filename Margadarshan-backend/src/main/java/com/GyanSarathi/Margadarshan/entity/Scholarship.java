@@ -32,10 +32,10 @@ public class Scholarship {
     @Column(name = "scholarship_deadline", nullable = false)
     private String scholarshipDeadline;
 
-    @Column(name = "scholarship_gpa", nullable = false)
+    @Column(name = "scholarship_gpa", nullable = true)
     private String scholarshipGpa;
 
-    @Column(name = "scholarship_image", nullable = false)
+    @Column(name = "scholarship_image", nullable = true)
     private String scholarshipImage;
 
       /*
