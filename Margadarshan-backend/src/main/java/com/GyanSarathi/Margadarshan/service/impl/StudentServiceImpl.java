@@ -140,7 +140,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public String updateProfileWithCitizenship(StudentDto studentDto) {
         Student existingStudent = studentRepository.findStudentById(studentDto.getStudentId());
-        System.out.println(existingStudent);
         String fileName = UUID.randomUUID().toString()+"_"+ studentDto.getCitizenshipFront().getOriginalFilename();
         Path filePath = Paths.get(uploadPath,fileName);
         try {
@@ -157,6 +156,16 @@ public class StudentServiceImpl implements StudentService {
         }
         existingStudent.setCitizenshipFront(fileName);
         existingStudent.setCitizenshipBack(fileName2);
+        existingStudent.setFullName(studentDto.getStudentFullName());
+        existingStudent.setNumber(studentDto.getStudentNumber());
+        existingStudent.setAddress(studentDto.getStudentAddress());
+        studentRepository.save(existingStudent);
+        return "Profile updated";
+    }
+
+    @Override
+    public String updateProfileWithoutCitizenship(StudentDto studentDto) {
+        Student existingStudent = studentRepository.findStudentById(studentDto.getStudentId());
         existingStudent.setFullName(studentDto.getStudentFullName());
         existingStudent.setNumber(studentDto.getStudentNumber());
         existingStudent.setAddress(studentDto.getStudentAddress());

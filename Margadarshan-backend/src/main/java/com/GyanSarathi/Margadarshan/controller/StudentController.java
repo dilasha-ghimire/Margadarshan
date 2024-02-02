@@ -97,7 +97,13 @@ public class StudentController {
         studentService.updateProfileWithCitizenship(studentDto);
         return "profile updated";
     }
-    //view profile
+
+    @PostMapping("/update-student-profile-without-citizenship")
+    public String updateProfileWithoutCitizenship(@RequestBody StudentDto studentDto){
+        studentService.updateProfileWithoutCitizenship(studentDto);
+        return "profile updated";
+    }
+    
     @PostMapping("/student-by-id")
     public StudentDto getStudentById(@RequestBody StudentDto studentDto){
         return studentService.getStudentByStudentId(studentDto);
