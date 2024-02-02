@@ -31,7 +31,7 @@ public class Student{
     @Column(name = "number", nullable = false)
     private long number;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "password", nullable = false)
@@ -44,22 +44,4 @@ public class Student{
     private String citizenshipBack;
 
 
-
-
-    /*@OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Education> educations = new ArrayList<>();*/
-
-
-     /*
-    CREATE TABLE `Students` (
-  `student_id` int NOT NULL AUTO_INCREMENT,
-  `full_name` varchar(100) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `number` bigint NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`student_id`)
-)
-    */
 }

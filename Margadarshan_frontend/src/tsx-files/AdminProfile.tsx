@@ -1,8 +1,8 @@
 import '../css-files/adminProfile.css';
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import AdminHeader from "./AdminHeader.tsx";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 //import {faUser} from "@fortawesome/free-solid-svg-icons";
 
@@ -13,7 +13,7 @@ const AdminProfile: React.FC = () => {
     useEffect(() => {
         const storedOTP = localStorage.getItem('adminOTP');
 
-        if (storedOTP == null){
+        if (storedOTP == null) {
             navigate('/login');
         }
     }, []);
@@ -54,7 +54,7 @@ const AdminProfile: React.FC = () => {
 
     return (
         <>
-            <AdminHeader/>
+            <AdminHeader />
 
             <div className="adprofile-content">
                 <div className="adprofile-mainbar">
@@ -63,8 +63,8 @@ const AdminProfile: React.FC = () => {
                             <p id="adprofile-p1">Search student: </p>
                             <input
                                 className="adprofile-searchbar"
-                                 value={searchInput}
-                                 onChange={(e) => setSearchInput(e.target.value)}
+                                value={searchInput}
+                                onChange={(e) => setSearchInput(e.target.value)}
                             />
                             <div className="adprofile-searchbtn-container">
                                 <button className="adprofile-searchbtn" type="submit">
@@ -83,11 +83,24 @@ const AdminProfile: React.FC = () => {
                         <div className="adedu-data-container">
                             {filteredStudents.map((student) => (
                                 <div key={student.id} className="studetail-data-container">
-                                    <p>Student ID: {student.id}</p>
-                                    <p>Full Name: {student.fullName}</p>
-                                    <p>Address: {student.address}</p>
-                                    <p>Number: {student.number}</p>
-                                    <p>Email: {student.email}</p>
+                                    <div className='student-detail-left-section-adminProfile'>
+                                        <p>Student ID: {student.id}</p>
+                                        <p>Full Name: {student.fullName}</p>
+                                        <p>Address: {student.address}</p>
+                                        <p>Number: {student.number}</p>
+                                        <p>Email: {student.email}</p>
+                                    </div>
+
+                                    <div className='student-detail-right-section-adminProfile'>
+                                        {student.citizenshipFront && student.citizenshipBack ? (
+                                            <>
+                                                <img className='citizenship-adminProfile' src={student.citizenshipFront} alt="Citizenship Front"></img>
+                                                <img className='citizenship-adminProfile' src={student.citizenshipBack} alt="Citizenship Back"></img>
+                                            </>
+                                        ) : (
+                                            <img src = ""></img>
+                                        )}
+                                    </div>
                                 </div>
                             ))}
                         </div>

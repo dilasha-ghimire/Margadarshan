@@ -4,7 +4,7 @@ import '../css-files/SopDialogBox.css'
 import Header from './Header';
 import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 import {Link} from "react-router-dom";
-import "../css-files/educationstyle.css"
+import "../css-files/documentstyle.css"
 import axios from "axios";
 function SOP() {
 
@@ -12,6 +12,23 @@ function SOP() {
         document.title = "SOP and Essays | Margadarshan"
     }, [])
 
+
+    const [documents, setDocuments] = useState([]);
+
+    const fetchDocuments = async (studentId) => {
+        try {
+            const response = await axios.post('http://localhost:8080/api/retrieve-sop', {
+                studentId
+            });
+            setDocuments(response.data);
+            console.log(response.data);
+        }
+        catch (error) {
+            console.error("Error fetching documents:", error);
+        }
+    };
+
+   // upload
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     // const [studentId, setStudentId] = useState(null);
     const [studentId, setStudentId] = useState<string | null>(null);
@@ -22,6 +39,7 @@ function SOP() {
         if (storedID) {
             setIsLoggedIn(true);
             setStudentId(storedID);
+            fetchDocuments(storedID);
         }
         else {
             setIsLoggedIn(false);
@@ -98,7 +116,7 @@ function SOP() {
             {localStorage.getItem("loggedInUserId")? <Header/>:<BeforeLoginHeader/>}
 
             {isLoggedIn ? (
-            <div className="edu-content">
+            <div className="doc-content">
                 <div id="edu-navigation" className="edu-sidenavbar">
                     <div id="mySidenav" className="edu-sidenav-content">
                         <p>Portfolio</p>
@@ -114,31 +132,41 @@ function SOP() {
                     </div>
                 </div>
 
-
-
+                <div className='document-upload'>
             <div className="edu-main" style={{ opacity: bodyOpacity }}>
                 <div className="edu-title">
-                <br /><br />
                     <span className="sop_info" >SOP and essays</span>
-                    <br /><br /><br />
+                    <br />
                     <span className="sop_intro">Upload your SOP and essays for review</span>
-                    <br /><br />
-                    <button id="sopUploadButton" onClick={handleButtonClick}>
-                        <b>Click me</b>
-                    </button>
+                    <p></p>
+                    <p></p>
+                    <br />
                 </div>
+                <button className="doc-addButton" onClick={handleButtonClick}>
+                        +
+                    </button>
             </div>
 
-
+            <div className='doc-timeline'>
+            <div className="doc-data-display">
+                            {documents.map(document => (
+                                <div key={document.sopId} className="document-view">
+                                    <h3>{document.sopName}</h3>
+                                    {/* <p>t{document.sopPdfString}</p> */}
+                                    <object data={`data:application/pdf;base64, `+document.sopPdfString} type="application/pdf" width="100%" height="500px"></object>
+                                </div>
+                            ))}
+                        </div>
 
             {isAddUniVisible &&(
-                <div className="sop_first-div">
+                <div className='doc-form'>
+                {/* <div className="sop_first-div"> */}
                     <form className="form" onSubmit={handleFormSubmit}>
                         <div className="title">
                             <label id="document-name">Title of document</label>
                             <br />
                             <input
-                                type="text"
+                                // type="text"
                                 id="input-doc"
                                 value={docName}
                                 onChange={(e) => setDocName(e.target.value)}
@@ -156,8 +184,11 @@ function SOP() {
                             <button className='sop_uploadbtn' type="submit">upload</button>
                         </div>
                     </form>
+                {/* </div> */}
                 </div>
             )}
+            </div>
+            </div>
             </div>
 
             ) : (
@@ -173,3 +204,5 @@ function SOP() {
     )
 }
 export default SOP;
+
+
