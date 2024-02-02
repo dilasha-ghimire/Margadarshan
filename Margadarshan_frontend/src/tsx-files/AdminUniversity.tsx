@@ -4,7 +4,7 @@ import "../css-files/addUniversity.css";
 import "../css-files/editUniversityAdmin.css";
 import { useQuery } from "react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
@@ -175,7 +175,7 @@ function AdminUniversity() {
                         "Content-Type": "multipart/form-data",
                     }
                 });
-
+                setSelectedImage(null)
                 console.log(response);
                 return response.data;
             }
@@ -222,7 +222,7 @@ function AdminUniversity() {
             const universityDetails = response.data;
             console.log("University details:", universityDetails);
 
-            setValue("universityId", universityDetails.id)
+            setValue("universityId", universityDetails.id);
             setUniversityDetails(universityDetails);
         }
         catch (error) {
@@ -449,7 +449,7 @@ function AdminUniversity() {
                                         <div className="file-img-container-editUni">
                                             {selectedImage ? (
                                                 <img
-                                                className={"addUni-image"}
+                                                className={"addEdit-image"}
                                                 src={selectedImage}
                                                 alt="Selected Image"
                                             />

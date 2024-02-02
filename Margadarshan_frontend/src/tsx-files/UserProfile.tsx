@@ -115,7 +115,6 @@ function UserProfile() {
             alert("Citizenship uploaded!");
             setEditProfileVisible(!isEditProfileVisible);
             window.location.reload();
-
         }
     })
 
@@ -133,7 +132,6 @@ function UserProfile() {
             setEditProfileVisible(!isEditProfileVisible);
             window.location.reload();
         }
-
     }
 
     return (
