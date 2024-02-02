@@ -67,6 +67,8 @@ public class SopServiceImpl implements SopService {
             SopDto sopDto = SopDto.builder()
                     .sopName(sop.getSopName())
                     .sopPdfString(sop.getSopPdf())
+                    .studentName(sop.getStudent().getFullName())
+                    .studentId(sop.getStudent().getId())
                     .build();
             sopDtos.add(sopDto);
         }

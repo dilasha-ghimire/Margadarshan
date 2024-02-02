@@ -1,6 +1,6 @@
 import '../css-files/UserProfile.css'
 import Header from './Header';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import BeforeLoginHeader from "./BeforeLoginHeader.tsx";
 import { Link } from "react-router-dom";
@@ -110,14 +110,30 @@ function UserProfile() {
             catch (error) {
                 console.error("Error uploading file:", error);
             }
+        },
+        onSuccess: () => {
+            alert("Citizenship uploaded!");
+            setEditProfileVisible(!isEditProfileVisible);
+            window.location.reload();
+
         }
     })
 
     const onSubmitEditProfile = async (formData: any): void => {
-        console.log("Form Data:", formData);
-        editProfile.mutate(formData);
-        alert("Profile updated!");
-        setEditProfileVisible(!isEditProfileVisible);
+        if(formData.citizenshipFront?.length !== 0 && formData.citizenshipBack?.length !== 0) {
+            editProfile.mutate(formData);
+        }
+        else {
+            delete formData?.citizenshipFront;
+            delete formData?.citizenshipBack;
+            formData.studentId=loggedInUserId;
+            const response = await axios.post("http://localhost:8080/api/update-student-profile-without-citizenship", formData);
+            console.log(response);
+            alert("Profile updated!");
+            setEditProfileVisible(!isEditProfileVisible);
+            window.location.reload();
+        }
+
     }
 
     return (
