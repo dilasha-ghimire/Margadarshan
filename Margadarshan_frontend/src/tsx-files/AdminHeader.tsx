@@ -77,7 +77,6 @@ const AdminHeader: React.FC = () => {
                                             <Link to="/adminProfile" className="admin-header-nav-dropdown-item">KYC Profile</Link>
                                             <Link to="/admineducation" className="admin-header-nav-dropdown-item">Education</Link>
                                             <Link to="/admindocument" className="admin-header-nav-dropdown-item">Documents</Link>
-                                            <Link to="#" className="admin-header-nav-dropdown-item">SOP and Essays</Link>
                                         </div>
                                     </div>
                                 </div>
