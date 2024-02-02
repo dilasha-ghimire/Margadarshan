@@ -36,7 +36,7 @@ public class University{
     @Column(name = "university_length", nullable = false)
     private int length;
 
-    @Column(name = "university_image")
+    @Column(name = "university_image",nullable = true)
     private String universityImage;
 
     @Column(name="average_bachelors_gpa",nullable = false)
@@ -57,7 +57,7 @@ public class University{
     @Column(name = "average_sat_score", nullable = false)
     private String averageSatScore;
 
-    @Column(name = "required_essays", nullable = false)
+    @Column(name = "required_essays", nullable = true)
     private boolean requiredEssays;
 
 
