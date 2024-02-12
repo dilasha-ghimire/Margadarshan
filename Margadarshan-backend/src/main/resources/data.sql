@@ -1,8 +1,12 @@
-INSERT INTO exams (exam_id, exam_name) VALUES
-                                           (1, 'SAT'),
-                                           (2, 'GRE'),
-                                           (3, 'IELTS'),
-                                           (4, 'TOEFL');
+INSERT INTO exams (exam_id, exam_name)
+SELECT 1, 'SAT' WHERE NOT EXISTS (SELECT 1 FROM exams WHERE exam_id = 1);
+INSERT INTO exams (exam_id, exam_name)
+SELECT 2, 'GRE' WHERE NOT EXISTS (SELECT 1 FROM exams WHERE exam_id = 2);
+INSERT INTO exams (exam_id, exam_name)
+SELECT 3, 'IELTS' WHERE NOT EXISTS (SELECT 1 FROM exams WHERE exam_id = 3);
+INSERT INTO exams (exam_id, exam_name)
+SELECT 4, 'TOEFL' WHERE NOT EXISTS (SELECT 1 FROM exams WHERE exam_id = 4);
+
 
 INSERT INTO exam_dates (exam_id, exam_date, registration_deadline, late_registration_deadline) VALUES
        (1, '2024-03-14', '2024-02-14', '2024-02-28'),
